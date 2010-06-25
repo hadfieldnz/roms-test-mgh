@@ -1,0 +1,186 @@
+*
+* svn $Id$
+***********************************************************************
+*  Copyright (c) 2002-2010 The ROMS/TOMS Group                        *
+*    Licensed under a MIT/X style license                             *
+*    See License_ROMS.txt                                             *
+***********************************************************************
+*                                                                     *
+*  This directory includes various files to run the Strong/Weak       *
+*  strong constraint,  4-Dimensional Variational data (4D-Var)        *
+*  assimilation observation sensitivity based on the Physical-space   *
+*  Statistical Analysis System (PSAS) algorithm in the California     *
+*  Current System, 1/3 degree resolution, application (WC13).         *
+*                                                                     *
+*  References:                                                        *
+*                                                                     *
+*    Moore, A.M., H.G. Arango, G. Broquet, B.S. Powell, J.            *
+*      Zavala-Garay, and A.T. Weaver, 2010: The Regional Ocean        *
+*      Modeling System (ROMS) 4-dimensional variational data          *
+*      assimilation systems, Part I: System overview, Ocean           *
+*      Modelling, draft.                                              *
+*                                                                     *
+*    Moore, A.M., H.G. Arango, and G. Broquet, C. Edwards, M.         *
+*      Veneziani, B.S. Powell, D. Foley, J. Doyle, D. Costa, and      *
+*      P. Robinson, 2010: The Regional Ocean Modeling System          *
+*      (ROMS) 4-dimensional variational data assimilation systems,    *
+*      Part II: Performance and application to the California         *
+*      Current System, Ocean Modelling, Draft.                        *
+*                                                                     *
+*    Moore, A.M., H.G. Arango, and G. Broquet, C. Edwards, M.         *
+*      Veneziani, B.S. Powell, D. Foley, J. Doyle, D. Costa, and      *
+*      P. Robinson, 2010: The Regional Ocean Modeling System          *
+*      (ROMS) 4-dimensional variational data assimilation systems,    *
+*      Part III: Observation Impact and Observation Sensitivity       *
+*      in the California Current System, Ocean Modelling, Draft.      *
+*                                                                     *
+***********************************************************************
+*
+
+Important CPP options:
+
+   W4DPSAS_SENSITIVITY     4D-PSAS observation sensitivity driver
+   AD_IMPULSE              Force ADM with intermittent impulses
+   WC13                    Application CPP option
+
+Input NetCDF files:
+
+                       Grid File:  ../Data/wc13_grd.nc
+          Nonlinear Initial File:  wc13_ini.nc
+                 Forcing File 01:  ../Data/coamps_wc13_lwrad_down.nc
+                 Forcing File 02:  ../Data/coamps_wc13_Pair.nc
+                 Forcing File 03:  ../Data/coamps_wc13_Qair.nc
+                 Forcing File 04:  ../Data/coamps_wc13_rain.nc
+                 Forcing File 05:  ../Data/coamps_wc13_swrad.nc
+                 Forcing File 06:  ../Data/coamps_wc13_Tair.nc
+                 Forcing File 07:  ../Data/coamps_wc13_wind.nc
+                   Boundary File:  ../Data/wc13_ecco_bry.nc
+
+        Adjoint Sensitivity File:  wc13_ads.nc
+     Initial Conditions STD File:  ../Data/wc13_std_i.nc
+                  Model STD File:  ../Data/wc13_std_m.nc
+    Boundary Conditions STD File:  ../Data/wc13_std_b.nc
+        Surface Forcing STD File:  ../Data/wc13_std_f.nc
+    Initial Conditions Norm File:  ../Data/wc13_nrm_i.nc
+                 Model Norm File:  ../Data/wc13_nrm_m.nc
+   Boundary Conditions Norm File:  ../Data/wc13_nrm_b.nc
+       Surface Forcing Norm File:  ../Data/wc13_nrm_f.nc
+               Observations File:  wc13_obs.nc
+
+Currently, you can find the following files here:
+
+   build.bash          bash shelf script to compile application
+   build.sh            csh Unix script to compile application
+   job_psas_sen.sh     job configuration script
+   ocean_wc13.in       ROMS standard input script for WC13
+   s4dvar.in           4D-Var standard input script template
+   wc13.h              WC13 header with CPP options
+
+Important parameters in standard input "ocean_wc13.in" script:
+
+   * Notice that this driver uses the following adjoint sensitivity
+     parameters (see input script for details):
+
+       DstrS == 0.0d0                      ! starting day
+       DendS == 0.0d0                      ! ending day
+
+       KstrS ==  1                         ! starting level
+       KendS == 30                         ! ending level
+
+       Lstate(isFsur) == T                 ! free-surface
+       Lstate(isUbar) == T                 ! 2D U-momentum
+       Lstate(isVbar) == T                 ! 2D V-momentum
+       Lstate(isUvel) == T                 ! 3D U-momentum
+       Lstate(isVvel) == T                 ! 3D V-momentum
+
+       Lstate(isTvar) == T T               ! tracers
+
+   * Both FWDNAME and HISNAME must be the same:
+
+       FWDNAME == wc13_fwd.nc
+       HISNAME == wc13_fwd.nc
+
+To run this application you need to take the following steps:
+
+  (1) Before you run this application, you need to run the standard
+      4D-PSAS (../PSAS directory) since we need the Lanczos vectors.
+      Notice that in "job_psas_sen.sh" we have the following
+      operation:
+
+      cp -p ${Dir}/PSAS/wc13_mod.nc wc13_lcz.nc
+
+      In 4D-PSAS (observartion space minimization), the Lanczos vectors
+      are stored in output 4D-Var NetCDF file "wc13_mod.nc".
+
+  (2) In addition, to run this application you need an adjoint
+      sensitivity functional. This is computed by the following
+      Matlab script:
+
+      ../Data/adsen_37N_transport.m
+
+      which creates the NetCDF file "wc13_ads.nc". This file has
+      been already created for you.
+
+      The adjoint sensitivity functional is defined as the
+      time-averaged transport crossing 37N in the upper 500m.
+
+  (3) Customize your preferred "build" script and provides the
+      appropriate values for:
+
+      * Root directory, MY_ROOT_DIR
+      * ROMS source code, MY_ROMS_SRC
+      * Fortran compiler, FORT
+      * MPI flags, USE_MPI and USE_MPIF90
+      * Path of MPI, NetCDF, and ARPACK libraries according to
+        the compiler. Notice that you need to provide the
+        correct places of these libraries for your computer.
+        If you want to ignore this section, comment out the
+        assignment for variable USE_MY_LIBS.
+
+  (4) Notice that the most important CPP option for this application
+      is specified in the "build" script instead of "wc13.h":
+
+      setenv MY_CPP_FLAGS "-DW4DPSAS_SENSITIVITY"
+      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DAD_IMPULSE"
+
+      this is to allow flexibility with different CPP options.
+
+      For this to work, however, any "#undef" directives MUST be
+      avoided in the header file "wc13.h" since it has precedence
+      during C-preprocessing.
+
+  (5) You MUST use the "build" script to compile.
+
+  (6) Customize ROMS input script "ocean_wc13.in" and specify the
+      appropriate values for the distributed-memory partition. It
+      is set by default to:
+
+      NtileI == 2                               ! I-direction partition
+      NtileJ == 2                               ! J-direction partition
+
+      Notice that the adjoint-based algorithms can be only run
+      in parallel using MPI.  This is because the way that the
+      adjoint model is constructed.
+
+  (7) Customize configuration script "job_psas_sen.sh" and provide
+      appropriate place for the "substitute" Perl script:
+
+      set SUBSTITUTE=${ROMS_ROOT}/ROMS/Bin/substitute
+
+      This script is distributed with ROMS and it is found in the
+      ROMS/Bin sub-directory. Alternatively, you can define
+      ROMS_ROOT environmental variable in your .cshrc login
+      script. For example, I have:
+
+      setenv ROMS_ROOT /home/arango/ocean/toms/repository/trunk
+
+  (8) Execute the configuration "job_psas_sen.sh" BEFORE running
+      the model.  It copies the required files needed and creates
+      "psas.in" input script from template "s4dvar.in". This has
+      to be done EVERY TIME that you run this application. We need
+      a clean and fresh copy of initial conditions and observation
+      files since they are modified by ROMS during execution.
+
+  (9) Run ROMS with data assimilation:
+
+      mpirun -np 4 oceanM ocean_wc13.in > & log &
