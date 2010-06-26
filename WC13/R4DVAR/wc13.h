@@ -6,7 +6,7 @@
 **   See License_ROMS.txt                                                    **
 *******************************************************************************
 **
-** Options for CCS  Application, 30 km resolution.
+** Options for the California Current System, 1/3 degree resolution.
 **
 ** Application flag:   WC13
 ** Input script:       ocean_wc13.in

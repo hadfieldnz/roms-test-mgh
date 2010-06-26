@@ -7,10 +7,10 @@
 ***********************************************************************
 *                                                                     *
 *  This directory includes various files to run the Strong/Weak       *
-*  strong constraint,  4-Dimensional Variational data (4D-Var)        *
-*  assimilation based on the Physical-space Statistical Analysis      *
-*  System (PSAS) algorithm in the California Current System, 1/3      *
-*  degree resolution, application (WC13).                             *
+*  constraint, 4-Dimensional Variational data (4D-Var) assimilation   *
+*  based on the Physical-space Statistical Analysis System (PSAS)     *
+*  algorithm in the California Current System, 1/3 degree resolution, *
+*  application (WC13).                                                *
 *                                                                     *
 *  References:                                                        *
 *                                                                     *

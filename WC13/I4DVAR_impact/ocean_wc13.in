@@ -626,7 +626,7 @@ Dout(iTvdif) == T T                        ! vertical diffusion
 
 ! Input ASCII parameter filenames.
 
-     APARNAM =  r4dvar.in
+     APARNAM =  i4dvar.in
      SPOSNAM =  stations.in
      FPOSNAM =  floats.in
      BPARNAM =  bioFasham.in

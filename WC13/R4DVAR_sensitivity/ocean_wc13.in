@@ -38,7 +38,7 @@
 !
 ! Application title.
 
-       TITLE = ROMS/TOMS 3.0 - California Current System (WC13)
+       TITLE = California Current System, 1/3 degree resolution
 
 ! C-preprocessing Flag.
 
