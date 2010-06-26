@@ -1,42 +1,66 @@
 %
-% Script to plot the difference between the prior and posterior
-% error variances deviations.
+% PLOT_PRIOR_POSTERIOR_ERRORS:  Plot the difference between the prior and
+%                               posterior error variances deviations
 %
 
-clear
-close all
+% svn $Id$
+%===========================================================================%
+%  Copyright (c) 2002-2010 The ROMS/TOMS Group                              %
+%    Licensed under a MIT/X style license                                   %
+%    See License_ROMS.txt                                                   %
+%===========================================================================%
 
-Inpb='../Data/wc13_std_i.nc';
+clear                                  % clear workspace
+close all                              % close all figures
 
-% Inpa='../PSAS/wc13_err.nc';
+PRINT=0;                               % switch to save figures as PNG
+SHADING_INTERP=1;                      % switch for shading interp (1) or
+                                       %            shading flat (0)
 
-Inpa='../R4DVAR/wc13_err.nc';
+% Set input NetCDF files.
 
-Grd='../Data/wc13_grd.nc';
+ Inpb='../Data/wc13_std_i.nc';         % prior standard deviations
 
-coast = load('../Data/wc13_cst.mat','-mat');
+%Inpa='../PSAS/wc13_err.nc';           % 4D-PSAS posterior error variance
+ Inpa='../R4DVAR/wc13_err.nc';         % R4D-Var posterior error variance
 
-lonr=nc_read(Grd,'lon_rho');
-latr=nc_read(Grd,'lat_rho');
-lonu=nc_read(Grd,'lon_u');
-latu=nc_read(Grd,'lat_u');
-lonv=nc_read(Grd,'lon_v');
-latv=nc_read(Grd,'lat_v');
+Grd='../Data/wc13_grd.nc';             % grid
 
-maskr=nc_read(Grd,'mask_rho');
-masku=nc_read(Grd,'mask_u');
-maskv=nc_read(Grd,'mask_v');
+% Load coastline coordinates.
 
-% Read the prior error stds.
+coast=load('../Data/wc13_cst.mat','-mat');   % coastlines structure
 
-zetab=nc_read(Inpb,'zeta');
-ub   =nc_read(Inpb,'u');
-vb   =nc_read(Inpb,'v');
-tempb=nc_read(Inpb,'temp');
-saltb=nc_read(Inpb,'salt');
+% Read grid coordinates.
 
+rlon=nc_read(Grd,'lon_rho');
+rlat=nc_read(Grd,'lat_rho');
 
-% Convert prior error variances to variances
+ulon=nc_read(Grd,'lon_u');
+ulat=nc_read(Grd,'lat_u');
+
+vlon=nc_read(Grd,'lon_v');
+vlat=nc_read(Grd,'lat_v');
+
+% Determine number of records (EOFs) and number of vertical levels in
+% input NetCDF history files.
+
+Nrec=length(nc_read(Inpa,'ocean_time'));
+N   =length(nc_read(Inpa,'s_rho'));
+
+klev=N;                   % processing surface level
+
+% Read in the prior error standard deviations.
+
+Rec=1;
+FillValue=NaN;
+
+zetab=nc_read(Inpb,'zeta',Rec,FillValue);
+ub   =nc_read(Inpb,'u'   ,Rec,FillValue);
+vb   =nc_read(Inpb,'v'   ,Rec,FillValue);
+tempb=nc_read(Inpb,'temp',Rec,FillValue);
+saltb=nc_read(Inpb,'salt',Rec,FillValue);
+
+% Convert prior error standard deviations to variances.
 
 zetab=zetab.*zetab;
 ub=ub.*ub;
@@ -44,13 +68,15 @@ vb=vb.*vb;
 tempb=tempb.*tempb;
 saltb=saltb.*saltb;
 
-% Read the expected posterior error variances.
+% Read in the expected posterior error variances.
 
-zetaa=nc_read(Inpa,'zeta');
-ua   =nc_read(Inpa,'u');
-va   =nc_read(Inpa,'v');
-tempa=nc_read(Inpa,'temp');
-salta=nc_read(Inpa,'salt');
+Rec=1;
+
+zetaa=nc_read(Inpa,'zeta',Rec,FillValue);
+ua   =nc_read(Inpa,'u'   ,Rec,FillValue);
+va   =nc_read(Inpa,'v'   ,Rec,FillValue);
+tempa=nc_read(Inpa,'temp',Rec,FillValue);
+salta=nc_read(Inpa,'salt',Rec,FillValue);
 
 diffz=zetaa-zetab;
 diffu=ua-ub;
@@ -58,61 +84,47 @@ diffv=va-vb;
 difft=tempa-tempb;
 diffs=salta-saltb;
 
-indr=find(maskr==0);
-indu=find(masku==0);
-indv=find(maskv==0);
-
-diffz(indr)=NaN;
-for k=1:size(difft,3)
-  a(:,:)=difft(:,:,k);
-  a(indr)=NaN;
-  difft(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=diffs(:,:,k);
-  a(indr)=NaN;
-  diffs(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=diffu(:,:,k);
-  a(indu)=NaN;
-  diffu(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=diffv(:,:,k);
-  a(indv)=NaN;
-  diffv(:,:,k)=a(:,:);
-  clear a;
-end
+% Plot the difference between the prior and posterior error
+% variances for state variables. If 3D field, plot selected
+% level (klev).
 
 figure
 
-subplot(3,2,1)
-pcolor(lonr,latr,diffz(:,:,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('\zeta increment')
+subplot(3,2,1);
+pcolor(rlon,rlat,diffz);
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('\zeta increment');
 
-subplot(3,2,2)
-pcolor(lonu,latu,diffu(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('u increment')
+subplot(3,2,2);
+pcolor(ulon,ulat,squeeze(diffu(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('u increment');
 
-subplot(3,2,3)
-pcolor(lonv,latv,diffv(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('v increment')
+subplot(3,2,3);
+pcolor(vlon,vlat,squeeze(diffv(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('v increment');
 
-subplot(3,2,4)
-pcolor(lonr,latr,difft(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
+subplot(3,2,4);
+pcolor(rlon,rlat,squeeze(difft(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
 title('T increment')
 
-subplot(3,2,5)
-pcolor(lonr,latr,diffs(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('S increment')
+subplot(3,2,5);
+pcolor(rlon,rlat,squeeze(diffs(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('S increment');
 
-print -dpng -r300 plot_prior_posterior_errors.png
-
+if (PRINT),
+  print -dpng -r300 plot_prior_posterior_errors.png
+end,

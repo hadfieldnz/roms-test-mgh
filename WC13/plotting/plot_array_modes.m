@@ -1,74 +1,132 @@
 %
-% Script to plot the chosen array mode.
+% PLOT_ARRAY_MODES:  Plot chosen stabilized representer matrix array modes
 %
 
-clear
-close all
+% svn $Id$
+%===========================================================================%
+%  Copyright (c) 2002-2010 The ROMS/TOMS Group                              %
+%    Licensed under a MIT/X style license                                   %
+%    See License_ROMS.txt                                                   %
+%===========================================================================%
 
-Inpa='../ARRAY_MODES/wc13_tlm_003.nc';
+clear                                  % clear workspace
+close all                              % close all figures
+
+PRINT=0;                               % switch to save figures as PNG
+SHADING_INTERP=1;                      % switch for shading interp (1) or
+                                       %            shading flat (0)
+
+% Set input NetCDF files.
+
+Inp='../ARRAY_MODES/wc13_tlm_003.nc';  % Array modes file (saved in TLM)
 
 Grd='../Data/wc13_grd.nc';
 
-coast = load('../Data/wc13_cst.mat','-mat');
+% Load coastline coordinates.
 
-lonr=nc_read(Grd,'lon_rho');
-latr=nc_read(Grd,'lat_rho');
-lonu=nc_read(Grd,'lon_u');
-latu=nc_read(Grd,'lat_u');
-lonv=nc_read(Grd,'lon_v');
-latv=nc_read(Grd,'lat_v');
+coast=load('../Data/wc13_cst.mat','-mat');   % coastlines structure
 
-maskr=nc_read(Grd,'mask_rho');
-masku=nc_read(Grd,'mask_u');
-maskv=nc_read(Grd,'mask_v');
+% Read grid coordinates.
 
-zetaa  =nc_read(Inpa,'zeta');
-ua     =nc_read(Inpa,'u');
-va     =nc_read(Inpa,'v');
-tempa  =nc_read(Inpa,'temp');
-salta  =nc_read(Inpa,'salt');
-sustra =nc_read(Inpa,'sustr');
-svstra =nc_read(Inpa,'svstr');
-shfluxa=nc_read(Inpa,'shflux');
+rlon=nc_read(Grd,'lon_rho');
+rlat=nc_read(Grd,'lat_rho');
 
-indr=find(maskr==0);
-indu=find(masku==0);
-indv=find(maskv==0);
+ulon=nc_read(Grd,'lon_u');
+ulat=nc_read(Grd,'lat_u');
 
-for l=1:size(tempa,4)
-  a(:,:)=zetaa(:,:,l);
-  a(indr)=NaN;
-  zetaa(:,:,l)=a(:,:);
-  clear a;
-  for k=1:size(tempa,3)
-    a(:,:)=tempa(:,:,k,l);
-    a(indr)=NaN;
-    tempa(:,:,k)=a(:,:);
-    clear a;
-    a(:,:)=salta(:,:,k,l);
-    a(indr)=NaN;
-    salta(:,:,k,l)=a(:,:);
-    clear a;
-    a(:,:)=ua(:,:,k,l);
-    a(indu)=NaN;
-    ua(:,:,k,l)=a(:,:);
-    clear a;
-    a(:,:)=va(:,:,k,l);
-    a(indv)=NaN;
-    va(:,:,k,l)=a(:,:);
-    clear a;
-  end
-end
+vlon=nc_read(Grd,'lon_v');
+vlat=nc_read(Grd,'lat_v');
+
+% Determine number of records and number of vertical levels in
+% input NetCDF history file.
+
+Nrec=length(nc_read(Inp,'ocean_time'));
+N   =length(nc_read(Inp,'s_rho'));
+
+klev=N;                   % process surface level
+
+% Plot selected array mode for each state variable. If 3D field,
+% plot selected level (klev).
+
+FillValue=NaN;
 
 figure
 
-for iplt=1:5
-subplot(3,2,iplt)
- pcolor(lonr,latr,zetaa(:,:,iplt)); shading flat; colorbar
- hold on
- plot(coast.lon,coast.lat,'k')
- title(['\zeta time=',num2str(iplt-1,1),' days'])
-end
+for rec=1:Nrec
+  f=nc_read(Inp,'zeta',rec,FillValue);
+  subplot(3,2,rec);
+  pcolor(rlon,rlat,f);
+  if (SHADING_INTERP), shading interp; else shading flat; end
+  colorbar; hold on;
+  plot(coast.lon,coast.lat,'k');
+  title(['\zeta time=',num2str(rec-1,1),' days']);
+end,
 
-print -dpng -r300 plot_array_modes.png
+if (PRINT),
+  print -dpng -r300 plot_array_modes_zeta.png
+end,
+
+figure
+
+for rec=1:Nrec
+  f=nc_read(Inp,'u',rec,FillValue);
+  subplot(3,2,rec);
+  pcolor(ulon,ulat,squeeze(f(:,:,klev)));
+  if (SHADING_INTERP), shading interp; else shading flat; end
+  colorbar; hold on;
+  plot(coast.lon,coast.lat,'k');
+  title(['u time=',num2str(rec-1,1),' days']);
+end,
+
+if (PRINT),
+  print -dpng -r300 plot_array_modes_u.png
+end,
+
+figure
+
+for rec=1:Nrec
+  f=nc_read(Inp,'v',rec,FillValue);
+  subplot(3,2,rec);
+  pcolor(vlon,vlat,squeeze(f(:,:,klev)));
+  if (SHADING_INTERP), shading interp; else shading flat; end
+  colorbar; hold on;
+  plot(coast.lon,coast.lat,'k');
+  title(['v time=',num2str(rec-1,1),' days']);
+end,
+
+if (PRINT),
+  print -dpng -r300 plot_array_modes_v.png
+end,
+
+figure
+
+for rec=1:Nrec
+  f=nc_read(Inp,'temp',rec,FillValue);
+  subplot(3,2,rec);
+  pcolor(rlon,rlat,squeeze(f(:,:,klev)));
+  if (SHADING_INTERP), shading interp; else shading flat; end
+  colorbar; hold on;
+  plot(coast.lon,coast.lat,'k');
+  title(['T time=',num2str(rec-1,1),' days']);
+end,
+
+if (PRINT),
+  print -dpng -r300 plot_array_modes_temp.png
+end,
+
+figure
+
+for rec=1:Nrec
+  f=nc_read(Inp,'salt',rec,FillValue);
+  subplot(3,2,rec);
+  pcolor(rlon,rlat,squeeze(f(:,:,klev)));
+  if (SHADING_INTERP), shading interp; else shading flat; end
+  colorbar; hold on;
+  plot(coast.lon,coast.lat,'k');
+  title(['S time=',num2str(rec-1,1),' days']);
+end,
+
+if (PRINT),
+  print -dpng -r300 plot_array_modes_salt.png
+end,
 

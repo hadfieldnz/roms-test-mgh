@@ -1,45 +1,80 @@
 %
-% Script to plot the I4D-Var increments.
+% PLOT_I4DVAR_INCREMENTS:  Plot the I4D-Var increments
 %
 
-clear
-close all
+% svn $Id$
+%===========================================================================%
+%  Copyright (c) 2002-2010 The ROMS/TOMS Group                              %
+%    Licensed under a MIT/X style license                                   %
+%    See License_ROMS.txt                                                   %
+%===========================================================================%
 
-Inpb='../I4DVAR/wc13_fwd_000.nc';
-Inpa='../I4DVAR/wc13_fwd_001.nc';
+clear                                  % clear workspace
+close all                              % close all figures
 
-Grd='../Data/wc13_grd.nc';
+PRINT=0;                               % Switch to save figures as PNG
+SHADING_INTERP=1;                      % switch for shading interp (1) or
+                                       %            shading flat (0)
 
-coast = load('../Data/wc13_cst.mat','-mat');
+% Set input NetCDF files.
 
-lonr=nc_read(Grd,'lon_rho');
-latr=nc_read(Grd,'lat_rho');
-lonu=nc_read(Grd,'lon_u');
-latu=nc_read(Grd,'lat_u');
-lonv=nc_read(Grd,'lon_v');
-latv=nc_read(Grd,'lat_v');
+Inpb='../I4DVAR/wc13_fwd_000.nc';      % prior circulation
+Inpa='../I4DVAR/wc13_fwd_001.nc';      % posterior circulation
 
-maskr=nc_read(Grd,'mask_rho');
-masku=nc_read(Grd,'mask_u');
-maskv=nc_read(Grd,'mask_v');
+Grd='../Data/wc13_grd.nc';             % grid
 
-zetab  =nc_read(Inpb,'zeta');
-ub     =nc_read(Inpb,'u');
-vb     =nc_read(Inpb,'v');
-tempb  =nc_read(Inpb,'temp');
-saltb  =nc_read(Inpb,'salt');
-sustrb =nc_read(Inpb,'sustr');
-svstrb =nc_read(Inpb,'svstr');
-shfluxb=nc_read(Inpb,'shflux');
+% Load coastline coordinates.
 
-zetaa  =nc_read(Inpa,'zeta');
-ua     =nc_read(Inpa,'u');
-va     =nc_read(Inpa,'v');
-tempa  =nc_read(Inpa,'temp');
-salta  =nc_read(Inpa,'salt');
-sustra =nc_read(Inpa,'sustr');
-svstra =nc_read(Inpa,'svstr');
-shfluxa=nc_read(Inpa,'shflux');
+coast=load('../Data/wc13_cst.mat','-mat');   % coastlines structure
+
+% Read grid coordinates.
+
+rlon=nc_read(Grd,'lon_rho');
+rlat=nc_read(Grd,'lat_rho');
+
+ulon=nc_read(Grd,'lon_u');
+ulat=nc_read(Grd,'lat_u');
+
+vlon=nc_read(Grd,'lon_v');
+vlat=nc_read(Grd,'lat_v');
+
+% Determine number of records and number of vertical levels in
+% input NetCDF history files.
+
+Nrec=length(nc_read(Inpb,'ocean_time'));
+N   =length(nc_read(Inpb,'s_rho'));
+
+klev=N;                   % processing surface level
+
+% Read in prior circulation initial conditions (Rec=1) and
+% replace land/sea mask values with NaNs.
+
+Rec=1;
+FillValue=NaN;
+
+zetab  =nc_read(Inpb,'zeta'  ,Rec,FillValue);   % free-surface
+ub     =nc_read(Inpb,'u'     ,Rec,FillValue);   % 3D u-momentum
+vb     =nc_read(Inpb,'v'     ,Rec,FillValue);   % 3D v-momentum
+tempb  =nc_read(Inpb,'temp'  ,Rec,FillValue);   % potential temperature
+saltb  =nc_read(Inpb,'salt'  ,Rec,FillValue);   % salinity
+sustrb =nc_read(Inpb,'sustr' ,Rec,FillValue);   % surface u-stress
+svstrb =nc_read(Inpb,'svstr' ,Rec,FillValue);   % surface v-stress
+shfluxb=nc_read(Inpb,'shflux',Rec,FillValue);   % surface net heat flux
+
+% Read in posterior circulation initial conditions (Rec=1) and
+% replace land/sea mask values with NaNs.
+
+zetaa  =nc_read(Inpa,'zeta'  ,Rec,FillValue);   % free-surface
+ua     =nc_read(Inpa,'u'     ,Rec,FillValue);   % 3D u-momentum
+va     =nc_read(Inpa,'v'     ,Rec,FillValue);   % 3D v-momentum
+tempa  =nc_read(Inpa,'temp'  ,Rec,FillValue);   % potential temperature
+salta  =nc_read(Inpa,'salt'  ,Rec,FillValue);   % salinity
+sustra =nc_read(Inpa,'sustr' ,Rec,FillValue);   % surface u-stress
+svstra =nc_read(Inpa,'svstr' ,Rec,FillValue);   % surface v-stress
+shfluxa=nc_read(Inpa,'shflux',Rec,FillValue);   % surface net heat flux
+
+% Compute I4D-Var increments by substracting prior from
+% posterior initial conditions.
 
 diffz=zetaa-zetab;
 diffu=ua-ub;
@@ -51,97 +86,75 @@ difftx=sustra-sustrb;
 diffty=svstra-svstrb;
 diffqh=shfluxa-shfluxb;
 
-indr=find(maskr==0);
-indu=find(masku==0);
-indv=find(maskv==0);
-
-diffz(indr)=NaN;
-for k=1:size(difft,3)
-  a(:,:)=difft(:,:,k);
-  a(indr)=NaN;
-  difft(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=diffs(:,:,k);
-  a(indr)=NaN;
-  diffs(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=diffu(:,:,k);
-  a(indu)=NaN;
-  diffu(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=diffv(:,:,k);
-  a(indv)=NaN;
-  diffv(:,:,k)=a(:,:);
-  clear a;
-end
-for k=1:size(difftx,3)
-  a(:,:)=difftx(:,:,k);
-  a(indu)=NaN;
-  difftx(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=diffty(:,:,k);
-  a(indv)=NaN;
-  diffty(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=diffqh(:,:,k);
-  a(indr)=NaN;
-  diffqh(:,:,k)=a(:,:);
-  clear a;
-end
+% Plot I4D-Var state variables increments.  If 3D field, plot
+% selected level (klev).
 
 figure
 
-subplot(3,2,1)
-pcolor(lonr,latr,diffz(:,:,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('\zeta increment')
+subplot(3,2,1);
+pcolor(rlon,rlat,diffz);
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('\zeta increment (m)');
 
-subplot(3,2,2)
-pcolor(lonu,latu,diffu(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('u increment')
+subplot(3,2,2);
+pcolor(ulon,ulat,squeeze(diffu(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('u increment (m/s)');
 
-subplot(3,2,3)
-pcolor(lonv,latv,diffv(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('v increment')
+subplot(3,2,3);
+pcolor(vlon,vlat,squeeze(diffv(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('v increment (m/s)');
 
-subplot(3,2,4)
-pcolor(lonr,latr,difft(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('T increment')
+subplot(3,2,4);
+pcolor(rlon,rlat,squeeze(difft(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('T increment (Celsius)');
 
-subplot(3,2,5)
-pcolor(lonr,latr,diffs(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('S increment')
+subplot(3,2,5);
+pcolor(rlon,rlat,squeeze(diffs(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('S increment');
 
-print -dpng -r300 plot_i4dvar_increments_page1.png
+if (PRINT),
+  print -dpng -r300 plot_i4dvar_increments_page1.png
+end,
+
+% Plot I4D-Var surface forcing variables increments.
 
 figure
 
-subplot(3,2,1)
-pcolor(lonu,latu,difftx(:,:,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('\tau_x increment')
+subplot(3,2,1);
+pcolor(ulon,ulat,difftx);
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('\tau_x increment (Pa)');
 
-subplot(3,2,2)
-pcolor(lonv,latv,diffty(:,:,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('\tau_y increment')
+subplot(3,2,2);
+pcolor(vlon,vlat,diffty);
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('\tau_y increment (Pa)');
 
-subplot(3,2,3)
-pcolor(lonr,latr,diffqh(:,:,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title('Q increment')
+subplot(3,2,3);
+pcolor(rlon,rlat,diffqh);
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title('Q increment (W/m^2)');
 
-print -dpng -r300 plot_i4dvar_increments_page2.png
-
+if (PRINT),
+  print -dpng -r300 plot_i4dvar_increments_page2.png
+end,

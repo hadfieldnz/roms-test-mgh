@@ -1,75 +1,58 @@
 %
-% This script plots the observation sensitivity for PSAS.
+% PLOT_PSAS_SENSITIVITY:  Plots observation sensitivity for 4D-PSAS
 %
 
-clear
-close all
+% svn $Id$
+%===========================================================================%
+%  Copyright (c) 2002-2010 The ROMS/TOMS Group                              %
+%    Licensed under a MIT/X style license                                   %
+%    See License_ROMS.txt                                                   %
+%===========================================================================%
 
-% Prior circulation history file.
+clear                                  % clear workspace
+close all                              % close all figures
 
-Inp0='../PSAS/wc13_fwd_000.nc';
+PRINT=0;                               % switch to save figure as PNG
 
-% Posterior circulation history file.
+% Set input NetCDF files.
 
-Inp1='../PSAS/wc13_fwd_001.nc';
+Inp0 ='../PSAS/wc13_fwd_000.nc';         % prior circulation file
+Inp1 ='../PSAS/wc13_fwd_001.nc';         % posterior circulation file
+Inpa ='../PSAS_sensitivity/wc13_ads.nc'; % adjoint forcing file (dI/dx)
+Obs  ='../Data/wc13_obs.nc';             % observation file
+Mod  ='../PSAS_sensitivity/wc13_mod.nc'; % 4D-PSAS impact file.
+NLmod='../PSAS/wc13_mod.nc';             % 4D-PSAS file
 
-% Adjoint forcing file (dI/dx).
+% Read in impact variables.
 
-Inpa='../PSAS_sensitivity/wc13_ads.nc';
+varr=nc_read(Inpa,'v');                % transport weights
+vb  =nc_read(Inp0,'v');                % prior velocity
+va  =nc_read(Inp1,'v');                % posterior velocity
 
-% Observation file.
+% Compute transports (Sv).
 
-Obs='../Data/wc13_obs.nc';
+transb=nansum(nansum(nansum(nansum(varr.*vb,1),2),3),4);  % prior
+transa=nansum(nansum(nansum(nansum(varr.*va,1),2),3),4);  % posterior
 
-% PSAS impact mod file.
+dtrans=transa-transb;                  % actual transport increment
 
-Mod='../PSAS_sensitivity/wc13_mod.nc';
+% Read observations variables.
 
-% PSAS mod file.
-
-NLMFile='../PSAS/wc13_mod.nc';
-
-% Read transport weights.
-
-varr=nc_read(Inpa,'v');
-
-% Read prior velocity.
-
-vb=nc_read(Inp0,'v');
-
-% Read posterior velocity.
-
-va=nc_read(Inp1,'v');
-
-% Prior transport (Sv).
-
-transb=nansum(nansum(nansum(nansum(varr.*vb,1),2),3),4);
-
-% Posterior transport (Sv).
-
-transa=nansum(nansum(nansum(nansum(varr.*va,1),2),3),4);
-
-% Actual transport increment (Sv).
-
-dtrans=transa-transb;
-
-% Read observations.
-
-obs  =nc_read(Obs,'obs_value');
-type =nc_read(Obs,'obs_type');
-label=nc_read(Obs,'obs_provenance');
+obs  =nc_read(Obs,'obs_value');            % observation values
+type =nc_read(Obs,'obs_type');             % state variable flag
+label=nc_read(Obs,'obs_provenance');       % observation origin
 
 % Read total observation sensitivities.
 
 sen=nc_read(Mod,'ObsSens_total');
 
-% Read observation scale (bounded observations, obs_scale=1).
+% Read observation scale (bounded observations, scale=1).
 
 scale=nc_read(Mod,'obs_scale');
 
 % Read NL model values in observation space.
 
-NLM=nc_read(NLMFile,'NLmodel_initial');
+NLM=nc_read(NLmod,'NLmodel_initial');
 
 % Compute the innovation vector.
 
@@ -77,13 +60,13 @@ innov=(obs-NLM).*scale;
 
 % Sort by observation platform using label.
 
-ind1=find(label==1);  % SSH
-ind2=find(label==2);  % SST
-ind3=find(label==3);  % T XBT
-ind4=find(label==4);  % T CTD
-ind5=find(label==5);  % S CTD
-ind6=find(label==6);  % T Argo
-ind7=find(label==7);  % S Argo
+ind1=find(label==1);      % SSH
+ind2=find(label==2);      % SST
+ind3=find(label==3);      % T XBT
+ind4=find(label==4);      % T CTD
+ind5=find(label==5);      % S CTD
+ind6=find(label==6);      % T Argo
+ind7=find(label==7);      % S Argo
 
 % Compute total sensitivities assuming a change dy=-d.
 
@@ -101,40 +84,29 @@ timp7=sum(sen(ind7).*innov(ind7),1);
 
 timp=timp1+timp2+timp3+timp4+timp5+timp6+timp7;
 
-% Plot
+% Plot observation sensitivity.
+
+figure;
 
 fonts=10;
-yt=0.08;
 
-figure
-
-subplot(3,1,1)
-dn=[size(obs,1) size(ind1,1) size(ind2,1) size(ind3,1) size(ind4,1) size(ind5,1) ...
-    size(ind6,1) size(ind7,1)];
-bar(dn)
+subplot(3,1,1);
+dn=[length(obs) length(ind1) length(ind2) length(ind3) length(ind4) ...
+                length(ind5) length(ind6) length(ind7)];
+bar(dn);
 MyLabel={'Nobs','SSH','SST','T XBT','T CTD','S CTD','T Argo','S Argo'};
 set(gca,'XTickLabel',MyLabel,'FontSize',fonts);
-ylabel('\Delta I')
+ylabel('\Delta I');
+title('4D-PSAS Observation Sensitivity');
 
-subplot(3,1,2)
+subplot(3,1,2);
 d2=[totimp timp1 timp2 timp3 timp4 timp5 timp6 timp7];
-bar(d2)
+bar(d2);
 colormap([1 0 0]);
-
-fonts=10;
-
-%text(1,yt,'\Delta I','FontSize',fonts,'HorizontalAlignment','center')
-%text(2,yt,'SSH','FontSize',fonts,'HorizontalAlignment','center')
-%text(3,yt,'SST','FontSize',fonts,'HorizontalAlignment','center')
-%text(4,yt,'T XBT','FontSize',fonts,'HorizontalAlignment','center')
-%text(5,yt,'T CTD','FontSize',fonts,'HorizontalAlignment','center')
-%text(6,yt,'S CTD','FontSize',fonts,'HorizontalAlignment','center')
-%text(7,yt,'T Argo','FontSize',fonts,'HorizontalAlignment','center')
-%text(8,yt,'S Argo','FontSize',fonts,'HorizontalAlignment','center')
-
 MyLabel={'TL dI','SSH','SST','T XBT','T CTD','S CTD','T Argo','S Argo'};
 set(gca,'XTickLabel',MyLabel,'FontSize',fonts);
-ylabel('\Delta I')
+ylabel('\Delta I');
 
-print -dpng -r300 plot_psas_sensitivity.png
-
+if (PRINT),
+ print -dpng -r300 plot_psas_sensitivity.png
+end,

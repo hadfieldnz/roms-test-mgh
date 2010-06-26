@@ -1,130 +1,138 @@
 %
-% Script to plot an EOF of the analysis error covariance matrix.
+% PLOT_POSTERIOR_EOF_FIELDS:  Plot an EOF of the analysis error covariance
+%                             matrix
 %
 
-clear
-close all
+% svn $Id$
+%===========================================================================%
+%  Copyright (c) 2002-2010 The ROMS/TOMS Group                              %
+%    Licensed under a MIT/X style license                                   %
+%    See License_ROMS.txt                                                   %
+%===========================================================================%
 
-% Choose EOF number.
+clear                                  % clear workspace
+close all                              % close all figures
 
-neof=1;
+nEOF=1;                                % selected EOF number
+frc_adjust=1;                          % surface forcing record to plot
 
-Inp='../R4DVAR/wc13_hss.nc';
+PRINT=0;                               % switch to save figures as PNG
+SHADING_INTERP=1;                      % switch for shading interp (1) or
+                                       %            shading flat (0)
 
-Grd='../Data/wc13_grd.nc';
+% Set input NetCDF files.
 
-coast = load('../Data/wc13_cst.mat','-mat');
+Inp='../R4DVAR/wc13_hss.nc';           % EOF are stored in Hessian file
 
-lonr=nc_read(Grd,'lon_rho');
-latr=nc_read(Grd,'lat_rho');
-lonu=nc_read(Grd,'lon_u');
-latu=nc_read(Grd,'lat_u');
-lonv=nc_read(Grd,'lon_v');
-latv=nc_read(Grd,'lat_v');
+Grd='../Data/wc13_grd.nc';             % grid
 
-maskr=nc_read(Grd,'mask_rho');
-masku=nc_read(Grd,'mask_u');
-maskv=nc_read(Grd,'mask_v');
+% Load coastline coordinates.
 
-zeta  =nc_read(Inp,'zeta',neof);
-u     =nc_read(Inp,'u',neof);
-v     =nc_read(Inp,'v',neof);
-temp  =nc_read(Inp,'temp',neof);
-salt  =nc_read(Inp,'salt',neof);
-sustr =nc_read(Inp,'sustr',neof);
-svstr =nc_read(Inp,'svstr',neof);
-shflux=nc_read(Inp,'shflux',neof);
+coast=load('../Data/wc13_cst.mat','-mat');   % coastlines structure
 
-indr=find(maskr==0);
-indu=find(masku==0);
-indv=find(maskv==0);
+% Read grid coordinates.
 
-zeta(indr)=NaN;
-for k=1:size(temp,3)
-  a(:,:)=temp(:,:,k);
-  a(indr)=NaN;
-  temp(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=salt(:,:,k);
-  a(indr)=NaN;
-  salt(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=u(:,:,k);
-  a(indu)=NaN;
-  u(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=v(:,:,k);
-  a(indv)=NaN;
-  v(:,:,k)=a(:,:);
-  clear a;
-end
-for k=1:size(sustr,3)
-  a(:,:)=sustr(:,:,k);
-  a(indu)=NaN;
-  sustr(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=svstr(:,:,k);
-  a(indv)=NaN;
-  svstr(:,:,k)=a(:,:);
-  clear a;
-  a(:,:)=shflux(:,:,k);
-  a(indr)=NaN;
-  shflux(:,:,k)=a(:,:);
-  clear a;
-end
+rlon=nc_read(Grd,'lon_rho');
+rlat=nc_read(Grd,'lat_rho');
+
+ulon=nc_read(Grd,'lon_u');
+ulat=nc_read(Grd,'lat_u');
+
+vlon=nc_read(Grd,'lon_v');
+vlat=nc_read(Grd,'lat_v');
+
+% Determine number of records (EOFs) and number of vertical levels in
+% input NetCDF history files.
+
+Nrec=length(nc_read(Inp,'ocean_time'));
+N   =length(nc_read(Inp,'s_rho'));
+
+klev=N;                   % processing surface level
+
+% Read in selected EOF of analysis error covariance (nEOF) and
+% replace land/sea mask values with NaNs.
+
+FillValue=NaN;
+
+zeta  =nc_read(Inp,'zeta'  ,nEOF,FillValue);   % free-surface
+u     =nc_read(Inp,'u'     ,nEOF,FillValue);   % 3D u-momentum
+v     =nc_read(Inp,'v'     ,nEOF,FillValue);   % 3D v-momentum
+temp  =nc_read(Inp,'temp'  ,nEOF,FillValue);   % potential temperature
+salt  =nc_read(Inp,'salt'  ,nEOF,FillValue);   % salinity
+sustr =nc_read(Inp,'sustr' ,nEOF,FillValue);   % surface u-stress
+svstr =nc_read(Inp,'svstr' ,nEOF,FillValue);   % surface v-stress
+shflux=nc_read(Inp,'shflux',nEOF,FillValue);   % surface net heat flux
+
+% Plot selected EOF of analysis error covariance for state variables.
+% If 3D field, plot selected level (klev).
 
 figure
 
-subplot(3,2,1)
-pcolor(lonr,latr,zeta(:,:,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title(['\zeta, EOF ',num2str(neof,1)])
+subplot(3,2,1);
+pcolor(rlon,rlat,zeta);
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title(['\zeta, EOF ',num2str(nEOF,1)]);
 
 subplot(3,2,2)
-pcolor(lonu,latu,u(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title(['u, EOF ',num2str(neof,1)])
+pcolor(ulon,ulat,squeeze(u(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title(['u, EOF ',num2str(nEOF,1)]);
 
-subplot(3,2,3)
-pcolor(lonv,latv,v(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title(['v, EOF ',num2str(neof,1)])
+subplot(3,2,3);
+pcolor(vlon,vlat,squeeze(v(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title(['v, EOF ',num2str(nEOF,1)]);
 
-subplot(3,2,4)
-pcolor(lonr,latr,temp(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title(['T, EOF ',num2str(neof,1)])
+subplot(3,2,4);
+pcolor(rlon,rlat,squeeze(temp(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title(['T, EOF ',num2str(nEOF,1)]);
 
-subplot(3,2,5)
-pcolor(lonr,latr,salt(:,:,30,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title(['S, EOF ',num2str(neof,1)])
+subplot(3,2,5);
+pcolor(rlon,rlat,squeeze(salt(:,:,klev)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title(['S, EOF ',num2str(nEOF,1)]);
 
-print -dpng -r300 plot_posterior_EOF_fields_page1.png
+if (PRINT),
+  print -dpng -r300 plot_posterior_EOF_fields_page1.png
+end,
+
+% Plot selected EOF of analysis error covariance for surface
+% forcing variables.
 
 figure
 
-subplot(3,2,1)
-pcolor(lonu,latu,sustr(:,:,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title(['\tau_x, EOF ',num2str(neof,1)])
+subplot(3,2,1);
+pcolor(ulon,ulat,squeeze(sustr(:,:,frc_adjust)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title(['\tau_x, EOF ',num2str(nEOF,1)]);
 
-subplot(3,2,2)
-pcolor(lonv,latv,svstr(:,:,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title(['\tau_y, EOF ',num2str(neof,1)])
+subplot(3,2,2);
+pcolor(vlon,vlat,squeeze(svstr(:,:,frc_adjust)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title(['\tau_y, EOF ',num2str(nEOF,1)]);
 
-subplot(3,2,3)
-pcolor(lonr,latr,shflux(:,:,1)); shading flat; colorbar
-hold on
-plot(coast.lon,coast.lat,'k')
-title(['Q, EOF ',num2str(neof,1)])
+subplot(3,2,3);
+pcolor(rlon,rlat,squeeze(shflux(:,:,frc_adjust)));
+if (SHADING_INTERP), shading interp; else shading flat; end
+colorbar; hold on;
+plot(coast.lon,coast.lat,'k');
+title(['Q, EOF ',num2str(nEOF,1)]);
 
-print -dpng -r300 plot_posterior_EOF_fields_page2.png
+if (PRINT),
+  print -dpng -r300 plot_posterior_EOF_fields_page2.png
+end,
