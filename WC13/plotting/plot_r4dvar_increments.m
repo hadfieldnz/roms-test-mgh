@@ -23,7 +23,7 @@ rho0=1025.0;
 
 Inpb='../R4DVAR/wc13_fwd_000.nc';      % prior circulation (NLM)
 Inpa='../R4DVAR/wc13_fwd_001.nc';      % posterior circulation (RPM)
-Inpr='../R4DVAR/wc13_irp_old.nc';      % RPM initial conditions
+Inpr='../R4DVAR/wc13_irp.nc';          % RPM initial conditions
 
 Grd='../Data/wc13_grd.nc';             % grid
 

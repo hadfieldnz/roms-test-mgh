@@ -7,17 +7,17 @@
 ***********************************************************************
 *                                                                     *
 *  This directory includes various files to run the 4-Dimensional     *
-*  Variational data (4D-Var) assimilation error covariance model      *
+*  Variational (4D-Var) data assimilation error covariance model      *
 *  that computes normalization coeffiecients in the California        *
 *  Current System, 1/3 degree resolution, application (WC13).         *
 *                                                                     *
 *  The computation of 4D-Var error covariance normalization           *
 *  coefficients is very expensive. It depends on the grid size.       *
-*  The ones computed here uses the expensive "exact" method. For      *
+*  The ones computed here use the expensive "exact" method. For       *
 *  large grids, we need to use the "randomization" approach. The      *
 *  normalization coefficients need to be computed only once for       *
 *  a particular application provided that the grid, land/sea          *
-*  masking (if any), and decorrelation scales remains the same.       *
+*  masking (if any), and decorrelation scales remain the same.        *
 *                                                                     *
 *  References:                                                        *
 *                                                                     *
@@ -76,7 +76,7 @@ Output NetCDF files:
 
 Currently, you can find the following files here:
 
-   build.bash            bash shelf script to compile application
+   build.bash            bash shell script to compile application
    build.sh              csh Unix script to compile application
    job_normalization.sh  job configuration script
    ocean_wc13.in         ROMS standard input script for WC13
@@ -85,7 +85,7 @@ Currently, you can find the following files here:
 
 To run this application you need to take the following steps:
 
-  (1) Customize your preferred "build" script and provides the
+  (1) Customize your preferred "build" script and provide the
       appropriate values for:
 
       * Root directory, MY_ROOT_DIR
@@ -96,7 +96,7 @@ To run this application you need to take the following steps:
         the compiler. Notice that you need to provide the
         correct places of these libraries for your computer.
         If you want to ignore this section, comment out the
-        assignment for variable USE_MY_LIBS.
+        assignment for the variable USE_MY_LIBS.
 
   (2) Notice that the most important CPP option for this application
       is specified in the "build" script instead of "wc13.h":
@@ -111,19 +111,19 @@ To run this application you need to take the following steps:
 
   (3) You MUST use the "build" script to compile.
 
-  (4) Customize ROMS input script "ocean_wc13.in" and specify the
-      appropriate values for the distributed-memory partition. It
-      is set by default to:
+  (4) Customize the ROMS input script "ocean_wc13.in" and specify
+      the appropriate values for the distributed-memory partition.
+      It is set by default to:
 
       NtileI == 1                               ! I-direction partition
       NtileJ == 8                               ! J-direction partition
 
-      Notice that the adjoint-based algorithms can be only run
-      in parallel using MPI.  This is because the way that the
+      Notice that the adjoint-based algorithms can only be run
+      in parallel using MPI.  This is because of the way that the
       adjoint model is constructed.
 
-  (5) Customize configuration script "job_psas.sh" and provide the
-      appropriate place for the "substitute" Perl script:
+  (5) Customize the configuration script "job_normalization.sh" and
+      provide the appropriate place for the "substitute" Perl script:
 
       set SUBSTITUTE=${ROMS_ROOT}/ROMS/Bin/substitute
 
@@ -135,7 +135,7 @@ To run this application you need to take the following steps:
       setenv ROMS_ROOT /home/arango/ocean/toms/repository/trunk
 
   (6) Execute the configuration "job_normalization.sh" BEFORE
-      running the model.  It copies the required files needed and
+      running the model.  It copies the required files and
       creates "c4dvar.in" input script from template "s4dvar.in".
 
   (7) Run ROMS with data assimilation:
