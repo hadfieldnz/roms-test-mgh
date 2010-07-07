@@ -245,3 +245,39 @@ To run this application you need to take the following steps:
   (9) Run ROMS with data assimilation:
 
       mpirun -np 4 oceanM ocean_wc13.in > & log &
+
+ (10) Analyze the results using the plotting scripts (Matlab or
+      ROMS plotting package) provided in the ../plotting directory:
+
+      plot_r4dvar_cost.m             plots R4D-Var cost function
+
+      plot_r4dvar_increments.m       plots R4D-Var increments to
+                                     initial conditions
+
+      plot_eof_eigenvalues.m         plots the eigenvalues for each EOF
+                                     of the analysis error covariance
+                                     matrix and the randomized trace
+                                     estimates
+
+      plot_posterior_EOF_fields.m    plots selected R4D-Var analysis
+                                     error covariance matrix EOF
+
+      plot_prior_posterior_errors.m  plots the difference between the
+                                     prior and posterior error
+                                     covariance deviations
+  
+
+      ccnt_r4dvar_increments.in      plots R4D-Var initial conditions
+                                     increments contours at z=-100m
+
+      csec_r4dvar_increments.in      plots R4D-Var initial conditions
+                                     increments cross-sections along
+                                     37N
+
+      ccnt_posterior_EOF_fields.in   plots selected R4D-Var analysis
+                                     error covariance matrix EOF
+                                     contours at z=-100m
+
+      csec_posterior_EOF_fields.in   plots selected R4D-Var analysis
+                                     error covariance matrix EOF
+                                     cross-sections along 37N

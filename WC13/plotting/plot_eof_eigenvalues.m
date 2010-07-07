@@ -1,16 +1,33 @@
 %
-% This script plots the eigenvalues for each EOF of the analysis
-% error covariance matrix, and the randomized race estimates
+% PLOT_EOF_EIGENVALUES:  Plot the eigenvalues for each EOF of
+%                        the analysis error covariance matrix,
+%                        and the randomized trace estimates
 %
 
-clear
-close all
+% svn $Id$
+%===========================================================================%
+%  Copyright (c) 2002-2010 The ROMS/TOMS Group                              %
+%    Licensed under a MIT/X style license                                   %
+%    See License_ROMS.txt                                                   %
+%===========================================================================%
 
-Inp='../R4DVAR/wc13_hss.nc';
+clear                                  % clear workspace
+close all                              % close all figures
 
-Ritz=nc_read(Inp,'Ritz');
-Ritz_error=nc_read(Inp,'Ritz_error');
-ae_trace=nc_read(Inp,'ae_trace');
+PRINT=0;                               % switch to save figure as PNG
+
+% Set input NetCDF files
+
+%Inp='../PSAS/wc13_hss.nc';            % 4D-PSAS EOF stored in Hessian file
+ Inp='../R4DVAR/wc13_hss.nc';          % R4D-Var EOF stored in Hessian file
+
+% Read in error covariance EOF analysis variables.
+
+Ritz      =nc_read(Inp,'Ritz');            % Ritz eigenvalues
+Ritz_error=nc_read(Inp,'Ritz_error');      % Accuracy of Ritz eigenvalues
+ae_trace  =nc_read(Inp,'ae_trace');        % error covariance matrix trace
+
+% Plot EOF analysis variables.
 
 figure
 
@@ -32,6 +49,6 @@ xlabel('Randomized Sample Number')
 ylabel('Tr(E^a)')
 title('Randomized Trace Estimates')
 
-print -r300 -dpng plot_eof_eigenvalues.png
-
-
+if (PRINT),
+  print -r300 -dpng plot_eof_eigenvalues.png
+end,

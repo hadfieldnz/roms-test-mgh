@@ -240,3 +240,12 @@ To run this application you need to take the following steps:
   (8) Run ROMS with data assimilation:
 
       mpirun -np 8 oceanM ocean_wc13.in > & log &
+
+  (9) Analyze the results using the plotting scripts (ROMS plotting
+      package) provided in the ../plotting directory:
+
+      ccnt_normalization_f.in      plots error covariance normalization
+                                   coefficients for surface forcing
+
+      ccnt_normalization_i.in      plots error covariance normalization
+                                   coefficients for initial conditions

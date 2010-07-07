@@ -252,3 +252,17 @@ To run this application you need to take the following steps:
  (10) Run ROMS with data assimilation:
 
       mpirun -np 4 oceanM ocean_wc13.in > & log &
+
+ (11) Analyze the results using the plotting scripts (Matlab or
+      ROMS plotting package) provided in the ../plotting directory:
+
+      plot_array_modes.m           plots chosen stabilized representer
+                                   matrix array modes.
+
+
+      ccnt_array_modes.in          plots chosen stabilized representer
+                                   matrix array modes contours at z=-100m
+
+      csec_array_modes.in          plots chosen stabilized representer
+                                   matrix array modes cross-sections
+                                   along 37N

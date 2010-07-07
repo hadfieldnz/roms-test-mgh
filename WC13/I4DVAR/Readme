@@ -237,3 +237,19 @@ To run this application you need to take the following steps:
   (9) Run ROMS with data assimilation:
 
       mpirun -np 4 oceanM ocean_wc13.in > & log &
+
+ (10) Analyze the results using the plotting scripts (Matlab or
+      ROMS plotting package) provided in the ../plotting directory:
+
+      plot_i4dvar_cost.m           plots I4D-Var cost function
+
+      plot_i4dvar_increments.m     plots I4D-Var increments to
+                                   initial conditions
+
+
+      ccnt_i4dvar_increments.in    plots I4D-Var initial conditions
+                                   increments contours at z=-100m
+
+      csec_i4dvar_increments.in    plots I4D-Var initial conditions
+                                   increments cross-sections along
+                                   37N

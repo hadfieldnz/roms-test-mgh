@@ -102,7 +102,7 @@ dn=[length(obs) length(ind1) length(ind2) length(ind3) length(ind4) ...
 bar(dn);
 MyLabel={'Nobs','SSH','SST','T XBT','T CTD','S CTD','T Argo','S Argo'};
 set(gca,'XTickLabel',MyLabel,'FontSize',fonts);
-ylabel('\Delta I')
+ylabel('N_{obs}')
 title('R4D-Var Observation Impact');
 
 subplot(3,1,2);

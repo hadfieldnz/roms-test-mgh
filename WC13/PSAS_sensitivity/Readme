@@ -292,3 +292,9 @@ To run this application you need to take the following steps:
  (11) Run ROMS with data assimilation:
 
       mpirun -np 4 oceanM ocean_wc13.in > & log &
+
+ (12) Analyze the results using the plotting Matlab script
+      provided in the ../plotting directory:
+
+      plot_psas_sensitivity.m      plots observation sensitivity
+                                   for 4D-PSAS

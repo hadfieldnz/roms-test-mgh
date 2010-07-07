@@ -245,3 +245,46 @@ To run this application you need to take the following steps:
   (9) Run ROMS with data assimilation:
 
       mpirun -np 4 oceanM ocean_wc13.in > & log &
+
+ (10) Analyze the results using the plotting scripts (Matlab or
+      ROMS plotting package) provided in the ../plotting directory:
+
+      plot_psas_cost.m               plots 4D-PSAS cost function
+
+      plot_psas_increments.m         plots 4D-PSAS increments to
+                                     initial conditions
+
+      plot_eof_eigenvalues.m         plots the eigenvalues for each EOF
+                                     of the analysis error covariance
+                                     matrix and the randomized trace
+                                     estimates
+                                     (USER needs to edit "Inp" file)
+
+      plot_posterior_EOF_fields.m    plots selected 4D-PSAS analysis
+                                     error covariance matrix EOF
+                                     (USER needs to edit "Inpa" file)
+
+      plot_prior_posterior_errors.m  plots the difference between the
+                                     prior and posterior error
+                                     covariance deviations
+                                     (USER needs to edit "Inpa" file)
+
+
+      ccnt_psas_increments.in        plots 4D-PSAS initial conditions
+                                     increments contours at z=-100m
+
+      csec_psas_increments.in        plots 4D-PSAS initial conditions
+                                     increments cross-sections along
+                                     37N
+
+      ccnt_posterior_EOF_fields.in   plots selected 4D-PSAS analysis
+                                     error covariance matrix EOF
+                                     contours at z=-100m
+                                     (USER needs to change R4DVAR
+                                      directory to PSAS)
+
+      csec_posterior_EOF_fields.in   plots selected 4D-PSAS analysis
+                                     error covariance matrix EOF
+                                     cross-sections along 37N
+                                     (USER needs to change R4DVAR
+                                      directory to PSAS)
