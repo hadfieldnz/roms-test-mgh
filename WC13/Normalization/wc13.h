@@ -134,9 +134,6 @@
 */
 
 #ifdef NORMALIZATION
-# define ADJUST_BOUNDARY
-# define ADJUST_WSTRESS
-# define ADJUST_STFLUX
 # define CORRELATION
 # define VCONVOLUTION
 # define IMPLICIT_VCONV

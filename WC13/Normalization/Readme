@@ -179,10 +179,16 @@ To run this application you need to take the following steps:
    
       These standard deviations have already been created for you:
 
+      ../Data/wc13_std_m.nc     model error
       ../Data/wc13_std_i.nc     initial conditions
       ../Data/wc13_std_b.nc     open boundary conditions
       ../Data/wc13_std_f.nc     surface forcing (wind stress and
                                                  net heat flux)
+
+      The model error normalization coefficients are computed if
+      NADJ < NTIMES in ¨ocean_wc13.in¨. In this application,
+      NADJ = 48 to force the computation of model error
+      normalization coefficients.
 
   (2) Customize your preferred "build" script and provide the
       appropriate values for:

@@ -125,6 +125,10 @@ export          COMPILERS=${MY_ROMS_SRC}/Compilers
 #export      MY_CPP_FLAGS="-DAVERAGES"
 
  export      MY_CPP_FLAGS="-DNORMALIZATION"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBALANCE_OPERATOR"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DADJUST_BOUNDARY"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DADJUST_WSTRESS"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DADJUST_STFLUX"
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

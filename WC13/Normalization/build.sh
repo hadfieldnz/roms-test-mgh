@@ -124,6 +124,10 @@ setenv COMPILERS            ${MY_ROMS_SRC}/Compilers
 #    setenv MY_CPP_FLAGS "-DAVERAGES"
 
  setenv MY_CPP_FLAGS "-DNORMALIZATION"
+ setenv MY_CPP_FLAGS "-DBALANCE_OPERATOR"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DADJUST_BOUNDARY"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DADJUST_WSTRESS"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DADJUST_STFLUX"
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

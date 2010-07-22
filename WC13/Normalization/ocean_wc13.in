@@ -118,7 +118,8 @@
         NTLM == 48
      NDEFTLM == 0
    LcycleADJ == T
-        NADJ == 48      ! force to compute model normalization coefficients
+        NADJ == 48      ! force to compute model error normalization factors
+!!      NADJ == 192     ! avoid computing  model error normalization factors
      NDEFADJ == 0
         NSFF == 48
         NOBC == 48
