@@ -4,7 +4,7 @@
 
 % svn $Id$
 %===========================================================================%
-%  Copyright (c) 2002-2010 The ROMS/TOMS Group                              %
+%  Copyright (c) 2002-2011 The ROMS/TOMS Group                              %
 %    Licensed under a MIT/X style license                                   %
 %    See License_ROMS.txt                                                   %
 %===========================================================================%
@@ -19,8 +19,8 @@ LonMax=-116;                           % map right  longitude
 LatMin=30;                             % map botton latitude
 LatMax=48;                             % map top    latidude
 
-xlab=LonMin:2:LonMax;                  % longitude labels
-ylab=LatMin:2:LatMax;                  % latidude  labels
+xlab=LonMin:4:LonMax;                  % longitude labels
+ylab=LatMin:4:LatMax;                  % latidude  labels
 
 % Set input NetCDF file.
 
@@ -113,7 +113,8 @@ x=X(ind1); y=Y(ind1); f=obs(ind1);    % SSH observations
 set(gca,'color',[.9 .99 1]);
 
 m_usercoast('wcoast','patch',[0.25 0.25 0.25]);
-m_grid('box','on','xticklabels',xlab,'yticklabels',ylab, ...
+m_grid('box','on','xtick',xlab,'xticklabels',xlab, ...
+       'ytick',ylab,'yticklabels',ylab, ...
        'color','k','fontsize',10,'fontweight','bold');
 hold on;
 
@@ -133,7 +134,8 @@ x=X(ind2); y=Y(ind2); f=obs(ind2);    % SST observations
 set(gca,'color',[.9 .99 1]);
 
 m_usercoast('wcoast','patch',[0.25 0.25 0.25]);
-m_grid('box','on','xticklabels',xlab,'yticklabels',ylab, ...
+m_grid('box','on','xtick',xlab,'xticklabels',xlab, ...
+       'ytick',ylab,'yticklabels',ylab, ...
        'color','k','fontsize',10,'fontweight','bold');
 hold on;
 
@@ -154,7 +156,8 @@ x=X(ind3); y=Y(ind3); f=obs(ind3);    % in situ T
 set(gca,'color',[.9 .99 1]);
 
 m_usercoast('wcoast','patch',[0.25 0.25 0.25]);
-m_grid('box','on','xticklabels',xlab,'yticklabels',ylab, ...
+m_grid('box','on','xtick',xlab,'xticklabels',xlab, ...
+       'ytick',ylab,'yticklabels',ylab, ...
        'color','k','fontsize',10,'fontweight','bold');
 hold on;
 
@@ -174,7 +177,8 @@ x=X(ind4); y=Y(ind4); f=obs(ind4);    % in situ S
 set(gca,'color',[.9 .99 1]);
 
 m_usercoast('wcoast','patch',[0.25 0.25 0.25]);
-m_grid('box','on','xticklabels',xlab,'yticklabels',ylab, ...
+m_grid('box','on','xtick',xlab,'xticklabels',xlab, ...
+       'ytick',ylab,'yticklabels',ylab, ...
        'color','k','fontsize',10,'fontweight','bold');
 hold on;
 

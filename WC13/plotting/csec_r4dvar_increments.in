@@ -35,8 +35,8 @@ T     WRTBLAB: logical switch to write out the plot bottom title.
 T     WRTRANG: logical switch to write out data range values and CI.
 F     WRTFNAM: logical switch to write out input primary filename.
 F     WRTDATE: logical switch to write out current date.
-/home/arango/ocean/toms/repository/plot/Data/varid.dat
-/home/arango/ocean/toms/repository/plot/Palettes/natlan1.pal
+~/ocean/repository/plot/Data/varid.dat
+~/ocean/repository/plot/Palettes/natlan1.pal
 default1.cnt
 ../R4DVAR/wc13_fwd_001.nc
 ../R4DVAR/wc13_fwd_000.nc
@@ -45,7 +45,7 @@ default1.cnt
 
 !svn $Id$
 !========================================================= Hernan G. Arango ===
-!  Copyright (c) 2002-2010 The ROMS/TOMS Group                              ===
+!  Copyright (c) 2002-2011 The ROMS/TOMS Group                              ===
 !    Licensed under a MIT/X style license                                   ===
 !    See License_ROMS.txt                                                   ===
 !==============================================================================
@@ -59,6 +59,7 @@ default1.cnt
             4th line: input; primary NetCDF file.
             5th line: input; secondary NetCDF file.
             6th line: input; grid NetCDF file.
+            7th line: input; coastlines file.
 
  *** DSKIP: Plotting frequency.
 
@@ -66,7 +67,17 @@ default1.cnt
             Otherwise, if greater than zero, the data will be plotted
             every other DSKIP days.
 
+ *** ISOVAL : iso-surface value to process.
+
+            It is only used when plotting the depths of requested field
+            isosurface: temperature, salinity, "in situ" density, sigma-t,
+            or potential density.  If plotting potential density
+            isosurfaces, provide the reference depth value "ZREF" in
+            internal plotting parameters file (3rd line input file).
+
  *** IREF:  Secondary or reference field option:
+           -2   Overlay any specified user data from fortran unit 35
+           -1   Overlay horizontal grid
             0   no secondary or reference field to plot
             1   plot field overlay from primary file
             2   plot field overlay from secondary file
@@ -76,6 +87,28 @@ default1.cnt
                                        addition [+5] or subtraction [-5])
             6   Mask OA fields by its maximum error variance tolerance
                 which is specified as fractional percentage in RMAX.
+
+ *** IPROJ: Map Projections option.  Some of the values for the
+            projection Pole and rotation angle are suggested.
+            Check the NCAR manual for details.
+
+           [1] Cylindrical equidistant: PLON=0, PLAT=0, ROTA=0
+           [2] Mercator: PLON=?, PLAT=0, ROTA=0
+           [3] Lambert conformal conic: PLON=?, PLAT=?, ROTA=?
+           [4] Stereographic azimuthal:  PLON=?, PLAT=90 or -90, ROTA=0
+
+ *** LGRID: Longitude/latitude grid spacing.  The grid is drawn at
+            LGRID spacing starting from specified map lower corner.
+            If LGRID is negative, the latitude labels in the map are
+            rotated 90 degrees to avoid label congestion, if any.
+
+ *** LMSK:  Flag to color mask land.  Set this parameter to a value of
+            1=land, 2=lake, 3=island_in_lake, or 4=pond_in_island_in lake.
+            Values greater that 1 include all previous features. 
+
+ *** NPAGE: Number of plots per page.  Set this parameter to a negative
+            value (-1, -2, or -4) to activate preservation of the plot
+            aspect ratio.
 
  *** READGRID:  If activated, the spatial grid positions will be computed
                 from the specified grid or history file.  The free-surface

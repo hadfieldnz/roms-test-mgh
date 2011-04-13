@@ -1,0 +1,80 @@
+/*
+** svn $Id$
+*******************************************************************************
+** Copyright (c) 2002-2011 The ROMS/TOMS Group                               **
+**   Licensed under a MIT/X style license                                    **
+**   See License_ROMS.txt                                                    **
+*******************************************************************************
+**
+** Options for Sediment Test Headland Case.
+**
+** Application flag:   TEST_HEAD
+** Input scripts:      ocean_test_head.in
+**                     coupling_test_head.in
+**                     sediment_test_head.in
+*/
+
+#define UV_ADV
+#define DJ_GRADPS
+#define SOLVE3D
+#define SPLINES
+#define MASKING
+#define WET_DRY
+
+#define NORTHERN_WALL
+#define SOUTHERN_WALL
+#define EAST_M3RADIATION
+#define WEST_M3RADIATION
+#define EAST_TGRADIENT
+#define WEST_TGRADIENT
+
+#define SSH_TIDES
+#define WEST_FSCLAMPED
+#define EAST_FSCLAMPED
+#define ANA_FSOBC
+#define ANA_M2OBC
+
+#define UV_TIDES
+#define FSOBC_REDUCED
+#define WEST_M2REDUCED
+#define EAST_M2REDUCED
+
+#ifdef SWAN_COUPLING
+# define MCT_LIB
+#endif
+
+#ifdef MB_BBL
+# define MB_CALC_ZNOT
+#endif
+
+#ifdef SG_BBL
+# define SG_CALC_ZNOT
+#endif
+
+#ifdef SSW_BBL
+# define SSW_CALC_ZNOT
+#endif
+
+#ifdef SOLVE3D
+
+# ifdef SEDIMENT
+#  define SED_MORPH
+# endif
+
+# if defined GLS_MIXING || defined MY25_MIXING
+#  define KANTHA_CLAYSON
+#  define N2S2_HORAVG
+# endif
+
+# define ANA_STFLUX
+# define ANA_SSFLUX
+# define ANA_BPFLUX
+# define ANA_BTFLUX
+# define ANA_BSFLUX
+# define ANA_SPFLUX
+# define ANA_SRFLUX
+
+#endif
+
+#define ANA_SMFLUX
+

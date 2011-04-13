@@ -1,7 +1,7 @@
 *
 * svn $Id$
 ***********************************************************************
-*  Copyright (c) 2002-2010 The ROMS/TOMS Group                        *
+*  Copyright (c) 2002-2011 The ROMS/TOMS Group                        *
 *    Licensed under a MIT/X style license                             *
 *    See License_ROMS.txt                                             *
 ***********************************************************************
@@ -16,24 +16,25 @@
 *  References:                                                        *
 *                                                                     *
 *    Moore, A.M., H.G. Arango, G. Broquet, B.S. Powell, J.            *
-*      Zavala-Garay, and A.T. Weaver, 2010: The Regional Ocean        *
+*      Zavala-Garay, and A.T. Weaver, 2011: The Regional Ocean        *
 *      Modeling System (ROMS) 4-dimensional variational data          *
-*      assimilation systems, Part I: System overview, Ocean           *
-*      Modelling, draft.                                              *
+*      assimilation systems, Part I: System overview, Progress        *
+*      in Oceanography, submitted.                                    *
 *                                                                     *
 *    Moore, A.M., H.G. Arango, and G. Broquet, C. Edwards, M.         *
 *      Veneziani, B.S. Powell, D. Foley, J. Doyle, D. Costa, and      *
-*      P. Robinson, 2010: The Regional Ocean Modeling System          *
+*      P. Robinson, 2011: The Regional Ocean Modeling System          *
 *      (ROMS) 4-dimensional variational data assimilation systems,    *
 *      Part II: Performance and application to the California         *
-*      Current System, Ocean Modelling, Draft.                        *
+*      Current System, Progress in Oceanography, submitted.           *
 *                                                                     *
 *    Moore, A.M., H.G. Arango, and G. Broquet, C. Edwards, M.         *
 *      Veneziani, B.S. Powell, D. Foley, J. Doyle, D. Costa, and      *
-*      P. Robinson, 2010: The Regional Ocean Modeling System          *
+*      P. Robinson, 2011: The Regional Ocean Modeling System          *
 *      (ROMS) 4-dimensional variational data assimilation systems,    *
 *      Part III: Observation Impact and Observation Sensitivity       *
-*      in the California Current System, Ocean Modelling, Draft.      *
+*      in the California Current System, Progress in Oceanography,    *
+*      submitted.                                                     *
 *                                                                     *
 ***********************************************************************
 *
@@ -42,6 +43,7 @@ Important CPP options:
 
    W4DPSAS_SENSITIVITY     4D-PSAS observation sensitivity driver
    AD_IMPULSE              Force ADM with intermittent impulses
+   MINRES                  Minimal Residual Method for minimization
    WC13                    Application CPP option
 
 Input NetCDF files:

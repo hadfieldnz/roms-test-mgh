@@ -42,18 +42,18 @@ F     WRTDATE: logical switch to write out current date.
 T     CST    : logical switch to read and plot coastlines and islands.
   30.0   48.0 : bottom and top map Y-coordinares (south latitudes are negative).
 -134.0 -116.0 : left and right map X-coordinates (west longitudes are negative).
-/home/arango/ocean/toms/repository/plot/Data/varid.dat
-/home/arango/ocean/toms/repository/plot/Palettes/natlan1.pal
+~/ocean/repository/plot/Data/varid.dat
+~/ocean/repository/plot/Palettes/natlan1.pal
 default1.cnt
 ../Data/wc13_nrm_i.nc
 ../Normalization/wc13_nrm_i.nc
 ../Data/wc13_grd.nc
-/home/arango/ocean/toms/repository/plot/Data/NAwest_high.cst
+~/ocean/repository/plot/Data/NAwest_high.cst
 
 
 !svn $Id$
 !========================================================= Hernan G. Arango ===
-!  Copyright (c) 2002-2010 The ROMS/TOMS Group                              ===
+!  Copyright (c) 2002-2011 The ROMS/TOMS Group                              ===
 !    Licensed under a MIT/X style license                                   ===
 !    See License_ROMS.txt                                                   ===
 !==============================================================================
