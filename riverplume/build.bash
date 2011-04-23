@@ -83,11 +83,6 @@ done
  export  ROMS_APPLICATION=RIVERPLUME1
 #export  ROMS_APPLICATION=RIVERPLUME2
 
-# Set number of nested/composed/mosaic grids.  Currently, only one grid
-# is supported.
-
-export        NestedGrids=1
-
 # Set a local environmental variable to define the path to the directories
 # where all this project's files are kept.
 
