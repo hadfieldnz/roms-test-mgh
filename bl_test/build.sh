@@ -79,13 +79,13 @@ end
 # determine the name of the ".h" header file with the application
 # CPP definitions.
 
- setenv ROMS_APPLICATION    BL_TEST
+ setenv ROMS_APPLICATION     BL_TEST
 
 # Set a local environmental variable to define the path to the directories
 # where all this project's files are kept.
 
-setenv MY_ROOT_DIR          ${HOME}/ocean/repository
-setenv MY_PROJECT_DIR       ${PWD}
+setenv MY_ROOT_DIR           ${HOME}/ocean/repository
+setenv MY_PROJECT_DIR        ${PWD}
 
 # The path to the user's local current ROMS source code.
 #
@@ -124,15 +124,37 @@ setenv MY_PROJECT_DIR       ${PWD}
 # many definitions as you want by appending values.
 
  setenv MY_CPP_FLAGS "-DAVERAGES"
+
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_TS"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_UV"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DRADIATION_2D"
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DLMD_MIXING"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMY25_MIXING"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSG_BBL"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNS_PERIODIC"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWESTERN_WALL"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_FSGRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_M2RADIATION"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_M3RADIATION"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_TRADIATION"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_KRADIATION"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_VOLCONS"
+endif
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

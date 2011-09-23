@@ -25,9 +25,6 @@
 #define SOLVE3D
 #define CURVGRID
 #define SPLINES
-#define NS_PERIODIC
-#define EASTERN_WALL
-#define WESTERN_WALL
 #define ANA_GRID
 #define ANA_INITIAL
 #define ANA_SMFLUX

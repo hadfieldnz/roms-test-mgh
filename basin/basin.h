@@ -18,10 +18,6 @@
 #define DJ_GRADPS
 #define SOLVE3D
 #define SPLINES
-#define EASTERN_WALL
-#define WESTERN_WALL
-#define SOUTHERN_WALL
-#define NORTHERN_WALL
 #define BODYFORCE
 #define ANA_GRID
 #define ANA_INITIAL

@@ -79,13 +79,13 @@ end
 # determine the name of the ".h" header file with the application
 # CPP definitions.
 
-setenv ROMS_APPLICATION     WC13
+setenv ROMS_APPLICATION      WC13
 
 # Set a local environmental variable to define the path to the directories
 # where all this project's files are kept.
 
-setenv MY_ROOT_DIR          ${HOME}/ocean/repository
-setenv MY_PROJECT_DIR       ${PWD}
+setenv MY_ROOT_DIR           ${HOME}/ocean/repository
+setenv MY_PROJECT_DIR        ${PWD}
 
 # The path to the user's local current ROMS source code.
 #
@@ -125,8 +125,35 @@ setenv MY_PROJECT_DIR       ${PWD}
 
  setenv MY_CPP_FLAGS "-DW4DPSAS"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMINRES"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSTERIOR_EOFS"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSTERIOR_ERROR_I"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSTERIOR_EOFS"     # Nouter=1 only
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSTERIOR_ERROR_I"  # Nouter=1 only
+
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEASTERN_WALL"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_FSCHAPMAN"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M2FLATHER"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M3CLAMPED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_TCLAMPED"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_FSCHAPMAN"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_M2FLATHER"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_M3CLAMPED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_TCLAMPED"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_FSCHAPMAN"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_M2FLATHER"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_M3CLAMPED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_TCLAMPED"
+endif
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

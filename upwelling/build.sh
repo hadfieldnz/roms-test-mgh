@@ -132,8 +132,7 @@ setenv MY_PROJECT_DIR        ${PWD}
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
-
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEW_PERIODIC"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DUV_VIS2"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DUV_VIS4"
@@ -159,6 +158,17 @@ setenv MY_PROJECT_DIR        ${PWD}
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DGLS_MIXING"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMY25_MIXING"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTHERN_WALL"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTHERN_WALL"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEW_PERIODIC"
+endif
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to
@@ -416,7 +426,9 @@ endif
 
  setenv MY_HEADER_DIR       ${MY_PROJECT_DIR}
 
+if (! $?BACK_COMPATIBILITY) then
  setenv MY_ANALYTICAL_DIR   ${MY_PROJECT_DIR}
+endif
 
 # Put the binary to execute in the following directory.
 

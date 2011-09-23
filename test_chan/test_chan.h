@@ -30,14 +30,6 @@
 #define ANA_SPFLUX
 #define ANA_BPFLUX
 
-#define NORTHERN_WALL
-#define SOUTHERN_WALL
-#define EAST_FSCHAPMAN
-#define EAST_M2CLAMPED
-#define EAST_M3GRADIENT
-#define WEST_FSCHAPMAN
-#define WEST_M2FLATHER
-#define WEST_M3GRADIENT
 #define ANA_FSOBC
 #define ANA_M2OBC
 
@@ -50,4 +42,3 @@
 # define ANA_SEDIMENT
 # define SUSPLOAD
 #endif
-

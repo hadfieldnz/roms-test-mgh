@@ -126,12 +126,26 @@ export     MY_PROJECT_DIR=${PWD}
 
  export      MY_CPP_FLAGS="-DSO_SEMI"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSO_SEMI_WHITE"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DCHECKPOINTING"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOLVE3D"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSALINITY"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNONLIN_EOS"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
+
+if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEASTERN_WALL"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWESTERN_WALL"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTHERN_WALL"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTHERN_WALL"
+fi
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

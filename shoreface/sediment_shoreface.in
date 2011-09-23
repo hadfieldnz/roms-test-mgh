@@ -3,7 +3,7 @@
 !
 !svn $Id$
 !========================================================= Hernan G. Arango ===
-!  Copyright (c) 2002-2010 The ROMS/TOMS Group                                !
+!  Copyright (c) 2002-2011 The ROMS/TOMS Group                                !
 !    Licensed under a MIT/X style license                                     !
 !    See License_ROMS.txt                                                     !
 !==============================================================================
@@ -46,7 +46,7 @@
    Lsediment == T
 
 !------------------------------------------------------------------------------
-!  General sediment bed model controls.
+!  General sediment bed model parameters.
 !------------------------------------------------------------------------------
 
 ! Depositional bed layer thickness criteria to create a new layer (m). If
@@ -57,6 +57,54 @@
 ! Bed load transport rate coefficient. [1:Ngrids].
 
     BEDLOAD_COEFF == 0.05d0
+
+!------------------------------------------------------------------------------
+!  Lateral boundary condition flags for all sediment tracers.
+!------------------------------------------------------------------------------
+!
+! Set lateral boundary conditions keyword. Notice that a value is expected
+! for each boundary segment per nested grid for each state variable.
+!
+! The sediment tracer variables (cohesive and noncohesive) require
+! [1:4,1:NCS+NNS,Ngrids] values. If specifying every tracer, enter first
+! 1:NCS cohesive sediment entries followed by 1:NNS noncohesive sediment
+! entries. The boundary order is: 1=west, 2=south, 3=east, and 4=north.
+! That is, anticlockwise starting at the western boundary.
+!
+! The keyword is case insensitive and usually has three characters. However,
+! it is possible to have compound keywords, if applicable. For example, the
+! keyword "RadNud" implies radiation boundary condition with nudging. This
+! combination is usually used in active/passive radiation conditions.
+! 
+! NOTICE: It is possible to specify the lateral boundary conditions for
+! ======  all sediment tracers (cohesive and noncohesive) in a compact
+! form with a single entry. If so, all the sediment tracers are assumed to
+! have the same boundary condition as in the single entry.
+!
+!   Keyword    Lateral Boundary Condition Type
+!
+!   Cla        Clamped                                _____N_____     j=Mm
+!   Clo        Closed                                |     4     |
+!   Gra        Gradient                              |           |
+!   Nes        Nested                              1 W           E 3
+!   Nud        Nudging                               |           |
+!   Per        Periodic                              |_____S_____|
+!   Rad        Radiation                                   2          j=1
+!                                                   i=1         i=Lm
+!                   W       S       E       N     
+!                   e       o       a       o     
+!                   s       u       s       r     
+!                   t       t       t       t     
+!                           h               h     
+!                                                 
+!                   1       2       3       4     
+
+   LBC(isTvar) ==   Gra     Per     Clo     Per      ! idsed(:), compact
+
+! Adjoint-based algorithms can have different lateral boundary
+! conditions keywords.
+
+ad_LBC(isTvar) ==   Gra     Per     Clo     Per      ! idsed(:), compact
 
 !------------------------------------------------------------------------------
 ! Suspended Cohesive Sediment Parameters, [1:NCS,1:Ngrids] values expected.
@@ -123,35 +171,35 @@ MUD_MORPH_FAC == 1.0d0 1.0d0 1.0d0              ! nondimensional
 
  MUD_Ltracer == F F F
 
-! Logical switch (TRUE/FALSE) to activate writing of cohesive sediment
+! Logical switches (TRUE/FALSE) to activate writing of cohesive sediment
 ! fields into HISTORY output file.
 
-Hout(idmud)  == T                               ! suspended concentration
-Hout(iMfrac) == T                               ! bed layer fraction
-Hout(iMmass) == T                               ! bed layer mass
-Hout(iMUbld) == T                               ! bed load at U-points
-Hout(iMVbld) == T                               ! bed load at V-points
+Hout(idmud)  == T       ! mud_01, ...             suspended concentration
+Hout(iMfrac) == T       ! mudfrac_01, ...         bed layer fraction
+Hout(iMmass) == T       ! mudmass_01, ...         bed layer mass
+Hout(iMUbld) == T       ! bedload_Umud_01, ...    bed load at U-points
+Hout(iMVbld) == T       ! bedload_Vmud_01, ...    bed load at V-points
 
-! Logical switch (TRUE/FALSE) to activate writing of time-averaged
+! Logical switches (TRUE/FALSE) to activate writing of time-averaged
 ! cohesive sediment fields into AVERAGE output file.
 
-Aout(idmud)  == T                               ! suspended concentration
-Aout(iMUbld) == T                               ! bed load at U-points
-Aout(iMVbld) == T                               ! bed load at V-points
+Aout(idmud)  == T       ! mud_01, ...             suspended concentration
+Aout(iMUbld) == T       ! bedload_Umud_01, ...    bed load at U-points
+Aout(iMVbld) == T       ! bedload_Vmud_01, ...    bed load at V-points
 
 ! Logical switches (TRUE/FALSE) to activate writing of time-averaged,
 ! cohesive sediment diagnostic terms into DIAGNOSTIC output file.
 
-Dout(MTrate) == T                               ! time rate of change
-Dout(MThadv) == T                               ! horizontal total advection
-Dout(MTxadv) == T                               ! horizontal XI-advection
-Dout(MTyadv) == T                               ! horizontal ETA-advection
-Dout(MTvadv) == T                               ! vertical advection
-Dout(MThdif) == T                               ! horizontal total diffusion
-Dout(MTxdif) == T                               ! horizontal XI-diffusion
-Dout(MTydif) == T                               ! horizontal ETA-diffusion
-Dout(MTsdif) == T                               ! horizontal S-diffusion
-Dout(MTvdif) == T                               ! vertical diffusion
+Dout(MTrate) == T       ! mud_01_rate, ...        time rate of change
+Dout(MThadv) == T       ! mud_01_hadv, ...        horizontal total advection
+Dout(MTxadv) == T       ! mud_01_xadv, ...        horizontal XI-advection
+Dout(MTyadv) == T       ! mud_01_yadv, ...        horizontal ETA-advection
+Dout(MTvadv) == T       ! mud_01_vadv, ...        vertical advection
+Dout(MThdif) == T       ! mud_01_hdiff, ...       horizontal total diffusion
+Dout(MTxdif) == T       ! mud_01_xdiff, ...       horizontal XI-diffusion
+Dout(MTydif) == T       ! mud_01_ydiff, ...       horizontal ETA-diffusion
+Dout(MTsdif) == T       ! mud_01_sdiff, ...       horizontal S-diffusion
+Dout(MTvdif) == T       ! mud_01_vdiff, ...       vertical diffusion
 
 !------------------------------------------------------------------------------
 ! Non-cohesive Sediment Parameters, [1:NNS,1:Ngrids] values expected.
@@ -221,41 +269,41 @@ SAND_Ltracer == F
 ! Logical switches (TRUE/FALSE) to activate writing of non-cohesive
 ! sediment fields into HISTORY output file.
 
-Hout(idsand) == T                               ! suspended concentration
-Hout(iSfrac) == T                               ! bed layer fraction
-Hout(iSmass) == T                               ! bed layer mass
-Hout(iSUbld) == T                               ! bed load at U-points
-Hout(iSVbld) == T                               ! bed load at V-points
+Hout(idsand) == T       ! sand_01, ...            suspended concentration
+Hout(iSfrac) == T       ! sandfrac_01, ...        bed layer fraction
+Hout(iSmass) == T       ! sandmass_01, ...        bed layer mass
+Hout(iSUbld) == T       ! bedload_Usand_01, ...   bed load at U-points
+Hout(iSVbld) == T       ! bedload_Vsand_01, ...   bed load at V-points
 
 ! Logical switches (TRUE/FALSE) to activate writing of time-averaged
 ! non-cohesive sediment fields into AVERAGE output file.
 
-Aout(idsand) == T                               ! suspended concentration
-Aout(iSUbld) == T                               ! bed load at U-points
-Aout(iSVbld) == T                               ! bed load at V-points
+Aout(idsand) == T       ! sand_01, ...            suspended concentration
+Aout(iSUbld) == T       ! bedload_Usand_01, ...   bed load at U-points
+Aout(iSVbld) == T       ! bedload_Vsand_01, ...   bed load at V-points
 
 ! Logical switches (TRUE/FALSE) to activate writing of time-averaged,
 ! non-cohesive sediment diagnostic terms into DIAGNOSTIC output file.
 
-Dout(STrate) == T                               ! time rate of change
-Dout(SThadv) == T                               ! horizontal total advection
-Dout(STxadv) == T                               ! horizontal XI-advection
-Dout(STyadv) == T                               ! horizontal ETA-advection
-Dout(STvadv) == T                               ! vertical advection
-Dout(SThdif) == T                               ! horizontal total diffusion
-Dout(STxdif) == T                               ! horizontal XI-diffusion
-Dout(STydif) == T                               ! horizontal ETA-diffusion
-Dout(STsdif) == T                               ! horizontal S-diffusion
-Dout(STvdif) == T                               ! vertical diffusion
+Dout(STrate) == T       ! sand_01_rate, ...       time rate of change
+Dout(SThadv) == T       ! sand_01_hadv, ...       horizontal total advection
+Dout(STxadv) == T       ! sand_01_xadv, ...       horizontal XI-advection
+Dout(STyadv) == T       ! sand_01_yadv, ...       horizontal ETA-advection
+Dout(STvadv) == T       ! sand_01_vadv, ...       vertical advection
+Dout(SThdif) == T       ! sand_01_hdiff, ...      horizontal total diffusion
+Dout(STxdif) == T       ! sand_01_xdiff, ...      horizontal XI-diffusion
+Dout(STydif) == T       ! sand_01_ydiff, ...      horizontal ETA-diffusion
+Dout(STsdif) == T       ! sand_01_sdiff, ...      horizontal S-diffusion
+Dout(STvdif) == T       ! sand_01_vdiff, ...      vertical diffusion
 
 !------------------------------------------------------------------------------
 ! Bed layer and bottom sediment parameters, [1:Ngrids] values expected.
 !------------------------------------------------------------------------------
 
- Hout(ithck) == T                               ! sediment layer thickness
- Hout(iaged) == T                               ! sediment layer age
- Hout(iporo) == T                               ! sediment layer porosity
- Hout(idiff) == F                               ! biodiffusivity
+ Hout(ithck) == T       ! bed_thickness           sediment layer thickness
+ Hout(iaged) == T       ! bed_age                 sediment layer age
+ Hout(iporo) == T       ! bed_porosity            sediment layer porosity
+ Hout(idiff) == F       ! bed_biodiff             biodiffusivity
 
 !
 !  GLOSSARY:
@@ -284,6 +332,68 @@ Dout(STvdif) == T                               ! vertical diffusion
 !                    layer is created.
 !
 !  BEDLOAD_COEFF   Bed load transport rate coefficient.
+!
+!------------------------------------------------------------------------------
+! Lateral boundary conditions parameters for all sediment tracers.
+!------------------------------------------------------------------------------
+!
+! The lateral boundary conditions are now specified with logical switches
+! instead of CPP flags to allow nested grid configurations. Their values are
+! load into structured array:
+!
+!    LBC(1:4, nLBCvar, Ngrids)
+!
+! where 1:4 are the number of boundary edges, nLBCvar are the number LBC state
+! variables, and Ngrids is the number of nested grids. For Example, to apply
+! gradient boundary conditions to any tracer we use:
+!
+!    LBC(iwest,  isTvar(itrc), ng) % gradient
+!    LBC(ieast,  isTvar(itrc), ng) % gradient
+!    LBC(isouth, isTvar(itrc), ng) % gradient
+!    LBC(inorth, isTvar(itrc), ng) % gradient
+!
+! The lateral boundary conditions for all sediment tracers (cohesive plus
+! noncohesive) are entered with a keyword. This keyword is case insensitive
+! and usually has three characters. However, it is possible to have compound
+! keywords, if applicable. For example, the keyword "RadNud" implies radiation
+! boundary condition with nudging. This combination is usually used in
+! active/passive radiation conditions.
+!
+! It is possible to specify the lateral boundary conditions for all sediment
+! tracers in a compact form with a single entry.  for example, in a East-West
+! periodic application we can just have:
+!
+!                   W       S       E       N     
+!                   e       o       a       o     
+!                   s       u       s       r     
+!                   t       t       t       t     
+!                           h               h     
+!                                                 
+!                   1       2       3       4     
+!
+!  LBC(isTvar) ==   Per     Clo     Per     Clo
+!
+! Then, the standard input processing routine will assume that all the
+! sediment tracers have the same lateral boundary condition specified by
+! the single entry.
+!
+!   Keyword    Lateral Boundary Condition Type
+!
+!   Cla        Clamped                                _____N_____     j=Mm
+!   Clo        Closed                                |     4     |
+!   Gra        Gradient                              |           |
+!   Nes        Nested                              1 W           E 3
+!   Nud        Nudging                               |           |
+!   Per        Periodic                              |_____S_____|
+!   Rad        Radiation                                   2          j=1
+!                                                   i=1         i=Lm
+!
+!  LBC(isTvar)    Sediment Tracers, [1:4, 1:NST, Ngrids] values are expected.
+!
+! Similarly, the adjoint-based algorithms (ADM, TLM, RPM) can have different
+! lateral boundary conditions keywords:
+!
+!  ad_LBC(isTvar) Sediment Tracers, [1:4, 1:NBT, Ngrids] values are expected.
 !
 !------------------------------------------------------------------------------
 ! Suspended Cohesive Sediment KEYWORDS, [1:NCS,1:Ngrids] values expected.

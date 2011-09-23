@@ -22,12 +22,6 @@
 #define CURVGRID
 #define SPLINES
 
-#define NS_PERIODIC
-#define EAST_FSCHAPMAN
-#define EAST_M2FLATHER
-#define WEST_FSCHAPMAN
-#define WEST_M2FLATHER
-
 #define ANA_GRID
 #define ANA_INITIAL
 #define ANA_FSOBC

@@ -134,9 +134,12 @@ export     MY_PROJECT_DIR=${PWD}
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DANA_GRID"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DANA_INITIAL"
 
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DFLOATS"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DFLOATS"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
+
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDIAGNOSTICS_TS"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDIAGNOSTICS_UV"
 
@@ -174,6 +177,30 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DANA_WWAVE"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSWAN_COUPLING"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DFSOBC_REDUCED"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
+
+if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTHERN_WALL"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTHERN_WALL"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_FSCLAMPED"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_M2REDUCED"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_M3RADIATION"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_TGRADIENT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_KGRADIENT"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_FSCLAMPED"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_M2REDUCED"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_M3RADIATION"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_TGRADIENT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_KGRADIENT"
+fi
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

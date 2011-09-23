@@ -53,10 +53,6 @@
 # define TS_DIF2
 # define MIX_S_TS
 # define SPLINES
-# define WESTERN_WALL
-# define EASTERN_WALL
-# define NORTHERN_WALL
-# define SOUTHERN_WALL
 # define TCLIMATOLOGY
 # define TCLM_NUDGING
 # define ANA_GRID
@@ -71,10 +67,6 @@
 # define UV_COR
 # define UV_LDRAG
 # define UV_VIS2
-# define WESTERN_WALL
-# define EASTERN_WALL
-# define NORTHERN_WALL
-# define SOUTHERN_WALL
 # define ANA_GRID
 # define ANA_SMFLUX
 #endif

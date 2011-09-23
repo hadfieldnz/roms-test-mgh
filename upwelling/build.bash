@@ -133,8 +133,7 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
-
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEW_PERIODIC"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DUV_VIS2"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DUV_VIS4"
@@ -160,6 +159,17 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DGLS_MIXING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMY25_MIXING"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
+
+if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTHERN_WALL"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTHERN_WALL"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEW_PERIODIC"
+fi
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to
@@ -415,7 +425,9 @@ fi
 
  export     MY_HEADER_DIR=${MY_PROJECT_DIR}
 
+if [ ! -n "${BACK_COMPATIBILITY:+1}" ]; then
  export MY_ANALYTICAL_DIR=${MY_PROJECT_DIR}
+fi
 
 # Put the binary to execute in the following directory.
 
@@ -442,5 +454,5 @@ fi
 if [ $parallel -eq 1 ]; then
   make $NCPUS
 else
-  make
+ make
 fi

@@ -21,23 +21,11 @@
 #define MASKING
 #define WET_DRY
 
-#define NORTHERN_WALL
-#define SOUTHERN_WALL
-#define EAST_M3RADIATION
-#define WEST_M3RADIATION
-#define EAST_TGRADIENT
-#define WEST_TGRADIENT
-
 #define SSH_TIDES
-#define WEST_FSCLAMPED
-#define EAST_FSCLAMPED
+#define UV_TIDES
+
 #define ANA_FSOBC
 #define ANA_M2OBC
-
-#define UV_TIDES
-#define FSOBC_REDUCED
-#define WEST_M2REDUCED
-#define EAST_M2REDUCED
 
 #ifdef SWAN_COUPLING
 # define MCT_LIB
@@ -73,6 +61,8 @@
 # define ANA_BSFLUX
 # define ANA_SPFLUX
 # define ANA_SRFLUX
+
+#define UV_TIDES
 
 #endif
 

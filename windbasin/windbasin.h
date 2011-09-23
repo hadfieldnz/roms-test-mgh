@@ -12,7 +12,6 @@
 ** Input script:       ocean_windbasin.in
 */
 
-#undef UV_ADV
 #define UV_COR
 #define UV_QDRAG
 #define SOLVE3D

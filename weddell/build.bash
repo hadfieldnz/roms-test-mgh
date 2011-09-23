@@ -125,7 +125,10 @@ export     MY_PROJECT_DIR=${PWD}
 # many definitions as you want by appending values.
 
  export      MY_CPP_FLAGS="-DAVERAGES"
+
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DICESHELF"
 
@@ -142,13 +145,28 @@ export     MY_PROJECT_DIR=${PWD}
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_DIF4"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMIX_GEO_TS"
 
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DRADIATION_2D"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
+
+if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNS_PERIODIC"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_FSCHAPMAN"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_M2FLATHER"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_M3RADIATION"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_TRADIATION"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_VOLCONS"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_FSCHAPMAN"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_M2FLATHER"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_M3RADIATION"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_TRADIATION"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_VOLCONS"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_VOLCONS"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DRADIATION_2D"
+fi
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

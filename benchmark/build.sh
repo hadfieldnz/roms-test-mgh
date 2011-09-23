@@ -124,13 +124,27 @@ setenv MY_PROJECT_DIR       ${PWD}
 # many definitions as you want by appending values.
 
  setenv MY_CPP_FLAGS "-DAVERAGES"
+
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBULK_FLUXES"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DLMD_MIXING"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPARALLEL_IO"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DHDF5"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEW_PERIODIC"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTHERN_WALL"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTHERN_WALL"
+endif
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

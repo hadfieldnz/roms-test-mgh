@@ -130,6 +130,8 @@ export     MY_PROJECT_DIR=${PWD}
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_PSOURCE"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDIAGNOSTICS_TS"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDIAGNOSTICS_UV"
@@ -150,14 +152,38 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DLMD_MIXING"
 
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
+
+if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
+  if [ "${ROMS_APPLICATION}" = "RIVERPLUME1" ]; then
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNS_PERIODIC"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEASTERN_WALL"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWESTERN_WALL"
+  elif [ "${ROMS_APPLICATION}" = "RIVERPLUME2" ]; then
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTH_FSCHAPMAN"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTH_M2GRADIENT"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTH_M3GRADIENT"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTH_TGRADIENT"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_FSCHAPMAN"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_M2GRADIENT"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_M3GRADIENT"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_TGRADIENT"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWESTERN_WALL"
+    export   MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEASTERN_WALL"
+  fi
+fi
+
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to
 # leave the switches meant to be off set to an empty string or commented
 # out. Any string value (including off) will evaluate to TRUE in
 # conditional if-statements.
 
-#export           USE_MPI=on            # distributed-memory parallelism
-#export        USE_MPIF90=on            # compile with mpif90 script
+ export           USE_MPI=on            # distributed-memory parallelism
+ export        USE_MPIF90=on            # compile with mpif90 script
 #export         which_MPI=mpich         # compile with MPICH library
 #export         which_MPI=mpich2        # compile with MPICH2 library
  export         which_MPI=openmpi       # compile with OpenMPI library

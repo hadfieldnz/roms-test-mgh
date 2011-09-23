@@ -130,6 +130,33 @@ setenv MY_PROJECT_DIR       ${PWD}
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DADJUST_WSTRESS"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DADJUST_STFLUX"
 
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEASTERN_WALL"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_FSCHAPMAN"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M2FLATHER"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M3CLAMPED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_TCLAMPED"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_FSCHAPMAN"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_M2FLATHER"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_M3CLAMPED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_TCLAMPED"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_FSCHAPMAN"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_M2FLATHER"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_M3CLAMPED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_TCLAMPED"
+endif
+
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to
 # leave the switches meant to be off set to an empty string or commented

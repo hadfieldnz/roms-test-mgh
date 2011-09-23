@@ -124,7 +124,10 @@ setenv MY_PROJECT_DIR        ${PWD}
 # many definitions as you want by appending values.
 
  setenv MY_CPP_FLAGS "-DSEDIMENT"
+
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_TS"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_UV"
@@ -137,6 +140,28 @@ setenv MY_PROJECT_DIR        ${PWD}
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DANA_VMIX"
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DGLS_MIXING"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTHERN_WALL"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTHERN_WALL"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_FSCHAPMAN"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_M2CLAMPED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_M3GRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_TGRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_KGRADIENT"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_FSCHAPMAN"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M2FLATHER"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M3GRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_TGRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_KGRADIENT"
+endif
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

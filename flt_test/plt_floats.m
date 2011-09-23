@@ -25,8 +25,10 @@ function plt_floats(Hname, Fname);
 %    See License_ROMS.txt                           Hernan G. Arango        %
 %===========================================================================%
 
-Hname='ocean_his.nc';
-Fname='ocean_flt.nc';
+if (nargin < 1),
+  Hname='ocean_his.nc';
+  Fname='ocean_flt.nc';
+end,
 
 PPM_MOVIE = 0; 
 
@@ -123,7 +125,7 @@ if (PPM_MOVIE),
 else,
 
   fig=figure;
-  aviobj=avifile('floats.flc');
+  aviobj=avifile('floats.avi');
   
   for n=1:nt,
 

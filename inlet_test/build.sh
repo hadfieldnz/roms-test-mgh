@@ -79,13 +79,13 @@ end
 # determine the name of the ".h" header file with the application
 # CPP definitions.
 
-setenv ROMS_APPLICATION     INLET_TEST
+setenv ROMS_APPLICATION      INLET_TEST
 
 # Set a local environmental variable to define the path to the directories
 # where all this project's files are kept.
 
-setenv MY_ROOT_DIR          ${HOME}/ocean/repository
-setenv MY_PROJECT_DIR       ${PWD}
+setenv MY_ROOT_DIR           ${HOME}/ocean/repository
+setenv MY_PROJECT_DIR        ${PWD}
 
 # The path to the user's local current ROMS source code.
 #
@@ -97,8 +97,8 @@ setenv MY_PROJECT_DIR       ${PWD}
 # machine. This script is designed to more easily allow for differing paths
 # to the code and inputs on differing machines.
 
-# setenv MY_ROMS_SRC          ${MY_ROOT_DIR}/branches/arango
-  setenv MY_ROMS_SRC          ${MY_ROOT_DIR}/trunk
+#setenv MY_ROMS_SRC          ${MY_ROOT_DIR}/branches/arango
+ setenv MY_ROMS_SRC          ${MY_ROOT_DIR}/trunk
 
 # Set path of the directory containing makefile configuration (*.mk) files.
 # The user has the option to specify a customized version of these files
@@ -127,6 +127,8 @@ setenv MY_PROJECT_DIR       ${PWD}
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMCT_LIB"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DUV_LOGDRAG"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DUV_QDRAG"
@@ -139,6 +141,31 @@ setenv MY_PROJECT_DIR       ${PWD}
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBEDLOAD_SOULSBY"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBEDLOAD_MPM"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTHERN_WALL"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_FSGRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_M2REDUCED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DFSOBC_REDUCED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_M3GRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_TGRADIENT"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_FSGRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M2GRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M3GRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_TGRADIENT"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_FSGRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_M2GRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_M3GRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_TGRADIENT"
+endif
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

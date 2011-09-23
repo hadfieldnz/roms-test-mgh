@@ -124,10 +124,33 @@ setenv MY_PROJECT_DIR        ${PWD}
 # many definitions as you want by appending values.
 
  setenv MY_CPP_FLAGS "-DAVERAGES"
+
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DGLS_MIXING"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMY25_MIXING"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTHERN_WALL"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTHERN_WALL"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_FSRADIATION"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M2RADIATION"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M3RADIATION"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_TGRADIENT"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_FSCLAMPED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_M2RADIATION"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_M3RADIATION"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_TCLAMPED"
+endif
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

@@ -34,10 +34,6 @@
 #define QCORRECTION
 #define SRELAXATION
 #define CURVGRID
-#define EASTERN_WALL
-#define WESTERN_WALL
-#define SOUTHERN_WALL
-#define NORTHERN_WALL
 
 #ifdef LMD_MIXING
 # define LMD_RIMIX

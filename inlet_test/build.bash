@@ -128,6 +128,8 @@ export     MY_PROJECT_DIR=${PWD}
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMCT_LIB"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DUV_LOGDRAG"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DUV_QDRAG"
@@ -140,6 +142,31 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBEDLOAD_SOULSBY"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBEDLOAD_MPM"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
+
+if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTHERN_WALL"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_FSGRADIENT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_M2REDUCED"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DFSOBC_REDUCED"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_M3GRADIENT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_TGRADIENT"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_FSGRADIENT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_M2GRADIENT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_M3GRADIENT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_TGRADIENT"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_FSGRADIENT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_M2GRADIENT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_M3GRADIENT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_TGRADIENT"
+fi
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

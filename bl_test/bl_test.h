@@ -27,15 +27,6 @@
 #define SPLINES
 #define STATIONS
 #define SOLVE3D
-#define WESTERN_WALL
-#define NS_PERIODIC
-#define RADIATION_2D
-#define EAST_FSGRADIENT
-#define EAST_M2RADIATION
-#define EAST_M3RADIATION
-#define EAST_KRADIATION
-#define EAST_TRADIATION
-#define EAST_VOLCONS
 
 #ifdef MY25_MIXING
 # define N2S2_HORAVG

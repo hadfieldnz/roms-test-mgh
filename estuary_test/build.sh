@@ -79,13 +79,13 @@ end
 # determine the name of the ".h" header file with the application
 # CPP definitions.
 
- setenv ROMS_APPLICATION    ESTUARY_TEST
+ setenv ROMS_APPLICATION     ESTUARY_TEST
 
 # Set a local environmental variable to define the path to the directories
 # where all this project's files are kept.
 
-setenv MY_ROOT_DIR          ${HOME}/ocean/repository
-setenv MY_PROJECT_DIR       ${PWD}
+setenv MY_ROOT_DIR           ${HOME}/ocean/repository
+setenv MY_PROJECT_DIR        ${PWD}
 
 # The path to the user's local current ROMS source code.
 #
@@ -124,13 +124,41 @@ setenv MY_PROJECT_DIR       ${PWD}
 # many definitions as you want by appending values.
 
  setenv MY_CPP_FLAGS "-DAVERAGES"
+
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_TS"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_UV"
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DGLS_MIXING"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMY25_MIXING"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTHERN_WALL"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTHERN_WALL"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_FSGRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_M2CLAMPED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_M3GRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_TCLAMPED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEAST_KGRADIENT"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_FSCHAPMAN"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M2CLAMPED"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M2REDUCED"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DFSOBC_REDUCED"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M3GRADIENT"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_TRADIATION"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_TNUDGING"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_KGRADIENT"
+endif
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

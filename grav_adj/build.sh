@@ -79,13 +79,13 @@ end
 # determine the name of the ".h" header file with the application
 # CPP definitions.
 
-setenv ROMS_APPLICATION     GRAV_ADJ
+setenv ROMS_APPLICATION      GRAV_ADJ
 
 # Set a local environmental variable to define the path to the directories
 # where all this project's files are kept.
 
-setenv MY_ROOT_DIR          ${HOME}/ocean/repository
-setenv MY_PROJECT_DIR       ${PWD}
+setenv MY_ROOT_DIR           ${HOME}/ocean/repository
+setenv MY_PROJECT_DIR        ${PWD}
 
 # The path to the user's local current ROMS source code.
 #
@@ -124,7 +124,10 @@ setenv MY_PROJECT_DIR       ${PWD}
 # many definitions as you want by appending values.
 
  setenv MY_CPP_FLAGS "-DAVERAGES"
+
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_TS"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_UV"
@@ -138,6 +141,17 @@ setenv MY_PROJECT_DIR       ${PWD}
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DUV_VIS2"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMIX_S_UV"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEASTERN_WALL"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWESTERN_WALL"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNS_PERIODIC"
+endif
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

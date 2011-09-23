@@ -125,7 +125,10 @@ export     MY_PROJECT_DIR=${PWD}
 # many definitions as you want by appending values.
 
  export      MY_CPP_FLAGS="-DAVERAGES"
+
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_A4HADVECTION"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_A4VADVECTION"
@@ -136,6 +139,17 @@ export     MY_PROJECT_DIR=${PWD}
 
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DUV_VIS2"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMIX_S_UV"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
+
+if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEASTERN_WALL"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWESTERN_WALL"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNS_PERIODIC"
+fi
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to

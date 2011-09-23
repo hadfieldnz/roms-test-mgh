@@ -17,10 +17,8 @@
 #define DJ_GRADPS
 #define SOLVE3D
 #define SPLINES
-#define NS_PERIODIC
 #define ANA_GRID
 #define ANA_INITIAL
 #define ANA_SMFLUX
 #define ANA_STFLUX
 #define ANA_BTFLUX
-#define OUT_DOUBLE

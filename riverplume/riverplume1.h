@@ -22,10 +22,6 @@
 #define SOLVE3D
 #define SPLINES
 
-#define NS_PERIODIC
-#define WESTERN_WALL
-#define EASTERN_WALL
-
 #ifdef LMD_MIXING
 # define LMD_RIMIX
 # define LMD_CONVEC

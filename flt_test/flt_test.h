@@ -18,9 +18,6 @@
 #define UV_VIS2
 #define MIX_S_UV
 #define MASKING
-#define EW_PERIODIC
-#define NORTHERN_WALL
-#define SOUTHERN_WALL
 #define ANA_GRID
 #define ANA_INITIAL
 #define ANA_SMFLUX

@@ -129,6 +129,8 @@ setenv MY_PROJECT_DIR       ${PWD}
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_PSOURCE"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_TS"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_UV"
@@ -149,14 +151,38 @@ setenv MY_PROJECT_DIR       ${PWD}
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DLMD_MIXING"
 
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+
+if ($?BACK_COMPATIBILITY) then
+ if ($ROMS_APPLICATION == "RIVERPLUME1") then
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNS_PERIODIC"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEASTERN_WALL"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWESTERN_WALL"
+ else if ($ROMS_APPLICATION == "RIVERPLUME2") then
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_FSCHAPMAN"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_M2GRADIENT"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_M3GRADIENT"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_TGRADIENT"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_FSCHAPMAN"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_M2GRADIENT"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_M3GRADIENT"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_TGRADIENT"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWESTERN_WALL"
+   setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEASTERN_WALL"
+ endif
+endif
+
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to
 # leave the switches meant to be off set to an empty string or commented
 # out. Any string value (including off) will evaluate to TRUE in
 # conditional if-statements.
 
-#setenv USE_MPI             on          # distributed-memory parallelism
-#setenv USE_MPIF90          on          # compile with mpif90 script
+ setenv USE_MPI             on          # distributed-memory parallelism
+ setenv USE_MPIF90          on          # compile with mpif90 script
 #setenv which_MPI           mpich       # compile with MPICH library
 #setenv which_MPI           mpich2      # compile with MPICH2 library
  setenv which_MPI           openmpi     # compile with OpenMPI library

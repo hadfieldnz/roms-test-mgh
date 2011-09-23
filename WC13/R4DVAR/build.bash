@@ -126,8 +126,35 @@ export     MY_PROJECT_DIR=${PWD}
 
  export      MY_CPP_FLAGS="-DW4DVAR"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMINRES"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_EOFS"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_ERROR_I"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_EOFS"     # Nouter=1
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_ERROR_I"  # Nouter=1
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
+
+# Set deprecated lateral boundary conditions CPP flags for backward
+# compatibility with older versions of the code.
+
+ export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
+
+if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEASTERN_WALL"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_FSCHAPMAN"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_M2FLATHER"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_M3CLAMPED"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_TCLAMPED"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_FSCHAPMAN"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_M2FLATHER"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_M3CLAMPED"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_TCLAMPED"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTH_FSCHAPMAN"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTH_M2FLATHER"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTH_M3CLAMPED"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTH_TCLAMPED"
+fi
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to
