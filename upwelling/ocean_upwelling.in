@@ -758,7 +758,7 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 
      APARNAM =  s4dvar.in
      SPOSNAM =  stations.in
-     FPOSNAM =  floats.in
+     FPOSNAM =  floats_upwelling.in
      BPARNAM =  bio_Fennel.in
 !    BPARNAM =  ecosim.in
 !    BPARNAM =  nemuro.in

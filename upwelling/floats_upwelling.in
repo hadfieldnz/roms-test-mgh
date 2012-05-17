@@ -40,10 +40,20 @@
 !
      Lfloats == T
 
+! Switch to control the printing of floats positions to standard output
+! file, [1:Ngrids].
+!
+      Fprint == T
+
 ! Flag indicating re-start from previous solution. If FRREC = 0, a new
 ! NetCDF output file is created.
 
        FRREC == 0
+
+! If applicable, input script file name containing biological floats behavior
+! model parameters.
+
+     FBIONAM =  behavior_oyster.in
 
 ! Number of floats to release in each nested grid.  These values are
 ! essential because the FLOATS structure in "mod_floats" is dynamically
@@ -68,30 +78,30 @@
 
 POS = G, C, T, N,   Ft0,    Fx0,    Fy0,    Fz0,    Fdt,    Fdx,    Fdy,   Fdz
 
-      1  0  1  1   0.1d0   15.0d0   5.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   15.0d0  10.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   15.0d0  15.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   15.0d0  20.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   20.0d0   5.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   20.0d0  10.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   20.0d0  15.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   20.0d0  20.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   25.0d0   5.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   25.0d0  10.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   25.0d0  15.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   25.0d0  20.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   15.0d0  60.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   15.0d0  65.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   15.0d0  70.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   15.0d0  75.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   20.0d0  60.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   20.0d0  66.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   20.0d0  70.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   20.0d0  75.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   25.0d0  60.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   25.0d0  65.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   25.0d0  70.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
-      1  0  1  1   0.1d0   25.0d0  75.0d0  -5.0d0   0.d0    0.d0   0.d0   0.d0
+      1  0  1  1   0.1d0   10.0d0   5.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   10.0d0  10.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   10.0d0  15.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   10.0d0  20.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   15.0d0   5.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   15.0d0  10.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   15.0d0  15.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   15.0d0  20.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   20.0d0   5.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   20.0d0  10.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   20.0d0  15.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   20.0d0  20.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   10.0d0  55.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   10.0d0  60.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   10.0d0  65.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   10.0d0  70.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   15.0d0  55.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   15.0d0  60.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   15.0d0  65.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   15.0d0  70.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   20.0d0  55.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   20.0d0  60.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   20.0d0  65.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
+      1  0  1  1   0.1d0   20.0d0  70.0d0  -1.0d0   0.0d0   0.0d0   0.0d0  0.0d0
 
 !
 !  GLOSSARY:
@@ -111,12 +121,24 @@ POS = G, C, T, N,   Ft0,    Fx0,    Fy0,    Fz0,    Fdt,    Fdx,    Fdy,   Fdz
 !             USER can control which grid to process by turning on/off this
 !             switch.
 !
+! Fprint    Switch to control the printing of floats positions to standard
+!             output file. This switch can be used to turn of the printing
+!             of information whe thousands of floats are released.  This
+!             information is still in output floats NetCDF file.
+!
 ! FRREC     Flag to indicate re-start from a previous solution.  Use
 !             FRREC=0 for new solutions. In a re-start solution, FRREC
 !             is the time index in the floats NetCDF file assigned for
 !             initialization.  If FRREC is negative (say FRREC=-1), the
 !             floats will re-start from the most recent time record.
 !             That is, the initialization record is assigned internally.
+!
+!------------------------------------------------------------------------------
+! Biological behavior.
+!------------------------------------------------------------------------------
+!
+! FBIONAM   If applicable, input script file name containing biological floats
+!              behavior model parameters.
 !
 !------------------------------------------------------------------------------
 ! Number of floats.
