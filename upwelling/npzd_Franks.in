@@ -138,7 +138,7 @@ BioIni(iSDet) == 0.04d0                          ! detritus
 ! it is possible to have compound keywords, if applicable. For example, the
 ! keyword "RadNud" implies radiation boundary condition with nudging. This
 ! combination is usually used in active/passive radiation conditions.
-! 
+!
 ! NOTICE: It is possible to specify the lateral boundary conditions for
 ! ======  all biological tracers in a compact form with a single entry.
 ! If so, all the biological tracers are assumed to have the same boundary
@@ -154,13 +154,13 @@ BioIni(iSDet) == 0.04d0                          ! detritus
 !   Per        Periodic                              |_____S_____|
 !   Rad        Radiation                                   2          j=1
 !                                                   i=1         i=Lm
-!                   W       S       E       N     
-!                   e       o       a       o     
-!                   s       u       s       r     
-!                   t       t       t       t     
-!                           h               h     
-!                                                 
-!                   1       2       3       4     
+!                   W       S       E       N
+!                   e       o       a       o
+!                   s       u       s       r
+!                   t       t       t       t
+!                           h               h
+!
+!                   1       2       3       4
 
    LBC(isTvar) ==   Per     Clo     Per     Clo      ! idbio(:), compact
 
@@ -168,6 +168,12 @@ BioIni(iSDet) == 0.04d0                          ! detritus
 ! conditions keywords.
 
 ad_LBC(isTvar) ==   Per     Clo     Per     Clo      ! idbio(:), compact
+
+! Logical switches (TRUE/FALSE) to specify which variables to process for
+! tracers climatology: [NBT,Ngrids] values are expected. See glossary below
+! for details.
+
+  LtracerCLM == 4*F
 
 ! Logical switches (TRUE/FALSE) to specify which variables to consider on
 ! tracers point Sources/Sinks (like river runoff): [NBT,Ngrids] values are
@@ -334,13 +340,13 @@ Dout(iTvdif) == 4*T     ! NO3_vdiff, ...          vertical diffusion
 ! tracers in a compact form with a single entry.  for example, in a East-West
 ! periodic application we can just have:
 !
-!                   W       S       E       N     
-!                   e       o       a       o     
-!                   s       u       s       r     
-!                   t       t       t       t     
-!                           h               h     
-!                                                 
-!                   1       2       3       4     
+!                   W       S       E       N
+!                   e       o       a       o
+!                   s       u       s       r
+!                   t       t       t       t
+!                           h               h
+!
+!                   1       2       3       4
 !
 !  LBC(isTvar) ==   Per     Clo     Per     Clo
 !
@@ -365,6 +371,25 @@ Dout(iTvdif) == 4*T     ! NO3_vdiff, ...          vertical diffusion
 ! lateral boundary conditions keywords:
 !
 !  ad_LBC(isTvar) Biological Tracers, [1:4, 1:NBT, Ngrids] values are expected.
+!
+!------------------------------------------------------------------------------
+!  Tracer climatology processing switches.
+!------------------------------------------------------------------------------
+!
+!  LtracerCLM     Logical switches (T/F) to specify which tracer climatology
+!                   variables to consider when the option TCLIMATOLOGY is
+!                   activated; [1:NBT,1:Ngrids] values are expected.
+!
+!                     LtracerCLM(idbio(1),ng)     Nitrate concetration
+!                     LtracerCLM(idbio(2),ng)     Phytoplankton biomass
+!                     LtracerCLM(idbio(3),ng)     Zooplankton biomass
+!                     LtracerCLM(idbio(4),ng)     Detritus concentration
+!
+!                 Recall that TCLIMATOLOGY is usually activated to nudge to
+!                 tracer climatology (TLCM_NUDGING).  The purpose of these
+!                 switches is to control which climatology tracer fields
+!                 (specially passive tracers) needs to be processed.  So we
+!                 may reduce the memory allocation for such array.
 !
 !------------------------------------------------------------------------------
 !  Tracer point Sources/Sink sources switches.

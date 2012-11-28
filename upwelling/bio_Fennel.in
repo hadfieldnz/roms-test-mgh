@@ -222,7 +222,7 @@
 ! it is possible to have compound keywords, if applicable. For example, the
 ! keyword "RadNud" implies radiation boundary condition with nudging. This
 ! combination is usually used in active/passive radiation conditions.
-! 
+!
 ! NOTICE: It is possible to specify the lateral boundary conditions for
 ! ======  all biological tracers in a compact form with a single entry.
 ! If so, all the biological tracers are assumed to have the same boundary
@@ -238,13 +238,13 @@
 !   Per        Periodic                              |_____S_____|
 !   Rad        Radiation                                   2          j=1
 !                                                   i=1         i=Lm
-!                   W       S       E       N     
-!                   e       o       a       o     
-!                   s       u       s       r     
-!                   t       t       t       t     
-!                           h               h     
-!                                                 
-!                   1       2       3       4     
+!                   W       S       E       N
+!                   e       o       a       o
+!                   s       u       s       r
+!                   t       t       t       t
+!                           h               h
+!
+!                   1       2       3       4
 
    LBC(isTvar) ==   Per     Clo     Per     Clo      ! idbio(:), compact
 
@@ -252,6 +252,12 @@
 ! conditions keywords.
 
 ad_LBC(isTvar) ==   Per     Clo     Per     Clo      ! idbio(:), compact
+
+! Logical switches (TRUE/FALSE) to specify which variables to process for
+! tracers climatology: [NBT,Ngrids] values are expected. See glossary below
+! for details.
+
+  LtracerCLM == 12*F
 
 ! Logical switches (TRUE/FALSE) to specify which variables to consider on
 ! tracers point Sources/Sinks (like river runoff): [NBT,Ngrids] values are
@@ -483,13 +489,13 @@ Dout(iNO3u) == T        ! NO3_uptake         NO3 uptake
 ! tracers in a compact form with a single entry.  For example, in a East-West
 ! periodic application we can just have:
 !
-!                   W       S       E       N     
-!                   e       o       a       o     
-!                   s       u       s       r     
-!                   t       t       t       t     
-!                           h               h     
-!                                                 
-!                   1       2       3       4     
+!                   W       S       E       N
+!                   e       o       a       o
+!                   s       u       s       r
+!                   t       t       t       t
+!                           h               h
+!
+!                   1       2       3       4
 !
 !  LBC(isTvar) ==   Per     Clo     Per     Clo
 !
@@ -514,6 +520,33 @@ Dout(iNO3u) == T        ! NO3_uptake         NO3 uptake
 ! lateral boundary conditions keywords:
 !
 !  ad_LBC(isTvar) Biological Tracers, [1:4, 1:NBT, Ngrids] values are expected.
+!
+!------------------------------------------------------------------------------
+!  Tracer climatology processing switches.
+!------------------------------------------------------------------------------
+!
+!  LtracerCLM     Logical switches (T/F) to specify which tracer climatology
+!                   variables to consider when the option TCLIMATOLOGY is
+!                   activated; [1:NBT,1:Ngrids] values are expected.
+!
+!                     LtracerCLM(idbio( 1),ng)    Nitrate concentration
+!                     LtracerCLM(idbio( 2),ng)    Ammonium concentration
+!                     LtracerCLM(idbio( 3),ng)    Chorophyll concentration
+!                     LtracerCLM(idbio( 4),ng)    Phytoplankton biomass
+!                     LtracerCLM(idbio( 5),ng)    Zooplankton biomass
+!                     LtracerCLM(idbio( 6),ng)    Large N-detritus
+!                     LtracerCLM(idbio( 7),ng)    Small N-detritus
+!                     LtracerCLM(idbio( 8),ng)    Large C-detritus
+!                     LtracerCLM(idbio( 9),ng)    Small C-detritus
+!                     LtracerCLM(idbio(10),ng)    Total inorganic carbon
+!                     LtracerCLM(idbio(11),ng)    Alkalinity
+!                     LtracerCLM(idbio(12),ng)    Oxygen concentration
+!
+!                 Recall that TCLIMATOLOGY is usually activated to nudge to
+!                 tracer climatology (TLCM_NUDGING).  The purpose of these
+!                 switches is to control which climatology tracer fields
+!                 (specially passive tracers) needs to be processed.  So we
+!                 may reduce the memory allocation for such array.
 !
 !------------------------------------------------------------------------------
 !  Tracer point Sources/Sink sources switches.
