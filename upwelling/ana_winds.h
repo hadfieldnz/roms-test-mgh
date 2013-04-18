@@ -108,8 +108,8 @@
 !-----------------------------------------------------------------------
 !
 #if defined UPWELLING
-      DO j=JstrR,JendR
-        DO i=IstrR,IendR
+      DO j=JstrT,JendT
+        DO i=IstrT,IendT
           Uwind(i,j)=-5.0_r8
           Vwind(i,j)=0.0_r8
         END DO

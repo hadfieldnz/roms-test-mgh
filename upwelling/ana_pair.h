@@ -79,8 +79,8 @@
 !-----------------------------------------------------------------------
 !
 #if defined UPWELLING
-      DO j=JstrR,JendR
-        DO i=IstrR,IendR
+      DO j=JstrT,JendT
+        DO i=IstrT,IendT
           Pair(i,j)=1020.0_r8
         END DO
       END DO

@@ -136,13 +136,13 @@
 !  Initial conditions for 2D momentum (m/s) components.
 !-----------------------------------------------------------------------
 !
-      DO j=JstrR,JendR
-        DO i=Istr,IendR
+      DO j=JstrT,JendT
+        DO i=IstrP,IendT
           ubar(i,j,1)=0.0_r8
         END DO
       END DO
-      DO j=Jstr,JendR
-        DO i=IstrR,IendR
+      DO j=JstrP,JendT
+        DO i=IstrT,IendT
           vbar(i,j,1)=0.0_r8
         END DO
       END DO
@@ -151,8 +151,8 @@
 !  Initial conditions for free-surface (m).
 !-----------------------------------------------------------------------
 !
-      DO j=JstrR,JendR
-        DO i=IstrR,IendR
+      DO j=JstrT,JendT
+        DO i=IstrT,IendT
           zeta(i,j,1)=0.0_r8
         END DO
       END DO
@@ -164,13 +164,13 @@
 !-----------------------------------------------------------------------
 !
       DO k=1,N(ng)
-       DO j=JstrR,JendR
-         DO i=Istr,IendR
+       DO j=JstrT,JendT
+         DO i=IstrP,IendT
             u(i,j,k,1)=0.0_r8
           END DO
         END DO
-        DO j=Jstr,JendR
-          DO i=IstrR,IendR
+        DO j=JstrP,JendT
+          DO i=IstrT,IendT
             v(i,j,k,1)=0.0_r8
           END DO
         END DO
@@ -185,8 +185,8 @@
 !
 # if defined UPWELLING
       DO k=1,N(ng)
-        DO j=JstrR,JendR
-          DO i=IstrR,IendR
+        DO j=JstrT,JendT
+          DO i=IstrT,IendT
             t(i,j,k,1,itemp)=T0(ng)+8.0_r8*EXP(z_r(i,j,k)/50.0_r8)
 !!          t(i,j,k,1,itemp)=T0(ng)+(z_r(i,j,k)+75.0_r8)/150.0_r8+
 !!   &                       4.0_r8*(1.0_r8+TANH((z_r(i,j,k)+35.0_r8)/
@@ -205,8 +205,8 @@
       END DO
 # else
       DO k=1,N(ng)
-        DO j=JstrR,JendR
-          DO i=IstrR,IendR
+        DO j=JstrT,JendT
+          DO i=IstrT,IendT
             t(i,j,k,1,itemp)=T0(ng)
 #  ifdef SALINITY
             t(i,j,k,1,isalt)=S0(ng)

@@ -169,14 +169,14 @@
 !!
 # ifdef UV_VIS2
       cff=visc2(ng)/grdmax(ng)
-      DO j=JstrR,JendR
-        DO i=IstrR,IendR
+      DO j=JstrT,JendT
+        DO i=IstrT,IendT
           visc2_r(i,j)=cff*grdscl(i,j)
         END DO
       END DO
       cff=0.25_r8*cff
-      DO j=Jstr,JendR
-        DO i=Istr,IendR
+      DO j=JstrP,JendT
+        DO i=IstrP,IendT
           visc2_p(i,j)=cff*(grdscl(i,j  )+grdscl(i-1,j  )+              &
      &                      grdscl(i,j-1)+grdscl(i-1,j-1))
         END DO
@@ -184,14 +184,14 @@
 # endif
 # ifdef UV_VIS4
       cff=visc4(ng)/(grdmax(ng)**3)
-      DO j=JstrR,JendR
-        DO i=IstrR,IendR
+      DO j=JstrT,JendT
+        DO i=IstrT,IendT
           visc4_r(i,j)=cff*grdscl(i,j)**3
         END DO
       END DO
       cff=0.25_r8*cff
-      DO j=Jstr,JendR
-        DO i=Istr,IendR
+      DO j=JstrP,JendT
+        DO i=IstrP,IendT
           visc4_p(i,j)=cff*(grdscl(i,j  )**3+grdscl(i-1,j  )**3+        &
      &                      grdscl(i,j-1)**3+grdscl(i-1,j-1)**3)
         END DO
@@ -210,8 +210,8 @@
 # ifdef TS_DIF2
       DO itrc=1,NT(ng)
         cff=tnu2(itrc,ng)/grdmax(ng)
-        DO j=JstrR,JendR
-          DO i=IstrR,IendR
+        DO j=JstrT,JendT
+          DO i=IstrT,IendT
             diff2(i,j,itrc)=cff*grdscl(i,j)
           END DO
         END DO
@@ -220,8 +220,8 @@
 # ifdef TS_DIF4
       DO itrc=1,NT(ng)
         cff=tnu4(itrc,ng)/(grdmax(ng)**3)
-        DO j=JstrR,JendR
-          DO i=IstrR,IendR
+        DO j=JstrT,JendT
+          DO i=IstrT,IendT
             diff4(i,j,itrc)=cff*grdscl(i,j)**3
           END DO
         END DO
@@ -250,9 +250,9 @@
 !
 !  Southern edge.
 !
-      DO j=JstrR,MIN(Iwrk,JendR)
+      DO j=JstrT,MIN(Iwrk,JendT)
         cff=cff1+REAL(Iwrk-j,r8)*(cff2-cff1)/REAL(Iwrk,r8)
-        DO i=IstrR,IendR
+        DO i=IstrT,IendT
           visc2_r(i,j)=MAX(MIN(cff,cff2),cff1)
           visc2_p(i,j)=MAX(MIN(cff,cff2),cff1)
         END DO
@@ -260,9 +260,9 @@
 !
 !  Northern edge.
 !
-      DO j=MAX(JstrR,Mm(ng)+1-Iwrk),JendR
+      DO j=MAX(JstrT,Mm(ng)+1-Iwrk),JendT
         cff=cff2-REAL(Mm(ng)+1-j,r8)*(cff2-cff1)/REAL(Iwrk,r8)
-        DO i=IstrR,IendR
+        DO i=IstrT,IendT
           visc2_r(i,j)=MAX(MIN(cff,cff2),cff1)
           visc2_p(i,j)=MAX(MIN(cff,cff2),cff1)
         END DO
@@ -270,8 +270,8 @@
 !
 !  Western edge.
 !
-      DO i=IstrR,MIN(Iwrk,IendR)
-        DO j=MAX(JstrR,i),MIN(Mm(ng)+1-i,JendR)
+      DO i=IstrT,MIN(Iwrk,IendT)
+        DO j=MAX(JstrT,i),MIN(Mm(ng)+1-i,JendT)
           cff=cff1+REAL(Iwrk-i,r8)*(cff2-cff1)/REAL(Iwrk,r8)
           visc2_r(i,j)=MAX(MIN(cff,cff2),cff1)
           visc2_p(i,j)=MAX(MIN(cff,cff2),cff1)
@@ -290,10 +290,10 @@
 !
 !  Southern edge.
 !
-      DO j=JstrR,MIN(Iwrk,JendR)
+      DO j=JstrT,MIN(Iwrk,JendT)
         cff_t=cff1_t+REAL(Iwrk-j,r8)*(cff2_t-cff1_t)/REAL(Iwrk,r8)
         cff_s=cff1_s+REAL(Iwrk-j,r8)*(cff2_s-cff1_s)/REAL(Iwrk,r8)
-        DO i=IstrR,IendR
+        DO i=IstrT,IendT
           diff2(i,j,itemp)=MAX(MIN(cff_t,cff2_t),cff1_t)
           diff2(i,j,isalt)=MAX(MIN(cff_s,cff2_s),cff1_s)
         END DO
@@ -301,10 +301,10 @@
 !
 !  Northern edge.
 !
-      DO j=MAX(JstrR,Mm(ng)+1-Iwrk),JendR
+      DO j=MAX(JstrT,Mm(ng)+1-Iwrk),JendT
         cff_t=cff2_t-REAL(Mm(ng)+1-j,r8)*(cff2_t-cff1_t)/REAL(Iwrk,r8)
         cff_s=cff2_s-REAL(Mm(ng)+1-j,r8)*(cff2_s-cff1_s)/REAL(Iwrk,r8)
-        DO i=IstrR,IendR
+        DO i=IstrT,IendT
           diff2(i,j,itemp)=MAX(MIN(cff_t,cff2_t),cff1_t)
           diff2(i,j,isalt)=MAX(MIN(cff_s,cff2_s),cff1_s)
         END DO
@@ -312,8 +312,8 @@
 !
 !  Western edge.
 !
-      DO i=IstrR,MIN(Iwrk,IendR)
-        DO j=MAX(JstrR,i),MIN(Mm(ng)+1-i,JendR)
+      DO i=IstrT,MIN(Iwrk,IendT)
+        DO j=MAX(JstrT,i),MIN(Mm(ng)+1-i,JendT)
           cff_t=cff1_t+REAL(Iwrk-i,r8)*(cff2_t-cff1_t)/REAL(Iwrk,r8)
           cff_s=cff1_s+REAL(Iwrk-i,r8)*(cff2_s-cff1_s)/REAL(Iwrk,r8)
           diff2(i,j,itemp)=MAX(MIN(cff_t,cff2_t),cff1_t)
