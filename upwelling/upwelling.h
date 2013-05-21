@@ -15,7 +15,6 @@
 #define UV_ADV
 #define UV_COR
 #define DJ_GRADPS
-#define MIX_GEO_TS
 
 #define SALINITY
 #define SOLVE3D

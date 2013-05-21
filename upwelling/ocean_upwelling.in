@@ -107,8 +107,8 @@ GridsInLayer =  1
 ! shared-memory configurations used to determine tile horizontal range
 ! indices (Istr,Iend) and (Jstr,Jend), [1:Ngrids].
 
-      NtileI == 1                           ! I-direction partition
-      NtileJ == 2                           ! J-direction partition
+      NtileI == 3                           ! I-direction partition
+      NtileJ == 3                           ! J-direction partition
 
 ! Set lateral boundary conditions keyword. Notice that a value is expected
 ! for each boundary segment per nested grid for each state variable.
@@ -125,17 +125,19 @@ GridsInLayer =  1
 !
 !   Keyword    Lateral Boundary Condition Type
 !
-!   Cha        Chapman
+!   Cha        Chapman_implicit (free-surface)
+!   Che        Chapman_explicit (free-surface)
 !   Cla        Clamped
 !   Clo        Closed
-!   Fla        Flather                                _____N_____     j=Mm
+!   Fla        Flather (2D momentum)                  _____N_____     j=Mm
 !   Gra        Gradient                              |     4     |
-!   Nes        Nested                                |           |
+!   Nes        Nested (refinement)                   |           |
 !   Nud        Nudging                             1 W           E 3
 !   Per        Periodic                              |           |
 !   Rad        Radiation                             |_____S_____|
-!   Red        Reduced Physics                             2          j=1
-!                                                   i=1         i=Lm
+!   Red        Reduced Physics (2D momentum)               2          j=1
+!   Shc        Shchepetkin (2D momentum)            i=1         i=Lm
+!
 !                   W       S       E       N
 !                   e       o       a       o
 !                   s       u       s       r
@@ -184,7 +186,7 @@ ad_VolCons(north) ==  F                            ! northern boundary
 
 ! Time-Stepping parameters.
 
-      NTIMES == 1440
+      NTIMES == 288
           DT == 300.0d0
      NDTFAST == 30
 
@@ -207,7 +209,7 @@ ad_VolCons(north) ==  F                            ! northern boundary
 
        NRREC == 0
    LcycleRST == T
-        NRST == 288
+        NRST == 72
         NSTA == 1
         NFLT == 1
        NINFO == 1
@@ -249,7 +251,7 @@ ad_VolCons(north) ==  F                            ! northern boundary
 ! Harmonic/biharmonic horizontal diffusion of tracer for nonlinear model
 ! and adjoint-based algorithms: [1:NAT+NPT,Ngrids].
 
-        TNU2 == 5.0d0  5.0d0                    ! m2/s
+        TNU2 == 0.0d0  0.0d0                    ! m2/s
         TNU4 == 2*0.0d0                         ! m4/s
 
      ad_TNU2 == 0.0d0  0.0d0                    ! m2/s
@@ -258,7 +260,7 @@ ad_VolCons(north) ==  F                            ! northern boundary
 ! Harmonic/biharmonic, horizontal viscosity coefficient for nonlinear model
 ! and adjoint-based algorithms: [Ngrids].
 
-       VISC2 == 5.0d0                           ! m2/s
+       VISC2 == 0.0d0                           ! m2/s
        VISC4 == 2.0d+5                          ! m4/s
 
     ad_VISC2 == 0.0d0                           ! m2/s
@@ -628,10 +630,10 @@ Aout(idSdif) == F       ! AKs                vertical Salinity diffusion
 Aout(idHsbl) == F       ! Hsbl               depth of surface boundary layer
 Aout(idHbbl) == F       ! Hbbl               depth of bottom boundary layer
 
-Aout(id2dRV) == T       ! pvorticity_bar     2D relative vorticity
-Aout(id3dRV) == T       ! pvorticity         3D relative vorticity
-Aout(id2dPV) == T       ! rvorticity_bar     2D potential vorticity
-Aout(id3dPV) == T       ! rvorticity         3D potential vorticity
+Aout(id2dRV) == F       ! pvorticity_bar     2D relative vorticity
+Aout(id3dRV) == F       ! pvorticity         3D relative vorticity
+Aout(id2dPV) == F       ! rvorticity_bar     2D potential vorticity
+Aout(id3dPV) == F       ! rvorticity         3D potential vorticity
 
 Aout(idu3dD) == F       ! u_detided          detided 3D U-velocity
 Aout(idv3dD) == F       ! v_detided          detided 3D V-velocity
@@ -985,17 +987,18 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 !
 !   Keyword    Lateral Boundary Condition Type
 !
-!   Cha        Chapman
+!   Cha        Chapman_implicit (free-surface only)
+!   Che        Chapman_explicit (free-surface only)
 !   Cla        Clamped
 !   Clo        Closed
-!   Fla        Flather                                _____N_____     j=Mm
+!   Fla        Flather (2D momentum only)             _____N_____     j=Mm
 !   Gra        Gradient                              |     4     |
-!   Nes        Nested                                |           |
+!   Nes        Nested (refinement only)              |           |
 !   Nud        Nudging                             1 W           E 3
 !   Per        Periodic                              |           |
 !   Rad        Radiation                             |_____S_____|
-!   Red        Reduced Physics                             2          j=1
-!                                                   i=1         i=Lm
+!   Red        Reduced Physics (2D momentum only)          2          j=1
+!   Shc        Shchepetkin (2D momentum only)       i=1         i=Lm
 !
 !  LBC(isFsur) Free-surface,  [1:4, Ngrids] values are expected.
 !  LBC(isUbar) 2D U-momentum, [1:4, Ngrids] values are expected.
