@@ -126,8 +126,6 @@ export     MY_PROJECT_DIR=${PWD}
 # many definitions as you want by appending values.
 
  export      MY_CPP_FLAGS="-DAVERAGES"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DUV_PSOURCE"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_PSOURCE"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"

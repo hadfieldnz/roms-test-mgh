@@ -125,8 +125,6 @@ setenv MY_PROJECT_DIR       ${PWD}
 # many definitions as you want by appending values.
 
  setenv MY_CPP_FLAGS "-DAVERAGES"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DUV_PSOURCE"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_PSOURCE"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
