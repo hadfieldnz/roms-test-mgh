@@ -203,7 +203,7 @@ ad_VolCons(north) ==  F F                          ! northern boundary
 
       NTIMES == 1800     5400
           DT == 6.0d0    2.0d0
-     NDTFAST == 20       20
+     NDTFAST == 30       30
 
 ! Model iteration loops parameters.
 
