@@ -426,9 +426,7 @@ fi
 
  export     MY_HEADER_DIR=${MY_PROJECT_DIR}
 
-if [ ! -n "${BACK_COMPATIBILITY:+1}" ]; then
  export MY_ANALYTICAL_DIR=${MY_PROJECT_DIR}
-fi
 
 # Put the binary to execute in the following directory.
 

@@ -431,9 +431,7 @@ endif
 
  setenv MY_HEADER_DIR       ${MY_PROJECT_DIR}
 
-if (! $?BACK_COMPATIBILITY) then
  setenv MY_ANALYTICAL_DIR   ${MY_PROJECT_DIR}
-endif
 
 # Put the binary to execute in the following directory.
 
