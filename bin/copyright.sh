@@ -40,6 +40,7 @@ set c_dirs = "$c_dirs bl_test"
 set c_dirs = "$c_dirs canyon"
 set c_dirs = "$c_dirs channel"
 set c_dirs = "$c_dirs DAMEE_4"
+set c_dirs = "$c_dirs dogbone"
 set c_dirs = "$c_dirs double_gyre"
 set c_dirs = "$c_dirs estuary_test"
 set c_dirs = "$c_dirs flt_test"
@@ -47,6 +48,7 @@ set c_dirs = "$c_dirs grav_adj"
 set c_dirs = "$c_dirs inlet_test"
 set c_dirs = "$c_dirs kelvin"
 set c_dirs = "$c_dirs lab_canyon"
+set c_dirs = "$c_dirs lake_jersey"
 set c_dirs = "$c_dirs lmd_test"
 set c_dirs = "$c_dirs riverplume"
 set c_dirs = "$c_dirs seamount"
@@ -135,6 +137,7 @@ if ( $setsvn == 1 ) then
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' canyon
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' channel
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' DAMEE_4
+  svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' dogbone
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' double_gyre
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' estuary_test
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' flt_test
@@ -142,6 +145,7 @@ if ( $setsvn == 1 ) then
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' inlet_test
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' kelvin
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' lab_canyon
+  svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' lake_jersey
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' lmd_test
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' riverplume
   svn propset -R copyright '(c) 2002-2014 The ROMS/TOMS Group' seamount
