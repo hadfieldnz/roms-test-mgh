@@ -129,6 +129,8 @@ export     MY_PROJECT_DIR=${PWD}
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_EOFS"     # Nouter=1
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_ERROR_I"  # Nouter=1
 
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DANA_SPONGE"
+
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 

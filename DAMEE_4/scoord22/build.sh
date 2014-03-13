@@ -157,13 +157,16 @@ setenv MY_PROJECT_DIR        ${PWD}
 # Set deprecated lateral boundary conditions CPP flags for backward
 # compatibility with older versions of the code.
 
- setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
+ setenv BACK_COMPATIBILITY  on          # needed for old versions
 
 if ($?BACK_COMPATIBILITY) then
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEASTERN_WALL"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWESTERN_WALL"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTHERN_WALL"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTHERN_WALL"
+
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTCLIMATOLOGY"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTCLM_NUDGING"
 endif
 
 # Other user defined environmental variables. See the ROMS makefile for

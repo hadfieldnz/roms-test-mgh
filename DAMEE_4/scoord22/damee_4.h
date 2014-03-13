@@ -42,7 +42,5 @@
 # define LMD_NONLOCAL
 #endif
 
-#define TCLIMATOLOGY
-#define TCLM_NUDGING
 #define ANA_BSFLUX
 #define ANA_BTFLUX

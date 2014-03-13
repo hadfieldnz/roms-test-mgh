@@ -158,13 +158,16 @@ export     MY_PROJECT_DIR=${PWD}
 # Set deprecated lateral boundary conditions CPP flags for backward
 # compatibility with older versions of the code.
 
- export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
+ export BACK_COMPATIBILITY=on           # needed for old versions
 
 if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEASTERN_WALL"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWESTERN_WALL"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTHERN_WALL"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTHERN_WALL"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTCLIMATOLOGY"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTCLM_NUDGING"
 fi
 
 # Other user defined environmental variables. See the ROMS makefile for
