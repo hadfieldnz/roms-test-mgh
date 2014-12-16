@@ -161,18 +161,11 @@
 !  ETA-direction (m2/s2) at horizontal V-points.
 !-----------------------------------------------------------------------
 !
-#if defined LAKE_JERSEY_MERIDIONAL
+#if defined LAKE_JERSEY
       DO j=JstrP,JendT
-         DO i=IstrT,IendT
-           cff1=MIN((0.5_r8*(TANH((time(ng)/3600.0_r8-ramp_u)/          &
-     &                            (ramp_time/5.0_r8))+1.0_r8)),         &
-     &              (1.0_r8-(0.5_r8*(TANH((time(ng)/3600.0_r8-ramp_d)/  &
-     &                                    (ramp_time/5.0_r8))+1.0_r8))))
-           svstr(i,j)=mxst/rho0*cff1
-# ifdef TL_IOMS
-           tl_svstr(i,j)=mxst/rho0*cff1
-# endif
-         END DO
+        DO i=IstrT,IendT
+          svstr(i,j)=0.0_r8
+        END DO
       END DO
 #else
       DO j=JstrP,JendT
