@@ -271,7 +271,6 @@ ad_VolCons(north) ==  F F F F                      ! northern boundary
 
      LDEFOUT == T    T    T    T
         NHIS == 20   100  60   180
-!       NHIS == 1    5    3    6
      NDEFHIS == 0    0    0    0
       NTSAVG == 1    1    1    1
         NAVG == 20   100  60   180
@@ -465,7 +464,7 @@ LtracerSponge == F F                            ! temperature, salinity, inert
       Lm2CLM == F                          ! 2D momentum
       Lm3CLM == F                          ! 3D momentum
 
-  LtracerCLM == F F                        ! temperature, salinity, inert
+  LtracerCLM == 8*F                        ! temperature, salinity, inert
 
 ! Logical switches (TRUE/FALSE) to nudge the desired climatology field(s).
 ! If not analytical climatology fields, users need to turn ON the logical
@@ -475,7 +474,7 @@ LtracerSponge == F F                            ! temperature, salinity, inert
  LnudgeM2CLM == F                          ! 2D momentum
  LnudgeM3CLM == F                          ! 3D momentum
 
-  LnudgeTCLM == F F                        ! temperature, salinity, inert
+  LnudgeTCLM == 8*F                        ! temperature, salinity, inert
 
 ! Starting (DstrS) and ending (DendS) day for adjoint sensitivity forcing.
 ! DstrS must be less or equal to DendS. If both values are zero, their
@@ -499,7 +498,7 @@ Lstate(isVbar) == 4*F                      ! 2D V-momentum
 Lstate(isUvel) == 4*F                      ! 3D U-momentum
 Lstate(isVvel) == 4*F                      ! 3D V-momentum
 
-Lstate(isTvar) == 2*F  2*F  2*F  2*F       ! NT tracers
+Lstate(isTvar) == 8*F                      ! NT tracers
 
 ! Logical switches (TRUE/FALSE) to specify the state variables for
 ! which Forcing Singular Vectors or Stochastic Optimals is required.
@@ -509,11 +508,11 @@ Fstate(isUbar) == 4*F                      ! 2D U-momentum
 Fstate(isVbar) == 4*F                      ! 2D V-momentum
 Fstate(isUvel) == 4*F                      ! 3D U-momentum
 Fstate(isVvel) == 4*F                      ! 3D V-momentum
-Fstate(isTvar) == 2*F  2*F  2*F  2*F       ! NT tracers
+Fstate(isTvar) == 8*F                      ! NT tracers
 
 Fstate(isUstr) == 4*T                      ! surface U-stress
 Fstate(isVstr) == 4*T                      ! surface V-stress
-Fstate(isTsur) == 2*F  2*F  2*F  2*F       ! NT surface tracers flux
+Fstate(isTsur) == 8*F                      ! NT surface tracers flux
 
 ! Stochastic Optimals time decorrelation scale (days) assumed for
 ! red noise processes.
@@ -550,7 +549,7 @@ Hout(idv2dN) == 4*F     ! vbar_northward     2D V-northward at RHO-points
 Hout(idFsur) == 4*T     ! zeta               free-surface
 Hout(idBath) == 4*F     ! bath               time-dependent bathymetry
 
-Hout(idTvar) == 4*T 4*T ! temp, salt         temperature and salinity
+Hout(idTvar) == 8*T     ! temp, salt         temperature and salinity
 
 Hout(idUsms) == 4*F     ! sustr              surface U-stress
 Hout(idVsms) == 4*F     ! svstr              surface V-stress
@@ -599,7 +598,7 @@ Hout(idPair) == 4*F     ! Pair               surface air pressure
 Hout(idUair) == 4*F     ! Uair               surface U-wind component
 Hout(idVair) == 4*F     ! Vair               surface V-wind component
 
-Hout(idTsur) == 4*F 4*F ! shflux, ssflux     surface net heat and salt flux
+Hout(idTsur) == 8*F     ! shflux, ssflux     surface net heat and salt flux
 Hout(idLhea) == 4*F     ! latent             latent heat flux
 Hout(idShea) == 4*F     ! sensible           sensible heat flux
 Hout(idLrad) == 4*F     ! lwrad              longwave radiation flux
@@ -670,7 +669,7 @@ Aout(idu2dE) == 4*F     ! ubar_eastward      2D U-eastward  at RHO-points
 Aout(idv2dN) == 4*F     ! vbar_northward     2D V-northward at RHO-points
 Aout(idFsur) == 4*T     ! zeta               free-surface
 
-Aout(idTvar) == 4*T 4*T ! temp, salt         temperature and salinity
+Aout(idTvar) == 8*T     ! temp, salt         temperature and salinity
 
 Aout(idUsms) == 4*F     ! sustr              surface U-stress
 Aout(idVsms) == 4*F     ! svstr              surface V-stress
@@ -699,7 +698,7 @@ Aout(idPair) == 4*F     ! Pair               surface air pressure
 Aout(idUair) == 4*F     ! Uair               surface U-wind component
 Aout(idVair) == 4*F     ! Vair               surface V-wind component
 
-Aout(idTsur) == 4*F 4*F ! shflux, ssflux     surface net heat and salt flux
+Aout(idTsur) == 8*F     ! shflux, ssflux     surface net heat and salt flux
 Aout(idLhea) == 4*F     ! latent             latent heat flux
 Aout(idShea) == 4*F     ! sensible           sensible heat flux
 Aout(idLrad) == 4*F     ! lwrad              longwave radiation flux
@@ -2073,6 +2072,18 @@ Dout(iTvdif) == 8*T     ! temp_vdiff, ...    vertical diffusion
 !                 control which tracer variables to nudge.  The CPP option
 !                 TCLM_NUDGING is now obsolete and replaced with these
 !                 switches to facilitate nesting applications.
+!
+!                 Only NAT active tracers (temperature, salinity) and NPT
+!                 inert tracers need to be specified here:
+!
+!                   LnudgeTCLM(itemp,ng)     for temperature (itemp=1)
+!                   LnudgeTCLM(isalt,ng)     for salinity    (isalt=2)
+!                   LnudgeTCLM(NAT+1,ng)     for inert tracer 1
+!                   ...                      ...
+!                   LnudgeTCLM(NAT+NPT,ng)   for inert tracer NPT
+!
+!                 Other biological and sediment tracers switches are specified
+!                 in their respective input scripts.
 !
 !                 User also needs to TURN ON the respective logical switches
 !                 "LtracerCLM", described above, to process the required 3D

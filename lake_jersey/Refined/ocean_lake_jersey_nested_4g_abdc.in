@@ -240,9 +240,7 @@ ad_VolCons(north) ==  F F F F                      ! northern boundary
 ! Time-Stepping parameters.
 
       NTIMES == 1920      5760      5760     9600
-!     NTIMES == 1440      4320      4320     7200
           DT == 90.0d0    30.0d0    30.0d0   18.0d0
-!         DT == 120.0d0   40.0d0    40.0d0   24.0d0
      NDTFAST == 30        30        30       30
 
 ! Model iteration loops parameters.
@@ -273,15 +271,12 @@ ad_VolCons(north) ==  F F F F                      ! northern boundary
 
      LDEFOUT == T    T    T    T
         NHIS == 20   60   60   100
-!       NHIS == 15   45   45   75
      NDEFHIS == 0    0    0    0
       NTSAVG == 1    1    1    1
         NAVG == 20   60   60   100
-!       NAVG == 15   45   45   75
      NDEFAVG == 0    0    0    0
       NTSDIA == 1    1    1    1
         NDIA == 20   60   60   100
-!       NDIA == 15   45   45   75
      NDEFDIA == 0    0    0    0
 
 ! Output tangent linear and adjoint models parameters.
@@ -2077,6 +2072,18 @@ Dout(iTvdif) == 8*T     ! temp_vdiff, ...    vertical diffusion
 !                 control which tracer variables to nudge.  The CPP option
 !                 TCLM_NUDGING is now obsolete and replaced with these
 !                 switches to facilitate nesting applications.
+!
+!                 Only NAT active tracers (temperature, salinity) and NPT
+!                 inert tracers need to be specified here:
+!
+!                   LnudgeTCLM(itemp,ng)     for temperature (itemp=1)
+!                   LnudgeTCLM(isalt,ng)     for salinity    (isalt=2)
+!                   LnudgeTCLM(NAT+1,ng)     for inert tracer 1
+!                   ...                      ...
+!                   LnudgeTCLM(NAT+NPT,ng)   for inert tracer NPT
+!
+!                 Other biological and sediment tracers switches are specified
+!                 in their respective input scripts.
 !
 !                 User also needs to TURN ON the respective logical switches
 !                 "LtracerCLM", described above, to process the required 3D

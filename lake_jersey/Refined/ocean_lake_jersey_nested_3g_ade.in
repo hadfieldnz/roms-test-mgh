@@ -68,7 +68,7 @@
 !                                B: refined bottom left grid (1:3 from A)
 !                                C: refined bottom right grid (1:5 from A)
 !                                D: refined top grid (1:3 from A)
-!                                E: refined top middle grid (1:3 from D)]
+!                                E: refined top middle grid (1:3 from D)
 
        TITLE = Lake Jersey nesting test case, 3 grids: A, D and E
 
@@ -255,7 +255,6 @@ ad_VolCons(north) ==  F F F                        ! northern boundary
 
      LDEFOUT == T    T    T
         NHIS == 20   60   180
-!       NHIS == 1    3    6
      NDEFHIS == 0    0    0
       NTSAVG == 1    1    1
         NAVG == 20   60   180
@@ -2048,6 +2047,18 @@ Dout(iTvdif) == 6*T     ! temp_vdiff, ...    vertical diffusion
 !                 control which tracer variables to nudge.  The CPP option
 !                 TCLM_NUDGING is now obsolete and replaced with these
 !                 switches to facilitate nesting applications.
+!
+!                 Only NAT active tracers (temperature, salinity) and NPT
+!                 inert tracers need to be specified here:
+!
+!                   LnudgeTCLM(itemp,ng)     for temperature (itemp=1)
+!                   LnudgeTCLM(isalt,ng)     for salinity    (isalt=2)
+!                   LnudgeTCLM(NAT+1,ng)     for inert tracer 1
+!                   ...                      ...
+!                   LnudgeTCLM(NAT+NPT,ng)   for inert tracer NPT
+!
+!                 Other biological and sediment tracers switches are specified
+!                 in their respective input scripts.
 !
 !                 User also needs to TURN ON the respective logical switches
 !                 "LtracerCLM", described above, to process the required 3D

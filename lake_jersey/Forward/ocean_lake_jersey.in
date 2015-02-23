@@ -73,7 +73,7 @@
 ! Input variable information file name.  This file needs to be processed
 ! first so all information arrays can be initialized properly.
 
-     VARNAME = ../../test/External/varinfo.dat
+     VARNAME = ../../External/varinfo.dat
 
 ! Number of nested grids.
 
@@ -751,8 +751,8 @@ Dout(iTvdif) == 2*T     ! temp_vdiff, ...    vertical diffusion
 
 ! Input NetCDF file names, [1:Ngrids].
 
-     GRDNAME == ../Data/lake_jersey_grd_coarse.nc
-     ININAME == ../Data/lake_jersey_ini_coarse.nc
+     GRDNAME == ../Data/lake_jersey_grd_a.nc
+     ININAME == ../Data/lake_jersey_ini_a.nc
      ITLNAME == lake_jersey_itl.nc
      IRPNAME == lake_jersey_irp.nc
      IADNAME == lake_jersey_iad.nc
@@ -1977,6 +1977,18 @@ Dout(iTvdif) == 2*T     ! temp_vdiff, ...    vertical diffusion
 !                 control which tracer variables to nudge.  The CPP option
 !                 TCLM_NUDGING is now obsolete and replaced with these
 !                 switches to facilitate nesting applications.
+!
+!                 Only NAT active tracers (temperature, salinity) and NPT
+!                 inert tracers need to be specified here:
+!
+!                   LnudgeTCLM(itemp,ng)     for temperature (itemp=1)
+!                   LnudgeTCLM(isalt,ng)     for salinity    (isalt=2)
+!                   LnudgeTCLM(NAT+1,ng)     for inert tracer 1
+!                   ...                      ...
+!                   LnudgeTCLM(NAT+NPT,ng)   for inert tracer NPT
+!
+!                 Other biological and sediment tracers switches are specified
+!                 in their respective input scripts.
 !
 !                 User also needs to TURN ON the respective logical switches
 !                 "LtracerCLM", described above, to process the required 3D
