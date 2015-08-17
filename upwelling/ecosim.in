@@ -1258,7 +1258,7 @@ ad_LBC(isTvar) ==   Per     Clo     Per     Clo      ! idbio(:), compact
 !  LtracerCLM     Logical switches (T/F) to process biological tracer variables
 !                   climatology.  The CPP option TCLIMATOLOGY is now obsolete
 !                   and replaced with these switches to facilitate nesting
-!                   applications. Currently, the CLINA(ng)%tclm is used for
+!                   applications. Currently, the CLIMA(ng)%tclm is used for
 !                   horizontal mixing, sponges, and nudging.
 !
 !                     LtracerCLM(idbio(  1),ng)
