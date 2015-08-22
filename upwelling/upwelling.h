@@ -15,10 +15,11 @@
 #define UV_ADV
 #define UV_COR
 #define DJ_GRADPS
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 
 #define SALINITY
 #define SOLVE3D
-#define SPLINES
 
 #define ANA_GRID
 #define ANA_INITIAL
@@ -31,6 +32,7 @@
 #if defined GLS_MIXING || defined MY25_MIXING
 # define KANTHA_CLAYSON
 # define N2S2_HORAVG
+# define RI_SPLINES
 #else
 # define ANA_VMIX
 #endif

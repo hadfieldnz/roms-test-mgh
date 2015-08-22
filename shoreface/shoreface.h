@@ -17,7 +17,6 @@
 #define DJ_GRADPS
 #define SALINITY
 #define SOLVE3D
-#define SPLINES
 
 #ifdef MASKING
 # define ANA_MASK
@@ -29,6 +28,9 @@
 #define ANA_SMFLUX
 
 #ifdef SOLVE3D
+
+# define SPLINES_VDIFF
+# define SPLINES_VVISC
 
 # ifdef SSW_BBL
 #  define SSW_CALC_ZNOT
@@ -46,6 +48,7 @@
 # if defined GLS_MIXING
 #  define KANTHA_CLAYSON
 #  define N2S2_HORAVG
+#  define RI_SPLINES
 # endif
 
 # define ANA_STFLUX

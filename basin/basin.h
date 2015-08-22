@@ -17,7 +17,8 @@
 #define UV_QDRAG
 #define DJ_GRADPS
 #define SOLVE3D
-#define SPLINES
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #define BODYFORCE
 #define ANA_GRID
 #define ANA_INITIAL

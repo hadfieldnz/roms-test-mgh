@@ -18,10 +18,11 @@
 #define MIX_S_UV
 #define MASKING
 #define UV_ADV
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #define TS_MPDATA
 #define DJ_GRADPS
 #define SOLVE3D
-#define SPLINES
 
 #define ANA_INITIAL
 #define ANA_SMFLUX
@@ -38,6 +39,7 @@
 # ifdef GLS_MIXING
 #  define KANTHA_CLAYSON
 #  define N2S2_HORAVG
+#  define RI_SPLINES
 # endif
 
 # define SEDIMENT

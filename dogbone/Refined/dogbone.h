@@ -20,7 +20,8 @@
 
 #ifdef SOLVE3D
 # define DJ_GRADPS
-# define SPLINES
+# define SPLINES_VDIFF
+# define SPLINES_VVISC
 # define SALINITY
 # define ANA_STFLUX
 # define ANA_SSFLUX

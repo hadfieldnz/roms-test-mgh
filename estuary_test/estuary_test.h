@@ -15,11 +15,12 @@
 
 #define UV_ADV
 #define UV_LOGDRAG
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #define TS_U3HADVECTION
 #define TS_C4VADVECTION
 #define SALINITY
 #define SOLVE3D
-#define SPLINES
 
 #define SEDIMENT
 #ifdef SEDIMENT
@@ -30,6 +31,7 @@
 # define KANTHA_CLAYSON
 # undef  CANUTO_A
 # define N2S2_HORAVG
+# define RI_SPLINES
 #endif
 
 #define ANA_GRID

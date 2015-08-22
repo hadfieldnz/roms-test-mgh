@@ -17,11 +17,12 @@
 #define UV_COR
 #define UV_QDRAG
 #define DJ_GRADPS
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #define NONLIN_EOS
 #define SALINITY
 #define MASKING
 #define SOLVE3D
-#define SPLINES
 
 #ifdef LMD_MIXING
 # define LMD_RIMIX
@@ -29,6 +30,7 @@
 # define LMD_SKPP
 # define LMD_BKPP
 # define LMD_NONLOCAL
+# define RI_SPLINES
 #endif
 
 #define ANA_GRID

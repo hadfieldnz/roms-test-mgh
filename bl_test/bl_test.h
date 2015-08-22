@@ -19,12 +19,13 @@
 #define UV_VIS2
 #define MIX_S_UV
 #define DJ_GRADPS
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #define TS_U3HADVECTION
 #define TS_C4VADVECTION
 #define SOLAR_SOURCE
 #define NONLIN_EOS
 #define SALINITY
-#define SPLINES
 #define STATIONS
 #define SOLVE3D
 
@@ -40,6 +41,7 @@
 # define LMD_BKPP
 # define LMD_NONLOCAL
 # define LMD_DDMIX
+# define RI_SPLINES
 #endif
 
 #define BULK_FLUXES

@@ -57,6 +57,8 @@
 #define UV_VIS2
 #define MIX_S_UV
 #define MIX_GEO_TS
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #define TS_DIF2
 #define TS_U3HADVECTION
 #define TS_C4VADVECTION
@@ -66,11 +68,11 @@
 #define CURVGRID
 #define PROFILE
 #define SPHERICAL
-#define SPLINES
 #define MASKING
 
 #ifdef NLM_DRIVER
 # define AVERAGES           /* define if writing out time-averaged data */
+# define RI_SPLINES
 #endif
 
 /*

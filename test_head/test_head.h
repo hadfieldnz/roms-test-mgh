@@ -17,7 +17,6 @@
 #define UV_ADV
 #define DJ_GRADPS
 #define SOLVE3D
-#define SPLINES
 #define MASKING
 #define WET_DRY
 
@@ -45,6 +44,9 @@
 
 #ifdef SOLVE3D
 
+# define SPLINES_VDIFF
+# define SPLINES_VVISC
+
 # ifdef SEDIMENT
 #  define SED_MORPH
 # endif
@@ -52,6 +54,7 @@
 # if defined GLS_MIXING || defined MY25_MIXING
 #  define KANTHA_CLAYSON
 #  define N2S2_HORAVG
+#  define RI_SPLINES
 # endif
 
 # define ANA_STFLUX

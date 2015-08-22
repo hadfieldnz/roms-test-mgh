@@ -16,11 +16,12 @@
 #define DJ_GRADPS
 #define UV_COR
 #define UV_QDRAG
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #define SOLVE3D
 #define SALINITY
 #define NONLIN_EOS
 #define CURVGRID
-#define SPLINES
 
 #define ANA_GRID
 #define ANA_INITIAL

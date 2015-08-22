@@ -16,7 +16,8 @@
 #define UV_LDRAG
 #define DJ_GRADPS
 #define SOLVE3D
-#define SPLINES
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #define ANA_GRID
 #define ANA_INITIAL
 #define ANA_SMFLUX

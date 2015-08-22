@@ -14,8 +14,9 @@
 
 #define UV_COR
 #define UV_QDRAG
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #define SOLVE3D
-#define SPLINES
 #define ANA_GRID
 #define ANA_INITIAL
 #define ANA_SMFLUX

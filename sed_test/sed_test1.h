@@ -17,13 +17,14 @@
 #define UV_LOGDRAG
 #define UV_VIS4
 #define MIX_S_UV
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #define TS_U3HADVECTION
 #define TS_C4VADVECTION
 #define TS_DIF4
 #define MIX_S_TS
 #define SALINITY
 #define SOLVE3D
-#define SPLINES
 
 #define ANA_BPFLUX
 #define ANA_BSFLUX
@@ -48,4 +49,5 @@
 #if defined GLS_MIXING || defined MY25_MIXING
 # define KANTHA_CLAYSON
 # define N2S2_HORAVG
+# define RI_SPLINES
 #endif

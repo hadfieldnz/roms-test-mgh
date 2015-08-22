@@ -16,6 +16,8 @@
 #define UV_COR
 #define UV_QDRAG
 #define DJ_GRADPS
+#define SPLINES_VDIFF
+#define SPLINES_VVISC
 #ifdef TS_U3ADV_SPLIT
 # define TS_DIF4
 # define DIFF_GRID
@@ -30,7 +32,6 @@
 #define SALINITY
 #define SOLVE3D
 #define MASKING
-#define SPLINES
 #define QCORRECTION
 #define SRELAXATION
 #define CURVGRID
@@ -40,6 +41,7 @@
 # define LMD_CONVEC
 # define LMD_SKPP
 # define LMD_NONLOCAL
+# define RI_SPLINES
 #endif
 
 #define ANA_BSFLUX
