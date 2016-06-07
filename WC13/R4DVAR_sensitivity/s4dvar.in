@@ -177,7 +177,7 @@ balance(isVvel) =  T                      ! 3D momentum (u, v)
  CnormB(isTvar) =  T T                    ! NT tracers
 
 ! Switches to compute the correlation normalization coefficients for
-! initial conditions error covariance.
+! surface forcing error covariance.
 
  CnormF(isUstr) =  T                      ! surface U-momentum stress
  CnormF(isVstr) =  T                      ! surface V-momentum stress
