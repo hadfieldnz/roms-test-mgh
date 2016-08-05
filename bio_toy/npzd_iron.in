@@ -256,6 +256,13 @@ ad_LBC(isTvar) ==   Per     Per     Per     Per     ! idbio(:), compact
 Hout(idTvar) == 6*T     ! ..., NO3, ...           biological tracer
 Hout(idTsur) == 6*F     ! ..., NO3_sflux, ...     surface tracer flux
 
+! Logical switches (TRUE/FALSE) to activate writing of biological fields
+! into QUICKSAVE output files: [1:NBT,Ngrids].
+
+Qout(idTvar) == 6*F     ! ..., NO3, ...           biological tracer
+Qout(idsurT) == 6*F     ! ..., NO3_sur, ...       surface biological tracer
+Qout(idTsur) == 6*F     ! ..., NO3_sflux, ...     surface tracer flux
+
 ! Logical switches (TRUE/FALSE) to activate writing of time-averaged fields
 ! into AVERAGE output file: [1:NBT,Ngrids].
 
@@ -562,7 +569,7 @@ Dout(iTvdif) == 6*T     ! ..., NO3_vdiff, ...     vertical diffusion
 !  LtracerCLM     Logical switches (T/F) to process biological tracer variables
 !                   climatology.  The CPP option TCLIMATOLOGY is now obsolete
 !                   and replaced with these switches to facilitate nesting
-!                   applications. Currently, the CLINA(ng)%tclm is used for
+!                   applications. Currently, the CLIMA(ng)%tclm is used for
 !                   horizontal mixing, sponges, and nudging.
 !
 !                     LtracerCLM(idbio(1),ng)     Nitrate concetration
@@ -622,6 +629,20 @@ Dout(iTvdif) == 6*T     ! ..., NO3_vdiff, ...     vertical diffusion
 !                   idTvar(idbio(5))=iFphy    Phytoplankton Iron concentration
 !                   idTvar(idbio(6))=iFdis    Dissolved iron concentration
 !
+!------------------------------------------------------------------------------
+! Logical switches (T/F) to activate writing of fields into QUICKSAVE file.
+!------------------------------------------------------------------------------
+!
+!  Qout             Logical switches to write out biological fields into
+!                     output QUICKSAVE NetCDF file, [1:NBT,1:Ngrids] values
+!                     are expected:
+!
+!                     Qout(idTvar)      biological tracers
+!                     Qout(idsurT)      surface biological tracers
+!                     Qout(idTsur)      biological tracers surface flux
+!
+!                     The idTvar(idbio(:)), idsurR(idbio(:)), and 
+!                     idTsur(idbio(:)) indices are provided above.
 !
 !------------------------------------------------------------------------------
 ! Logical switches (T/F) to activate writing of fields into AVERAGE file.
