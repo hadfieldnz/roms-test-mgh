@@ -126,9 +126,9 @@ export     MY_PROJECT_DIR=${PWD}
 
  export      MY_CPP_FLAGS="-DW4DPSAS"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMINRES"
- export      MY_CPP_FLAGS "${MY_CPP_FLAGS} -DRPCG"
-#export      MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBGQC"
-#export      MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTIME_CONV"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DRPCG"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBGQC"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTIME_CONV"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_EOFS"     # Nouter=1
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_ERROR_I"  # Nouter=1
 
