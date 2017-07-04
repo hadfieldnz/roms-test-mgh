@@ -1,0 +1,620 @@
+
+ Model Input Parameters:  ROMS/TOMS version 3.5  
+                          Wednesday - May 18, 2011 -  9:42:15 AM
+ -----------------------------------------------------------------------------
+
+ Kelvin Wave Test
+
+ Operating system : Linux
+ CPU/hardware     : x86_64
+ Compiler system  : gfortran
+ Compiler command : /usr/bin/gfortran
+ Compiler flags   : -frepack-arrays -O3 -ffast-math -ffree-form -ffree-line-length-none -ffree-form -ffree-line-length-none -ffree-form -ffree-line-length-none
+
+ SVN Root URL  : https:://myroms.org/svn/src
+ SVN Revision  : exported
+
+ Local Root    : /home/hadfield/ROMS/roms-local
+ Header Dir    : /home/hadfield/ROMS/roms-test-local/kelvin
+ Header file   : kelvin.h
+ Analytical Dir: /home/hadfield/ROMS/roms-test-local/kelvin
+
+ Resolution, Grid 01: 0050x0030x010,  Parallel Threads:  1,  Tiling: 001x001
+
+
+ Physical Parameters, Grid: 01
+ =============================
+
+         96  ntimes          Number of timesteps for 3-D equations.
+    900.000  dt              Timestep size (s) for 3-D equations.
+         60  ndtfast         Number of timesteps for 2-D equations between
+                               each 3D timestep.
+          1  ERstr           Starting ensemble/perturbation run number.
+          1  ERend           Ending ensemble/perturbation run number.
+          0  nrrec           Number of restart records to read from disk.
+          T  LcycleRST       Switch to recycle time-records in restart file.
+       1440  nRST            Number of timesteps between the writing of data
+                               into restart fields.
+          1  ninfo           Number of timesteps between print of information
+                               to standard output.
+          T  ldefout         Switch to create a new output NetCDF file(s).
+          4  nHIS            Number of timesteps between the writing fields
+                               into history file.
+          1  ntsAVG          Starting timestep for the accumulation of output
+                               time-averaged data.
+       1440  nAVG            Number of timesteps between the writing of
+                               time-averaged data into averages file.
+          1  ntsDIA          Starting timestep for the accumulation of output
+                               time-averaged diagnostics data.
+       1440  nDIA            Number of timesteps between the writing of
+                               time-averaged data into diagnostics file.
+ 2.0000E+01  nl_tnu2(01)     NLM Horizontal, harmonic mixing coefficient
+                               (m2/s) for tracer 01: temp
+ 0.0000E+00  nl_visc2        NLM Horizontal, harmonic mixing coefficient
+                               (m2/s) for momentum.
+ 1.0000E-06  Akt_bak(01)     Background vertical mixing coefficient (m2/s)
+                               for tracer 01: temp
+ 1.0000E-05  Akv_bak         Background vertical mixing coefficient (m2/s)
+                               for momentum.
+ 3.0000E-04  rdrg            Linear bottom drag coefficient (m/s).
+ 3.0000E-03  rdrg2           Quadratic bottom drag coefficient.
+ 2.0000E-02  Zob             Bottom roughness (m).
+          2  Vtransform      S-coordinate transformation equation.
+          4  Vstretching     S-coordinate stretching function.
+ 0.0000E+00  theta_s         S-coordinate surface control parameter.
+ 0.0000E+00  theta_b         S-coordinate bottom  control parameter.
+ 1.0000E+16  Tcline          S-coordinate surface/bottom layer width (m) used
+                               in vertical coordinate stretching.
+   1025.000  rho0            Mean density (kg/m3) for Boussinesq approximation.
+      0.000  dstart          Time-stamp assigned to model initialization (days).
+       0.00  time_ref        Reference time for units attribute (yyyymmdd.dd)
+ 0.0000E+00  Tnudg(01)       Nudging/relaxation time scale (days)
+                               for tracer 01: temp
+ 0.0000E+00  Znudg           Nudging/relaxation time scale (days)
+                               for free-surface.
+ 0.0000E+00  M2nudg          Nudging/relaxation time scale (days)
+                               for 2D momentum.
+ 0.0000E+00  M3nudg          Nudging/relaxation time scale (days)
+                               for 3D momentum.
+ 0.0000E+00  obcfac          Factor between passive and active
+                               open boundary conditions.
+     10.000  T0              Background potential temperature (C) constant.
+     35.000  S0              Background salinity (PSU) constant.
+   1027.000  R0              Background density (kg/m3) used in linear Equation
+                               of State.
+ 1.7000E-04  Tcoef           Thermal expansion coefficient (1/Celsius).
+ 7.6000E-04  Scoef           Saline contraction coefficient (1/PSU).
+      1.000  gamma2          Slipperiness variable: free-slip (1.0) or 
+                                                    no-slip (-1.0).
+          T  Hout(idFsur)    Write out free-surface.
+          T  Hout(idUbar)    Write out 2D U-momentum component.
+          T  Hout(idVbar)    Write out 2D V-momentum component.
+          T  Hout(idUvel)    Write out 3D U-momentum component.
+          T  Hout(idVvel)    Write out 3D V-momentum component.
+          T  Hout(idWvel)    Write out W-momentum component.
+          T  Hout(idOvel)    Write out omega vertical velocity.
+          T  Hout(idTvar)    Write out tracer 01: temp
+
+          T  Aout(idFsur)    Write out averaged free-surface.
+          T  Aout(idUbar)    Write out averaged 2D U-momentum component.
+          T  Aout(idVbar)    Write out averaged 2D V-momentum component.
+          T  Aout(idUvel)    Write out averaged 3D U-momentum component.
+          T  Aout(idVvel)    Write out averaged 3D V-momentum component.
+          T  Aout(idWvel)    Write out averaged W-momentum component.
+          T  Aout(idOvel)    Write out averaged omega vertical velocity.
+          T  Aout(idTvar)    Write out averaged tracer 01: temp
+
+          T  Dout(M2rate)    Write out 2D momentun acceleration.
+          T  Dout(M2pgrd)    Write out 2D momentum pressure gradient.
+          T  Dout(M2fcor)    Write out 2D momentum Coriolis force.
+          T  Dout(M2hadv)    Write out 2D momentum horizontal advection.
+          T  Dout(M2xadv)    Write out 2D momentum horizontal X-advection.
+          T  Dout(M2yadv)    Write out 2D momentum horizontal Y-advection.
+          T  Dout(M2hvis)    Write out 2D momentum horizontal viscosity.
+          T  Dout(M2xvis)    Write out 2D momentum horizontal X-viscosity.
+          T  Dout(M2yvis)    Write out 2D momentum horizontal Y-viscosity.
+          T  Dout(M2sstr)    Write out 2D momentum surface stress.
+          T  Dout(M2bstr)    Write out 2D momentum bottom stress.
+
+          T  Dout(M3rate)    Write out 3D momentun acceleration.
+          T  Dout(M3pgrd)    Write out 3D momentum pressure gradient.
+          T  Dout(M3fcor)    Write out 3D momentum Coriolis force.
+          T  Dout(M3hadv)    Write out 3D momentum horizontal advection.
+          T  Dout(M3xadv)    Write out 3D momentum horizontal X-advection.
+          T  Dout(M3yadv)    Write out 3D momentum horizontal Y-advection.
+          T  Dout(M3vadv)    Write out 3D momentum vertical advection.
+          T  Dout(M3hvis)    Write out 3D momentum horizontal viscosity.
+          T  Dout(M3xvis)    Write out 3D momentum horizontal X-viscosity.
+          T  Dout(M3yvis)    Write out 3D momentum horizontal Y-viscosity.
+          T  Dout(M3vvis)    Write out 3D momentum vertical viscosity.
+
+          T  Dout(iTrate)    Write out rate of change of tracer 01: temp
+          T  Dout(iThadv)    Write out horizontal advection, tracer 01: temp
+          T  Dout(iTxadv)    Write out horizontal X-advection, tracer 01: temp
+          T  Dout(iTyadv)    Write out horizontal Y-advection, tracer 01: temp
+          T  Dout(iTvadv)    Write out vertical advection, tracer 01: temp
+          T  Dout(iThdif)    Write out horizontal diffusion, tracer 01: temp
+          T  Dout(iTxdif)    Write out horizontal X-diffusion, tracer 01: temp
+          T  Dout(iTydif)    Write out horizontal Y-diffusion , tracer 01: temp
+          T  Dout(iTvdif)    Write out vertical diffusion, tracer 01: temp
+
+ Output/Input Files:
+
+             Output Restart File:  ocean_rst.nc
+             Output History File:  ocean_his.nc
+            Output Averages File:  ocean_avg.nc
+         Output Diagnostics File:  ocean_dia.nc
+
+ Tile partition information for Grid 01:  0050x0030x0010  tiling: 001x001
+
+     tile     Istr     Iend     Jstr     Jend     Npts
+
+        0        1       50        1       30    15000
+
+ Tile minimum and maximum fractional grid coordinates:
+   (interior points only)
+
+     tile     Xmin     Xmax     Ymin     Ymax     grid
+
+        0     0.50    51.50     0.50    31.50  RHO-points
+
+        0     0.00    51.00     0.50    31.50    U-points
+
+        0     0.50    51.50     0.00    31.00    V-points
+
+ Activated C-preprocessing Options:
+
+ KELVIN              Kelvin Wave Test
+ ANA_BTFLUX          Analytical kinematic bottom temperature flux.
+ ANA_FSOBC           Analytical free-surface boundary conditions.
+ ANA_GRID            Analytical grid set-up.
+ ANA_INITIAL         Analytical initial conditions.
+ ANA_M2OBC           Analytical 2D momentum boundary conditions.
+ ANA_SMFLUX          Analytical kinematic surface momentum flux.
+ ANA_STFLUX          Analytical kinematic surface temperature flux.
+ ASSUMED_SHAPE       Using assumed-shape arrays.
+ AVERAGES            Writing out time-averaged nonlinear model fields.
+ DIAGNOSTICS_TS      Computing and writing tracer diagnostic terms.
+ DIAGNOSTICS_UV      Computing and writing momentum diagnostic terms.
+ DJ_GRADPS           Parabolic Splines density Jacobian (Shchepetkin, 2002).
+ DOUBLE_PRECISION    Double precision arithmetic.
+ EAST_FSRADIATION    Eastern edge, free-surface, radiation condition.
+ EAST_M2RADIATION    Eastern edge, 2D momentum, radiation condition.
+ EAST_M3RADIATION    Eastern edge, 3D momentum, radiation condition.
+ EAST_TRADIATION     Eastern edge, tracers, radiation condition.
+ MIX_S_TS            Mixing of tracers along constant S-surfaces.
+ MIX_S_UV            Mixing of momentum along constant S-surfaces.
+ NONLINEAR           Nonlinear Model.
+ !NONLIN_EOS         Linear Equation of State for seawater.
+ NORTHERN_WALL       Wall boundary at Northern edge.
+ POWER_LAW           Power-law shape time-averaging barotropic filter.
+ PROFILE             Time profiling activated .
+ RADIATION_2D        Use tangential phase speed in radiation conditions.
+ !RST_SINGLE         Double precision fields in restart NetCDF file.
+ SOLVE3D             Solving 3D Primitive Equations.
+ SOUTHERN_WALL       Wall boundary at Southern edge.
+ TS_C4HADVECTION     Fourth-order centered horizontal advection of tracers.
+ TS_C4VADVECTION     Fourth-order centered vertical advection of tracers.
+ TS_DIF2             Harmonic mixing of tracers.
+ UV_ADV              Advection of momentum.
+ UV_COR              Coriolis term.
+ UV_U3HADVECTION     Third-order upstream horizontal advection of 3D momentum.
+ UV_C4VADVECTION     Fourth-order centered vertical advection of momentum.
+ UV_QDRAG            Quadratic bottom stress.
+ UV_VIS2             Harmonic mixing of momentum.
+ VAR_RHO_2D          Variable density barotropic mode.
+ WEST_FSCHAPMAN      Western edge, free-surface, Chapman condition.
+ WEST_M2FLATHER      Western edge, 2D momentum, Flather condition.
+ WEST_M3RADIATION    Western edge, 3D momentum, radiation condition.
+ WEST_TRADIATION     Western edge, tracers, radiation condition.
+
+ Process Information:
+
+ Thread #  0 (pid=   24741) is active.
+
+ INITIAL: Configuring and initializing forward nonlinear model ...
+
+
+ Vertical S-coordinate System: 
+
+ level   S-coord     Cs-curve   Z   at hmin       at hc    half way     at hmax
+
+    10   0.0000000   0.0000000        0.000       0.000       0.000       0.000
+     9  -0.1000000  -0.0100000      -10.000     -10.000     -10.000     -10.000
+     8  -0.2000000  -0.0400000      -20.000     -20.000     -20.000     -20.000
+     7  -0.3000000  -0.0900000      -30.000     -30.000     -30.000     -30.000
+     6  -0.4000000  -0.1600000      -40.000     -40.000     -40.000     -40.000
+     5  -0.5000000  -0.2500000      -50.000     -50.000     -50.000     -50.000
+     4  -0.6000000  -0.3600000      -60.000     -60.000     -60.000     -60.000
+     3  -0.7000000  -0.4900000      -70.000     -70.000     -70.000     -70.000
+     2  -0.8000000  -0.6400000      -80.000     -80.000     -80.000     -80.000
+     1  -0.9000000  -0.8100000      -90.000     -90.000     -90.000     -90.000
+     0  -1.0000000  -1.0000000     -100.000    -100.000    -100.000    -100.000
+
+ Time Splitting Weights: ndtfast =  60    nfast =  83
+
+    Primary            Secondary            Accumulated to Current Step
+
+  1-0.0003540175431531 0.0166666666666667-0.0003540175431531 0.0166666666666667
+  2-0.0006728864853186 0.0166725669590526-0.0010269040284717 0.0333392336257192
+  3-0.0009566069754562 0.0166837817338079-0.0019835110039279 0.0500230153595271
+  4-0.0012051795928536 0.0166997251833988-0.0031886905967815 0.0667227405429259
+  5-0.0014186058436584 0.0167198115099464-0.0046072964404400 0.0834425520528723
+  6-0.0015968888560239 0.0167434549406740-0.0062041852964638 0.1001860069935463
+  7-0.0017400342738662 0.0167700697549411-0.0079442195703301 0.1169560767484873
+  8-0.0018480513492362 0.0167990703261722-0.0097922709195663 0.1337551470746595
+  9-0.0019209542333025 0.0168298711819928-0.0117132251528688 0.1505850182566523
+ 10-0.0019587634659484 0.0168618870858812-0.0136719886188171 0.1674469053425334
+ 11-0.0019615076639818 0.0168945331436470-0.0156334962827989 0.1843414384861804
+ 12-0.0019292254079571 0.0169272249380467-0.0175627216907560 0.2012686634242270
+ 13-0.0018619673276114 0.0169593786948459-0.0194246890183674 0.2182280421190730
+ 14-0.0017597983859117 0.0169904114836395-0.0211844874042792 0.2352184536027124
+ 15-0.0016228003617172 0.0170197414567380-0.0228072877659964 0.2522381950594504
+ 16-0.0014510745310524 0.0170467881294333-0.0242583622970488 0.2692849831888837
+ 17-0.0012447445469948 0.0170709727049508-0.0255031068440436 0.2863559558938346
+ 18-0.0010039595181742 0.0170917184474007-0.0265070663622178 0.3034476743412353
+ 19-0.0007288972858858 0.0171084511060370-0.0272359636481036 0.3205561254472722
+ 20-0.0004197678998158 0.0171205993941351-0.0276557315479194 0.3376767248414073
+ 21-0.0000768172923796 0.0171275955257987-0.0277325488402990 0.3548043203672060
+ 22 0.0002996688483262 0.0171288758140050-0.0274328799919727 0.3719331961812110
+ 23 0.0007093610069602 0.0171238813331995-0.0267235189850126 0.3890570775144105
+ 24 0.0011518815707581 0.0171120586497502-0.0255716374142545 0.4061691361641607
+ 25 0.0016268003607435 0.0170928606235709-0.0239448370535109 0.4232619967877316
+ 26 0.0021336299643244 0.0170657472842252-0.0218112070891865 0.4403277440719568
+ 27 0.0026718208692771 0.0170301867848198-0.0191393862199094 0.4573579308567766
+ 28 0.0032407563991181 0.0169856564369985-0.0158986298207914 0.4743435872937751
+ 29 0.0038397474498617 0.0169316438303465-0.0120588823709297 0.4912752311241216
+ 30 0.0044680270281660 0.0168676480395155-0.0075908553427637 0.5081428791636371
+ 31 0.0051247445908649 0.0167931809223794-0.0024661107518988 0.5249360600860165
+ 32 0.0058089601858883 0.0167077685125317 0.0033428494339895 0.5416438285985481
+ 33 0.0065196383945684 0.0166109525094335 0.0098624878285579 0.5582547811079817
+ 34 0.0072556420753336 0.0165022918695240 0.0171181299038915 0.5747570729775057
+ 35 0.0080157259087899 0.0163813645016018 0.0251338558126814 0.5911384374791074
+ 36 0.0087985297441882 0.0162477690697886 0.0339323855568696 0.6073862065488961
+ 37 0.0096025717472803 0.0161011269073855 0.0435349573041499 0.6234873334562816
+ 38 0.0104262413495604 0.0159410840449308 0.0539611986537102 0.6394284175012125
+ 39 0.0112677919988951 0.0157673133557715 0.0652289906526053 0.6551957308569840
+ 40 0.0121253337115396 0.0155795168224566 0.0773543243641449 0.6707752476794406
+ 41 0.0129968254255413 0.0153774279272643 0.0903511497896863 0.6861526756067049
+ 42 0.0138800671555306 0.0151608141701719 0.1042312169452168 0.7013134897768768
+ 43 0.0147726919488984 0.0149294797175797 0.1190039088941152 0.7162429694944565
+ 44 0.0156721576433617 0.0146832681850981 0.1346760665374769 0.7309262376795547
+ 45 0.0165757384259147 0.0144220655577087 0.1512518049633917 0.7453483032372634
+ 46 0.0174805161931688 0.0141458032506101 0.1687323211565605 0.7594941064878735
+ 47 0.0183833717130782 0.0138544613140573 0.1871156928696387 0.7733485678019308
+ 48 0.0192809755880536 0.0135480717855060 0.2063966684576923 0.7868966395874368
+ 49 0.0201697790194624 0.0132267221923718 0.2265664474771546 0.8001233617798086
+ 50 0.0210460043735164 0.0128905592087141 0.2476124518506710 0.8130139209885227
+ 51 0.0219056355485466 0.0125397924691555 0.2695180873992177 0.8255537134576781
+ 52 0.0227444081436646 0.0121746985433464 0.2922624955428823 0.8377284120010245
+ 53 0.0235577994288119 0.0117956250742853 0.3158202949716942 0.8495240370753099
+ 54 0.0243410181161952 0.0114029950838051 0.3401613130878894 0.8609270321591150
+ 55 0.0250889939331105 0.0109973114485352 0.3652503070209999 0.8719243436076503
+ 56 0.0257963669961523 0.0105791615496500 0.3910466740171522 0.8825035051573002
+ 57 0.0264574769868115 0.0101492220997141 0.4175041510039636 0.8926527272570144
+ 58 0.0270663521284595 0.0097082641499339 0.4445705031324231 0.9023609914069484
+ 59 0.0276166979647200 0.0092571582811263 0.4721872010971431 0.9116181496880746
+ 60 0.0281018859392274 0.0087968799817143 0.5002890870363705 0.9204150296697889
+ 61 0.0285149417767724 0.0083285152160605 0.5288040288131429 0.9287435448858494
+ 62 0.0288485336658352 0.0078532661864476 0.5576525624789781 0.9365968110722971
+ 63 0.0290949602425051 0.0073724572920170 0.5867475227214831 0.9439692683643142
+ 64 0.0292461383757877 0.0068875412879753 0.6159936610972708 0.9508568096522895
+ 65 0.0292935907542990 0.0064001056483788 0.6452872518515699 0.9572569153006683
+ 66 0.0292284332743468 0.0059118791358072 0.6745156851259168 0.9631687944364754
+ 67 0.0290413622293988 0.0054247385812347 0.7035570473553155 0.9685935330177101
+ 68 0.0287226413009382 0.0049407158774114 0.7322796886562538 0.9735342488951215
+ 69 0.0282620883507064 0.0044620051890624 0.7605417770069601 0.9779962540841840
+ 70 0.0276490620143323 0.0039909703832173 0.7881908390212924 0.9819872244674014
+ 71 0.0268724480963495 0.0035301526829785 0.8150632871176420 0.9855173771503799
+ 72 0.0259206457666001 0.0030822785480393 0.8409839328842421 0.9885996556984192
+ 73 0.0247815535580256 0.0026502677852626 0.8657654864422677 0.9912499234836819
+ 74 0.0234425551658448 0.0022372418926289 0.8892080416081125 0.9934871653763108
+ 75 0.0218905050481195 0.0018465326398648 0.9110985466562320 0.9953336980161755
+ 76 0.0201117138277064 0.0014816908890628 0.9312102604839384 0.9968153889052384
+ 77 0.0180919334955968 0.0011464956586010 0.9493021939795352 0.9979618845638394
+ 78 0.0158163424156430 0.0008449634336744 0.9651185363951782 0.9988068479975138
+ 79 0.0132695301306719 0.0005813577267470 0.9783880665258501 0.9993882057242609
+ 80 0.0104354819699857 0.0003601988912358 0.9888235484958359 0.9997484046154967
+ 81 0.0072975634582501 0.0001862741917361 0.9961211119540859 0.9999346788072329
+ 82 0.0038385045257687 0.0000646481340986 0.9999596164798545 0.9999993269413314
+ 83 0.0000403835201455 0.0000006730586691 1.0000000000000000 1.0000000000000004
+
+ ndtfast, nfast =   60  83   nfast/ndtfast =  1.38333
+
+ Centers of gravity and integrals (values must be 1, 1, approx 1/2, 1, 1):
+
+    1.000000000000 1.029032332991 0.514516166496 1.000000000000 1.000000000000
+
+ Power filter parameters, Fgamma, gamma =  0.28400   0.23667
+
+ Minimum X-grid spacing, DXmin =  2.00000000E+01 km
+ Maximum X-grid spacing, DXmax =  2.00000000E+01 km
+ Minimum Y-grid spacing, DYmin =  2.00000000E+01 km
+ Maximum Y-grid spacing, DYmax =  2.00000000E+01 km
+ Minimum Z-grid spacing, DZmin =  1.00000000E+01 m
+ Maximum Z-grid spacing, DZmax =  1.00000000E+01 m
+
+ Minimum barotropic Courant Number =  3.32208519E-02
+ Maximum barotropic Courant Number =  3.32208519E-02
+ Maximum Coriolis   Courant Number =  9.00000000E-02
+
+
+ Maximum grid stiffness ratios:  rx0 =   0.000000E+00 (Beckmann and Haidvogel)
+                                 rx1 =   0.000000E+00 (Haney)
+
+
+ Initial basin volumes: TotVolume =  6.0000000000E+13 m3
+                        MinVolume =  4.0000000000E+09 m3
+                        MaxVolume =  4.0000000000E+09 m3
+                          Max/Min =  1.0000000000E+00
+
+
+ NL ROMS/TOMS: started time-stepping: (Grid: 01 TimeSteps: 00000001 - 00000096)
+
+
+     STEP   Day HH:MM:SS  KINETIC_ENRG  POTEN_ENRG   TOTAL_ENRG   NET_VOLUME
+            C => (i,j,k)       Cu           Cv           Cw        Max Speed
+
+        0     0 00:00:00  0.000000E+00 4.914571E+02 4.914571E+02 6.000000E+13
+              (00,00,00)  0.000000E+00 0.000000E+00 0.000000E+00 0.000000E+00
+      DEF_HIS   - creating history file: ocean_his.nc
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000001
+        1     0 00:15:00  1.075245E-04 4.915012E+02 4.915013E+02 6.000535E+13
+              (01,01,10)  7.076479E-03 1.659631E-05 0.000000E+00 1.573671E-01
+        2     0 00:30:00  2.555997E-04 4.915376E+02 4.915378E+02 6.000977E+13
+              (02,01,10)  8.521808E-03 1.294216E-05 5.371493E-02 1.894560E-01
+        3     0 00:45:00  3.929385E-04 4.915787E+02 4.915791E+02 6.001475E+13
+              (03,01,10)  8.930079E-03 8.067062E-06 4.630972E-02 1.984615E-01
+        4     0 01:00:00  5.618662E-04 4.916209E+02 4.916215E+02 6.001987E+13
+              (04,01,10)  9.076259E-03 4.762098E-06 3.793173E-02 2.080044E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000002
+        5     0 01:15:00  7.358389E-04 4.916655E+02 4.916663E+02 6.002528E+13
+              (06,01,10)  8.719447E-03 3.788830E-06 3.567681E-02 2.151610E-01
+        6     0 01:30:00  9.216326E-04 4.917107E+02 4.917117E+02 6.003076E+13
+              (07,01,10)  9.153128E-03 3.746534E-06 3.510188E-02 2.212895E-01
+        7     0 01:45:00  1.107232E-03 4.917564E+02 4.917575E+02 6.003629E+13
+              (08,01,10)  9.346217E-03 2.691809E-06 3.118352E-02 2.252129E-01
+        8     0 02:00:00  1.288896E-03 4.918014E+02 4.918027E+02 6.004175E+13
+              (10,01,10)  8.749707E-03 2.970177E-06 3.079380E-02 2.253614E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000003
+        9     0 02:15:00  1.460659E-03 4.918452E+02 4.918466E+02 6.004706E+13
+              (11,01,10)  9.208505E-03 2.599876E-06 3.005076E-02 2.252129E-01
+       10     0 02:30:00  1.616401E-03 4.918871E+02 4.918887E+02 6.005214E+13
+              (12,01,10)  9.435533E-03 1.493435E-06 2.681673E-02 2.246763E-01
+       11     0 02:45:00  1.753262E-03 4.919263E+02 4.919280E+02 6.005691E+13
+              (14,01,10)  8.827768E-03 2.485989E-06 2.787274E-02 2.237184E-01
+       12     0 03:00:00  1.866962E-03 4.919623E+02 4.919642E+02 6.006128E+13
+              (15,01,10)  9.262122E-03 1.811864E-06 2.668896E-02 2.230729E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000004
+       13     0 03:15:00  1.957026E-03 4.919945E+02 4.919964E+02 6.006520E+13
+              (17,01,10)  8.334157E-03 2.360225E-06 2.552344E-02 2.229515E-01
+       14     0 03:30:00  2.022692E-03 4.920223E+02 4.920243E+02 6.006859E+13
+              (18,01,10)  8.929046E-03 1.985466E-06 2.563234E-02 2.232126E-01
+       15     0 03:45:00  2.065924E-03 4.920454E+02 4.920475E+02 6.007140E+13
+              (19,01,10)  9.320780E-03 1.060926E-06 2.403834E-02 2.236479E-01
+       16     0 04:00:00  2.089437E-03 4.920634E+02 4.920654E+02 6.007359E+13
+              (21,01,10)  8.506779E-03 2.055846E-06 2.418924E-02 2.230610E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000005
+       17     0 04:15:00  2.097494E-03 4.920759E+02 4.920780E+02 6.007513E+13
+              (22,01,10)  9.035386E-03 1.415065E-06 2.369338E-02 2.224022E-01
+       18     0 04:30:00  2.095257E-03 4.920829E+02 4.920850E+02 6.007598E+13
+              (23,01,10)  9.378551E-03 2.805462E-07 2.175462E-02 2.235501E-01
+       19     0 04:45:00  2.088520E-03 4.920841E+02 4.920862E+02 6.007614E+13
+              (25,01,10)  8.672806E-03 1.636896E-06 2.289133E-02 2.234560E-01
+       20     0 05:00:00  2.083377E-03 4.920797E+02 4.920818E+02 6.007560E+13
+              (26,01,10)  9.136828E-03 7.688382E-07 2.190609E-02 2.223407E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000006
+       21     0 05:15:00  2.085799E-03 4.920697E+02 4.920718E+02 6.007437E+13
+              (28,01,10)  8.264989E-03 1.757486E-06 2.184381E-02 2.226314E-01
+       22     0 05:30:00  2.101216E-03 4.920542E+02 4.920563E+02 6.007247E+13
+              (29,01,10)  8.825629E-03 1.117796E-06 2.158786E-02 2.229729E-01
+       23     0 05:45:00  2.134264E-03 4.920336E+02 4.920357E+02 6.006994E+13
+              (30,01,10)  9.228048E-03 5.173751E-08 2.020376E-02 2.221537E-01
+       24     0 06:00:00  2.188367E-03 4.920081E+02 4.920103E+02 6.006681E+13
+              (32,01,10)  8.468433E-03 1.353187E-06 2.096983E-02 2.213924E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000007
+       25     0 06:15:00  2.265649E-03 4.919782E+02 4.919804E+02 6.006313E+13
+              (33,01,10)  8.961974E-03 5.108026E-07 2.026360E-02 2.220156E-01
+       26     0 06:30:00  2.366715E-03 4.919443E+02 4.919467E+02 6.005897E+13
+              (35,01,10)  8.083264E-03 1.498540E-06 2.016575E-02 2.214324E-01
+       27     0 06:45:00  2.490666E-03 4.919071E+02 4.919096E+02 6.005438E+13
+              (36,01,10)  8.649954E-03 8.523460E-07 2.000152E-02 2.200634E-01
+       28     0 07:00:00  2.635171E-03 4.918671E+02 4.918697E+02 6.004945E+13
+              (37,01,10)  9.080362E-03 1.729018E-07 1.891623E-02 2.208203E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000008
+       29     0 07:15:00  2.796570E-03 4.918249E+02 4.918277E+02 6.004425E+13
+              (39,01,10)  8.306575E-03 1.095766E-06 1.951523E-02 2.203778E-01
+       30     0 07:30:00  2.970185E-03 4.917812E+02 4.917841E+02 6.003887E+13
+              (40,01,10)  8.809191E-03 2.662230E-07 1.895177E-02 2.188923E-01
+       31     0 07:45:00  3.150537E-03 4.917366E+02 4.917397E+02 6.003337E+13
+              (42,01,10)  7.943529E-03 1.259211E-06 1.887642E-02 2.223518E-01
+       32     0 08:00:00  3.331786E-03 4.916916E+02 4.916949E+02 6.002784E+13
+              (43,01,10)  8.504590E-03 6.039456E-07 1.874370E-02 2.258398E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000009
+       33     0 08:15:00  3.507882E-03 4.916463E+02 4.916499E+02 6.002226E+13
+              (44,01,10)  8.946396E-03 3.947440E-07 1.783463E-02 2.257205E-01
+       34     0 08:30:00  3.672438E-03 4.915999E+02 4.916036E+02 6.001655E+13
+              (46,01,10)  8.177653E-03 8.310921E-07 1.835342E-02 2.253102E-01
+       35     0 08:45:00  3.816744E-03 4.915500E+02 4.915538E+02 6.001042E+13
+              (47,01,10)  8.688763E-03 2.543374E-07 1.784588E-02 2.248283E-01
+       36     0 09:00:00  3.926065E-03 4.914929E+02 4.914968E+02 6.000342E+13
+              (48,01,10)  9.142171E-03 3.690197E-06 1.648225E-02 2.247867E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000010
+       37     0 09:15:00  3.982773E-03 4.914252E+02 4.914292E+02 5.999516E+13
+              (50,01,10)  9.593925E-03 6.887131E-05 1.562175E-02 2.245021E-01
+       38     0 09:30:00  3.940546E-03 4.913518E+02 4.913558E+02 5.998623E+13
+              (50,02,10)  9.409133E-03 5.026309E-04 7.645048E-03 2.321983E-01
+       39     0 09:45:00  3.811529E-03 4.912830E+02 4.912868E+02 5.997785E+13
+              (50,01,10)  9.288287E-03 1.959507E-04 1.288575E-02 2.240744E-01
+       40     0 10:00:00  3.673235E-03 4.912192E+02 4.912229E+02 5.997010E+13
+              (49,01,10)  8.653068E-03 5.297759E-05 8.476335E-03 2.262472E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000011
+       41     0 10:15:00  3.538821E-03 4.911599E+02 4.911635E+02 5.996290E+13
+              (48,01,10)  9.108380E-03 3.006987E-05 1.231179E-02 2.235443E-01
+       42     0 10:30:00  3.382481E-03 4.911056E+02 4.911090E+02 5.995632E+13
+              (43,01,10)  7.874383E-03 9.862051E-05 6.111806E-03 2.232691E-01
+       43     0 10:45:00  3.180510E-03 4.910582E+02 4.910614E+02 5.995058E+13
+              (48,01,10)  8.899864E-03 3.600942E-05 8.138695E-03 2.228862E-01
+       44     0 11:00:00  2.984986E-03 4.910178E+02 4.910208E+02 5.994569E+13
+              (46,01,10)  7.631595E-03 6.168476E-05 9.224433E-03 2.227600E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000012
+       45     0 11:15:00  2.829184E-03 4.909835E+02 4.909863E+02 5.994154E+13
+              (45,01,10)  6.235668E-03 8.858416E-05 1.117756E-02 2.223540E-01
+       46     0 11:30:00  2.714258E-03 4.909549E+02 4.909576E+02 5.993810E+13
+              (49,01,10)  7.660440E-03 2.413472E-05 9.065940E-03 2.221566E-01
+       47     0 11:45:00  2.631597E-03 4.909332E+02 4.909358E+02 5.993548E+13
+              (48,01,10)  6.356397E-03 7.970155E-05 1.251681E-02 2.219039E-01
+       48     0 12:00:00  2.586744E-03 4.909203E+02 4.909229E+02 5.993393E+13
+              (47,01,10)  4.775036E-03 1.084796E-04 1.224431E-02 2.214778E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000013
+       49     0 12:15:00  2.581569E-03 4.909165E+02 4.909191E+02 5.993347E+13
+              (46,01,10)  2.902766E-03 1.258922E-04 1.216058E-02 2.213422E-01
+       50     0 12:30:00  2.612979E-03 4.909212E+02 4.909238E+02 5.993404E+13
+              (38,01,10)  5.079161E-03 1.494673E-04 1.088703E-02 2.206941E-01
+       51     0 12:45:00  2.679074E-03 4.909347E+02 4.909374E+02 5.993567E+13
+              (37,01,10)  6.675406E-03 1.425883E-04 1.016644E-02 2.187732E-01
+       52     0 13:00:00  2.777857E-03 4.909573E+02 4.909601E+02 5.993840E+13
+              (36,01,10)  8.038444E-03 1.290250E-04 8.792644E-03 2.197557E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000014
+       53     0 13:15:00  2.904259E-03 4.909882E+02 4.909911E+02 5.994212E+13
+              (40,01,10)  6.310480E-03 1.431196E-04 1.039968E-02 2.276787E-01
+       54     0 13:30:00  3.052075E-03 4.910270E+02 4.910300E+02 5.994680E+13
+              (38,01,10)  8.272434E-03 1.178925E-04 8.467831E-03 2.309053E-01
+       55     0 13:45:00  3.214083E-03 4.910731E+02 4.910763E+02 5.995237E+13
+              (37,01,10)  9.047071E-03 1.010342E-04 7.383841E-03 2.333261E-01
+       56     0 14:00:00  3.381580E-03 4.911255E+02 4.911289E+02 5.995872E+13
+              (01,02,01)  9.745543E-03 2.506959E-03 2.991373E-03 2.331449E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000015
+       57     0 14:15:00  3.545197E-03 4.911833E+02 4.911869E+02 5.996573E+13
+              (01,02,02)  9.249119E-03 2.963097E-04 6.142537E-03 2.303520E-01
+       58     0 14:30:00  3.695119E-03 4.912455E+02 4.912492E+02 5.997328E+13
+              (01,02,02)  9.166111E-03 2.793652E-04 6.605200E-03 2.251544E-01
+       59     0 14:45:00  3.822014E-03 4.913109E+02 4.913147E+02 5.998122E+13
+              (01,02,02)  8.932043E-03 2.641211E-04 7.020708E-03 2.244528E-01
+       60     0 15:00:00  3.917326E-03 4.913781E+02 4.913821E+02 5.998941E+13
+              (01,02,02)  8.550836E-03 2.479490E-04 7.388378E-03 2.235736E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000016
+       61     0 15:15:00  3.973216E-03 4.914461E+02 4.914500E+02 5.999769E+13
+              (01,02,02)  8.028501E-03 2.318470E-04 7.702517E-03 2.231669E-01
+       62     0 15:30:00  3.983659E-03 4.915132E+02 4.915172E+02 6.000590E+13
+              (01,02,02)  7.373558E-03 2.160994E-04 7.963050E-03 2.226318E-01
+       63     0 15:45:00  3.944469E-03 4.915784E+02 4.915823E+02 6.001387E+13
+              (01,02,02)  6.596698E-03 2.008908E-04 8.171472E-03 2.232236E-01
+       64     0 16:00:00  3.853398E-03 4.916401E+02 4.916439E+02 6.002142E+13
+              (22,01,10)  5.573366E-03 1.798238E-04 8.876041E-03 2.238126E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000017
+       65     0 16:15:00  3.712978E-03 4.916971E+02 4.917008E+02 6.002841E+13
+              (21,01,10)  7.167305E-03 1.754850E-04 7.845930E-03 2.210153E-01
+       66     0 16:30:00  3.533411E-03 4.917489E+02 4.917525E+02 6.003477E+13
+              (20,01,10)  8.450736E-03 1.630861E-04 6.276373E-03 2.174664E-01
+       67     0 16:45:00  3.331555E-03 4.917953E+02 4.917986E+02 6.004046E+13
+              (24,01,10)  7.370561E-03 1.676958E-04 7.780280E-03 2.209673E-01
+       68     0 17:00:00  3.123886E-03 4.918354E+02 4.918386E+02 6.004541E+13
+              (23,01,10)  8.604628E-03 1.550432E-04 6.504515E-03 2.216933E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000018
+       69     0 17:15:00  2.925751E-03 4.918683E+02 4.918713E+02 6.004947E+13
+              (22,01,10)  9.456189E-03 1.353092E-04 4.861899E-03 2.279263E-01
+       70     0 17:30:00  2.753383E-03 4.918930E+02 4.918958E+02 6.005252E+13
+              (26,01,10)  8.316969E-03 1.535433E-04 5.565133E-03 2.246823E-01
+       71     0 17:45:00  2.624215E-03 4.919088E+02 4.919115E+02 6.005448E+13
+              (16,01,10)  9.172520E-03 3.606446E-05 5.317216E-03 2.201536E-01
+       72     0 18:00:00  2.554187E-03 4.919152E+02 4.919177E+02 6.005529E+13
+              (15,01,10)  7.989719E-03 2.508528E-06 6.635853E-03 2.175168E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000019
+       73     0 18:15:00  2.555022E-03 4.919115E+02 4.919141E+02 6.005486E+13
+              (13,01,10)  5.691461E-03 4.105566E-05 8.707616E-03 2.156308E-01
+       74     0 18:30:00  2.631843E-03 4.918972E+02 4.918998E+02 6.005313E+13
+              (01,02,02)  5.639123E-03 1.119002E-04 7.828992E-03 2.146212E-01
+       75     0 18:45:00  2.783631E-03 4.918719E+02 4.918747E+02 6.005005E+13
+              (01,02,02)  6.648850E-03 1.198340E-04 7.425242E-03 2.155386E-01
+       76     0 19:00:00  3.006894E-03 4.918360E+02 4.918390E+02 6.004566E+13
+              (03,01,10)  6.498631E-03 1.541065E-04 8.242930E-03 2.175277E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000020
+       77     0 19:15:00  3.297488E-03 4.917904E+02 4.917937E+02 6.004009E+13
+              (02,01,10)  7.996429E-03 2.052438E-04 6.966721E-03 2.215165E-01
+       78     0 19:30:00  3.645518E-03 4.917361E+02 4.917398E+02 6.003345E+13
+              (06,01,10)  6.075423E-03 1.552346E-04 8.796922E-03 2.272494E-01
+       79     0 19:45:00  4.029576E-03 4.916734E+02 4.916775E+02 6.002579E+13
+              (05,01,10)  7.579424E-03 1.524307E-04 7.646797E-03 2.300403E-01
+       80     0 20:00:00  4.422026E-03 4.916024E+02 4.916068E+02 6.001710E+13
+              (04,01,10)  8.774551E-03 1.453182E-04 6.183167E-03 2.304329E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000021
+       81     0 20:15:00  4.803238E-03 4.915242E+02 4.915290E+02 6.000753E+13
+              (45,01,10)  8.167963E-03 5.005482E-05 7.283440E-03 2.362578E-01
+       82     0 20:30:00  5.160607E-03 4.914409E+02 4.914461E+02 5.999734E+13
+              (46,01,10)  8.511707E-03 2.357345E-05 7.549487E-03 2.406640E-01
+       83     0 20:45:00  5.473846E-03 4.913539E+02 4.913594E+02 5.998670E+13
+              (48,01,10)  8.261055E-03 1.098410E-05 8.361544E-03 2.432350E-01
+       84     0 21:00:00  5.715120E-03 4.912631E+02 4.912688E+02 5.997558E+13
+              (49,01,10)  8.490858E-03 3.613765E-05 8.237858E-03 2.447118E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000022
+       85     0 21:15:00  5.865451E-03 4.911686E+02 4.911745E+02 5.996403E+13
+              (50,01,10)  8.651659E-03 5.255153E-05 7.732846E-03 2.461833E-01
+       86     0 21:30:00  5.923490E-03 4.910722E+02 4.910781E+02 5.995223E+13
+              (50,01,10)  9.274712E-03 5.982678E-05 6.547930E-03 2.470571E-01
+       87     0 21:45:00  5.891841E-03 4.909758E+02 4.909817E+02 5.994044E+13
+              (50,01,10)  9.733150E-03 4.248763E-05 5.751751E-03 2.468498E-01
+       88     0 22:00:00  5.770784E-03 4.908809E+02 4.908867E+02 5.992883E+13
+              (50,01,10)  1.001034E-02 2.588141E-05 5.396247E-03 2.450487E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000023
+       89     0 22:15:00  5.566952E-03 4.907887E+02 4.907943E+02 5.991754E+13
+              (50,01,10)  1.007226E-02 2.862872E-05 5.127870E-03 2.411525E-01
+       90     0 22:30:00  5.298025E-03 4.907003E+02 4.907056E+02 5.990672E+13
+              (50,01,10)  1.003593E-02 4.369730E-05 4.376871E-03 2.339883E-01
+       91     0 22:45:00  4.988223E-03 4.906165E+02 4.906214E+02 5.989647E+13
+              (22,01,10)  7.086561E-03 1.501339E-04 6.681390E-03 2.233383E-01
+       92     0 23:00:00  4.660273E-03 4.905381E+02 4.905428E+02 5.988689E+13
+              (21,01,10)  8.250521E-03 1.428430E-04 5.455526E-03 2.172007E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000024
+       93     0 23:15:00  4.335319E-03 4.904663E+02 4.904706E+02 5.987810E+13
+              (21,01,10)  8.704988E-03 1.369749E-04 4.385757E-03 2.138851E-01
+       94     0 23:30:00  4.033063E-03 4.904019E+02 4.904060E+02 5.987023E+13
+              (24,01,10)  7.988602E-03 1.561795E-04 4.759362E-03 2.134278E-01
+       95     0 23:45:00  3.771007E-03 4.903457E+02 4.903494E+02 5.986334E+13
+              (46,01,10)  6.782877E-03 6.173837E-06 6.198888E-03 2.143068E-01
+       96     1 00:00:00  3.563754E-03 4.902980E+02 4.903016E+02 5.985751E+13
+              (45,01,10)  5.119995E-03 2.124857E-05 7.774002E-03 2.126151E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000025
+
+ Elapsed CPU time (seconds):
+
+ Thread #  0 CPU:      30.890
+ Total:                30.890
+
+ Nonlinear model elapsed time profile:
+
+  Allocation and array initialization ..............         0.044  ( 0.1424 %)
+  Ocean state initialization .......................         0.004  ( 0.0130 %)
+  Processing of output time averaged data ..........         0.500  ( 1.6188 %)
+  Computation of vertical boundary conditions ......         0.008  ( 0.0259 %)
+  Computation of global information integrals ......         0.056  ( 0.1813 %)
+  Writing of output data ...........................         0.100  ( 0.3238 %)
+  Model 2D kernel ..................................        27.574  (89.2644 %)
+  2D/3D coupling, vertical metrics .................         0.064  ( 0.2072 %)
+  Omega vertical velocity ..........................         0.056  ( 0.1813 %)
+  Equation of state for seawater ...................         0.032  ( 0.1036 %)
+  3D equations right-side terms ....................         0.328  ( 1.0619 %)
+  3D equations predictor step ......................         0.732  ( 2.3698 %)
+  Pressure gradient ................................         0.168  ( 0.5439 %)
+  Harmonic mixing of tracers, S-surfaces ...........         0.032  ( 0.1036 %)
+  Harmonic stress tensor, S-surfaces ...............         0.128  ( 0.4144 %)
+  Corrector time-step for 3D momentum ..............         0.700  ( 2.2662 %)
+  Corrector time-step for tracers ..................         0.244  ( 0.7900 %)
+                                              Total:        30.770   99.6115
+
+ All percentages are with respect to total time =           30.890
+
+ ROMS/TOMS - Output NetCDF summary for Grid 01:
+             number of time records written in HISTORY file = 00000025
+
+ Analytical header files used:
+
+     ROMS/Functionals/ana_btflux.h
+     ROMS/Functionals/ana_fsobc.h
+     ROMS/Functionals/ana_grid.h
+     ROMS/Functionals/ana_initial.h
+     ROMS/Functionals/ana_m2obc.h
+     ROMS/Functionals/ana_smflux.h
+     ROMS/Functionals/ana_stflux.h
+
+ ROMS/TOMS: DONE... Wednesday - May 18, 2011 -  9:42:47 AM

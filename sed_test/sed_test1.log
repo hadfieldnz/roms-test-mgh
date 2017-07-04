@@ -1,0 +1,2411 @@
+
+ Model Input Parameters:  ROMS/TOMS version 3.5  
+                          Tuesday - August 23, 2011 -  8:40:25 AM
+ -----------------------------------------------------------------------------
+
+ Suspended Sediment Test in a Channel
+
+ Operating system : CYGWIN
+ CPU/hardware     : i686
+ Compiler system  : gfortran
+ Compiler command : /usr/bin/gfortran
+ Compiler flags   : -frepack-arrays -O3 -ffree-form -ffree-line-length-none -ffree-form -ffree-line-length-none -ffree-form -ffree-line-length-none
+
+ SVN Root URL  : https:://myroms.org/svn/src
+ SVN Revision  : exported
+
+ Local Root    : /home/hadfield/ROMS/roms-local
+ Header Dir    : /home/hadfield/ROMS/roms-test-local/sed_test
+ Header file   : sed_test1.h
+ Analytical Dir: /home/hadfield/ROMS/roms-test-local/sed_test
+
+ Resolution, Grid 01: 0100x0012x010,  Parallel Threads:  1,  Tiling: 001x001
+
+
+ Physical Parameters, Grid: 01
+ =============================
+
+       1000  ntimes          Number of timesteps for 3-D equations.
+      1.000  dt              Timestep size (s) for 3-D equations.
+         20  ndtfast         Number of timesteps for 2-D equations between
+                               each 3D timestep.
+          1  ERstr           Starting ensemble/perturbation run number.
+          1  ERend           Ending ensemble/perturbation run number.
+          0  nrrec           Number of restart records to read from disk.
+          T  LcycleRST       Switch to recycle time-records in restart file.
+       1000  nRST            Number of timesteps between the writing of data
+                               into restart fields.
+          1  ninfo           Number of timesteps between print of information
+                               to standard output.
+          T  ldefout         Switch to create a new output NetCDF file(s).
+        100  nHIS            Number of timesteps between the writing fields
+                               into history file.
+          1  ntsAVG          Starting timestep for the accumulation of output
+                               time-averaged data.
+       1000  nAVG            Number of timesteps between the writing of
+                               time-averaged data into averages file.
+ 0.0000E+00  nl_tnu4(01)     NLM Horizontal, biharmonic mixing coefficient
+                               (m4/s) for tracer 01: temp
+ 0.0000E+00  nl_tnu4(02)     NLM Horizontal, biharmonic mixing coefficient
+                               (m4/s) for tracer 02: salt
+ 0.0000E+00  nl_visc4        NLM Horizontal, biharmonic mixing coefficient
+                               (m4/s) for momentum.
+ 5.0000E-06  Akt_bak(01)     Background vertical mixing coefficient (m2/s)
+                               for tracer 01: temp
+ 5.0000E-06  Akt_bak(02)     Background vertical mixing coefficient (m2/s)
+                               for tracer 02: salt
+ 5.0000E-05  Akv_bak         Background vertical mixing coefficient (m2/s)
+                               for momentum.
+ 5.0000E-06  Akk_bak         Background vertical mixing coefficient (m2/s)
+                               for turbulent energy.
+ 5.0000E-06  Akp_bak         Background vertical mixing coefficient (m2/s)
+                               for turbulent generic statistical field.
+ 3.0000E-04  rdrg            Linear bottom drag coefficient (m/s).
+ 3.0000E-03  rdrg2           Quadratic bottom drag coefficient.
+ 5.0000E-03  Zob             Bottom roughness (m).
+          1  Vtransform      S-coordinate transformation equation.
+          1  Vstretching     S-coordinate stretching function.
+ 1.0000E+00  theta_s         S-coordinate surface control parameter.
+ 1.0000E+00  theta_b         S-coordinate bottom  control parameter.
+      1.000  Tcline          S-coordinate surface/bottom layer width (m) used
+                               in vertical coordinate stretching.
+    998.000  rho0            Mean density (kg/m3) for Boussinesq approximation.
+      0.000  dstart          Time-stamp assigned to model initialization (days).
+       0.00  time_ref        Reference time for units attribute (yyyymmdd.dd)
+ 0.0000E+00  Tnudg(01)       Nudging/relaxation time scale (days)
+                               for tracer 01: temp
+ 0.0000E+00  Tnudg(02)       Nudging/relaxation time scale (days)
+                               for tracer 02: salt
+ 1.0000E-03  Znudg           Nudging/relaxation time scale (days)
+                               for free-surface.
+ 1.0000E-03  M2nudg          Nudging/relaxation time scale (days)
+                               for 2D momentum.
+ 1.0000E-03  M3nudg          Nudging/relaxation time scale (days)
+                               for 3D momentum.
+ 0.0000E+00  obcfac          Factor between passive and active
+                               open boundary conditions.
+     20.000  T0              Background potential temperature (C) constant.
+     35.000  S0              Background salinity (PSU) constant.
+   1027.000  R0              Background density (kg/m3) used in linear Equation
+                               of State.
+ 1.7000E-04  Tcoef           Thermal expansion coefficient (1/Celsius).
+ 7.6000E-04  Scoef           Saline contraction coefficient (1/PSU).
+      1.000  gamma2          Slipperiness variable: free-slip (1.0) or 
+                                                    no-slip (-1.0).
+          T  Hout(idFsur)    Write out free-surface.
+          T  Hout(idUbar)    Write out 2D U-momentum component.
+          T  Hout(idVbar)    Write out 2D V-momentum component.
+          T  Hout(idUvel)    Write out 3D U-momentum component.
+          T  Hout(idVvel)    Write out 3D V-momentum component.
+          T  Hout(idWvel)    Write out W-momentum component.
+          T  Hout(idOvel)    Write out omega vertical velocity.
+          T  Hout(idTvar)    Write out tracer 01: temp
+          T  Hout(idTvar)    Write out tracer 02: salt
+          T  Hout(idUbms)    Write out bottom U-momentum stress.
+          T  Hout(idVbms)    Write out bottom V-momentum stress.
+          T  Hout(idBott)    Write out bottom property 01: grain_diameter
+          T  Hout(idBott)    Write out bottom property 02: grain_density
+          T  Hout(idBott)    Write out bottom property 03: settling_vel
+          T  Hout(idBott)    Write out bottom property 04: erosion_stress
+          T  Hout(idBott)    Write out bottom property 05: ripple_length
+          T  Hout(idBott)    Write out bottom property 06: ripple_height
+          T  Hout(idBott)    Write out bottom property 07: bed_wave_amp
+          T  Hout(idBott)    Write out bottom property 08: Zo_def
+          T  Hout(idBott)    Write out bottom property 09: Zo_app
+          T  Hout(idDano)    Write out density anomaly.
+          T  Hout(idVvis)    Write out vertical viscosity: AKv.
+          T  Hout(idTdif)    Write out vertical diffusion: AKt(itemp).
+          T  Hout(idMtke)    Write out turbulent kinetic energy.
+          T  Hout(idMtls)    Write out turbulent generic length-scale.
+
+          T  Aout(idFsur)    Write out averaged free-surface.
+          T  Aout(idUbar)    Write out averaged 2D U-momentum component.
+          T  Aout(idVbar)    Write out averaged 2D V-momentum component.
+          T  Aout(idUvel)    Write out averaged 3D U-momentum component.
+          T  Aout(idVvel)    Write out averaged 3D V-momentum component.
+          T  Aout(idWvel)    Write out averaged W-momentum component.
+          T  Aout(idOvel)    Write out averaged omega vertical velocity.
+          T  Aout(idTvar)    Write out averaged tracer 01: temp
+          T  Aout(idTvar)    Write out averaged tracer 02: salt
+
+ Output/Input Files:
+
+             Output Restart File:  ocean_rst.nc
+             Output History File:  ocean_his.nc
+            Output Averages File:  ocean_avg.nc
+
+ Tile partition information for Grid 01:  0100x0012x0010  tiling: 001x001
+
+     tile     Istr     Iend     Jstr     Jend     Npts
+
+        0        1      100        1       12    12000
+
+ Tile minimum and maximum fractional grid coordinates:
+   (interior points only)
+
+     tile     Xmin     Xmax     Ymin     Ymax     grid
+
+        0     0.50   101.50     0.50    13.50  RHO-points
+
+        0     0.00   101.00     0.50    13.50    U-points
+
+        0     0.50   101.50     0.00    13.00    V-points
+
+
+ Sediment Parameters, Grid: 01
+ =============================
+
+
+ Size     Sd50        Csed        Srho        Wsed        Erate       poros
+ Class    (mm)       (kg/m3)     (kg/m3)     (mm/s)     (kg/m2/s)    (nondim)
+
+   1    1.0000E-02  0.0000E+00  2.6500E+03  1.0000E-01  5.0000E-04  9.0000E-01
+   2    1.0000E+00  0.0000E+00  2.6500E+03  1.0000E+00  5.0000E-04  5.0000E-01
+
+         tau_ce      tau_cd      nl_tnu2     nl_tnu4     Akt_bak      Tnudg
+         (N/m2)      (N/m2)      (m2/s)      (m4/s)       (m2/s)      (day)
+
+   1    1.0000E-01  1.0000E-01  0.0000E+00  0.0000E+00  5.0000E-06  0.0000E+00
+   2    1.0000E-01  1.0000E-01  0.0000E+00  0.0000E+00  5.0000E-06  0.0000E+00
+
+         morph_fac
+         (nondim)
+
+   1    1.0000E+00
+   2    1.0000E+00
+
+ New bed layer formed when deposition exceeds 0.10000E-01 (m).
+ Two first layers are combined when 2nd layer smaller than 0.37474-304 (m).
+ Rate coefficient for bed load transport = 0.50000E-01
+
+          T  Hout(idTvar)   Write out sediment01: mud_01
+          T  Hout(idTvar)   Write out sediment02: sand_01
+          T  Hout(idfrac)   Write out bed fraction, sediment 01: mudfrac_01
+          T  Hout(idfrac)   Write out bed fraction, sediment 02: sandfrac_01
+          T  Hout(idfrac)   Write out mass, sediment 01: mudmass_01
+          T  Hout(idfrac)   Write out mass, sediment 02: sandmass_01
+          T  Hout(idSbed)   Write out BED property 01: bed_thickness
+          T  Hout(idSbed)   Write out BED property 02: bed_age
+          T  Hout(idSbed)   Write out BED property 03: bed_porosity
+
+          T  Aout(idTvar)   Write out averaged sediment01: mud_01
+          T  Aout(idTvar)   Write out averaged sediment02: sand_01
+
+ Activated C-preprocessing Options:
+
+ SED_TEST1           Suspended Sediment Test in a Channel
+ ANA_BPFLUX          Analytical bottom passive tracers fluxes.
+ ANA_BSFLUX          Analytical kinematic bottom salinity flux.
+ ANA_BTFLUX          Analytical kinematic bottom temperature flux.
+ ANA_FSOBC           Analytical free-surface boundary conditions.
+ ANA_GRID            Analytical grid set-up.
+ ANA_INITIAL         Analytical initial conditions.
+ ANA_PSOURCE         Analytical point sources and sinks.
+ ANA_SEDIMENT        Analytical sediment initial conditions.
+ ANA_SMFLUX          Analytical kinematic surface momentum flux.
+ ANA_SPFLUX          Analytical surface passive tracer fluxes.
+ ANA_SSFLUX          Analytical kinematic surface salinity flux.
+ ANA_STFLUX          Analytical kinematic surface temperature flux.
+ ANA_TOBC            Analytical tracers boundary conditions.
+ ASSUMED_SHAPE       Using assumed-shape arrays.
+ AVERAGES            Writing out time-averaged nonlinear model fields.
+ DOUBLE_PRECISION    Double precision arithmetic.
+ EAST_FSCLAMPED      Eastern edge, free-surface, Clamped condition.
+ EAST_M2RADIATION    Eastern edge, 2D momentum, radiation condition.
+ EAST_M3RADIATION    Eastern edge, 3D momentum, radiation condition.
+ EAST_TCLAMPED       Eastern edge, tracers, Clamped condition.
+ KANTHA_CLAYSON      Kantha and Clayson stability function formulation.
+ MIX_S_TS            Mixing of tracers along constant S-surfaces.
+ MIX_S_UV            Mixing of momentum along constant S-surfaces.
+ MY25_MIXING         Mellor/Yamada Level-2.5 mixing closure.
+ NONLINEAR           Nonlinear Model.
+ !NONLIN_EOS         Linear Equation of State for seawater.
+ NORTHERN_WALL       Wall boundary at Northern edge.
+ N2S2_HORAVG         Horizontal smoothing of buoyancy and shear.
+ POWER_LAW           Power-law shape time-averaging barotropic filter.
+ PRSGRD31            Standard density Jacobian formulation (Song, 1998).
+ PROFILE             Time profiling activated .
+ K_GSCHEME           Third-order upstream advection of TKE fields.
+ RHO_SURF            Include difference between rho0 and surface density.
+ !RST_SINGLE         Double precision fields in restart NetCDF file.
+ SALINITY            Using salinity.
+ SEDIMENT            Cohesive and noncohesive sediments.
+ SUSPLOAD            Activate suspended sediment transport.
+ SOLVE3D             Solving 3D Primitive Equations.
+ SOUTHERN_WALL       Wall boundary at Southern edge.
+ SPLINES             Conservative parabolic spline reconstruction.
+ TS_U3HADVECTION     Third-order upstream horizontal advection of tracers.
+ TS_C4VADVECTION     Fourth-order centered vertical advection of tracers.
+ TS_DIF4             Biharmonic mixing of tracers.
+ UV_ADV              Advection of momentum.
+ UV_U3HADVECTION     Third-order upstream horizontal advection of 3D momentum.
+ UV_C4VADVECTION     Fourth-order centered vertical advection of momentum.
+ UV_LOGDRAG          Logarithmic bottom stress.
+ UV_PSOURCE          Mass point sources and sinks.
+ UV_VIS4             Biharmonic mixing of momentum.
+ VAR_RHO_2D          Variable density barotropic mode.
+ WEST_FSRADIATION    Western edge, free-sruface, radiation condition.
+ WEST_M2RADIATION    Western edge, 2D momentum, radiation condition.
+ WEST_M3RADIATION    Western edge, 3D momentum, radiation condition.
+ WEST_TGRADIENT      Western edge, tracers, gradient condition.
+
+ Process Information:
+
+ Thread #  0 (pid=       0) is active.
+
+ INITIAL: Configuring and initializing forward nonlinear model ...
+
+
+ Vertical S-coordinate System: 
+
+ level   S-coord     Cs-curve   Z   at hmin       at hc    half way     at hmax
+
+    10   0.0000000   0.0000000        0.000       0.000       0.000       0.000
+     9  -0.1000000  -0.0889041       -0.900      -0.100      -0.900      -0.900
+     8  -0.2000000  -0.1848065       -1.863      -0.200      -1.863      -1.863
+     7  -0.3000000  -0.2864445       -2.878      -0.300      -2.878      -2.878
+     6  -0.4000000  -0.3921616       -3.929      -0.400      -3.929      -3.929
+     5  -0.5000000  -0.5000000       -5.000      -0.500      -5.000      -5.000
+     4  -0.6000000  -0.6078384       -6.071      -0.600      -6.071      -6.071
+     3  -0.7000000  -0.7135555       -7.122      -0.700      -7.122      -7.122
+     2  -0.8000000  -0.8151935       -8.137      -0.800      -8.137      -8.137
+     1  -0.9000000  -0.9110959       -9.100      -0.900      -9.100      -9.100
+     0  -1.0000000  -1.0000000      -10.000      -1.000     -10.000     -10.000
+
+ Time Splitting Weights: ndtfast =  20    nfast =  29
+
+    Primary            Secondary            Accumulated to Current Step
+
+  1-0.0009651193358779 0.0500000000000000-0.0009651193358779 0.0500000000000000
+  2-0.0013488780126037 0.0500482559667939-0.0023139973484816 0.1000482559667939
+  3-0.0011514592651645 0.0501156998674241-0.0034654566136461 0.1501639558342180
+  4-0.0003735756740661 0.0501732728306823-0.0038390322877122 0.2003372286649003
+  5 0.0009829200513762 0.0501919516143856-0.0028561122363360 0.2505291802792859
+  6 0.0029141799764308 0.0501428056118168 0.0000580677400948 0.3006719858911027
+  7 0.0054132615310267 0.0499970966129953 0.0054713292711215 0.3506690825040980
+  8 0.0084687837865133 0.0497264335364439 0.0139401130576347 0.4003955160405419
+  9 0.0120633394191050 0.0493029943471183 0.0260034524767397 0.4496985103876601
+ 10 0.0161716623600090 0.0486998273761630 0.0421751148367487 0.4983983377638231
+ 11 0.0207585511322367 0.0478912442581626 0.0629336659689854 0.5462895820219857
+ 12 0.0257765478740990 0.0468533167015507 0.0887102138430845 0.5931428987235364
+ 13 0.0311633730493853 0.0455644893078458 0.1198735868924698 0.6387073880313822
+ 14 0.0368391158442262 0.0440063206553765 0.1567127027366960 0.6827137086867587
+ 15 0.0427031802506397 0.0421643648631652 0.1994158829873357 0.7248780735499240
+ 16 0.0486309868367616 0.0400292058506332 0.2480468698240973 0.7649072794005571
+ 17 0.0544704302037592 0.0375976565087951 0.3025173000278565 0.8025049359093522
+ 18 0.0600380921294286 0.0348741349986072 0.3625553921572852 0.8373790709079594
+ 19 0.0651152103984763 0.0318722303921357 0.4276706025557615 0.8692513013000951
+ 20 0.0694434033194840 0.0286164698722119 0.4971140058752455 0.8978677711723070
+ 21 0.0727201499285570 0.0251442997062377 0.5698341558038025 0.9230120708785448
+ 22 0.0745940258796570 0.0215082922098099 0.6444281816834595 0.9445203630883546
+ 23 0.0746596950216180 0.0177785909158270 0.7190878767050776 0.9622989540041816
+ 24 0.0724526566618460 0.0140456061647461 0.7915405333669235 0.9763445601689278
+ 25 0.0674437485167025 0.0104229733316538 0.8589842818836261 0.9867675335005817
+ 26 0.0590334053485720 0.0070507859058187 0.9180176872321981 0.9938183194064004
+ 27 0.0465456732896125 0.0040991156383901 0.9645633605218106 0.9979174350447905
+ 28 0.0292219798521905 0.0017718319739095 0.9937853403740010 0.9996892670187000
+ 29 0.0062146596259991 0.0003107329813000 1.0000000000000002 0.9999999999999999
+
+ ndtfast, nfast =   20  29   nfast/ndtfast =  1.45000
+
+ Centers of gravity and integrals (values must be 1, 1, approx 1/2, 1, 1):
+
+    1.000000000000 1.060707743385 0.530353871693 1.000000000000 1.000000000000
+
+ Power filter parameters, Fgamma, gamma =  0.28400   0.14200
+
+ Minimum X-grid spacing, DXmin =  3.00000000E-03 km
+ Maximum X-grid spacing, DXmax =  3.00000000E-03 km
+ Minimum Y-grid spacing, DYmin =  3.00000000E-03 km
+ Maximum Y-grid spacing, DYmax =  3.00000000E-03 km
+ Minimum Z-grid spacing, DZmin =  9.00136657E-01 m
+ Maximum Z-grid spacing, DZmax =  1.07054604E+00 m
+
+ Minimum barotropic Courant Number =  2.33452351E-01
+ Maximum barotropic Courant Number =  2.33452351E-01
+ Maximum Coriolis   Courant Number =  0.00000000E+00
+
+
+ Maximum grid stiffness ratios:  rx0 =   0.000000E+00 (Beckmann and Haidvogel)
+                                 rx1 =   0.000000E+00 (Haney)
+
+
+ Initial basin volumes: TotVolume =  1.0800000000E+05 m3
+                        MinVolume =  8.1012299163E+00 m3
+                        MaxVolume =  9.6349143370E+00 m3
+                          Max/Min =  1.1893150098E+00
+
+
+ NL ROMS/TOMS: started time-stepping: (Grid: 01 TimeSteps: 00000001 - 00001000)
+
+
+     STEP   Day HH:MM:SS  KINETIC_ENRG  POTEN_ENRG   TOTAL_ENRG   NET_VOLUME
+            C => (i,j,k)       Cu           Cv           Cw        Max Speed
+
+        0     0 00:00:00  5.133335E-01 4.935763E+01 4.987097E+01 1.084909E+05
+             (100,12,10)  3.815217E-01 0.000000E+00 0.000000E+00 1.144565E+00
+      DEF_HIS   - creating history file: ocean_his.nc
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000001
+      DEF_AVG   - creating average file: ocean_avg.nc
+        1     0 00:00:01  5.152820E-01 4.935758E+01 4.987286E+01 1.084909E+05
+             (010,01,10)  3.825039E-01 0.000000E+00 3.625483E-04 1.147512E+00
+        2     0 00:00:02  5.172244E-01 4.935752E+01 4.987475E+01 1.084909E+05
+             (001,01,05)  3.419442E-01 0.000000E+00 1.604479E-01 1.150684E+00
+        3     0 00:00:03  5.187819E-01 4.935746E+01 4.987624E+01 1.084909E+05
+             (094,01,10)  3.790338E-01 0.000000E+00 1.393392E-02 1.153404E+00
+        4     0 00:00:04  5.204199E-01 4.935740E+01 4.987782E+01 1.084909E+05
+             (001,01,05)  3.420967E-01 0.000000E+00 1.589401E-01 1.156349E+00
+        5     0 00:00:05  5.215876E-01 4.935733E+01 4.987892E+01 1.084909E+05
+             (099,01,07)  3.556420E-01 0.000000E+00 4.155067E-02 1.159294E+00
+        6     0 00:00:06  5.228457E-01 4.935726E+01 4.988011E+01 1.084909E+05
+             (001,01,05)  3.422275E-01 0.000000E+00 1.677480E-01 1.162238E+00
+        7     0 00:00:07  5.236326E-01 4.935720E+01 4.988083E+01 1.084909E+05
+             (099,01,06)  3.467732E-01 0.000000E+00 5.339334E-02 1.165181E+00
+        8     0 00:00:08  5.245153E-01 4.935714E+01 4.988165E+01 1.084909E+05
+             (001,01,05)  3.423089E-01 0.000000E+00 1.740563E-01 1.168124E+00
+        9     0 00:00:09  5.249201E-01 4.935709E+01 4.988201E+01 1.084909E+05
+             (100,01,05)  3.318490E-01 0.000000E+00 8.290753E-02 1.171066E+00
+       10     0 00:00:10  5.254083E-01 4.935704E+01 4.988245E+01 1.084909E+05
+             (001,01,05)  3.371591E-01 0.000000E+00 1.730486E-01 1.174007E+00
+       11     0 00:00:11  5.254016E-01 4.935701E+01 4.988241E+01 1.084909E+05
+             (100,01,04)  3.294633E-01 0.000000E+00 1.046101E-01 1.176948E+00
+       12     0 00:00:12  5.255130E-01 4.935699E+01 4.988250E+01 1.084909E+05
+             (001,01,07)  3.537185E-01 0.000000E+00 1.214513E-01 1.179879E+00
+       13     0 00:00:13  5.251901E-01 4.935698E+01 4.988217E+01 1.084909E+05
+             (100,01,04)  3.290148E-01 0.000000E+00 1.164024E-01 1.182629E+00
+       14     0 00:00:14  5.249323E-01 4.935699E+01 4.988192E+01 1.084909E+05
+             (001,01,07)  3.555286E-01 0.000000E+00 1.005400E-01 1.183917E+00
+       15     0 00:00:15  5.242389E-01 4.935701E+01 4.988125E+01 1.084909E+05
+             (100,01,04)  3.289216E-01 0.000000E+00 1.177512E-01 1.180882E+00
+       16     0 00:00:16  5.236367E-01 4.935705E+01 4.988068E+01 1.084909E+05
+             (001,01,06)  3.478136E-01 0.000000E+00 1.124508E-01 1.175948E+00
+       17     0 00:00:17  5.225887E-01 4.935708E+01 4.987967E+01 1.084909E+05
+             (100,01,04)  3.289660E-01 0.000000E+00 1.140257E-01 1.172493E+00
+       18     0 00:00:18  5.216362E-01 4.935713E+01 4.987876E+01 1.084909E+05
+             (001,01,06)  3.506675E-01 0.000000E+00 1.171710E-01 1.169718E+00
+       19     0 00:00:19  5.202348E-01 4.935717E+01 4.987740E+01 1.084909E+05
+             (100,01,05)  3.329582E-01 0.000000E+00 1.056102E-01 1.168197E+00
+       20     0 00:00:20  5.188971E-01 4.935721E+01 4.987611E+01 1.084909E+05
+             (001,01,05)  3.389157E-01 0.000000E+00 1.239693E-01 1.166663E+00
+       21     0 00:00:21  5.171075E-01 4.935725E+01 4.987436E+01 1.084909E+05
+             (100,01,05)  3.332693E-01 0.000000E+00 1.021938E-01 1.165110E+00
+       22     0 00:00:22  5.153724E-01 4.935729E+01 4.987266E+01 1.084909E+05
+             (001,01,05)  3.392575E-01 0.000000E+00 1.224538E-01 1.163562E+00
+       23     0 00:00:23  5.132721E-01 4.935732E+01 4.987059E+01 1.084909E+05
+             (100,01,05)  3.335955E-01 0.000000E+00 1.002647E-01 1.162075E+00
+       24     0 00:00:24  5.112746E-01 4.935735E+01 4.986862E+01 1.084909E+05
+             (001,01,05)  3.382447E-01 0.000000E+00 1.066510E-01 1.163011E+00
+       25     0 00:00:25  5.088865E-01 4.935736E+01 4.986625E+01 1.084909E+05
+             (100,01,05)  3.339196E-01 0.000000E+00 9.961063E-02 1.165844E+00
+       26     0 00:00:26  5.066323E-01 4.935737E+01 4.986400E+01 1.084909E+05
+             (001,01,06)  3.461969E-01 0.000000E+00 8.188857E-02 1.166585E+00
+       27     0 00:00:27  5.041508E-01 4.935736E+01 4.986151E+01 1.084909E+05
+             (100,01,05)  3.341880E-01 0.000000E+00 9.967515E-02 1.168759E+00
+       28     0 00:00:28  5.020581E-01 4.935735E+01 4.985941E+01 1.084909E+05
+             (100,01,05)  3.378570E-01 0.000000E+00 9.006721E-02 1.167378E+00
+       29     0 00:00:29  4.999550E-01 4.935734E+01 4.985729E+01 1.084909E+05
+             (100,01,05)  3.344151E-01 0.000000E+00 1.001332E-01 1.165465E+00
+       30     0 00:00:30  4.982245E-01 4.935732E+01 4.985554E+01 1.084909E+05
+             (100,01,05)  3.380482E-01 0.000000E+00 8.958444E-02 1.161764E+00
+       31     0 00:00:31  4.962955E-01 4.935729E+01 4.985359E+01 1.084909E+05
+             (100,01,05)  3.345578E-01 0.000000E+00 1.005683E-01 1.157711E+00
+       32     0 00:00:32  4.946061E-01 4.935726E+01 4.985187E+01 1.084909E+05
+             (100,01,05)  3.380986E-01 0.000000E+00 8.937579E-02 1.156782E+00
+       33     0 00:00:33  4.927336E-01 4.935723E+01 4.984996E+01 1.084909E+05
+             (100,01,05)  3.344503E-01 0.000000E+00 1.002451E-01 1.154524E+00
+       34     0 00:00:34  4.912035E-01 4.935719E+01 4.984840E+01 1.084909E+05
+             (100,01,05)  3.378172E-01 0.000000E+00 9.059876E-02 1.152564E+00
+       35     0 00:00:35  4.896160E-01 4.935716E+01 4.984677E+01 1.084909E+05
+             (100,01,05)  3.341147E-01 0.000000E+00 9.797806E-02 1.150589E+00
+       36     0 00:00:36  4.884710E-01 4.935712E+01 4.984559E+01 1.084909E+05
+             (100,01,05)  3.375853E-01 0.000000E+00 9.261485E-02 1.147893E+00
+       37     0 00:00:37  4.872901E-01 4.935708E+01 4.984437E+01 1.084909E+05
+             (100,01,05)  3.339947E-01 0.000000E+00 9.692458E-02 1.145283E+00
+       38     0 00:00:38  4.865149E-01 4.935705E+01 4.984357E+01 1.084909E+05
+             (100,01,05)  3.374702E-01 0.000000E+00 9.270485E-02 1.144154E+00
+       39     0 00:00:39  4.856658E-01 4.935703E+01 4.984269E+01 1.084909E+05
+             (100,01,05)  3.338421E-01 0.000000E+00 9.662581E-02 1.141466E+00
+       40     0 00:00:40  4.852278E-01 4.935701E+01 4.984223E+01 1.084909E+05
+             (001,01,07)  3.549380E-01 0.000000E+00 7.638253E-02 1.140611E+00
+       41     0 00:00:41  4.847221E-01 4.935700E+01 4.984172E+01 1.084909E+05
+             (100,01,05)  3.336957E-01 0.000000E+00 9.587930E-02 1.140678E+00
+       42     0 00:00:42  4.846347E-01 4.935700E+01 4.984163E+01 1.084909E+05
+             (001,01,07)  3.555896E-01 0.000000E+00 8.096729E-02 1.140801E+00
+       43     0 00:00:43  4.844772E-01 4.935701E+01 4.984149E+01 1.084909E+05
+             (100,01,05)  3.335538E-01 0.000000E+00 9.524861E-02 1.140976E+00
+       44     0 00:00:44  4.847020E-01 4.935703E+01 4.984173E+01 1.084909E+05
+             (001,01,07)  3.562722E-01 0.000000E+00 8.510684E-02 1.141525E+00
+       45     0 00:00:45  4.848323E-01 4.935707E+01 4.984190E+01 1.084909E+05
+             (100,01,05)  3.334060E-01 0.000000E+00 9.463195E-02 1.142332E+00
+       46     0 00:00:46  4.853877E-01 4.935712E+01 4.984251E+01 1.084909E+05
+             (001,01,07)  3.568400E-01 0.000000E+00 8.751669E-02 1.143026E+00
+       47     0 00:00:47  4.858429E-01 4.935718E+01 4.984303E+01 1.084909E+05
+             (100,01,05)  3.332463E-01 0.000000E+00 9.387707E-02 1.143384E+00
+       48     0 00:00:48  4.866953E-01 4.935725E+01 4.984394E+01 1.084909E+05
+             (001,01,06)  3.481008E-01 0.000000E+00 9.752862E-02 1.142722E+00
+       49     0 00:00:49  4.874781E-01 4.935732E+01 4.984479E+01 1.084909E+05
+             (100,01,05)  3.331085E-01 0.000000E+00 9.328629E-02 1.143663E+00
+       50     0 00:00:50  4.886855E-01 4.935738E+01 4.984607E+01 1.084909E+05
+             (001,01,06)  3.485466E-01 0.000000E+00 9.619944E-02 1.143906E+00
+       51     0 00:00:51  4.898241E-01 4.935745E+01 4.984727E+01 1.084909E+05
+             (100,01,05)  3.329678E-01 0.000000E+00 9.272265E-02 1.143676E+00
+       52     0 00:00:52  4.913875E-01 4.935751E+01 4.984890E+01 1.084909E+05
+             (001,01,06)  3.488597E-01 0.000000E+00 9.371707E-02 1.144639E+00
+       53     0 00:00:53  4.928829E-01 4.935757E+01 4.985045E+01 1.084909E+05
+             (100,01,05)  3.328266E-01 0.000000E+00 9.216156E-02 1.150179E+00
+       54     0 00:00:54  4.947904E-01 4.935762E+01 4.985241E+01 1.084909E+05
+             (001,01,06)  3.490862E-01 0.000000E+00 9.083468E-02 1.151217E+00
+       55     0 00:00:55  4.966176E-01 4.935766E+01 4.985428E+01 1.084909E+05
+             (100,01,05)  3.326704E-01 0.000000E+00 9.151581E-02 1.155249E+00
+       56     0 00:00:56  4.988185E-01 4.935769E+01 4.985651E+01 1.084909E+05
+             (001,01,06)  3.492326E-01 0.000000E+00 8.879528E-02 1.155745E+00
+       57     0 00:00:57  5.009393E-01 4.935771E+01 4.985865E+01 1.084909E+05
+             (100,01,05)  3.325551E-01 0.000000E+00 9.092987E-02 1.156566E+00
+       58     0 00:00:58  5.034740E-01 4.935771E+01 4.986119E+01 1.084909E+05
+             (001,01,06)  3.493520E-01 0.000000E+00 8.793002E-02 1.157417E+00
+       59     0 00:00:59  5.058677E-01 4.935770E+01 4.986357E+01 1.084909E+05
+             (100,01,05)  3.326522E-01 0.000000E+00 9.111296E-02 1.161059E+00
+       60     0 00:01:00  5.085148E-01 4.935767E+01 4.986619E+01 1.084909E+05
+             (001,01,06)  3.494550E-01 0.000000E+00 8.792578E-02 1.164354E+00
+       61     0 00:01:01  5.107860E-01 4.935763E+01 4.986842E+01 1.084909E+05
+             (100,01,05)  3.330902E-01 0.000000E+00 9.335629E-02 1.167144E+00
+       62     0 00:01:02  5.130407E-01 4.935758E+01 4.987062E+01 1.084909E+05
+             (001,01,06)  3.494222E-01 0.000000E+00 8.827252E-02 1.170669E+00
+       63     0 00:01:03  5.147023E-01 4.935752E+01 4.987223E+01 1.084909E+05
+             (100,01,05)  3.333646E-01 0.000000E+00 9.570043E-02 1.173899E+00
+       64     0 00:01:04  5.162726E-01 4.935746E+01 4.987374E+01 1.084909E+05
+             (001,01,06)  3.490968E-01 0.000000E+00 8.958572E-02 1.176646E+00
+       65     0 00:01:05  5.174116E-01 4.935740E+01 4.987481E+01 1.084909E+05
+             (100,01,05)  3.333667E-01 0.000000E+00 9.506482E-02 1.182873E+00
+       66     0 00:01:06  5.186215E-01 4.935733E+01 4.987596E+01 1.084909E+05
+             (001,01,06)  3.487318E-01 0.000000E+00 9.226336E-02 1.184636E+00
+       67     0 00:01:07  5.194311E-01 4.935727E+01 4.987670E+01 1.084909E+05
+             (100,01,05)  3.334741E-01 0.000000E+00 9.483503E-02 1.185798E+00
+       68     0 00:01:08  5.203331E-01 4.935721E+01 4.987754E+01 1.084909E+05
+             (001,01,06)  3.484241E-01 0.000000E+00 9.414197E-02 1.190559E+00
+       69     0 00:01:09  5.208256E-01 4.935715E+01 4.987798E+01 1.084909E+05
+             (100,01,05)  3.335684E-01 0.000000E+00 9.522172E-02 1.193323E+00
+       70     0 00:01:10  5.214070E-01 4.935710E+01 4.987851E+01 1.084909E+05
+             (001,01,06)  3.481195E-01 0.000000E+00 9.490438E-02 1.194134E+00
+       71     0 00:01:11  5.215704E-01 4.935705E+01 4.987862E+01 1.084909E+05
+             (100,01,05)  3.336699E-01 0.000000E+00 9.543750E-02 1.197784E+00
+       72     0 00:01:12  5.218107E-01 4.935702E+01 4.987883E+01 1.084909E+05
+             (001,01,06)  3.478231E-01 0.000000E+00 9.462936E-02 1.198993E+00
+       73     0 00:01:13  5.216212E-01 4.935699E+01 4.987862E+01 1.084909E+05
+             (100,01,05)  3.337844E-01 0.000000E+00 9.582967E-02 1.201711E+00
+       74     0 00:01:14  5.214590E-01 4.935698E+01 4.987844E+01 1.084909E+05
+             (001,01,06)  3.475401E-01 0.000000E+00 9.343357E-02 1.198282E+00
+       75     0 00:01:15  5.208638E-01 4.935699E+01 4.987785E+01 1.084909E+05
+             (100,01,05)  3.338893E-01 0.000000E+00 9.617321E-02 1.197947E+00
+       76     0 00:01:16  5.203472E-01 4.935700E+01 4.987735E+01 1.084909E+05
+             (001,01,06)  3.472824E-01 0.000000E+00 9.149010E-02 1.195815E+00
+       77     0 00:01:17  5.194305E-01 4.935703E+01 4.987646E+01 1.084909E+05
+             (100,01,05)  3.339957E-01 0.000000E+00 9.649187E-02 1.192120E+00
+       78     0 00:01:18  5.185950E-01 4.935705E+01 4.987565E+01 1.084909E+05
+             (001,01,06)  3.470264E-01 0.000000E+00 8.927353E-02 1.188237E+00
+       79     0 00:01:19  5.173481E-01 4.935709E+01 4.987444E+01 1.084909E+05
+             (100,01,05)  3.340728E-01 0.000000E+00 9.672932E-02 1.185038E+00
+       80     0 00:01:20  5.161932E-01 4.935712E+01 4.987332E+01 1.084909E+05
+             (001,01,06)  3.468042E-01 0.000000E+00 8.712979E-02 1.181631E+00
+       81     0 00:01:21  5.146601E-01 4.935716E+01 4.987182E+01 1.084909E+05
+             (100,01,05)  3.341775E-01 0.000000E+00 9.697674E-02 1.178196E+00
+       82     0 00:01:22  5.132023E-01 4.935719E+01 4.987039E+01 1.084909E+05
+             (001,01,06)  3.466091E-01 0.000000E+00 8.494868E-02 1.175693E+00
+       83     0 00:01:23  5.113570E-01 4.935722E+01 4.986858E+01 1.084909E+05
+             (100,01,05)  3.342771E-01 0.000000E+00 9.734257E-02 1.173721E+00
+       84     0 00:01:24  5.096003E-01 4.935725E+01 4.986685E+01 1.084909E+05
+             (100,01,05)  3.378690E-01 0.000000E+00 9.200463E-02 1.171172E+00
+       85     0 00:01:25  5.074583E-01 4.935727E+01 4.986472E+01 1.084909E+05
+             (100,01,05)  3.343825E-01 0.000000E+00 9.768398E-02 1.169170E+00
+       86     0 00:01:26  5.054606E-01 4.935728E+01 4.986274E+01 1.084909E+05
+             (100,01,05)  3.379747E-01 0.000000E+00 9.170286E-02 1.166576E+00
+       87     0 00:01:27  5.031581E-01 4.935728E+01 4.986044E+01 1.084909E+05
+             (100,01,05)  3.344845E-01 0.000000E+00 9.803835E-02 1.164246E+00
+       88     0 00:01:28  5.010992E-01 4.935728E+01 4.985838E+01 1.084909E+05
+             (001,01,06)  3.460196E-01 0.000000E+00 8.418636E-02 1.162058E+00
+       89     0 00:01:29  4.988681E-01 4.935727E+01 4.985614E+01 1.084909E+05
+             (100,01,05)  3.345813E-01 0.000000E+00 9.833079E-02 1.159664E+00
+       90     0 00:01:30  4.969732E-01 4.935726E+01 4.985423E+01 1.084909E+05
+             (001,01,06)  3.462760E-01 0.000000E+00 8.602520E-02 1.157504E+00
+       91     0 00:01:31  4.949856E-01 4.935724E+01 4.985223E+01 1.084909E+05
+             (100,01,05)  3.346514E-01 0.000000E+00 9.860098E-02 1.154609E+00
+       92     0 00:01:32  4.933374E-01 4.935722E+01 4.985056E+01 1.084909E+05
+             (001,01,06)  3.466560E-01 0.000000E+00 8.693877E-02 1.152828E+00
+       93     0 00:01:33  4.915203E-01 4.935720E+01 4.984872E+01 1.084909E+05
+             (100,01,05)  3.346167E-01 0.000000E+00 9.840041E-02 1.152068E+00
+       94     0 00:01:34  4.899868E-01 4.935717E+01 4.984716E+01 1.084909E+05
+             (001,01,06)  3.468776E-01 0.000000E+00 8.883773E-02 1.151448E+00
+       95     0 00:01:35  4.883467E-01 4.935715E+01 4.984549E+01 1.084909E+05
+             (100,01,05)  3.344406E-01 0.000000E+00 9.745426E-02 1.151086E+00
+       96     0 00:01:36  4.870863E-01 4.935712E+01 4.984420E+01 1.084909E+05
+             (001,01,06)  3.470718E-01 0.000000E+00 9.245756E-02 1.153324E+00
+       97     0 00:01:37  4.857520E-01 4.935709E+01 4.984284E+01 1.084909E+05
+             (100,01,05)  3.342160E-01 0.000000E+00 9.607296E-02 1.151361E+00
+       98     0 00:01:38  4.848490E-01 4.935706E+01 4.984191E+01 1.084909E+05
+             (001,01,06)  3.473328E-01 0.000000E+00 9.682899E-02 1.154775E+00
+       99     0 00:01:39  4.838564E-01 4.935704E+01 4.984089E+01 1.084909E+05
+             (100,01,05)  3.340632E-01 0.000000E+00 9.525288E-02 1.152625E+00
+      100     0 00:01:40  4.832761E-01 4.935702E+01 4.984029E+01 1.084909E+05
+             (001,01,06)  3.476638E-01 0.000000E+00 1.015846E-01 1.147898E+00
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000002
+      101     0 00:01:41  4.826001E-01 4.935701E+01 4.983961E+01 1.084909E+05
+             (100,01,05)  3.339297E-01 0.000000E+00 9.493950E-02 1.149374E+00
+      102     0 00:01:42  4.823541E-01 4.935700E+01 4.983936E+01 1.084909E+05
+             (001,01,06)  3.480992E-01 0.000000E+00 1.062440E-01 1.150194E+00
+      103     0 00:01:43  4.820289E-01 4.935701E+01 4.983903E+01 1.084909E+05
+             (100,01,05)  3.337709E-01 0.000000E+00 9.434787E-02 1.150869E+00
+      104     0 00:01:44  4.821313E-01 4.935702E+01 4.983915E+01 1.084909E+05
+             (001,01,06)  3.485987E-01 0.000000E+00 1.103285E-01 1.151243E+00
+      105     0 00:01:45  4.821426E-01 4.935705E+01 4.983919E+01 1.084909E+05
+             (100,01,05)  3.336176E-01 0.000000E+00 9.376534E-02 1.151292E+00
+      106     0 00:01:46  4.825785E-01 4.935708E+01 4.983966E+01 1.084909E+05
+             (001,01,06)  3.491738E-01 0.000000E+00 1.134911E-01 1.150464E+00
+      107     0 00:01:47  4.829050E-01 4.935713E+01 4.984004E+01 1.084909E+05
+             (100,01,05)  3.334674E-01 0.000000E+00 9.322681E-02 1.150714E+00
+      108     0 00:01:48  4.836312E-01 4.935719E+01 4.984082E+01 1.084909E+05
+             (001,01,06)  3.497433E-01 0.000000E+00 1.154668E-01 1.150515E+00
+      109     0 00:01:49  4.842682E-01 4.935724E+01 4.984151E+01 1.084909E+05
+             (100,01,05)  3.333122E-01 0.000000E+00 9.267584E-02 1.150367E+00
+      110     0 00:01:50  4.853263E-01 4.935731E+01 4.984263E+01 1.084909E+05
+             (001,01,06)  3.502913E-01 0.000000E+00 1.165573E-01 1.150173E+00
+      111     0 00:01:51  4.862621E-01 4.935737E+01 4.984363E+01 1.084909E+05
+             (100,01,05)  3.331561E-01 0.000000E+00 9.207469E-02 1.152111E+00
+      112     0 00:01:52  4.876585E-01 4.935743E+01 4.984509E+01 1.084909E+05
+             (001,01,06)  3.507780E-01 0.000000E+00 1.167114E-01 1.152687E+00
+      113     0 00:01:53  4.889542E-01 4.935749E+01 4.984644E+01 1.084909E+05
+             (100,01,05)  3.330266E-01 0.000000E+00 9.161724E-02 1.155303E+00
+      114     0 00:01:54  4.906312E-01 4.935754E+01 4.984817E+01 1.084909E+05
+             (001,01,06)  3.511699E-01 0.000000E+00 1.165995E-01 1.155149E+00
+      115     0 00:01:55  4.922267E-01 4.935758E+01 4.984981E+01 1.084909E+05
+             (100,01,05)  3.328825E-01 0.000000E+00 9.117246E-02 1.157486E+00
+      116     0 00:01:56  4.942608E-01 4.935762E+01 4.985188E+01 1.084909E+05
+             (001,01,06)  3.514900E-01 0.000000E+00 1.165293E-01 1.156327E+00
+      117     0 00:01:57  4.961996E-01 4.935764E+01 4.985384E+01 1.084909E+05
+             (100,01,05)  3.327662E-01 0.000000E+00 9.062802E-02 1.159863E+00
+      118     0 00:01:58  4.985477E-01 4.935766E+01 4.985621E+01 1.084909E+05
+             (001,01,05)  3.412085E-01 0.000000E+00 1.274187E-01 1.158825E+00
+      119     0 00:01:59  5.007440E-01 4.935766E+01 4.985840E+01 1.084909E+05
+             (100,01,05)  3.327928E-01 0.000000E+00 9.073261E-02 1.162671E+00
+      120     0 00:02:00  5.032582E-01 4.935765E+01 4.986091E+01 1.084909E+05
+             (001,01,05)  3.414167E-01 0.000000E+00 1.278417E-01 1.161945E+00
+      121     0 00:02:01  5.054874E-01 4.935762E+01 4.986311E+01 1.084909E+05
+             (100,01,05)  3.330206E-01 0.000000E+00 9.193192E-02 1.165369E+00
+      122     0 00:02:02  5.078746E-01 4.935758E+01 4.986546E+01 1.084909E+05
+             (001,01,05)  3.415375E-01 0.000000E+00 1.280749E-01 1.164043E+00
+      123     0 00:02:03  5.098145E-01 4.935754E+01 4.986735E+01 1.084909E+05
+             (100,01,05)  3.333086E-01 0.000000E+00 9.371728E-02 1.167092E+00
+      124     0 00:02:04  5.117854E-01 4.935748E+01 4.986927E+01 1.084909E+05
+             (001,01,05)  3.414907E-01 0.000000E+00 1.279401E-01 1.165584E+00
+      125     0 00:02:05  5.132485E-01 4.935743E+01 4.987067E+01 1.084909E+05
+             (100,01,05)  3.334629E-01 0.000000E+00 9.460871E-02 1.168510E+00
+      126     0 00:02:06  5.147486E-01 4.935736E+01 4.987211E+01 1.084909E+05
+             (001,01,05)  3.413209E-01 0.000000E+00 1.278717E-01 1.168249E+00
+      127     0 00:02:07  5.157858E-01 4.935730E+01 4.987309E+01 1.084909E+05
+             (100,01,05)  3.335249E-01 0.000000E+00 9.447971E-02 1.168838E+00
+      128     0 00:02:08  5.169139E-01 4.935724E+01 4.987416E+01 1.084909E+05
+             (001,01,05)  3.411414E-01 0.000000E+00 1.278225E-01 1.168936E+00
+      129     0 00:02:09  5.176169E-01 4.935718E+01 4.987480E+01 1.084909E+05
+             (100,01,05)  3.336066E-01 0.000000E+00 9.447867E-02 1.166286E+00
+      130     0 00:02:10  5.184233E-01 4.935713E+01 4.987555E+01 1.084909E+05
+             (001,01,05)  3.409929E-01 0.000000E+00 1.273107E-01 1.166295E+00
+      131     0 00:02:11  5.188031E-01 4.935708E+01 4.987588E+01 1.084909E+05
+             (100,01,05)  3.337058E-01 0.000000E+00 9.479353E-02 1.163742E+00
+      132     0 00:02:12  5.192791E-01 4.935704E+01 4.987632E+01 1.084909E+05
+             (001,01,05)  3.408238E-01 0.000000E+00 1.263838E-01 1.161925E+00
+      133     0 00:02:13  5.193244E-01 4.935701E+01 4.987633E+01 1.084909E+05
+             (100,01,05)  3.338047E-01 0.000000E+00 9.512886E-02 1.160966E+00
+      134     0 00:02:14  5.194632E-01 4.935699E+01 4.987645E+01 1.084909E+05
+             (001,01,05)  3.406163E-01 0.000000E+00 1.255185E-01 1.157768E+00
+      135     0 00:02:15  5.191690E-01 4.935698E+01 4.987615E+01 1.084909E+05
+             (100,01,05)  3.339089E-01 0.000000E+00 9.549219E-02 1.157767E+00
+      136     0 00:02:16  5.189661E-01 4.935698E+01 4.987595E+01 1.084909E+05
+             (001,01,05)  3.403789E-01 0.000000E+00 1.249275E-01 1.156163E+00
+      137     0 00:02:17  5.183331E-01 4.935700E+01 4.987533E+01 1.084909E+05
+             (100,01,05)  3.339988E-01 0.000000E+00 9.579255E-02 1.153848E+00
+      138     0 00:02:18  5.177965E-01 4.935702E+01 4.987482E+01 1.084909E+05
+             (001,01,05)  3.401230E-01 0.000000E+00 1.247312E-01 1.153529E+00
+      139     0 00:02:19  5.168329E-01 4.935705E+01 4.987388E+01 1.084909E+05
+             (100,01,05)  3.340966E-01 0.000000E+00 9.611189E-02 1.151230E+00
+      140     0 00:02:20  5.159717E-01 4.935708E+01 4.987305E+01 1.084909E+05
+             (001,01,05)  3.398533E-01 0.000000E+00 1.250223E-01 1.150091E+00
+      141     0 00:02:21  5.146965E-01 4.935711E+01 4.987181E+01 1.084909E+05
+             (100,01,05)  3.341756E-01 0.000000E+00 9.636665E-02 1.148808E+00
+      142     0 00:02:22  5.135370E-01 4.935715E+01 4.987068E+01 1.084909E+05
+             (001,01,05)  3.396112E-01 0.000000E+00 1.256863E-01 1.146208E+00
+      143     0 00:02:23  5.119684E-01 4.935718E+01 4.986915E+01 1.084909E+05
+             (100,01,05)  3.342736E-01 0.000000E+00 9.666222E-02 1.144829E+00
+      144     0 00:02:24  5.105170E-01 4.935721E+01 4.986772E+01 1.084909E+05
+             (001,01,05)  3.393889E-01 0.000000E+00 1.264946E-01 1.142066E+00
+      145     0 00:02:25  5.086677E-01 4.935723E+01 4.986590E+01 1.084909E+05
+             (100,01,05)  3.343674E-01 0.000000E+00 9.702898E-02 1.138770E+00
+      146     0 00:02:26  5.069685E-01 4.935725E+01 4.986422E+01 1.084909E+05
+             (001,01,05)  3.391861E-01 0.000000E+00 1.277014E-01 1.135648E+00
+      147     0 00:02:27  5.049282E-01 4.935726E+01 4.986219E+01 1.084909E+05
+             (100,01,05)  3.344614E-01 0.000000E+00 9.733287E-02 1.131858E+00
+      148     0 00:02:28  5.031144E-01 4.935727E+01 4.986038E+01 1.084909E+05
+             (001,01,05)  3.390921E-01 0.000000E+00 1.293809E-01 1.132710E+00
+      149     0 00:02:29  5.010469E-01 4.935727E+01 4.985831E+01 1.084909E+05
+             (100,01,05)  3.345573E-01 0.000000E+00 9.767742E-02 1.125200E+00
+      150     0 00:02:30  4.992915E-01 4.935726E+01 4.985655E+01 1.084909E+05
+             (001,01,05)  3.392402E-01 0.000000E+00 1.308501E-01 1.133031E+00
+      151     0 00:02:31  4.973467E-01 4.935725E+01 4.985460E+01 1.084909E+05
+             (100,01,05)  3.346326E-01 0.000000E+00 9.795431E-02 1.121509E+00
+      152     0 00:02:32  4.957521E-01 4.935724E+01 4.985299E+01 1.084909E+05
+             (001,01,05)  3.395936E-01 0.000000E+00 1.315750E-01 1.133817E+00
+      153     0 00:02:33  4.939765E-01 4.935722E+01 4.985120E+01 1.084909E+05
+             (100,01,05)  3.346488E-01 0.000000E+00 9.798244E-02 1.122149E+00
+      154     0 00:02:34  4.925465E-01 4.935720E+01 4.984975E+01 1.084909E+05
+             (001,01,05)  3.399442E-01 0.000000E+00 1.316450E-01 1.134497E+00
+      155     0 00:02:35  4.909363E-01 4.935718E+01 4.984811E+01 1.084909E+05
+             (100,01,05)  3.345634E-01 0.000000E+00 9.751671E-02 1.124808E+00
+      156     0 00:02:36  4.896896E-01 4.935715E+01 4.984684E+01 1.084909E+05
+             (001,01,05)  3.402039E-01 0.000000E+00 1.318574E-01 1.134892E+00
+      157     0 00:02:37  4.883009E-01 4.935712E+01 4.984542E+01 1.084909E+05
+             (100,01,05)  3.343837E-01 0.000000E+00 9.652133E-02 1.126558E+00
+      158     0 00:02:38  4.873232E-01 4.935709E+01 4.984441E+01 1.084909E+05
+             (001,01,05)  3.404158E-01 0.000000E+00 1.325066E-01 1.135273E+00
+      159     0 00:02:39  4.862435E-01 4.935706E+01 4.984331E+01 1.084909E+05
+             (100,01,05)  3.341933E-01 0.000000E+00 9.545007E-02 1.126791E+00
+      160     0 00:02:40  4.855987E-01 4.935704E+01 4.984264E+01 1.084909E+05
+             (001,01,05)  3.406003E-01 0.000000E+00 1.334992E-01 1.135898E+00
+      161     0 00:02:41  4.848562E-01 4.935702E+01 4.984187E+01 1.084909E+05
+             (100,01,05)  3.340408E-01 0.000000E+00 9.478617E-02 1.126713E+00
+      162     0 00:02:42  4.845434E-01 4.935700E+01 4.984155E+01 1.084909E+05
+             (001,01,05)  3.407435E-01 0.000000E+00 1.348300E-01 1.136957E+00
+      163     0 00:02:43  4.841228E-01 4.935699E+01 4.984112E+01 1.084909E+05
+             (100,01,05)  3.338981E-01 0.000000E+00 9.433895E-02 1.127514E+00
+      164     0 00:02:44  4.841254E-01 4.935699E+01 4.984112E+01 1.084909E+05
+             (001,01,05)  3.408215E-01 0.000000E+00 1.366480E-01 1.138542E+00
+      165     0 00:02:45  4.840154E-01 4.935700E+01 4.984102E+01 1.084909E+05
+             (100,01,05)  3.337453E-01 0.000000E+00 9.381007E-02 1.127192E+00
+      166     0 00:02:46  4.843281E-01 4.935703E+01 4.984135E+01 1.084909E+05
+             (001,01,05)  3.408471E-01 0.000000E+00 1.390572E-01 1.140666E+00
+      167     0 00:02:47  4.845258E-01 4.935706E+01 4.984158E+01 1.084909E+05
+             (100,01,05)  3.335931E-01 0.000000E+00 9.325114E-02 1.127472E+00
+      168     0 00:02:48  4.851463E-01 4.935710E+01 4.984224E+01 1.084909E+05
+             (001,01,05)  3.408519E-01 0.000000E+00 1.420878E-01 1.143131E+00
+      169     0 00:02:49  4.856485E-01 4.935714E+01 4.984279E+01 1.084909E+05
+             (100,01,05)  3.334416E-01 0.000000E+00 9.271627E-02 1.128064E+00
+      170     0 00:02:50  4.865749E-01 4.935720E+01 4.984377E+01 1.084909E+05
+             (001,01,05)  3.408837E-01 0.000000E+00 1.455737E-01 1.145606E+00
+      171     0 00:02:51  4.873842E-01 4.935725E+01 4.984464E+01 1.084909E+05
+             (100,01,05)  3.332900E-01 0.000000E+00 9.217357E-02 1.126995E+00
+      172     0 00:02:52  4.886237E-01 4.935731E+01 4.984593E+01 1.084909E+05
+             (001,01,05)  3.409881E-01 0.000000E+00 1.490493E-01 1.147761E+00
+      173     0 00:02:53  4.897461E-01 4.935736E+01 4.984711E+01 1.084909E+05
+             (100,01,05)  3.331464E-01 0.000000E+00 9.165730E-02 1.126098E+00
+      174     0 00:02:54  4.912988E-01 4.935741E+01 4.984871E+01 1.084909E+05
+             (001,01,05)  3.411868E-01 0.000000E+00 1.520368E-01 1.149361E+00
+      175     0 00:02:55  4.927297E-01 4.935746E+01 4.985019E+01 1.084909E+05
+             (100,01,05)  3.330133E-01 0.000000E+00 9.120520E-02 1.126652E+00
+      176     0 00:02:56  4.945878E-01 4.935750E+01 4.985209E+01 1.084909E+05
+             (001,01,05)  3.414581E-01 0.000000E+00 1.541841E-01 1.150232E+00
+      177     0 00:02:57  4.963169E-01 4.935753E+01 4.985385E+01 1.084909E+05
+             (100,01,05)  3.329034E-01 0.000000E+00 9.081327E-02 1.125835E+00
+      178     0 00:02:58  4.984590E-01 4.935755E+01 4.985601E+01 1.084909E+05
+             (001,01,05)  3.417841E-01 0.000000E+00 1.552656E-01 1.150333E+00
+      179     0 00:02:59  5.004403E-01 4.935757E+01 4.985801E+01 1.084909E+05
+             (100,01,05)  3.328798E-01 0.000000E+00 9.073819E-02 1.123834E+00
+      180     0 00:03:00  5.027779E-01 4.935757E+01 4.986035E+01 1.084909E+05
+             (001,01,05)  3.421445E-01 0.000000E+00 1.551365E-01 1.149663E+00
+      181     0 00:03:01  5.048709E-01 4.935756E+01 4.986243E+01 1.084909E+05
+             (100,01,05)  3.329993E-01 0.000000E+00 9.139616E-02 1.120860E+00
+      182     0 00:03:02  5.072104E-01 4.935753E+01 4.986475E+01 1.084909E+05
+             (001,01,05)  3.425109E-01 0.000000E+00 1.537536E-01 1.148229E+00
+      183     0 00:03:03  5.091842E-01 4.935750E+01 4.986669E+01 1.084909E+05
+             (100,01,05)  3.332187E-01 0.000000E+00 9.267145E-02 1.122147E+00
+      184     0 00:03:04  5.112850E-01 4.935746E+01 4.986875E+01 1.084909E+05
+             (001,01,05)  3.428181E-01 0.000000E+00 1.512371E-01 1.145962E+00
+      185     0 00:03:05  5.129252E-01 4.935742E+01 4.987034E+01 1.084909E+05
+             (100,01,05)  3.334181E-01 0.000000E+00 9.381769E-02 1.127344E+00
+      186     0 00:03:06  5.146302E-01 4.935736E+01 4.987199E+01 1.084909E+05
+             (001,01,05)  3.430057E-01 0.000000E+00 1.478978E-01 1.142857E+00
+      187     0 00:03:07  5.158558E-01 4.935731E+01 4.987317E+01 1.084909E+05
+             (100,01,05)  3.335322E-01 0.000000E+00 9.426932E-02 1.132530E+00
+      188     0 00:03:08  5.171563E-01 4.935726E+01 4.987441E+01 1.084909E+05
+             (001,01,05)  3.431013E-01 0.000000E+00 1.439513E-01 1.139244E+00
+      189     0 00:03:09  5.180080E-01 4.935720E+01 4.987521E+01 1.084909E+05
+             (100,01,05)  3.336042E-01 0.000000E+00 9.429077E-02 1.137691E+00
+      190     0 00:03:10  5.189618E-01 4.935715E+01 4.987611E+01 1.084909E+05
+             (001,01,05)  3.431431E-01 0.000000E+00 1.395429E-01 1.140224E+00
+      191     0 00:03:11  5.194896E-01 4.935710E+01 4.987659E+01 1.084909E+05
+             (100,01,05)  3.336863E-01 0.000000E+00 9.441483E-02 1.142701E+00
+      192     0 00:03:12  5.201242E-01 4.935706E+01 4.987719E+01 1.084909E+05
+             (001,01,05)  3.431264E-01 0.000000E+00 1.345144E-01 1.145101E+00
+      193     0 00:03:13  5.203352E-01 4.935703E+01 4.987736E+01 1.084909E+05
+             (100,01,05)  3.337799E-01 0.000000E+00 9.471622E-02 1.147272E+00
+      194     0 00:03:14  5.206459E-01 4.935700E+01 4.987765E+01 1.084909E+05
+             (001,01,05)  3.430264E-01 0.000000E+00 1.290889E-01 1.149084E+00
+      195     0 00:03:15  5.205315E-01 4.935699E+01 4.987752E+01 1.084909E+05
+             (100,01,05)  3.338750E-01 0.000000E+00 9.505186E-02 1.150322E+00
+      196     0 00:03:16  5.205120E-01 4.935698E+01 4.987749E+01 1.084909E+05
+             (001,01,05)  3.428320E-01 0.000000E+00 1.237802E-01 1.150781E+00
+      197     0 00:03:17  5.200692E-01 4.935698E+01 4.987705E+01 1.084909E+05
+             (100,01,05)  3.339677E-01 0.000000E+00 9.537518E-02 1.150316E+00
+      198     0 00:03:18  5.197205E-01 4.935700E+01 4.987672E+01 1.084909E+05
+             (001,01,05)  3.425659E-01 0.000000E+00 1.190214E-01 1.148954E+00
+      199     0 00:03:19  5.189540E-01 4.935702E+01 4.987597E+01 1.084909E+05
+             (100,01,05)  3.340564E-01 0.000000E+00 9.567429E-02 1.146739E+00
+      200     0 00:03:20  5.182852E-01 4.935705E+01 4.987533E+01 1.084909E+05
+             (001,01,05)  3.422648E-01 0.000000E+00 1.152012E-01 1.143998E+00
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000003
+      201     0 00:03:21  5.172071E-01 4.935708E+01 4.987428E+01 1.084909E+05
+             (100,01,05)  3.341419E-01 0.000000E+00 9.595820E-02 1.141180E+00
+      202     0 00:03:22  5.162339E-01 4.935711E+01 4.987334E+01 1.084909E+05
+             (001,01,05)  3.419785E-01 0.000000E+00 1.125893E-01 1.138567E+00
+      203     0 00:03:23  5.148616E-01 4.935714E+01 4.987200E+01 1.084909E+05
+             (100,01,05)  3.342268E-01 0.000000E+00 9.623663E-02 1.136063E+00
+      204     0 00:03:24  5.136042E-01 4.935717E+01 4.987077E+01 1.084909E+05
+             (001,01,05)  3.417513E-01 0.000000E+00 1.112618E-01 1.133650E+00
+      205     0 00:03:25  5.119628E-01 4.935720E+01 4.986916E+01 1.084909E+05
+             (100,01,05)  3.343163E-01 0.000000E+00 9.654286E-02 1.131297E+00
+      206     0 00:03:26  5.104587E-01 4.935722E+01 4.986768E+01 1.084909E+05
+             (001,01,05)  3.416134E-01 0.000000E+00 1.112511E-01 1.129026E+00
+      207     0 00:03:27  5.086071E-01 4.935723E+01 4.986584E+01 1.084909E+05
+             (100,01,05)  3.344068E-01 0.000000E+00 9.687077E-02 1.126773E+00
+      208     0 00:03:28  5.069445E-01 4.935724E+01 4.986419E+01 1.084909E+05
+             (001,01,05)  3.416173E-01 0.000000E+00 1.124690E-01 1.124517E+00
+      209     0 00:03:29  5.049983E-01 4.935725E+01 4.986225E+01 1.084909E+05
+             (100,01,05)  3.344950E-01 0.000000E+00 9.718136E-02 1.122241E+00
+      210     0 00:03:30  5.033120E-01 4.935725E+01 4.986056E+01 1.084909E+05
+             (001,01,05)  3.418328E-01 0.000000E+00 1.143228E-01 1.119931E+00
+      211     0 00:03:31  5.014060E-01 4.935724E+01 4.985865E+01 1.084909E+05
+             (100,01,05)  3.345725E-01 0.000000E+00 9.745790E-02 1.117636E+00
+      212     0 00:03:32  4.998130E-01 4.935723E+01 4.985704E+01 1.084909E+05
+             (001,01,05)  3.422713E-01 0.000000E+00 1.163059E-01 1.117386E+00
+      213     0 00:03:33  4.980336E-01 4.935722E+01 4.985525E+01 1.084909E+05
+             (100,01,05)  3.346137E-01 0.000000E+00 9.759016E-02 1.113046E+00
+      214     0 00:03:34  4.965870E-01 4.935720E+01 4.985379E+01 1.084909E+05
+             (001,01,05)  3.427997E-01 0.000000E+00 1.179595E-01 1.118136E+00
+      215     0 00:03:35  4.949629E-01 4.935718E+01 4.985214E+01 1.084909E+05
+             (100,01,05)  3.345850E-01 0.000000E+00 9.739976E-02 1.108535E+00
+      216     0 00:03:36  4.936817E-01 4.935716E+01 4.985084E+01 1.084909E+05
+             (001,01,04)  3.310483E-01 0.000000E+00 1.319295E-01 1.118938E+00
+      217     0 00:03:37  4.922395E-01 4.935713E+01 4.984937E+01 1.084909E+05
+             (100,01,05)  3.344703E-01 0.000000E+00 9.677325E-02 1.104241E+00
+      218     0 00:03:38  4.911680E-01 4.935710E+01 4.984827E+01 1.084909E+05
+             (001,01,04)  3.313660E-01 0.000000E+00 1.340322E-01 1.119793E+00
+      219     0 00:03:39  4.899691E-01 4.935708E+01 4.984705E+01 1.084909E+05
+             (100,01,05)  3.342988E-01 0.000000E+00 9.584255E-02 1.105937E+00
+      220     0 00:03:40  4.891756E-01 4.935705E+01 4.984623E+01 1.084909E+05
+             (001,01,04)  3.316125E-01 0.000000E+00 1.363170E-01 1.120830E+00
+      221     0 00:03:41  4.882793E-01 4.935703E+01 4.984531E+01 1.084909E+05
+             (100,01,05)  3.341267E-01 0.000000E+00 9.497196E-02 1.107423E+00
+      222     0 00:03:42  4.878035E-01 4.935701E+01 4.984481E+01 1.084909E+05
+             (001,01,04)  3.317986E-01 0.000000E+00 1.386808E-01 1.122134E+00
+      223     0 00:03:43  4.872269E-01 4.935700E+01 4.984422E+01 1.084909E+05
+             (100,01,05)  3.339766E-01 0.000000E+00 9.436793E-02 1.108422E+00
+      224     0 00:03:44  4.870674E-01 4.935699E+01 4.984406E+01 1.084909E+05
+             (001,01,04)  3.319243E-01 0.000000E+00 1.411264E-01 1.123698E+00
+      225     0 00:03:45  4.867999E-01 4.935699E+01 4.984379E+01 1.084909E+05
+             (100,01,05)  3.338317E-01 0.000000E+00 9.388485E-02 1.109567E+00
+      226     0 00:03:46  4.869456E-01 4.935700E+01 4.984395E+01 1.084909E+05
+             (001,01,04)  3.319811E-01 0.000000E+00 1.435738E-01 1.125449E+00
+      227     0 00:03:47  4.869790E-01 4.935702E+01 4.984400E+01 1.084909E+05
+             (100,01,05)  3.336822E-01 0.000000E+00 9.336600E-02 1.110659E+00
+      228     0 00:03:48  4.874254E-01 4.935705E+01 4.984447E+01 1.084909E+05
+             (001,01,04)  3.319775E-01 0.000000E+00 1.460953E-01 1.127334E+00
+      229     0 00:03:49  4.877575E-01 4.935709E+01 4.984484E+01 1.084909E+05
+             (100,01,05)  3.335320E-01 0.000000E+00 9.282692E-02 1.111803E+00
+      230     0 00:03:50  4.885040E-01 4.935713E+01 4.984563E+01 1.084909E+05
+             (001,01,04)  3.319236E-01 0.000000E+00 1.487064E-01 1.129296E+00
+      231     0 00:03:51  4.891354E-01 4.935718E+01 4.984631E+01 1.084909E+05
+             (100,01,05)  3.333832E-01 0.000000E+00 9.229922E-02 1.113063E+00
+      232     0 00:03:52  4.901838E-01 4.935723E+01 4.984741E+01 1.084909E+05
+             (001,01,04)  3.318325E-01 0.000000E+00 1.514132E-01 1.131290E+00
+      233     0 00:03:53  4.911172E-01 4.935728E+01 4.984840E+01 1.084909E+05
+             (100,01,05)  3.332387E-01 0.000000E+00 9.178752E-02 1.114349E+00
+      234     0 00:03:54  4.924696E-01 4.935733E+01 4.984980E+01 1.084909E+05
+             (001,01,04)  3.317200E-01 0.000000E+00 1.542016E-01 1.133292E+00
+      235     0 00:03:55  4.937042E-01 4.935738E+01 4.985108E+01 1.084909E+05
+             (100,01,05)  3.331050E-01 0.000000E+00 9.132016E-02 1.116018E+00
+      236     0 00:03:56  4.953555E-01 4.935742E+01 4.985278E+01 1.084909E+05
+             (001,01,05)  3.448313E-01 0.000000E+00 1.439293E-01 1.135276E+00
+      237     0 00:03:57  4.968799E-01 4.935746E+01 4.985434E+01 1.084909E+05
+             (100,01,05)  3.329958E-01 0.000000E+00 9.094730E-02 1.119698E+00
+      238     0 00:03:58  4.988084E-01 4.935749E+01 4.985630E+01 1.084909E+05
+             (001,01,05)  3.448983E-01 0.000000E+00 1.470380E-01 1.137213E+00
+      239     0 00:03:59  5.005845E-01 4.935751E+01 4.985809E+01 1.084909E+05
+             (100,01,05)  3.329461E-01 0.000000E+00 9.080793E-02 1.124751E+00
+      240     0 00:04:00  5.027277E-01 4.935752E+01 4.986025E+01 1.084909E+05
+             (001,01,05)  3.449755E-01 0.000000E+00 1.500847E-01 1.139069E+00
+      241     0 00:04:01  5.046596E-01 4.935752E+01 4.986218E+01 1.084909E+05
+             (100,01,05)  3.329988E-01 0.000000E+00 9.114822E-02 1.129953E+00
+      242     0 00:04:02  5.068843E-01 4.935751E+01 4.986440E+01 1.084909E+05
+             (001,01,05)  3.450538E-01 0.000000E+00 1.529652E-01 1.140784E+00
+      243     0 00:04:03  5.088048E-01 4.935749E+01 4.986630E+01 1.084909E+05
+             (100,01,05)  3.331513E-01 0.000000E+00 9.202736E-02 1.135050E+00
+      244     0 00:04:04  5.109210E-01 4.935746E+01 4.986838E+01 1.084909E+05
+             (001,01,05)  3.450953E-01 0.000000E+00 1.556683E-01 1.142208E+00
+      245     0 00:04:05  5.126373E-01 4.935743E+01 4.987006E+01 1.084909E+05
+             (100,01,05)  3.333375E-01 0.000000E+00 9.308000E-02 1.140143E+00
+      246     0 00:04:06  5.144716E-01 4.935738E+01 4.987186E+01 1.084909E+05
+             (001,01,05)  3.450656E-01 0.000000E+00 1.582084E-01 1.143219E+00
+      247     0 00:04:07  5.158484E-01 4.935734E+01 4.987319E+01 1.084909E+05
+             (100,01,05)  3.334859E-01 0.000000E+00 9.381572E-02 1.145272E+00
+      248     0 00:04:08  5.173149E-01 4.935729E+01 4.987460E+01 1.084909E+05
+             (001,01,05)  3.449595E-01 0.000000E+00 1.608477E-01 1.147841E+00
+      249     0 00:04:09  5.183170E-01 4.935724E+01 4.987556E+01 1.084909E+05
+             (100,01,05)  3.335813E-01 0.000000E+00 9.410109E-02 1.150275E+00
+      250     0 00:04:10  5.194213E-01 4.935719E+01 4.987661E+01 1.084909E+05
+             (001,01,05)  3.448103E-01 0.000000E+00 1.635878E-01 1.152687E+00
+      251     0 00:04:11  5.200780E-01 4.935714E+01 4.987722E+01 1.084909E+05
+             (100,01,05)  3.336569E-01 0.000000E+00 9.420572E-02 1.154861E+00
+      252     0 00:04:12  5.208548E-01 4.935710E+01 4.987795E+01 1.084909E+05
+             (001,01,05)  3.446754E-01 0.000000E+00 1.663452E-01 1.156891E+00
+      253     0 00:04:13  5.211939E-01 4.935706E+01 4.987825E+01 1.084909E+05
+             (100,01,05)  3.337394E-01 0.000000E+00 9.439803E-02 1.158645E+00
+      254     0 00:04:14  5.216577E-01 4.935703E+01 4.987868E+01 1.084909E+05
+             (001,01,05)  3.445658E-01 0.000000E+00 1.689353E-01 1.160080E+00
+      255     0 00:04:15  5.216819E-01 4.935700E+01 4.987868E+01 1.084909E+05
+             (100,01,05)  3.338289E-01 0.000000E+00 9.469470E-02 1.161207E+00
+      256     0 00:04:16  5.218290E-01 4.935699E+01 4.987882E+01 1.084909E+05
+             (001,01,05)  3.444671E-01 0.000000E+00 1.713010E-01 1.161836E+00
+      257     0 00:04:17  5.215334E-01 4.935698E+01 4.987851E+01 1.084909E+05
+             (100,01,05)  3.339187E-01 0.000000E+00 9.501197E-02 1.161877E+00
+      258     0 00:04:18  5.213606E-01 4.935698E+01 4.987834E+01 1.084909E+05
+             (001,01,05)  3.443706E-01 0.000000E+00 1.734977E-01 1.161264E+00
+      259     0 00:04:19  5.207458E-01 4.935699E+01 4.987774E+01 1.084909E+05
+             (100,01,05)  3.340057E-01 0.000000E+00 9.531357E-02 1.159981E+00
+      260     0 00:04:20  5.202579E-01 4.935701E+01 4.987727E+01 1.084909E+05
+             (001,01,05)  3.442725E-01 0.000000E+00 1.755605E-01 1.158144E+00
+      261     0 00:04:21  5.193326E-01 4.935704E+01 4.987637E+01 1.084909E+05
+             (100,01,05)  3.340897E-01 0.000000E+00 9.559766E-02 1.156021E+00
+      262     0 00:04:22  5.185416E-01 4.935706E+01 4.987561E+01 1.084909E+05
+             (001,01,05)  3.441699E-01 0.000000E+00 1.775289E-01 1.153780E+00
+      263     0 00:04:23  5.173214E-01 4.935709E+01 4.987441E+01 1.084909E+05
+             (100,01,05)  3.341721E-01 0.000000E+00 9.587375E-02 1.151399E+00
+      264     0 00:04:24  5.162470E-01 4.935712E+01 4.987337E+01 1.084909E+05
+             (001,01,05)  3.440622E-01 0.000000E+00 1.794375E-01 1.148816E+00
+      265     0 00:04:25  5.147575E-01 4.935715E+01 4.987190E+01 1.084909E+05
+             (100,01,05)  3.342557E-01 0.000000E+00 9.615736E-02 1.146158E+00
+      266     0 00:04:26  5.134344E-01 4.935717E+01 4.987060E+01 1.084909E+05
+             (001,01,05)  3.439552E-01 0.000000E+00 1.813832E-01 1.143721E+00
+      267     0 00:04:27  5.117239E-01 4.935719E+01 4.986891E+01 1.084909E+05
+             (100,01,05)  3.343414E-01 0.000000E+00 9.645855E-02 1.140625E+00
+      268     0 00:04:28  5.102181E-01 4.935720E+01 4.986742E+01 1.084909E+05
+             (001,01,05)  3.438738E-01 0.000000E+00 1.834660E-01 1.143800E+00
+      269     0 00:04:29  5.083722E-01 4.935721E+01 4.986558E+01 1.084909E+05
+             (100,01,05)  3.344263E-01 0.000000E+00 9.676306E-02 1.135485E+00
+      270     0 00:04:30  5.067867E-01 4.935722E+01 4.986400E+01 1.084909E+05
+             (001,01,05)  3.438648E-01 0.000000E+00 1.855799E-01 1.144130E+00
+      271     0 00:04:31  5.049176E-01 4.935721E+01 4.986213E+01 1.084909E+05
+             (100,01,05)  3.345034E-01 0.000000E+00 9.703711E-02 1.130945E+00
+      272     0 00:04:32  5.033623E-01 4.935721E+01 4.986057E+01 1.084909E+05
+             (001,01,05)  3.439763E-01 0.000000E+00 1.875422E-01 1.144847E+00
+      273     0 00:04:33  5.015669E-01 4.935720E+01 4.985877E+01 1.084909E+05
+             (100,01,05)  3.345579E-01 0.000000E+00 9.721938E-02 1.126955E+00
+      274     0 00:04:34  5.001188E-01 4.935719E+01 4.985731E+01 1.084909E+05
+             (001,01,05)  3.441921E-01 0.000000E+00 1.890851E-01 1.145903E+00
+      275     0 00:04:35  4.984518E-01 4.935717E+01 4.985563E+01 1.084909E+05
+             (100,01,05)  3.345650E-01 0.000000E+00 9.719331E-02 1.126810E+00
+      276     0 00:04:36  4.971484E-01 4.935716E+01 4.985430E+01 1.084909E+05
+             (001,01,05)  3.444169E-01 0.000000E+00 1.902911E-01 1.147003E+00
+      277     0 00:04:37  4.956401E-01 4.935713E+01 4.985277E+01 1.084909E+05
+             (100,01,05)  3.345030E-01 0.000000E+00 9.683646E-02 1.129032E+00
+      278     0 00:04:38  4.945133E-01 4.935711E+01 4.985163E+01 1.084909E+05
+             (001,01,05)  3.445904E-01 0.000000E+00 1.913608E-01 1.147966E+00
+      279     0 00:04:39  4.932048E-01 4.935709E+01 4.985029E+01 1.084909E+05
+             (100,01,05)  3.343738E-01 0.000000E+00 9.614223E-02 1.131003E+00
+      280     0 00:04:40  4.923059E-01 4.935706E+01 4.984937E+01 1.084909E+05
+             (001,01,05)  3.447255E-01 0.000000E+00 1.925268E-01 1.148838E+00
+      281     0 00:04:41  4.912531E-01 4.935704E+01 4.984829E+01 1.084909E+05
+             (100,01,05)  3.342103E-01 0.000000E+00 9.529553E-02 1.132854E+00
+      282     0 00:04:42  4.906346E-01 4.935702E+01 4.984766E+01 1.084909E+05
+             (001,01,05)  3.448452E-01 0.000000E+00 1.939209E-01 1.149690E+00
+      283     0 00:04:43  4.898784E-01 4.935700E+01 4.984688E+01 1.084909E+05
+             (100,01,05)  3.340500E-01 0.000000E+00 9.455026E-02 1.134125E+00
+      284     0 00:04:44  4.895653E-01 4.935699E+01 4.984656E+01 1.084909E+05
+             (001,01,05)  3.449557E-01 0.000000E+00 1.952847E-01 1.150545E+00
+      285     0 00:04:45  4.891150E-01 4.935699E+01 4.984610E+01 1.084909E+05
+             (100,01,05)  3.339030E-01 0.000000E+00 9.398591E-02 1.135192E+00
+      286     0 00:04:46  4.891054E-01 4.935699E+01 4.984610E+01 1.084909E+05
+             (001,01,05)  3.450641E-01 0.000000E+00 1.966449E-01 1.151427E+00
+      287     0 00:04:47  4.889536E-01 4.935700E+01 4.984595E+01 1.084909E+05
+             (100,01,05)  3.337588E-01 0.000000E+00 9.349250E-02 1.136485E+00
+      288     0 00:04:48  4.892396E-01 4.935702E+01 4.984626E+01 1.084909E+05
+             (001,01,05)  3.451675E-01 0.000000E+00 1.979978E-01 1.152330E+00
+      289     0 00:04:49  4.893808E-01 4.935705E+01 4.984643E+01 1.084909E+05
+             (100,01,05)  3.336122E-01 0.000000E+00 9.298117E-02 1.137855E+00
+      290     0 00:04:50  4.899595E-01 4.935708E+01 4.984704E+01 1.084909E+05
+             (001,01,05)  3.452632E-01 0.000000E+00 1.993523E-01 1.153247E+00
+      291     0 00:04:51  4.903929E-01 4.935712E+01 4.984751E+01 1.084909E+05
+             (100,01,05)  3.334657E-01 0.000000E+00 9.245960E-02 1.139180E+00
+      292     0 00:04:52  4.912652E-01 4.935717E+01 4.984843E+01 1.084909E+05
+             (001,01,05)  3.453513E-01 0.000000E+00 2.007171E-01 1.154176E+00
+      293     0 00:04:53  4.919922E-01 4.935721E+01 4.984921E+01 1.084909E+05
+             (100,01,05)  3.333226E-01 0.000000E+00 9.195362E-02 1.140445E+00
+      294     0 00:04:54  4.931589E-01 4.935726E+01 4.985042E+01 1.084909E+05
+             (001,01,05)  3.454340E-01 0.000000E+00 2.020931E-01 1.155123E+00
+      295     0 00:04:55  4.941789E-01 4.935731E+01 4.985149E+01 1.084909E+05
+             (100,01,05)  3.331888E-01 0.000000E+00 9.148476E-02 1.141656E+00
+      296     0 00:04:56  4.956365E-01 4.935735E+01 4.985299E+01 1.084909E+05
+             (001,01,05)  3.455149E-01 0.000000E+00 2.034660E-01 1.156091E+00
+      297     0 00:04:57  4.969404E-01 4.935739E+01 4.985433E+01 1.084909E+05
+             (100,01,05)  3.330765E-01 0.000000E+00 9.110126E-02 1.142895E+00
+      298     0 00:04:58  4.986713E-01 4.935743E+01 4.985610E+01 1.084909E+05
+             (001,01,05)  3.455956E-01 0.000000E+00 2.048092E-01 1.157503E+00
+      299     0 00:04:59  5.002294E-01 4.935745E+01 4.985768E+01 1.084909E+05
+             (100,01,05)  3.330098E-01 0.000000E+00 9.090649E-02 1.144289E+00
+      300     0 00:05:00  5.021863E-01 4.935747E+01 4.985966E+01 1.084909E+05
+             (001,01,05)  3.456744E-01 0.000000E+00 2.060872E-01 1.159004E+00
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000004
+      301     0 00:05:01  5.039283E-01 4.935748E+01 4.986141E+01 1.084909E+05
+             (100,01,05)  3.330198E-01 0.000000E+00 9.105871E-02 1.146017E+00
+      302     0 00:05:02  5.060147E-01 4.935748E+01 4.986350E+01 1.084909E+05
+             (001,01,05)  3.457440E-01 0.000000E+00 2.072498E-01 1.160561E+00
+      303     0 00:05:03  5.078171E-01 4.935747E+01 4.986529E+01 1.084909E+05
+             (100,01,05)  3.331173E-01 0.000000E+00 9.164600E-02 1.148549E+00
+      304     0 00:05:04  5.098866E-01 4.935746E+01 4.986734E+01 1.084909E+05
+             (001,01,05)  3.457860E-01 0.000000E+00 2.082735E-01 1.162121E+00
+      305     0 00:05:05  5.115893E-01 4.935743E+01 4.986902E+01 1.084909E+05
+             (100,01,05)  3.332704E-01 0.000000E+00 9.251162E-02 1.152430E+00
+      306     0 00:05:06  5.134813E-01 4.935740E+01 4.987088E+01 1.084909E+05
+             (001,01,05)  3.457627E-01 0.000000E+00 2.092106E-01 1.163533E+00
+      307     0 00:05:07  5.149382E-01 4.935736E+01 4.987230E+01 1.084909E+05
+             (100,01,05)  3.334240E-01 0.000000E+00 9.331287E-02 1.156623E+00
+      308     0 00:05:08  5.165337E-01 4.935731E+01 4.987385E+01 1.084909E+05
+             (001,01,05)  3.456533E-01 0.000000E+00 2.101567E-01 1.164606E+00
+      309     0 00:05:09  5.176607E-01 4.935727E+01 4.987493E+01 1.084909E+05
+             (100,01,05)  3.335420E-01 0.000000E+00 9.380726E-02 1.160234E+00
+      310     0 00:05:10  5.189130E-01 4.935722E+01 4.987614E+01 1.084909E+05
+             (001,01,05)  3.454646E-01 0.000000E+00 2.112318E-01 1.165275E+00
+      311     0 00:05:11  5.196962E-01 4.935718E+01 4.987687E+01 1.084909E+05
+             (100,01,05)  3.336276E-01 0.000000E+00 9.403096E-02 1.162871E+00
+      312     0 00:05:12  5.206135E-01 4.935713E+01 4.987775E+01 1.084909E+05
+             (001,01,05)  3.452407E-01 0.000000E+00 2.125841E-01 1.165674E+00
+      313     0 00:05:13  5.210728E-01 4.935709E+01 4.987816E+01 1.084909E+05
+             (100,01,05)  3.337043E-01 0.000000E+00 9.418817E-02 1.165102E+00
+      314     0 00:05:14  5.216763E-01 4.935705E+01 4.987873E+01 1.084909E+05
+             (001,01,05)  3.450153E-01 0.000000E+00 2.139733E-01 1.165994E+00
+      315     0 00:05:15  5.218269E-01 4.935702E+01 4.987885E+01 1.084909E+05
+             (100,01,05)  3.337860E-01 0.000000E+00 9.441549E-02 1.166532E+00
+      316     0 00:05:16  5.221238E-01 4.935700E+01 4.987913E+01 1.084909E+05
+             (001,01,05)  3.447967E-01 0.000000E+00 2.153144E-01 1.166897E+00
+      317     0 00:05:17  5.219667E-01 4.935699E+01 4.987895E+01 1.084909E+05
+             (100,01,05)  3.338714E-01 0.000000E+00 9.470469E-02 1.167059E+00
+      318     0 00:05:18  5.219548E-01 4.935698E+01 4.987894E+01 1.084909E+05
+             (001,01,05)  3.445793E-01 0.000000E+00 2.166019E-01 1.166798E+00
+      319     0 00:05:19  5.214882E-01 4.935698E+01 4.987847E+01 1.084909E+05
+             (100,01,05)  3.339563E-01 0.000000E+00 9.500256E-02 1.166126E+00
+      320     0 00:05:20  5.211683E-01 4.935699E+01 4.987816E+01 1.084909E+05
+             (001,01,05)  3.443608E-01 0.000000E+00 2.178593E-01 1.166854E+00
+      321     0 00:05:21  5.203965E-01 4.935701E+01 4.987740E+01 1.084909E+05
+             (100,01,05)  3.340386E-01 0.000000E+00 9.528674E-02 1.163848E+00
+      322     0 00:05:22  5.197773E-01 4.935703E+01 4.987681E+01 1.084909E+05
+             (001,01,05)  3.441506E-01 0.000000E+00 2.191014E-01 1.167062E+00
+      323     0 00:05:23  5.187128E-01 4.935705E+01 4.987576E+01 1.084909E+05
+             (100,01,05)  3.341190E-01 0.000000E+00 9.555959E-02 1.161249E+00
+      324     0 00:05:24  5.178112E-01 4.935708E+01 4.987489E+01 1.084909E+05
+             (001,01,05)  3.439363E-01 0.000000E+00 2.203631E-01 1.167208E+00
+      325     0 00:05:25  5.164769E-01 4.935710E+01 4.987358E+01 1.084909E+05
+             (100,01,05)  3.341991E-01 0.000000E+00 9.583162E-02 1.158214E+00
+      326     0 00:05:26  5.153230E-01 4.935713E+01 4.987245E+01 1.084909E+05
+             (001,01,05)  3.437245E-01 0.000000E+00 2.216662E-01 1.167262E+00
+      327     0 00:05:27  5.137597E-01 4.935715E+01 4.987091E+01 1.084909E+05
+             (100,01,05)  3.342803E-01 0.000000E+00 9.611247E-02 1.154814E+00
+      328     0 00:05:28  5.124070E-01 4.935716E+01 4.986957E+01 1.084909E+05
+             (001,01,05)  3.435521E-01 0.000000E+00 2.230690E-01 1.167234E+00
+      329     0 00:05:29  5.106820E-01 4.935718E+01 4.986786E+01 1.084909E+05
+             (100,01,05)  3.343615E-01 0.000000E+00 9.640009E-02 1.152131E+00
+      330     0 00:05:30  5.092117E-01 4.935718E+01 4.986640E+01 1.084909E+05
+             (001,01,05)  3.434419E-01 0.000000E+00 2.245571E-01 1.167255E+00
+      331     0 00:05:31  5.074170E-01 4.935719E+01 4.986461E+01 1.084909E+05
+             (100,01,05)  3.344379E-01 0.000000E+00 9.667224E-02 1.152271E+00
+      332     0 00:05:32  5.059254E-01 4.935719E+01 4.986311E+01 1.084909E+05
+             (001,01,05)  3.434296E-01 0.000000E+00 2.259553E-01 1.167556E+00
+      333     0 00:05:33  5.041541E-01 4.935718E+01 4.986134E+01 1.084909E+05
+             (100,01,05)  3.344992E-01 0.000000E+00 9.688246E-02 1.152780E+00
+      334     0 00:05:34  5.027244E-01 4.935717E+01 4.985990E+01 1.084909E+05
+             (001,01,05)  3.435223E-01 0.000000E+00 2.270787E-01 1.168284E+00
+      335     0 00:05:35  5.010452E-01 4.935716E+01 4.985821E+01 1.084909E+05
+             (100,01,05)  3.345282E-01 0.000000E+00 9.695242E-02 1.153695E+00
+      336     0 00:05:36  4.997309E-01 4.935715E+01 4.985688E+01 1.084909E+05
+             (001,01,05)  3.436734E-01 0.000000E+00 2.278606E-01 1.169347E+00
+      337     0 00:05:37  4.981853E-01 4.935713E+01 4.985532E+01 1.084909E+05
+             (001,01,05)  3.390364E-01 0.000000E+00 9.271387E-02 1.154825E+00
+      338     0 00:05:38  4.970219E-01 4.935712E+01 4.985414E+01 1.084909E+05
+             (001,01,05)  3.438237E-01 0.000000E+00 2.283794E-01 1.170486E+00
+      339     0 00:05:39  4.956452E-01 4.935710E+01 4.985274E+01 1.084909E+05
+             (001,01,05)  3.391681E-01 0.000000E+00 9.318319E-02 1.155911E+00
+      340     0 00:05:40  4.946725E-01 4.935707E+01 4.985175E+01 1.084909E+05
+             (001,01,05)  3.439448E-01 0.000000E+00 2.288363E-01 1.171494E+00
+      341     0 00:05:41  4.935101E-01 4.935705E+01 4.985056E+01 1.084909E+05
+             (001,01,05)  3.392682E-01 0.000000E+00 9.369343E-02 1.156829E+00
+      342     0 00:05:42  4.927769E-01 4.935703E+01 4.984981E+01 1.084909E+05
+             (001,01,05)  3.440441E-01 0.000000E+00 2.293612E-01 1.172339E+00
+      343     0 00:05:43  4.918759E-01 4.935702E+01 4.984889E+01 1.084909E+05
+             (001,01,05)  3.393525E-01 0.000000E+00 9.430877E-02 1.157620E+00
+      344     0 00:05:44  4.914220E-01 4.935700E+01 4.984842E+01 1.084909E+05
+             (001,01,05)  3.441325E-01 0.000000E+00 2.299468E-01 1.173104E+00
+      345     0 00:05:45  4.908107E-01 4.935699E+01 4.984780E+01 1.084909E+05
+             (001,01,05)  3.394354E-01 0.000000E+00 9.491681E-02 1.158370E+00
+      346     0 00:05:46  4.906515E-01 4.935699E+01 4.984764E+01 1.084909E+05
+             (001,01,05)  3.442209E-01 0.000000E+00 2.305246E-01 1.173853E+00
+      347     0 00:05:47  4.903347E-01 4.935699E+01 4.984732E+01 1.084909E+05
+             (001,01,05)  3.395212E-01 0.000000E+00 9.548031E-02 1.159114E+00
+      348     0 00:05:48  4.904678E-01 4.935700E+01 4.984747E+01 1.084909E+05
+             (001,01,05)  3.443121E-01 0.000000E+00 2.310670E-01 1.174595E+00
+      349     0 00:05:49  4.904402E-01 4.935702E+01 4.984746E+01 1.084909E+05
+             (001,01,05)  3.396083E-01 0.000000E+00 9.601292E-02 1.159846E+00
+      350     0 00:05:50  4.908606E-01 4.935704E+01 4.984790E+01 1.084909E+05
+             (001,01,05)  3.444039E-01 0.000000E+00 2.315789E-01 1.175320E+00
+      351     0 00:05:51  4.911188E-01 4.935708E+01 4.984819E+01 1.084909E+05
+             (001,01,05)  3.396946E-01 0.000000E+00 9.652594E-02 1.160555E+00
+      352     0 00:05:52  4.918250E-01 4.935711E+01 4.984894E+01 1.084909E+05
+             (001,01,05)  3.444944E-01 0.000000E+00 2.320706E-01 1.176017E+00
+      353     0 00:05:53  4.923690E-01 4.935715E+01 4.984952E+01 1.084909E+05
+             (001,01,05)  3.397796E-01 0.000000E+00 9.702300E-02 1.161234E+00
+      354     0 00:05:54  4.933614E-01 4.935720E+01 4.985056E+01 1.084909E+05
+             (001,01,05)  3.445835E-01 0.000000E+00 2.325477E-01 1.176685E+00
+      355     0 00:05:55  4.941905E-01 4.935724E+01 4.985143E+01 1.084909E+05
+             (001,01,05)  3.398644E-01 0.000000E+00 9.750101E-02 1.161888E+00
+      356     0 00:05:56  4.954661E-01 4.935729E+01 4.985275E+01 1.084909E+05
+             (001,01,05)  3.446728E-01 0.000000E+00 2.330070E-01 1.177337E+00
+      357     0 00:05:57  4.965733E-01 4.935733E+01 4.985390E+01 1.084909E+05
+             (001,01,05)  3.399510E-01 0.000000E+00 9.794989E-02 1.162536E+00
+      358     0 00:05:58  4.981184E-01 4.935736E+01 4.985548E+01 1.084909E+05
+             (001,01,05)  3.447640E-01 0.000000E+00 2.334343E-01 1.177992E+00
+      359     0 00:05:59  4.994805E-01 4.935739E+01 4.985687E+01 1.084909E+05
+             (001,01,05)  3.400395E-01 0.000000E+00 9.835710E-02 1.163198E+00
+      360     0 00:06:00  5.012592E-01 4.935742E+01 4.985868E+01 1.084909E+05
+             (001,01,05)  3.448568E-01 0.000000E+00 2.338072E-01 1.178673E+00
+      361     0 00:06:01  5.028235E-01 4.935744E+01 4.986026E+01 1.084909E+05
+             (001,01,05)  3.401267E-01 0.000000E+00 9.870769E-02 1.163896E+00
+      362     0 00:06:02  5.047632E-01 4.935745E+01 4.986221E+01 1.084909E+05
+             (001,01,05)  3.449460E-01 0.000000E+00 2.340966E-01 1.179397E+00
+      363     0 00:06:03  5.064359E-01 4.935745E+01 4.986388E+01 1.084909E+05
+             (001,01,05)  3.402034E-01 0.000000E+00 9.898081E-02 1.164641E+00
+      364     0 00:06:04  5.084223E-01 4.935744E+01 4.986586E+01 1.084909E+05
+             (001,01,05)  3.450041E-01 0.000000E+00 2.342792E-01 1.180152E+00
+      365     0 00:06:05  5.100741E-01 4.935742E+01 4.986750E+01 1.084909E+05
+             (001,01,05)  3.402508E-01 0.000000E+00 9.905482E-02 1.165397E+00
+      366     0 00:06:06  5.119695E-01 4.935740E+01 4.986937E+01 1.084909E+05
+             (001,01,05)  3.450344E-01 0.000000E+00 2.343738E-01 1.180864E+00
+      367     0 00:06:07  5.134627E-01 4.935737E+01 4.987083E+01 1.084909E+05
+             (001,01,05)  3.402432E-01 0.000000E+00 9.920598E-02 1.166054E+00
+      368     0 00:06:08  5.151409E-01 4.935733E+01 4.987247E+01 1.084909E+05
+             (001,01,05)  3.449954E-01 0.000000E+00 2.344398E-01 1.181399E+00
+      369     0 00:06:09  5.163692E-01 4.935729E+01 4.987366E+01 1.084909E+05
+             (001,01,05)  3.401558E-01 0.000000E+00 9.937707E-02 1.166473E+00
+      370     0 00:06:10  5.177501E-01 4.935725E+01 4.987500E+01 1.084909E+05
+             (001,01,05)  3.448760E-01 0.000000E+00 2.345569E-01 1.181641E+00
+      371     0 00:06:11  5.186620E-01 4.935721E+01 4.987587E+01 1.084909E+05
+             (001,01,05)  3.400071E-01 0.000000E+00 9.965087E-02 1.167546E+00
+      372     0 00:06:12  5.197196E-01 4.935716E+01 4.987688E+01 1.084909E+05
+             (001,01,05)  3.447064E-01 0.000000E+00 2.349286E-01 1.181593E+00
+      373     0 00:06:13  5.203095E-01 4.935712E+01 4.987743E+01 1.084909E+05
+             (001,01,05)  3.398172E-01 0.000000E+00 1.001684E-01 1.168574E+00
+      374     0 00:06:14  5.210515E-01 4.935708E+01 4.987814E+01 1.084909E+05
+             (001,01,05)  3.445067E-01 0.000000E+00 2.354536E-01 1.181386E+00
+      375     0 00:06:15  5.213328E-01 4.935705E+01 4.987838E+01 1.084909E+05
+             (001,01,05)  3.396147E-01 0.000000E+00 1.007391E-01 1.169331E+00
+      376     0 00:06:16  5.217716E-01 4.935702E+01 4.987879E+01 1.084909E+05
+             (001,01,05)  3.443046E-01 0.000000E+00 2.360211E-01 1.181145E+00
+      377     0 00:06:17  5.217526E-01 4.935700E+01 4.987875E+01 1.084909E+05
+             (001,01,05)  3.394147E-01 0.000000E+00 1.013115E-01 1.169749E+00
+      378     0 00:06:18  5.218921E-01 4.935699E+01 4.987888E+01 1.084909E+05
+             (001,01,05)  3.441058E-01 0.000000E+00 2.365725E-01 1.180907E+00
+      379     0 00:06:19  5.215736E-01 4.935698E+01 4.987855E+01 1.084909E+05
+             (001,01,05)  3.392169E-01 0.000000E+00 1.018624E-01 1.169245E+00
+      380     0 00:06:20  5.214139E-01 4.935698E+01 4.987840E+01 1.084909E+05
+             (001,01,05)  3.439076E-01 0.000000E+00 2.371081E-01 1.180655E+00
+      381     0 00:06:21  5.207977E-01 4.935699E+01 4.987779E+01 1.084909E+05
+             (001,01,05)  3.390192E-01 0.000000E+00 1.024059E-01 1.167907E+00
+      382     0 00:06:22  5.203437E-01 4.935700E+01 4.987735E+01 1.084909E+05
+             (001,01,05)  3.437094E-01 0.000000E+00 2.376486E-01 1.180370E+00
+      383     0 00:06:23  5.194387E-01 4.935702E+01 4.987646E+01 1.084909E+05
+             (001,01,05)  3.388226E-01 0.000000E+00 1.029609E-01 1.166216E+00
+      384     0 00:06:24  5.187039E-01 4.935704E+01 4.987575E+01 1.084909E+05
+             (001,01,05)  3.435139E-01 0.000000E+00 2.382161E-01 1.180036E+00
+      385     0 00:06:25  5.175291E-01 4.935707E+01 4.987459E+01 1.084909E+05
+             (001,01,05)  3.386317E-01 0.000000E+00 1.035498E-01 1.164986E+00
+      386     0 00:06:26  5.165394E-01 4.935709E+01 4.987363E+01 1.084909E+05
+             (001,01,05)  3.433277E-01 0.000000E+00 2.388423E-01 1.179637E+00
+      387     0 00:06:27  5.151289E-01 4.935711E+01 4.987224E+01 1.084909E+05
+             (001,01,05)  3.384564E-01 0.000000E+00 1.042036E-01 1.164575E+00
+      388     0 00:06:28  5.139280E-01 4.935713E+01 4.987105E+01 1.084909E+05
+             (001,01,05)  3.431655E-01 0.000000E+00 2.395598E-01 1.179180E+00
+      389     0 00:06:29  5.123368E-01 4.935714E+01 4.986948E+01 1.084909E+05
+             (001,01,05)  3.383164E-01 0.000000E+00 1.049362E-01 1.164129E+00
+      390     0 00:06:30  5.109910E-01 4.935715E+01 4.986814E+01 1.084909E+05
+             (001,01,05)  3.430493E-01 0.000000E+00 2.403556E-01 1.178750E+00
+      391     0 00:06:31  5.092954E-01 4.935716E+01 4.986646E+01 1.084909E+05
+             (001,01,05)  3.382393E-01 0.000000E+00 1.056689E-01 1.163775E+00
+      392     0 00:06:32  5.078876E-01 4.935716E+01 4.986505E+01 1.084909E+05
+             (001,01,05)  3.430134E-01 0.000000E+00 2.411257E-01 1.178507E+00
+      393     0 00:06:33  5.061721E-01 4.935716E+01 4.986334E+01 1.084909E+05
+             (001,01,05)  3.382497E-01 0.000000E+00 1.063307E-01 1.163685E+00
+      394     0 00:06:34  5.047832E-01 4.935716E+01 4.986194E+01 1.084909E+05
+             (001,01,05)  3.430678E-01 0.000000E+00 2.417368E-01 1.178599E+00
+      395     0 00:06:35  5.031209E-01 4.935715E+01 4.986027E+01 1.084909E+05
+             (001,01,05)  3.383454E-01 0.000000E+00 1.067793E-01 1.163950E+00
+      396     0 00:06:36  5.018133E-01 4.935714E+01 4.985896E+01 1.084909E+05
+             (001,01,05)  3.431945E-01 0.000000E+00 2.421007E-01 1.179037E+00
+      397     0 00:06:37  5.002554E-01 4.935713E+01 4.985739E+01 1.084909E+05
+             (001,01,05)  3.384904E-01 0.000000E+00 1.069968E-01 1.164500E+00
+      398     0 00:06:38  4.990718E-01 4.935712E+01 4.985619E+01 1.084909E+05
+             (001,01,05)  3.433478E-01 0.000000E+00 2.422226E-01 1.179675E+00
+      399     0 00:06:39  4.976560E-01 4.935710E+01 4.985476E+01 1.084909E+05
+             (001,01,05)  3.386395E-01 0.000000E+00 1.070365E-01 1.165151E+00
+      400     0 00:06:40  4.966332E-01 4.935708E+01 4.985371E+01 1.084909E+05
+             (001,01,05)  3.434897E-01 0.000000E+00 2.422158E-01 1.180321E+00
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000005
+      401     0 00:06:41  4.953983E-01 4.935706E+01 4.985246E+01 1.084909E+05
+             (001,01,05)  3.387665E-01 0.000000E+00 1.070366E-01 1.165743E+00
+      402     0 00:06:42  4.945786E-01 4.935704E+01 4.985162E+01 1.084909E+05
+             (001,01,05)  3.436072E-01 0.000000E+00 2.422202E-01 1.180866E+00
+      403     0 00:06:43  4.935690E-01 4.935703E+01 4.985059E+01 1.084909E+05
+             (001,01,05)  3.388710E-01 0.000000E+00 1.070957E-01 1.166227E+00
+      404     0 00:06:44  4.929954E-01 4.935701E+01 4.985001E+01 1.084909E+05
+             (001,01,05)  3.437077E-01 0.000000E+00 2.422959E-01 1.181318E+00
+      405     0 00:06:45  4.922489E-01 4.935700E+01 4.984925E+01 1.084909E+05
+             (001,01,05)  3.389654E-01 0.000000E+00 1.072174E-01 1.166648E+00
+      406     0 00:06:46  4.919509E-01 4.935699E+01 4.984894E+01 1.084909E+05
+             (001,01,05)  3.438033E-01 0.000000E+00 2.424199E-01 1.181736E+00
+      407     0 00:06:47  4.914867E-01 4.935699E+01 4.984847E+01 1.084909E+05
+             (001,01,05)  3.390591E-01 0.000000E+00 1.073616E-01 1.167056E+00
+      408     0 00:06:48  4.914737E-01 4.935699E+01 4.984846E+01 1.084909E+05
+             (001,01,05)  3.438998E-01 0.000000E+00 2.425523E-01 1.182156E+00
+      409     0 00:06:49  4.912940E-01 4.935700E+01 4.984829E+01 1.084909E+05
+             (001,01,05)  3.391541E-01 0.000000E+00 1.075013E-01 1.167472E+00
+      410     0 00:06:50  4.915637E-01 4.935702E+01 4.984858E+01 1.084909E+05
+             (001,01,05)  3.439970E-01 0.000000E+00 2.426771E-01 1.182580E+00
+      411     0 00:06:51  4.916648E-01 4.935704E+01 4.984870E+01 1.084909E+05
+             (001,01,05)  3.392489E-01 0.000000E+00 1.076338E-01 1.167888E+00
+      412     0 00:06:52  4.922142E-01 4.935707E+01 4.984928E+01 1.084909E+05
+             (001,01,05)  3.440932E-01 0.000000E+00 2.427975E-01 1.183000E+00
+      413     0 00:06:53  4.925941E-01 4.935710E+01 4.984970E+01 1.084909E+05
+             (001,01,05)  3.393423E-01 0.000000E+00 1.077657E-01 1.168295E+00
+      414     0 00:06:54  4.934220E-01 4.935714E+01 4.985056E+01 1.084909E+05
+             (001,01,05)  3.441880E-01 0.000000E+00 2.429198E-01 1.183410E+00
+      415     0 00:06:55  4.940796E-01 4.935718E+01 4.985126E+01 1.084909E+05
+             (001,01,05)  3.394346E-01 0.000000E+00 1.079003E-01 1.168694E+00
+      416     0 00:06:56  4.951834E-01 4.935722E+01 4.985241E+01 1.084909E+05
+             (001,01,05)  3.442821E-01 0.000000E+00 2.430445E-01 1.183813E+00
+      417     0 00:06:57  4.961131E-01 4.935726E+01 4.985338E+01 1.084909E+05
+             (001,01,05)  3.395271E-01 0.000000E+00 1.080340E-01 1.169091E+00
+      418     0 00:06:58  4.974823E-01 4.935730E+01 4.985478E+01 1.084909E+05
+             (001,01,05)  3.443768E-01 0.000000E+00 2.431634E-01 1.184223E+00
+      419     0 00:06:59  4.986663E-01 4.935734E+01 4.985600E+01 1.084909E+05
+             (001,01,05)  3.396203E-01 0.000000E+00 1.081538E-01 1.169505E+00
+      420     0 00:07:00  5.002733E-01 4.935736E+01 4.985764E+01 1.084909E+05
+             (001,01,05)  3.444717E-01 0.000000E+00 2.432584E-01 1.184658E+00
+      421     0 00:07:01  5.016713E-01 4.935739E+01 4.985906E+01 1.084909E+05
+             (001,01,05)  3.397126E-01 0.000000E+00 1.082398E-01 1.169953E+00
+      422     0 00:07:02  5.034605E-01 4.935740E+01 4.986086E+01 1.084909E+05
+             (001,01,05)  3.445631E-01 0.000000E+00 2.433045E-01 1.185133E+00
+      423     0 00:07:03  5.050001E-01 4.935741E+01 4.986241E+01 1.084909E+05
+             (001,01,05)  3.397974E-01 0.000000E+00 1.082694E-01 1.170446E+00
+      424     0 00:07:04  5.068821E-01 4.935741E+01 4.986429E+01 1.084909E+05
+             (001,01,05)  3.446435E-01 0.000000E+00 2.432768E-01 1.185648E+00
+      425     0 00:07:05  5.084586E-01 4.935740E+01 4.986586E+01 1.084909E+05
+             (001,01,05)  3.398651E-01 0.000000E+00 1.082437E-01 1.170970E+00
+      426     0 00:07:06  5.103175E-01 4.935739E+01 4.986771E+01 1.084909E+05
+             (001,01,05)  3.446987E-01 0.000000E+00 2.431938E-01 1.186165E+00
+      427     0 00:07:07  5.118095E-01 4.935737E+01 4.986918E+01 1.084909E+05
+             (001,01,05)  3.398947E-01 0.000000E+00 1.081962E-01 1.171463E+00
+      428     0 00:07:08  5.135255E-01 4.935734E+01 4.987086E+01 1.084909E+05
+             (001,01,05)  3.447042E-01 0.000000E+00 2.430755E-01 1.186595E+00
+      429     0 00:07:09  5.148217E-01 4.935731E+01 4.987213E+01 1.084909E+05
+             (001,01,05)  3.398585E-01 0.000000E+00 1.081515E-01 1.171820E+00
+      430     0 00:07:10  5.162992E-01 4.935727E+01 4.987357E+01 1.084909E+05
+             (001,01,05)  3.446382E-01 0.000000E+00 2.429379E-01 1.186827E+00
+      431     0 00:07:11  5.173242E-01 4.935723E+01 4.987456E+01 1.084909E+05
+             (001,01,05)  3.397580E-01 0.000000E+00 1.081413E-01 1.171944E+00
+      432     0 00:07:12  5.185092E-01 4.935719E+01 4.987570E+01 1.084909E+05
+             (001,01,05)  3.445064E-01 0.000000E+00 2.429593E-01 1.186800E+00
+      433     0 00:07:13  5.192305E-01 4.935715E+01 4.987638E+01 1.084909E+05
+             (001,01,05)  3.396049E-01 0.000000E+00 1.082738E-01 1.171822E+00
+      434     0 00:07:14  5.201085E-01 4.935711E+01 4.987722E+01 1.084909E+05
+             (001,01,05)  3.443397E-01 0.000000E+00 2.431737E-01 1.186555E+00
+      435     0 00:07:15  5.205242E-01 4.935708E+01 4.987760E+01 1.084909E+05
+             (001,01,05)  3.394231E-01 0.000000E+00 1.086262E-01 1.171537E+00
+      436     0 00:07:16  5.211009E-01 4.935705E+01 4.987815E+01 1.084909E+05
+             (001,01,05)  3.441501E-01 0.000000E+00 2.435107E-01 1.186206E+00
+      437     0 00:07:17  5.212195E-01 4.935702E+01 4.987824E+01 1.084909E+05
+             (001,01,05)  3.392327E-01 0.000000E+00 1.089985E-01 1.171357E+00
+      438     0 00:07:18  5.215024E-01 4.935700E+01 4.987850E+01 1.084909E+05
+             (001,01,05)  3.439589E-01 0.000000E+00 2.438787E-01 1.185837E+00
+      439     0 00:07:19  5.213291E-01 4.935699E+01 4.987832E+01 1.084909E+05
+             (001,01,05)  3.390437E-01 0.000000E+00 1.093766E-01 1.171095E+00
+      440     0 00:07:20  5.213211E-01 4.935698E+01 4.987830E+01 1.084909E+05
+             (001,01,05)  3.437695E-01 0.000000E+00 2.442447E-01 1.185467E+00
+      441     0 00:07:21  5.208581E-01 4.935698E+01 4.987784E+01 1.084909E+05
+             (001,01,05)  3.388560E-01 0.000000E+00 1.097508E-01 1.170505E+00
+      442     0 00:07:22  5.205624E-01 4.935699E+01 4.987755E+01 1.084909E+05
+             (001,01,05)  3.435808E-01 0.000000E+00 2.446144E-01 1.185079E+00
+      443     0 00:07:23  5.198155E-01 4.935700E+01 4.987682E+01 1.084909E+05
+             (001,01,05)  3.386692E-01 0.000000E+00 1.101360E-01 1.170126E+00
+      444     0 00:07:24  5.192421E-01 4.935702E+01 4.987626E+01 1.084909E+05
+             (001,01,05)  3.433938E-01 0.000000E+00 2.450104E-01 1.184654E+00
+      445     0 00:07:25  5.182263E-01 4.935704E+01 4.987526E+01 1.084909E+05
+             (001,01,05)  3.384867E-01 0.000000E+00 1.105541E-01 1.169700E+00
+      446     0 00:07:26  5.173961E-01 4.935706E+01 4.987445E+01 1.084909E+05
+             (001,01,05)  3.432142E-01 0.000000E+00 2.454594E-01 1.184178E+00
+      447     0 00:07:27  5.161395E-01 4.935707E+01 4.987321E+01 1.084909E+05
+             (001,01,05)  3.383169E-01 0.000000E+00 1.110292E-01 1.169219E+00
+      448     0 00:07:28  5.150888E-01 4.935709E+01 4.987218E+01 1.084909E+05
+             (001,01,05)  3.430538E-01 0.000000E+00 2.459882E-01 1.183658E+00
+      449     0 00:07:29  5.136370E-01 4.935711E+01 4.987075E+01 1.084909E+05
+             (001,01,05)  3.381751E-01 0.000000E+00 1.115749E-01 1.168708E+00
+      450     0 00:07:30  5.124207E-01 4.935712E+01 4.986954E+01 1.084909E+05
+             (001,01,05)  3.429275E-01 0.000000E+00 2.465921E-01 1.183148E+00
+      451     0 00:07:31  5.108378E-01 4.935713E+01 4.986797E+01 1.084909E+05
+             (001,01,05)  3.380825E-01 0.000000E+00 1.121229E-01 1.168251E+00
+      452     0 00:07:32  5.095271E-01 4.935714E+01 4.986667E+01 1.084909E+05
+             (001,01,05)  3.428692E-01 0.000000E+00 2.472027E-01 1.182762E+00
+      453     0 00:07:33  5.078880E-01 4.935714E+01 4.986503E+01 1.084909E+05
+             (001,01,05)  3.380608E-01 0.000000E+00 1.126783E-01 1.167976E+00
+      454     0 00:07:34  5.065583E-01 4.935714E+01 4.986370E+01 1.084909E+05
+             (001,01,05)  3.428843E-01 0.000000E+00 2.477105E-01 1.182628E+00
+      455     0 00:07:35  5.049350E-01 4.935714E+01 4.986208E+01 1.084909E+05
+             (001,01,05)  3.381163E-01 0.000000E+00 1.130508E-01 1.167988E+00
+      456     0 00:07:36  5.036516E-01 4.935713E+01 4.986079E+01 1.084909E+05
+             (001,01,05)  3.429738E-01 0.000000E+00 2.480300E-01 1.182800E+00
+      457     0 00:07:37  5.021011E-01 4.935712E+01 4.985923E+01 1.084909E+05
+             (001,01,05)  3.382328E-01 0.000000E+00 1.132447E-01 1.168284E+00
+      458     0 00:07:38  5.009132E-01 4.935711E+01 4.985803E+01 1.084909E+05
+             (001,01,05)  3.431128E-01 0.000000E+00 2.481492E-01 1.183213E+00
+      459     0 00:07:39  4.994776E-01 4.935710E+01 4.985658E+01 1.084909E+05
+             (001,01,05)  3.383747E-01 0.000000E+00 1.133094E-01 1.168753E+00
+      460     0 00:07:40  4.984232E-01 4.935709E+01 4.985551E+01 1.084909E+05
+             (001,01,05)  3.432523E-01 0.000000E+00 2.481129E-01 1.183729E+00
+      461     0 00:07:41  4.971399E-01 4.935707E+01 4.985421E+01 1.084909E+05
+             (001,01,05)  3.385090E-01 0.000000E+00 1.132096E-01 1.169254E+00
+      462     0 00:07:42  4.962573E-01 4.935705E+01 4.985331E+01 1.084909E+05
+             (001,01,05)  3.433775E-01 0.000000E+00 2.480139E-01 1.184215E+00
+      463     0 00:07:43  4.951663E-01 4.935704E+01 4.985220E+01 1.084909E+05
+             (001,01,05)  3.386244E-01 0.000000E+00 1.131174E-01 1.169692E+00
+      464     0 00:07:44  4.944966E-01 4.935702E+01 4.985152E+01 1.084909E+05
+             (001,01,05)  3.434864E-01 0.000000E+00 2.479485E-01 1.184622E+00
+      465     0 00:07:45  4.936380E-01 4.935701E+01 4.985064E+01 1.084909E+05
+             (001,01,05)  3.387249E-01 0.000000E+00 1.130992E-01 1.170057E+00
+      466     0 00:07:46  4.932175E-01 4.935699E+01 4.985021E+01 1.084909E+05
+             (001,01,05)  3.435848E-01 0.000000E+00 2.479416E-01 1.184972E+00
+      467     0 00:07:47  4.926207E-01 4.935699E+01 4.984961E+01 1.084909E+05
+             (001,01,05)  3.388193E-01 0.000000E+00 1.131267E-01 1.170385E+00
+      468     0 00:07:48  4.924705E-01 4.935698E+01 4.984946E+01 1.084909E+05
+             (001,01,05)  3.436803E-01 0.000000E+00 2.479671E-01 1.185305E+00
+      469     0 00:07:49  4.921483E-01 4.935699E+01 4.984914E+01 1.084909E+05
+             (001,01,05)  3.389134E-01 0.000000E+00 1.131689E-01 1.170710E+00
+      470     0 00:07:50  4.922742E-01 4.935700E+01 4.984927E+01 1.084909E+05
+             (001,01,05)  3.437762E-01 0.000000E+00 2.479988E-01 1.185642E+00
+      471     0 00:07:51  4.922276E-01 4.935701E+01 4.984924E+01 1.084909E+05
+             (001,01,05)  3.390080E-01 0.000000E+00 1.132102E-01 1.171041E+00
+      472     0 00:07:52  4.926278E-01 4.935704E+01 4.984966E+01 1.084909E+05
+             (001,01,05)  3.438721E-01 0.000000E+00 2.480285E-01 1.185982E+00
+      473     0 00:07:53  4.928542E-01 4.935706E+01 4.984992E+01 1.084909E+05
+             (001,01,05)  3.391020E-01 0.000000E+00 1.132504E-01 1.171371E+00
+      474     0 00:07:54  4.935263E-01 4.935710E+01 4.985062E+01 1.084909E+05
+             (001,01,05)  3.439670E-01 0.000000E+00 2.480591E-01 1.186318E+00
+      475     0 00:07:55  4.940234E-01 4.935713E+01 4.985116E+01 1.084909E+05
+             (001,01,05)  3.391948E-01 0.000000E+00 1.132932E-01 1.171696E+00
+      476     0 00:07:56  4.949647E-01 4.935717E+01 4.985213E+01 1.084909E+05
+             (001,01,05)  3.440609E-01 0.000000E+00 2.480931E-01 1.186650E+00
+      477     0 00:07:57  4.957279E-01 4.935721E+01 4.985294E+01 1.084909E+05
+             (001,01,05)  3.392871E-01 0.000000E+00 1.133383E-01 1.172020E+00
+      478     0 00:07:58  4.969302E-01 4.935724E+01 4.985417E+01 1.084909E+05
+             (001,01,05)  3.441546E-01 0.000000E+00 2.481267E-01 1.186985E+00
+      479     0 00:07:59  4.979459E-01 4.935728E+01 4.985523E+01 1.084909E+05
+             (001,01,05)  3.393794E-01 0.000000E+00 1.133780E-01 1.172353E+00
+      480     0 00:08:00  4.993878E-01 4.935731E+01 4.985670E+01 1.084909E+05
+             (001,01,05)  3.442481E-01 0.000000E+00 2.481481E-01 1.187336E+00
+      481     0 00:08:01  5.006248E-01 4.935734E+01 4.985796E+01 1.084909E+05
+             (001,01,05)  3.394710E-01 0.000000E+00 1.133976E-01 1.172711E+00
+      482     0 00:08:02  5.022634E-01 4.935736E+01 4.985962E+01 1.084909E+05
+             (001,01,05)  3.443393E-01 0.000000E+00 2.481379E-01 1.187718E+00
+      483     0 00:08:03  5.036651E-01 4.935737E+01 4.986104E+01 1.084909E+05
+             (001,01,05)  3.395578E-01 0.000000E+00 1.133785E-01 1.173105E+00
+      484     0 00:08:04  5.054296E-01 4.935738E+01 4.986281E+01 1.084909E+05
+             (001,01,05)  3.444233E-01 0.000000E+00 2.480748E-01 1.188134E+00
+      485     0 00:08:05  5.069115E-01 4.935738E+01 4.986429E+01 1.084909E+05
+             (001,01,05)  3.396320E-01 0.000000E+00 1.133155E-01 1.173532E+00
+      486     0 00:08:06  5.087056E-01 4.935737E+01 4.986608E+01 1.084909E+05
+             (001,01,05)  3.444894E-01 0.000000E+00 2.479529E-01 1.188569E+00
+      487     0 00:08:07  5.101632E-01 4.935736E+01 4.986752E+01 1.084909E+05
+             (001,01,05)  3.396830E-01 0.000000E+00 1.132165E-01 1.173960E+00
+      488     0 00:08:08  5.118788E-01 4.935734E+01 4.986922E+01 1.084909E+05
+             (001,01,05)  3.445226E-01 0.000000E+00 2.478167E-01 1.188967E+00
+      489     0 00:08:09  5.132058E-01 4.935731E+01 4.987052E+01 1.084909E+05
+             (001,01,05)  3.396828E-01 0.000000E+00 1.131273E-01 1.174315E+00
+      490     0 00:08:10  5.147440E-01 4.935728E+01 4.987203E+01 1.084909E+05
+             (001,01,05)  3.444975E-01 0.000000E+00 2.476245E-01 1.189242E+00
+      491     0 00:08:11  5.158534E-01 4.935725E+01 4.987310E+01 1.084909E+05
+             (001,01,05)  3.396235E-01 0.000000E+00 1.130280E-01 1.174510E+00
+      492     0 00:08:12  5.171428E-01 4.935721E+01 4.987436E+01 1.084909E+05
+             (001,01,05)  3.444087E-01 0.000000E+00 2.475014E-01 1.189312E+00
+      493     0 00:08:13  5.179809E-01 4.935718E+01 4.987516E+01 1.084909E+05
+             (001,01,05)  3.395085E-01 0.000000E+00 1.130130E-01 1.174486E+00
+      494     0 00:08:14  5.189850E-01 4.935714E+01 4.987612E+01 1.084909E+05
+             (001,01,05)  3.442731E-01 0.000000E+00 2.475420E-01 1.189158E+00
+      495     0 00:08:15  5.195306E-01 4.935710E+01 4.987663E+01 1.084909E+05
+             (001,01,05)  3.393513E-01 0.000000E+00 1.131935E-01 1.174263E+00
+      496     0 00:08:16  5.202408E-01 4.935707E+01 4.987731E+01 1.084909E+05
+             (001,01,05)  3.441011E-01 0.000000E+00 2.477285E-01 1.188842E+00
+      497     0 00:08:17  5.204939E-01 4.935704E+01 4.987754E+01 1.084909E+05
+             (001,01,05)  3.391724E-01 0.000000E+00 1.134480E-01 1.173924E+00
+      498     0 00:08:18  5.209143E-01 4.935702E+01 4.987793E+01 1.084909E+05
+             (001,01,05)  3.439169E-01 0.000000E+00 2.479989E-01 1.188452E+00
+      499     0 00:08:19  5.208805E-01 4.935700E+01 4.987788E+01 1.084909E+05
+             (001,01,05)  3.389887E-01 0.000000E+00 1.137490E-01 1.173548E+00
+      500     0 00:08:20  5.210161E-01 4.935699E+01 4.987800E+01 1.084909E+05
+             (001,01,05)  3.437320E-01 0.000000E+00 2.482993E-01 1.188046E+00
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000006
+      501     0 00:08:21  5.206995E-01 4.935698E+01 4.987768E+01 1.084909E+05
+             (001,01,05)  3.388061E-01 0.000000E+00 1.140620E-01 1.173163E+00
+      502     0 00:08:22  5.205543E-01 4.935698E+01 4.987754E+01 1.084909E+05
+             (001,01,05)  3.435485E-01 0.000000E+00 2.486071E-01 1.187630E+00
+      503     0 00:08:23  5.199597E-01 4.935699E+01 4.987695E+01 1.084909E+05
+             (001,01,05)  3.386251E-01 0.000000E+00 1.143830E-01 1.172761E+00
+      504     0 00:08:24  5.195411E-01 4.935700E+01 4.987654E+01 1.084909E+05
+             (001,01,05)  3.433669E-01 0.000000E+00 2.489335E-01 1.187188E+00
+      505     0 00:08:25  5.186799E-01 4.935701E+01 4.987569E+01 1.084909E+05
+             (001,01,05)  3.384474E-01 0.000000E+00 1.147293E-01 1.172322E+00
+      506     0 00:08:26  5.180042E-01 4.935703E+01 4.987503E+01 1.084909E+05
+             (001,01,05)  3.431909E-01 0.000000E+00 2.493030E-01 1.186705E+00
+      507     0 00:08:27  5.168990E-01 4.935705E+01 4.987394E+01 1.084909E+05
+             (001,01,05)  3.382797E-01 0.000000E+00 1.151226E-01 1.171837E+00
+      508     0 00:08:28  5.159960E-01 4.935706E+01 4.987306E+01 1.084909E+05
+             (001,01,05)  3.430301E-01 0.000000E+00 2.497393E-01 1.186182E+00
+      509     0 00:08:29  5.146845E-01 4.935708E+01 4.987176E+01 1.084909E+05
+             (001,01,05)  3.381344E-01 0.000000E+00 1.155765E-01 1.171322E+00
+      510     0 00:08:30  5.136001E-01 4.935710E+01 4.987070E+01 1.084909E+05
+             (001,01,05)  3.428999E-01 0.000000E+00 2.502451E-01 1.185659E+00
+      511     0 00:08:31  5.121365E-01 4.935711E+01 4.986924E+01 1.084909E+05
+             (001,01,05)  3.380287E-01 0.000000E+00 1.160735E-01 1.170835E+00
+      512     0 00:08:32  5.109317E-01 4.935712E+01 4.986805E+01 1.084909E+05
+             (001,01,05)  3.428172E-01 0.000000E+00 2.507746E-01 1.185216E+00
+      513     0 00:08:33  5.093821E-01 4.935712E+01 4.986650E+01 1.084909E+05
+             (001,01,05)  3.379829E-01 0.000000E+00 1.165304E-01 1.170475E+00
+      514     0 00:08:34  5.081256E-01 4.935713E+01 4.986525E+01 1.084909E+05
+             (001,01,05)  3.428032E-01 0.000000E+00 2.512610E-01 1.184960E+00
+      515     0 00:08:35  5.065578E-01 4.935713E+01 4.986368E+01 1.084909E+05
+             (001,01,05)  3.380013E-01 0.000000E+00 1.169157E-01 1.170338E+00
+      516     0 00:08:36  5.053144E-01 4.935712E+01 4.986244E+01 1.084909E+05
+             (001,01,05)  3.428539E-01 0.000000E+00 2.515703E-01 1.184960E+00
+      517     0 00:08:37  5.037878E-01 4.935712E+01 4.986090E+01 1.084909E+05
+             (001,01,05)  3.380841E-01 0.000000E+00 1.171108E-01 1.170458E+00
+      518     0 00:08:38  5.026101E-01 4.935711E+01 4.985972E+01 1.084909E+05
+             (001,01,05)  3.429597E-01 0.000000E+00 2.517238E-01 1.185205E+00
+      519     0 00:08:39  5.011711E-01 4.935710E+01 4.985827E+01 1.084909E+05
+             (001,01,05)  3.382059E-01 0.000000E+00 1.171675E-01 1.170783E+00
+      520     0 00:08:40  5.001005E-01 4.935709E+01 4.985719E+01 1.084909E+05
+             (001,01,05)  3.430899E-01 0.000000E+00 2.517225E-01 1.185605E+00
+      521     0 00:08:41  4.987871E-01 4.935707E+01 4.985586E+01 1.084909E+05
+             (001,01,05)  3.383371E-01 0.000000E+00 1.171082E-01 1.171203E+00
+      522     0 00:08:42  4.978606E-01 4.935706E+01 4.985492E+01 1.084909E+05
+             (001,01,05)  3.432189E-01 0.000000E+00 2.516246E-01 1.186043E+00
+      523     0 00:08:43  4.967101E-01 4.935704E+01 4.985375E+01 1.084909E+05
+             (001,01,05)  3.384582E-01 0.000000E+00 1.170059E-01 1.171616E+00
+      524     0 00:08:44  4.959660E-01 4.935703E+01 4.985299E+01 1.084909E+05
+             (001,01,05)  3.433341E-01 0.000000E+00 2.515127E-01 1.186441E+00
+      525     0 00:08:45  4.950172E-01 4.935701E+01 4.985203E+01 1.084909E+05
+             (001,01,05)  3.385644E-01 0.000000E+00 1.169258E-01 1.171974E+00
+      526     0 00:08:46  4.944932E-01 4.935700E+01 4.985149E+01 1.084909E+05
+             (001,01,05)  3.434360E-01 0.000000E+00 2.514377E-01 1.186780E+00
+      527     0 00:08:47  4.937807E-01 4.935699E+01 4.985077E+01 1.084909E+05
+             (001,01,05)  3.386604E-01 0.000000E+00 1.168884E-01 1.172281E+00
+      528     0 00:08:48  4.935060E-01 4.935699E+01 4.985049E+01 1.084909E+05
+             (001,01,05)  3.435309E-01 0.000000E+00 2.514031E-01 1.187083E+00
+      529     0 00:08:49  4.930521E-01 4.935698E+01 4.985004E+01 1.084909E+05
+             (001,01,05)  3.387527E-01 0.000000E+00 1.168799E-01 1.172569E+00
+      530     0 00:08:50  4.930420E-01 4.935699E+01 4.985003E+01 1.084909E+05
+             (001,01,05)  3.436242E-01 0.000000E+00 2.513892E-01 1.187379E+00
+      531     0 00:08:51  4.928552E-01 4.935700E+01 4.984985E+01 1.084909E+05
+             (001,01,05)  3.388448E-01 0.000000E+00 1.168804E-01 1.172856E+00
+      532     0 00:08:52  4.931130E-01 4.935701E+01 4.985013E+01 1.084909E+05
+             (001,01,05)  3.437175E-01 0.000000E+00 2.513798E-01 1.187676E+00
+      533     0 00:08:53  4.931935E-01 4.935703E+01 4.985023E+01 1.084909E+05
+             (001,01,05)  3.389368E-01 0.000000E+00 1.168816E-01 1.173146E+00
+      534     0 00:08:54  4.937174E-01 4.935706E+01 4.985078E+01 1.084909E+05
+             (001,01,05)  3.438105E-01 0.000000E+00 2.513707E-01 1.187975E+00
+      535     0 00:08:55  4.940627E-01 4.935709E+01 4.985115E+01 1.084909E+05
+             (001,01,05)  3.390283E-01 0.000000E+00 1.168837E-01 1.173435E+00
+      536     0 00:08:56  4.948496E-01 4.935712E+01 4.985197E+01 1.084909E+05
+             (001,01,05)  3.439027E-01 0.000000E+00 2.513635E-01 1.188272E+00
+      537     0 00:08:57  4.954553E-01 4.935716E+01 4.985261E+01 1.084909E+05
+             (001,01,05)  3.391189E-01 0.000000E+00 1.168879E-01 1.173723E+00
+      538     0 00:08:58  4.964984E-01 4.935719E+01 4.985369E+01 1.084909E+05
+             (001,01,05)  3.439943E-01 0.000000E+00 2.513574E-01 1.188570E+00
+      539     0 00:08:59  4.973538E-01 4.935723E+01 4.985458E+01 1.084909E+05
+             (001,01,05)  3.392091E-01 0.000000E+00 1.168904E-01 1.174016E+00
+      540     0 00:09:00  4.986367E-01 4.935726E+01 4.985590E+01 1.084909E+05
+             (001,01,05)  3.440854E-01 0.000000E+00 2.513452E-01 1.188878E+00
+      541     0 00:09:01  4.997176E-01 4.935729E+01 4.985701E+01 1.084909E+05
+             (001,01,05)  3.392986E-01 0.000000E+00 1.168812E-01 1.174325E+00
+      542     0 00:09:02  5.012068E-01 4.935731E+01 4.985852E+01 1.084909E+05
+             (001,01,05)  3.441748E-01 0.000000E+00 2.513129E-01 1.189207E+00
+      543     0 00:09:03  5.024688E-01 4.935733E+01 4.985980E+01 1.084909E+05
+             (001,01,05)  3.393849E-01 0.000000E+00 1.168456E-01 1.174662E+00
+      544     0 00:09:04  5.041079E-01 4.935734E+01 4.986145E+01 1.084909E+05
+             (001,01,05)  3.442594E-01 0.000000E+00 2.512429E-01 1.189564E+00
+      545     0 00:09:05  5.054823E-01 4.935735E+01 4.986283E+01 1.084909E+05
+             (001,01,05)  3.394623E-01 0.000000E+00 1.167763E-01 1.175028E+00
+      546     0 00:09:06  5.071917E-01 4.935735E+01 4.986454E+01 1.084909E+05
+             (001,01,05)  3.443315E-01 0.000000E+00 2.511227E-01 1.189944E+00
+      547     0 00:09:07  5.085901E-01 4.935735E+01 4.986594E+01 1.084909E+05
+             (001,01,05)  3.395238E-01 0.000000E+00 1.166706E-01 1.175408E+00
+      548     0 00:09:08  5.102749E-01 4.935733E+01 4.986761E+01 1.084909E+05
+             (001,01,05)  3.443806E-01 0.000000E+00 2.509814E-01 1.190314E+00
+      549     0 00:09:09  5.115999E-01 4.935731E+01 4.986891E+01 1.084909E+05
+             (001,01,05)  3.395512E-01 0.000000E+00 1.165614E-01 1.175756E+00
+      550     0 00:09:10  5.131648E-01 4.935729E+01 4.987045E+01 1.084909E+05
+             (001,01,05)  3.443869E-01 0.000000E+00 2.508096E-01 1.190614E+00
+      551     0 00:09:11  5.143270E-01 4.935726E+01 4.987159E+01 1.084909E+05
+             (001,01,05)  3.395245E-01 0.000000E+00 1.164470E-01 1.176002E+00
+      552     0 00:09:12  5.156924E-01 4.935723E+01 4.987292E+01 1.084909E+05
+             (001,01,05)  3.443353E-01 0.000000E+00 2.506164E-01 1.190768E+00
+      553     0 00:09:13  5.166248E-01 4.935720E+01 4.987382E+01 1.084909E+05
+             (001,01,05)  3.394454E-01 0.000000E+00 1.163516E-01 1.176076E+00
+      554     0 00:09:14  5.177378E-01 4.935716E+01 4.987490E+01 1.084909E+05
+             (001,01,05)  3.442333E-01 0.000000E+00 2.505404E-01 1.190724E+00
+      555     0 00:09:15  5.184017E-01 4.935713E+01 4.987553E+01 1.084909E+05
+             (001,01,05)  3.393179E-01 0.000000E+00 1.164042E-01 1.175954E+00
+      556     0 00:09:16  5.192370E-01 4.935710E+01 4.987633E+01 1.084909E+05
+             (001,01,05)  3.440861E-01 0.000000E+00 2.506017E-01 1.190494E+00
+      557     0 00:09:17  5.196190E-01 4.935707E+01 4.987668E+01 1.084909E+05
+             (001,01,05)  3.391572E-01 0.000000E+00 1.165557E-01 1.175674E+00
+      558     0 00:09:18  5.201714E-01 4.935704E+01 4.987721E+01 1.084909E+05
+             (001,01,05)  3.439145E-01 0.000000E+00 2.507785E-01 1.190139E+00
+      559     0 00:09:19  5.202717E-01 4.935702E+01 4.987729E+01 1.084909E+05
+             (001,01,05)  3.389817E-01 0.000000E+00 1.167865E-01 1.175310E+00
+      560     0 00:09:20  5.205445E-01 4.935700E+01 4.987754E+01 1.084909E+05
+             (001,01,05)  3.437349E-01 0.000000E+00 2.510224E-01 1.189732E+00
+      561     0 00:09:21  5.203676E-01 4.935699E+01 4.987735E+01 1.084909E+05
+             (001,01,05)  3.388034E-01 0.000000E+00 1.170560E-01 1.174917E+00
+      562     0 00:09:22  5.203654E-01 4.935698E+01 4.987735E+01 1.084909E+05
+             (001,01,05)  3.435553E-01 0.000000E+00 2.512924E-01 1.189308E+00
+      563     0 00:09:23  5.199163E-01 4.935698E+01 4.987690E+01 1.084909E+05
+             (001,01,05)  3.386263E-01 0.000000E+00 1.173410E-01 1.174508E+00
+      564     0 00:09:24  5.196456E-01 4.935699E+01 4.987663E+01 1.084909E+05
+             (001,01,05)  3.433776E-01 0.000000E+00 2.515795E-01 1.188865E+00
+      565     0 00:09:25  5.189333E-01 4.935699E+01 4.987593E+01 1.084909E+05
+             (001,01,05)  3.384524E-01 0.000000E+00 1.176453E-01 1.174072E+00
+      566     0 00:09:26  5.184069E-01 4.935701E+01 4.987541E+01 1.084909E+05
+             (001,01,05)  3.432047E-01 0.000000E+00 2.518997E-01 1.188390E+00
+      567     0 00:09:27  5.174493E-01 4.935702E+01 4.987447E+01 1.084909E+05
+             (001,01,05)  3.382864E-01 0.000000E+00 1.179869E-01 1.173599E+00
+      568     0 00:09:28  5.166912E-01 4.935704E+01 4.987373E+01 1.084909E+05
+             (001,01,05)  3.430435E-01 0.000000E+00 2.522747E-01 1.187880E+00
+      569     0 00:09:29  5.155193E-01 4.935705E+01 4.987257E+01 1.084909E+05
+             (001,01,05)  3.381381E-01 0.000000E+00 1.183800E-01 1.173095E+00
+      570     0 00:09:30  5.145676E-01 4.935707E+01 4.987164E+01 1.084909E+05
+             (001,01,05)  3.429068E-01 0.000000E+00 2.527125E-01 1.187360E+00
+      571     0 00:09:31  5.132270E-01 4.935708E+01 4.987031E+01 1.084909E+05
+             (001,01,05)  3.380219E-01 0.000000E+00 1.188173E-01 1.172603E+00
+      572     0 00:09:32  5.121342E-01 4.935709E+01 4.986923E+01 1.084909E+05
+             (001,01,05)  3.428097E-01 0.000000E+00 2.531855E-01 1.186893E+00
+      573     0 00:09:33  5.106828E-01 4.935710E+01 4.986778E+01 1.084909E+05
+             (001,01,05)  3.379541E-01 0.000000E+00 1.192467E-01 1.172197E+00
+      574     0 00:09:34  5.095105E-01 4.935711E+01 4.986662E+01 1.084909E+05
+             (001,01,05)  3.427685E-01 0.000000E+00 2.536321E-01 1.186562E+00
+      575     0 00:09:35  5.080113E-01 4.935711E+01 4.986512E+01 1.084909E+05
+             (001,01,05)  3.379463E-01 0.000000E+00 1.196124E-01 1.171963E+00
+      576     0 00:09:36  5.068214E-01 4.935711E+01 4.986393E+01 1.084909E+05
+             (001,01,05)  3.427889E-01 0.000000E+00 2.539798E-01 1.186441E+00
+      577     0 00:09:37  5.053331E-01 4.935711E+01 4.986244E+01 1.084909E+05
+             (001,01,05)  3.379953E-01 0.000000E+00 1.198498E-01 1.171951E+00
+      578     0 00:09:38  5.041801E-01 4.935710E+01 4.986128E+01 1.084909E+05
+             (001,01,05)  3.428633E-01 0.000000E+00 2.541555E-01 1.186547E+00
+      579     0 00:09:39  5.027520E-01 4.935709E+01 4.985985E+01 1.084909E+05
+             (001,01,05)  3.380923E-01 0.000000E+00 1.199347E-01 1.172146E+00
+      580     0 00:09:40  5.016797E-01 4.935708E+01 4.985876E+01 1.084909E+05
+             (001,01,05)  3.429746E-01 0.000000E+00 2.542022E-01 1.186833E+00
+      581     0 00:09:41  5.003516E-01 4.935707E+01 4.985743E+01 1.084909E+05
+             (001,01,05)  3.382118E-01 0.000000E+00 1.199134E-01 1.172476E+00
+      582     0 00:09:42  4.993977E-01 4.935706E+01 4.985646E+01 1.084909E+05
+             (001,01,05)  3.430973E-01 0.000000E+00 2.541378E-01 1.187208E+00
+      583     0 00:09:43  4.982059E-01 4.935705E+01 4.985525E+01 1.084909E+05
+             (001,01,05)  3.383321E-01 0.000000E+00 1.198207E-01 1.172851E+00
+      584     0 00:09:44  4.974064E-01 4.935703E+01 4.985444E+01 1.084909E+05
+             (001,01,05)  3.432143E-01 0.000000E+00 2.540214E-01 1.187588E+00
+      585     0 00:09:45  4.963876E-01 4.935702E+01 4.985341E+01 1.084909E+05
+             (001,01,05)  3.384419E-01 0.000000E+00 1.197155E-01 1.173203E+00
+      586     0 00:09:46  4.957797E-01 4.935701E+01 4.985279E+01 1.084909E+05
+             (001,01,05)  3.433196E-01 0.000000E+00 2.539117E-01 1.187928E+00
+      587     0 00:09:47  4.949698E-01 4.935700E+01 4.985197E+01 1.084909E+05
+             (001,01,05)  3.385405E-01 0.000000E+00 1.196369E-01 1.173510E+00
+      588     0 00:09:48  4.945864E-01 4.935699E+01 4.985158E+01 1.084909E+05
+             (001,01,05)  3.434155E-01 0.000000E+00 2.538353E-01 1.188225E+00
+      589     0 00:09:49  4.940142E-01 4.935698E+01 4.985100E+01 1.084909E+05
+             (001,01,05)  3.386322E-01 0.000000E+00 1.195908E-01 1.173784E+00
+      590     0 00:09:50  4.938785E-01 4.935698E+01 4.985086E+01 1.084909E+05
+             (001,01,05)  3.435069E-01 0.000000E+00 2.537876E-01 1.188500E+00
+      591     0 00:09:51  4.935606E-01 4.935699E+01 4.985055E+01 1.084909E+05
+             (001,01,05)  3.387218E-01 0.000000E+00 1.195639E-01 1.174046E+00
+      592     0 00:09:52  4.936831E-01 4.935700E+01 4.985068E+01 1.084909E+05
+             (001,01,05)  3.435972E-01 0.000000E+00 2.537535E-01 1.188771E+00
+      593     0 00:09:53  4.936250E-01 4.935701E+01 4.985064E+01 1.084909E+05
+             (001,01,05)  3.388110E-01 0.000000E+00 1.195430E-01 1.174309E+00
+      594     0 00:09:54  4.940075E-01 4.935703E+01 4.985104E+01 1.084909E+05
+             (001,01,05)  3.436874E-01 0.000000E+00 2.537228E-01 1.189044E+00
+      595     0 00:09:55  4.942084E-01 4.935705E+01 4.985126E+01 1.084909E+05
+             (001,01,05)  3.389001E-01 0.000000E+00 1.195233E-01 1.174574E+00
+      596     0 00:09:56  4.948483E-01 4.935708E+01 4.985193E+01 1.084909E+05
+             (001,01,05)  3.437772E-01 0.000000E+00 2.536933E-01 1.189318E+00
+      597     0 00:09:57  4.953043E-01 4.935711E+01 4.985242E+01 1.084909E+05
+             (001,01,05)  3.389885E-01 0.000000E+00 1.195046E-01 1.174839E+00
+      598     0 00:09:58  4.961957E-01 4.935715E+01 4.985334E+01 1.084909E+05
+             (001,01,05)  3.438664E-01 0.000000E+00 2.536645E-01 1.189592E+00
+      599     0 00:09:59  4.968980E-01 4.935718E+01 4.985408E+01 1.084909E+05
+             (001,01,05)  3.390764E-01 0.000000E+00 1.194855E-01 1.175107E+00
+      600     0 00:10:00  4.980281E-01 4.935721E+01 4.985524E+01 1.084909E+05
+             (001,01,05)  3.439549E-01 0.000000E+00 2.536327E-01 1.189872E+00
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000007
+      601     0 00:10:01  4.989578E-01 4.935724E+01 4.985620E+01 1.084909E+05
+             (001,01,05)  3.391635E-01 0.000000E+00 1.194598E-01 1.175385E+00
+      602     0 00:10:02  5.003002E-01 4.935727E+01 4.985757E+01 1.084909E+05
+             (001,01,05)  3.440420E-01 0.000000E+00 2.535885E-01 1.190166E+00
+      603     0 00:10:03  5.014223E-01 4.935729E+01 4.985871E+01 1.084909E+05
+             (001,01,05)  3.392482E-01 0.000000E+00 1.194166E-01 1.175682E+00
+      604     0 00:10:04  5.029319E-01 4.935731E+01 4.986024E+01 1.084909E+05
+             (001,01,05)  3.441259E-01 0.000000E+00 2.535179E-01 1.190482E+00
+      605     0 00:10:05  5.041908E-01 4.935732E+01 4.986151E+01 1.084909E+05
+             (001,01,05)  3.393269E-01 0.000000E+00 1.193490E-01 1.176004E+00
+      606     0 00:10:06  5.058020E-01 4.935732E+01 4.986313E+01 1.084909E+05
+             (001,01,05)  3.442010E-01 0.000000E+00 2.534086E-01 1.190820E+00
+      607     0 00:10:07  5.071229E-01 4.935732E+01 4.986445E+01 1.084909E+05
+             (001,01,05)  3.393932E-01 0.000000E+00 1.192494E-01 1.176345E+00
+      608     0 00:10:08  5.087536E-01 4.935732E+01 4.986607E+01 1.084909E+05
+             (001,01,05)  3.442590E-01 0.000000E+00 2.532651E-01 1.191163E+00
+      609     0 00:10:09  5.100499E-01 4.935731E+01 4.986736E+01 1.084909E+05
+             (001,01,05)  3.394378E-01 0.000000E+00 1.191308E-01 1.176677E+00
+      610     0 00:10:10  5.116121E-01 4.935729E+01 4.986890E+01 1.084909E+05
+             (001,01,05)  3.442874E-01 0.000000E+00 2.531154E-01 1.191468E+00
+      611     0 00:10:11  5.127973E-01 4.935727E+01 4.987007E+01 1.084909E+05
+             (001,01,05)  3.394388E-01 0.000000E+00 1.190188E-01 1.176948E+00
+      612     0 00:10:12  5.142096E-01 4.935724E+01 4.987145E+01 1.084909E+05
+             (001,01,05)  3.442671E-01 0.000000E+00 2.529164E-01 1.191677E+00
+      613     0 00:10:13  5.152104E-01 4.935721E+01 4.987242E+01 1.084909E+05
+             (001,01,05)  3.393904E-01 0.000000E+00 1.188931E-01 1.177096E+00
+      614     0 00:10:14  5.164097E-01 4.935718E+01 4.987359E+01 1.084909E+05
+             (001,01,05)  3.441938E-01 0.000000E+00 2.527613E-01 1.191729E+00
+      615     0 00:10:15  5.171746E-01 4.935715E+01 4.987433E+01 1.084909E+05
+             (001,01,05)  3.392943E-01 0.000000E+00 1.188256E-01 1.177075E+00
+      616     0 00:10:16  5.181214E-01 4.935712E+01 4.987524E+01 1.084909E+05
+             (001,01,05)  3.440789E-01 0.000000E+00 2.527288E-01 1.191600E+00
+      617     0 00:10:17  5.186226E-01 4.935709E+01 4.987571E+01 1.084909E+05
+             (001,01,05)  3.391581E-01 0.000000E+00 1.189165E-01 1.176883E+00
+      618     0 00:10:18  5.192994E-01 4.935706E+01 4.987636E+01 1.084909E+05
+             (001,01,05)  3.439266E-01 0.000000E+00 2.528165E-01 1.191318E+00
+      619     0 00:10:19  5.195279E-01 4.935704E+01 4.987656E+01 1.084909E+05
+             (001,01,05)  3.389963E-01 0.000000E+00 1.190763E-01 1.176568E+00
+      620     0 00:10:20  5.199317E-01 4.935701E+01 4.987695E+01 1.084909E+05
+             (001,01,05)  3.437565E-01 0.000000E+00 2.529947E-01 1.190941E+00
+      621     0 00:10:21  5.198885E-01 4.935700E+01 4.987689E+01 1.084909E+05
+             (001,01,05)  3.388244E-01 0.000000E+00 1.192976E-01 1.176189E+00
+      622     0 00:10:22  5.200227E-01 4.935699E+01 4.987701E+01 1.084909E+05
+             (001,01,05)  3.435813E-01 0.000000E+00 2.532261E-01 1.190523E+00
+      623     0 00:10:23  5.197125E-01 4.935698E+01 4.987669E+01 1.084909E+05
+             (001,01,05)  3.386510E-01 0.000000E+00 1.195518E-01 1.175782E+00
+      624     0 00:10:24  5.195829E-01 4.935698E+01 4.987656E+01 1.084909E+05
+             (001,01,05)  3.434070E-01 0.000000E+00 2.534842E-01 1.190084E+00
+      625     0 00:10:25  5.190135E-01 4.935698E+01 4.987600E+01 1.084909E+05
+             (001,01,05)  3.384802E-01 0.000000E+00 1.198272E-01 1.175354E+00
+      626     0 00:10:26  5.186308E-01 4.935699E+01 4.987562E+01 1.084909E+05
+             (001,01,05)  3.432366E-01 0.000000E+00 2.537701E-01 1.189620E+00
+      627     0 00:10:27  5.178165E-01 4.935700E+01 4.987482E+01 1.084909E+05
+             (001,01,05)  3.383158E-01 0.000000E+00 1.201322E-01 1.174895E+00
+      628     0 00:10:28  5.171997E-01 4.935702E+01 4.987422E+01 1.084909E+05
+             (001,01,05)  3.430757E-01 0.000000E+00 2.540999E-01 1.189127E+00
+      629     0 00:10:29  5.161655E-01 4.935703E+01 4.987320E+01 1.084909E+05
+             (001,01,05)  3.381656E-01 0.000000E+00 1.204800E-01 1.174408E+00
+      630     0 00:10:30  5.153462E-01 4.935704E+01 4.987239E+01 1.084909E+05
+             (001,01,05)  3.429342E-01 0.000000E+00 2.544853E-01 1.188620E+00
+      631     0 00:10:31  5.141306E-01 4.935706E+01 4.987119E+01 1.084909E+05
+             (001,01,05)  3.380413E-01 0.000000E+00 1.208706E-01 1.173921E+00
+      632     0 00:10:32  5.131535E-01 4.935707E+01 4.987022E+01 1.084909E+05
+             (001,01,05)  3.428256E-01 0.000000E+00 2.549118E-01 1.188142E+00
+      633     0 00:10:33  5.118068E-01 4.935708E+01 4.986889E+01 1.084909E+05
+             (001,01,05)  3.379569E-01 0.000000E+00 1.212732E-01 1.173491E+00
+      634     0 00:10:34  5.107266E-01 4.935709E+01 4.986781E+01 1.084909E+05
+             (001,01,05)  3.427624E-01 0.000000E+00 2.553311E-01 1.187765E+00
+      635     0 00:10:35  5.093063E-01 4.935709E+01 4.986640E+01 1.084909E+05
+             (001,01,05)  3.379264E-01 0.000000E+00 1.216218E-01 1.173191E+00
+      636     0 00:10:36  5.081813E-01 4.935709E+01 4.986528E+01 1.084909E+05
+             (001,01,05)  3.427573E-01 0.000000E+00 2.556999E-01 1.187555E+00
+      637     0 00:10:37  5.067439E-01 4.935709E+01 4.986384E+01 1.084909E+05
+             (001,01,05)  3.379456E-01 0.000000E+00 1.219004E-01 1.173077E+00
+      638     0 00:10:38  5.056282E-01 4.935709E+01 4.986272E+01 1.084909E+05
+             (001,01,05)  3.428016E-01 0.000000E+00 2.558979E-01 1.187548E+00
+      639     0 00:10:39  5.042243E-01 4.935709E+01 4.986131E+01 1.084909E+05
+             (001,01,05)  3.380158E-01 0.000000E+00 1.220112E-01 1.173159E+00
+      640     0 00:10:40  5.031636E-01 4.935708E+01 4.986024E+01 1.084909E+05
+             (001,01,05)  3.428902E-01 0.000000E+00 2.559866E-01 1.187725E+00
+      641     0 00:10:41  5.018348E-01 4.935707E+01 4.985891E+01 1.084909E+05
+             (001,01,05)  3.381183E-01 0.000000E+00 1.220307E-01 1.173397E+00
+      642     0 00:10:42  5.008677E-01 4.935706E+01 4.985793E+01 1.084909E+05
+             (001,01,05)  3.430008E-01 0.000000E+00 2.559669E-01 1.188025E+00
+      643     0 00:10:43  4.996504E-01 4.935705E+01 4.985670E+01 1.084909E+05
+             (001,01,05)  3.382319E-01 0.000000E+00 1.219675E-01 1.173717E+00
+      644     0 00:10:44  4.988123E-01 4.935704E+01 4.985585E+01 1.084909E+05
+             (001,01,05)  3.431148E-01 0.000000E+00 2.558719E-01 1.188371E+00
+      645     0 00:10:45  4.977417E-01 4.935703E+01 4.985477E+01 1.084909E+05
+             (001,01,05)  3.383421E-01 0.000000E+00 1.218643E-01 1.174051E+00
+      646     0 00:10:46  4.970680E-01 4.935701E+01 4.985408E+01 1.084909E+05
+             (001,01,05)  3.432216E-01 0.000000E+00 2.557538E-01 1.188704E+00
+      647     0 00:10:47  4.961792E-01 4.935700E+01 4.985318E+01 1.084909E+05
+             (001,01,05)  3.384428E-01 0.000000E+00 1.217647E-01 1.174358E+00
+      648     0 00:10:48  4.957042E-01 4.935699E+01 4.985270E+01 1.084909E+05
+             (001,01,05)  3.433190E-01 0.000000E+00 2.556512E-01 1.189003E+00
+      649     0 00:10:49  4.950293E-01 4.935699E+01 4.985202E+01 1.084909E+05
+             (001,01,05)  3.385353E-01 0.000000E+00 1.216905E-01 1.174630E+00
+      650     0 00:10:50  4.947811E-01 4.935698E+01 4.985176E+01 1.084909E+05
+             (001,01,05)  3.434098E-01 0.000000E+00 2.555761E-01 1.189272E+00
+      651     0 00:10:51  4.943432E-01 4.935698E+01 4.985133E+01 1.084909E+05
+             (001,01,05)  3.386232E-01 0.000000E+00 1.216402E-01 1.174881E+00
+      652     0 00:10:52  4.943396E-01 4.935699E+01 4.985133E+01 1.084909E+05
+             (001,01,05)  3.434978E-01 0.000000E+00 2.555214E-01 1.189527E+00
+      653     0 00:10:53  4.941509E-01 4.935700E+01 4.985115E+01 1.084909E+05
+             (001,01,05)  3.387097E-01 0.000000E+00 1.216028E-01 1.175126E+00
+      654     0 00:10:54  4.943989E-01 4.935701E+01 4.985141E+01 1.084909E+05
+             (001,01,05)  3.435850E-01 0.000000E+00 2.554758E-01 1.189780E+00
+      655     0 00:10:55  4.944625E-01 4.935703E+01 4.985149E+01 1.084909E+05
+             (001,01,05)  3.387959E-01 0.000000E+00 1.215695E-01 1.175371E+00
+      656     0 00:10:56  4.949621E-01 4.935705E+01 4.985201E+01 1.084909E+05
+             (001,01,05)  3.436720E-01 0.000000E+00 2.554328E-01 1.190035E+00
+      657     0 00:10:57  4.952755E-01 4.935708E+01 4.985235E+01 1.084909E+05
+             (001,01,05)  3.388819E-01 0.000000E+00 1.215373E-01 1.175618E+00
+      658     0 00:10:58  4.960221E-01 4.935711E+01 4.985313E+01 1.084909E+05
+             (001,01,05)  3.437586E-01 0.000000E+00 2.553905E-01 1.190292E+00
+      659     0 00:10:59  4.965782E-01 4.935714E+01 4.985371E+01 1.084909E+05
+             (001,01,05)  3.389673E-01 0.000000E+00 1.215049E-01 1.175867E+00
+      660     0 00:11:00  4.975614E-01 4.935717E+01 4.985473E+01 1.084909E+05
+             (001,01,05)  3.438445E-01 0.000000E+00 2.553464E-01 1.190552E+00
+      661     0 00:11:01  4.983452E-01 4.935719E+01 4.985554E+01 1.084909E+05
+             (001,01,05)  3.390519E-01 0.000000E+00 1.214686E-01 1.176123E+00
+      662     0 00:11:02  4.995441E-01 4.935722E+01 4.985677E+01 1.084909E+05
+             (001,01,05)  3.439292E-01 0.000000E+00 2.552946E-01 1.190821E+00
+      663     0 00:11:03  5.005278E-01 4.935725E+01 4.985777E+01 1.084909E+05
+             (001,01,05)  3.391347E-01 0.000000E+00 1.214216E-01 1.176392E+00
+      664     0 00:11:04  5.019064E-01 4.935727E+01 4.985917E+01 1.084909E+05
+             (001,01,05)  3.440116E-01 0.000000E+00 2.552249E-01 1.191106E+00
+      665     0 00:11:05  5.030449E-01 4.935728E+01 4.986033E+01 1.084909E+05
+             (001,01,05)  3.392133E-01 0.000000E+00 1.213569E-01 1.176681E+00
+      666     0 00:11:06  5.045490E-01 4.935729E+01 4.986184E+01 1.084909E+05
+             (001,01,05)  3.440878E-01 0.000000E+00 2.551260E-01 1.191411E+00
+      667     0 00:11:07  5.057795E-01 4.935730E+01 4.986308E+01 1.084909E+05
+             (001,01,05)  3.392823E-01 0.000000E+00 1.212659E-01 1.176988E+00
+      668     0 00:11:08  5.073390E-01 4.935730E+01 4.986464E+01 1.084909E+05
+             (001,01,05)  3.441513E-01 0.000000E+00 2.549908E-01 1.191726E+00
+      669     0 00:11:09  5.085856E-01 4.935729E+01 4.986588E+01 1.084909E+05
+             (001,01,05)  3.393380E-01 0.000000E+00 1.211501E-01 1.177298E+00
+      670     0 00:11:10  5.101208E-01 4.935728E+01 4.986740E+01 1.084909E+05
+             (001,01,05)  3.441941E-01 0.000000E+00 2.548633E-01 1.192025E+00
+      671     0 00:11:11  5.113029E-01 4.935727E+01 4.986857E+01 1.084909E+05
+             (001,01,05)  3.393594E-01 0.000000E+00 1.210438E-01 1.177577E+00
+      672     0 00:11:12  5.127351E-01 4.935725E+01 4.986998E+01 1.084909E+05
+             (001,01,05)  3.441984E-01 0.000000E+00 2.546774E-01 1.192264E+00
+      673     0 00:11:13  5.137781E-01 4.935722E+01 4.987100E+01 1.084909E+05
+             (001,01,05)  3.393378E-01 0.000000E+00 1.209141E-01 1.177773E+00
+      674     0 00:11:14  5.150393E-01 4.935720E+01 4.987224E+01 1.084909E+05
+             (001,01,05)  3.441553E-01 0.000000E+00 2.544917E-01 1.192387E+00
+      675     0 00:11:15  5.158837E-01 4.935717E+01 4.987305E+01 1.084909E+05
+             (001,01,05)  3.392713E-01 0.000000E+00 1.208045E-01 1.177835E+00
+      676     0 00:11:16  5.169241E-01 4.935714E+01 4.987406E+01 1.084909E+05
+             (001,01,05)  3.440688E-01 0.000000E+00 2.543879E-01 1.192354E+00
+      677     0 00:11:17  5.175303E-01 4.935711E+01 4.987464E+01 1.084909E+05
+             (001,01,05)  3.391615E-01 0.000000E+00 1.208097E-01 1.177736E+00
+      678     0 00:11:18  5.183204E-01 4.935708E+01 4.987540E+01 1.084909E+05
+             (001,01,05)  3.439403E-01 0.000000E+00 2.543902E-01 1.192159E+00
+      679     0 00:11:19  5.186686E-01 4.935706E+01 4.987572E+01 1.084909E+05
+             (001,01,05)  3.390186E-01 0.000000E+00 1.208964E-01 1.177494E+00
+      680     0 00:11:20  5.191963E-01 4.935703E+01 4.987623E+01 1.084909E+05
+             (001,01,05)  3.437848E-01 0.000000E+00 2.544956E-01 1.191840E+00
+      681     0 00:11:21  5.192807E-01 4.935701E+01 4.987629E+01 1.084909E+05
+             (001,01,05)  3.388571E-01 0.000000E+00 1.210615E-01 1.177154E+00
+      682     0 00:11:22  5.195450E-01 4.935700E+01 4.987654E+01 1.084909E+05
+             (001,01,05)  3.436170E-01 0.000000E+00 2.546781E-01 1.191448E+00
+      683     0 00:11:23  5.193676E-01 4.935699E+01 4.987635E+01 1.084909E+05
+             (001,01,05)  3.386889E-01 0.000000E+00 1.212796E-01 1.176763E+00
+      684     0 00:11:24  5.193729E-01 4.935698E+01 4.987635E+01 1.084909E+05
+             (001,01,05)  3.434465E-01 0.000000E+00 2.549056E-01 1.191020E+00
+      685     0 00:11:25  5.189404E-01 4.935698E+01 4.987592E+01 1.084909E+05
+             (001,01,05)  3.385211E-01 0.000000E+00 1.215292E-01 1.176344E+00
+      686     0 00:11:26  5.186954E-01 4.935698E+01 4.987568E+01 1.084909E+05
+             (001,01,05)  3.432786E-01 0.000000E+00 2.551644E-01 1.190569E+00
+      687     0 00:11:27  5.180195E-01 4.935699E+01 4.987501E+01 1.084909E+05
+             (001,01,05)  3.383585E-01 0.000000E+00 1.218065E-01 1.175900E+00
+      688     0 00:11:28  5.175400E-01 4.935700E+01 4.987454E+01 1.084909E+05
+             (001,01,05)  3.431183E-01 0.000000E+00 2.554599E-01 1.190092E+00
+      689     0 00:11:29  5.166410E-01 4.935701E+01 4.987365E+01 1.084909E+05
+             (001,01,05)  3.382071E-01 0.000000E+00 1.221194E-01 1.175431E+00
+      690     0 00:11:30  5.159527E-01 4.935702E+01 4.987298E+01 1.084909E+05
+             (001,01,05)  3.429735E-01 0.000000E+00 2.558035E-01 1.189600E+00
+      691     0 00:11:31  5.148626E-01 4.935704E+01 4.987190E+01 1.084909E+05
+             (001,01,05)  3.380767E-01 0.000000E+00 1.224716E-01 1.174954E+00
+      692     0 00:11:32  5.140034E-01 4.935705E+01 4.987105E+01 1.084909E+05
+             (001,01,05)  3.428557E-01 0.000000E+00 2.561890E-01 1.189122E+00
+      693     0 00:11:33  5.127656E-01 4.935706E+01 4.986982E+01 1.084909E+05
+             (001,01,05)  3.379793E-01 0.000000E+00 1.228448E-01 1.174513E+00
+      694     0 00:11:34  5.117837E-01 4.935707E+01 4.986885E+01 1.084909E+05
+             (001,01,05)  3.427761E-01 0.000000E+00 2.565820E-01 1.188716E+00
+      695     0 00:11:35  5.104501E-01 4.935707E+01 4.986752E+01 1.084909E+05
+             (001,01,05)  3.379268E-01 0.000000E+00 1.231868E-01 1.174169E+00
+      696     0 00:11:36  5.093992E-01 4.935708E+01 4.986648E+01 1.084909E+05
+             (001,01,05)  3.427469E-01 0.000000E+00 2.569341E-01 1.188441E+00
+      697     0 00:11:37  5.080236E-01 4.935708E+01 4.986510E+01 1.084909E+05
+             (001,01,05)  3.379276E-01 0.000000E+00 1.234712E-01 1.173977E+00
+      698     0 00:11:38  5.069562E-01 4.935708E+01 4.986404E+01 1.084909E+05
+             (001,01,05)  3.427689E-01 0.000000E+00 2.572159E-01 1.188342E+00
+      699     0 00:11:39  5.055883E-01 4.935708E+01 4.986267E+01 1.084909E+05
+             (001,01,05)  3.379686E-01 0.000000E+00 1.236541E-01 1.173963E+00
+      700     0 00:11:40  5.045513E-01 4.935707E+01 4.986163E+01 1.084909E+05
+             (001,01,05)  3.428307E-01 0.000000E+00 2.573120E-01 1.188421E+00
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000008
+      701     0 00:11:41  5.032344E-01 4.935707E+01 4.986030E+01 1.084909E+05
+             (001,01,05)  3.380501E-01 0.000000E+00 1.236862E-01 1.174110E+00
+      702     0 00:11:42  5.022672E-01 4.935706E+01 4.985933E+01 1.084909E+05
+             (001,01,05)  3.429246E-01 0.000000E+00 2.573295E-01 1.188640E+00
+      703     0 00:11:43  5.010383E-01 4.935705E+01 4.985809E+01 1.084909E+05
+             (001,01,05)  3.381523E-01 0.000000E+00 1.236548E-01 1.174365E+00
+      704     0 00:11:44  5.001763E-01 4.935704E+01 4.985722E+01 1.084909E+05
+             (001,01,05)  3.430310E-01 0.000000E+00 2.572678E-01 1.188937E+00
+      705     0 00:11:45  4.990696E-01 4.935703E+01 4.985610E+01 1.084909E+05
+             (001,01,05)  3.382588E-01 0.000000E+00 1.235699E-01 1.174667E+00
+      706     0 00:11:46  4.983469E-01 4.935702E+01 4.985537E+01 1.084909E+05
+             (001,01,05)  3.431364E-01 0.000000E+00 2.571607E-01 1.189252E+00
+      707     0 00:11:47  4.973965E-01 4.935701E+01 4.985441E+01 1.084909E+05
+             (001,01,05)  3.383600E-01 0.000000E+00 1.234671E-01 1.174966E+00
+      708     0 00:11:48  4.968469E-01 4.935700E+01 4.985385E+01 1.084909E+05
+             (001,01,05)  3.432348E-01 0.000000E+00 2.570481E-01 1.189549E+00
+      709     0 00:11:49  4.960856E-01 4.935699E+01 4.985308E+01 1.084909E+05
+             (001,01,05)  3.384535E-01 0.000000E+00 1.233757E-01 1.175238E+00
+      710     0 00:11:50  4.957399E-01 4.935699E+01 4.985273E+01 1.084909E+05
+             (001,01,05)  3.433258E-01 0.000000E+00 2.569534E-01 1.189817E+00
+      711     0 00:11:51  4.951953E-01 4.935698E+01 4.985218E+01 1.084909E+05
+             (001,01,05)  3.385409E-01 0.000000E+00 1.233060E-01 1.175486E+00
+      712     0 00:11:52  4.950767E-01 4.935698E+01 4.985206E+01 1.084909E+05
+             (001,01,05)  3.434124E-01 0.000000E+00 2.568805E-01 1.190065E+00
+      713     0 00:11:53  4.947670E-01 4.935699E+01 4.985175E+01 1.084909E+05
+             (001,01,05)  3.386253E-01 0.000000E+00 1.232536E-01 1.175719E+00
+      714     0 00:11:54  4.948887E-01 4.935700E+01 4.985188E+01 1.084909E+05
+             (001,01,05)  3.434970E-01 0.000000E+00 2.568218E-01 1.190305E+00
+      715     0 00:11:55  4.948223E-01 4.935701E+01 4.985183E+01 1.084909E+05
+             (001,01,05)  3.387088E-01 0.000000E+00 1.232099E-01 1.175950E+00
+      716     0 00:11:56  4.951885E-01 4.935703E+01 4.985221E+01 1.084909E+05
+             (001,01,05)  3.435811E-01 0.000000E+00 2.567693E-01 1.190544E+00
+      717     0 00:11:57  4.953660E-01 4.935705E+01 4.985241E+01 1.084909E+05
+             (001,01,05)  3.387920E-01 0.000000E+00 1.231691E-01 1.176181E+00
+      718     0 00:11:58  4.959743E-01 4.935707E+01 4.985305E+01 1.084909E+05
+             (001,01,05)  3.436649E-01 0.000000E+00 2.567185E-01 1.190785E+00
+      719     0 00:11:59  4.963906E-01 4.935710E+01 4.985349E+01 1.084909E+05
+             (001,01,05)  3.388748E-01 0.000000E+00 1.231284E-01 1.176415E+00
+      720     0 00:12:00  4.972327E-01 4.935713E+01 4.985436E+01 1.084909E+05
+             (001,01,05)  3.437482E-01 0.000000E+00 2.566666E-01 1.191029E+00
+      721     0 00:12:01  4.978759E-01 4.935715E+01 4.985503E+01 1.084909E+05
+             (001,01,05)  3.389570E-01 0.000000E+00 1.230854E-01 1.176654E+00
+      722     0 00:12:02  4.989353E-01 4.935718E+01 4.985612E+01 1.084909E+05
+             (001,01,05)  3.438307E-01 0.000000E+00 2.566099E-01 1.191279E+00
+      723     0 00:12:03  4.997831E-01 4.935721E+01 4.985699E+01 1.084909E+05
+             (001,01,05)  3.390378E-01 0.000000E+00 1.230365E-01 1.176902E+00
+      724     0 00:12:04  5.010308E-01 4.935723E+01 4.985826E+01 1.084909E+05
+             (001,01,05)  3.439113E-01 0.000000E+00 2.565412E-01 1.191541E+00
+      725     0 00:12:05  5.020466E-01 4.935725E+01 4.985929E+01 1.084909E+05
+             (001,01,05)  3.391154E-01 0.000000E+00 1.229742E-01 1.177164E+00
+      726     0 00:12:06  5.034381E-01 4.935726E+01 4.986070E+01 1.084909E+05
+             (001,01,05)  3.439873E-01 0.000000E+00 2.564509E-01 1.191819E+00
+      727     0 00:12:07  5.045695E-01 4.935727E+01 4.986184E+01 1.084909E+05
+             (001,01,05)  3.391860E-01 0.000000E+00 1.228914E-01 1.177444E+00
+      728     0 00:12:08  5.060450E-01 4.935728E+01 4.986332E+01 1.084909E+05
+             (001,01,05)  3.440541E-01 0.000000E+00 2.563306E-01 1.192109E+00
+      729     0 00:12:09  5.072259E-01 4.935728E+01 4.986450E+01 1.084909E+05
+             (001,01,05)  3.392450E-01 0.000000E+00 1.227857E-01 1.177732E+00
+      730     0 00:12:10  5.087148E-01 4.935727E+01 4.986599E+01 1.084909E+05
+             (001,01,05)  3.441047E-01 0.000000E+00 2.561927E-01 1.192395E+00
+      731     0 00:12:11  5.098720E-01 4.935726E+01 4.986713E+01 1.084909E+05
+             (001,01,05)  3.392847E-01 0.000000E+00 1.226709E-01 1.178005E+00
+      732     0 00:12:12  5.113002E-01 4.935725E+01 4.986855E+01 1.084909E+05
+             (001,01,05)  3.441289E-01 0.000000E+00 2.560593E-01 1.192645E+00
+      733     0 00:12:13  5.123610E-01 4.935723E+01 4.986959E+01 1.084909E+05
+             (001,01,05)  3.392842E-01 0.000000E+00 1.225631E-01 1.178227E+00
+      734     0 00:12:14  5.136600E-01 4.935721E+01 4.987087E+01 1.084909E+05
+             (001,01,05)  3.441108E-01 0.000000E+00 2.558621E-01 1.192816E+00
+      735     0 00:12:15  5.145613E-01 4.935718E+01 4.987174E+01 1.084909E+05
+             (001,01,05)  3.392428E-01 0.000000E+00 1.224336E-01 1.178350E+00
+      736     0 00:12:16  5.156747E-01 4.935716E+01 4.987283E+01 1.084909E+05
+             (001,01,05)  3.440480E-01 0.000000E+00 2.557067E-01 1.192861E+00
+      737     0 00:12:17  5.163686E-01 4.935713E+01 4.987350E+01 1.084909E+05
+             (001,01,05)  3.391602E-01 0.000000E+00 1.223508E-01 1.178336E+00
+      738     0 00:12:18  5.172573E-01 4.935710E+01 4.987436E+01 1.084909E+05
+             (001,01,05)  3.439483E-01 0.000000E+00 2.556459E-01 1.192756E+00
+      739     0 00:12:19  5.177134E-01 4.935708E+01 4.987479E+01 1.084909E+05
+             (001,01,05)  3.390403E-01 0.000000E+00 1.223984E-01 1.178176E+00
+      740     0 00:12:20  5.183556E-01 4.935705E+01 4.987541E+01 1.084909E+05
+             (001,01,05)  3.438125E-01 0.000000E+00 2.556838E-01 1.192512E+00
+      741     0 00:12:21  5.185598E-01 4.935703E+01 4.987559E+01 1.084909E+05
+             (001,01,05)  3.388937E-01 0.000000E+00 1.225070E-01 1.177895E+00
+      742     0 00:12:22  5.189474E-01 4.935701E+01 4.987596E+01 1.084909E+05
+             (001,01,05)  3.436561E-01 0.000000E+00 2.558088E-01 1.192166E+00
+      743     0 00:12:23  5.188967E-01 4.935700E+01 4.987589E+01 1.084909E+05
+             (001,01,05)  3.387337E-01 0.000000E+00 1.226813E-01 1.177537E+00
+      744     0 00:12:24  5.190308E-01 4.935699E+01 4.987602E+01 1.084909E+05
+             (001,01,05)  3.434913E-01 0.000000E+00 2.559978E-01 1.191761E+00
+      745     0 00:12:25  5.187294E-01 4.935698E+01 4.987571E+01 1.084909E+05
+             (001,01,05)  3.385700E-01 0.000000E+00 1.229012E-01 1.177135E+00
+      746     0 00:12:26  5.186167E-01 4.935698E+01 4.987560E+01 1.084909E+05
+             (001,01,05)  3.433265E-01 0.000000E+00 2.562291E-01 1.191324E+00
+      747     0 00:12:27  5.180740E-01 4.935698E+01 4.987506E+01 1.084909E+05
+             (001,01,05)  3.384094E-01 0.000000E+00 1.231538E-01 1.176706E+00
+      748     0 00:12:28  5.177273E-01 4.935699E+01 4.987472E+01 1.084909E+05
+             (001,01,05)  3.431672E-01 0.000000E+00 2.564968E-01 1.190864E+00
+      749     0 00:12:29  5.169601E-01 4.935700E+01 4.987396E+01 1.084909E+05
+             (001,01,05)  3.382576E-01 0.000000E+00 1.234388E-01 1.176254E+00
+      750     0 00:12:30  5.164006E-01 4.935701E+01 4.987341E+01 1.084909E+05
+             (001,01,05)  3.430204E-01 0.000000E+00 2.568060E-01 1.190387E+00
+      751     0 00:12:31  5.154354E-01 4.935702E+01 4.987245E+01 1.084909E+05
+             (001,01,05)  3.381229E-01 0.000000E+00 1.237590E-01 1.175790E+00
+      752     0 00:12:32  5.146949E-01 4.935703E+01 4.987172E+01 1.084909E+05
+             (001,01,05)  3.428954E-01 0.000000E+00 2.571557E-01 1.189915E+00
+      753     0 00:12:33  5.135688E-01 4.935704E+01 4.987061E+01 1.084909E+05
+             (001,01,05)  3.380155E-01 0.000000E+00 1.241043E-01 1.175346E+00
+      754     0 00:12:34  5.126896E-01 4.935705E+01 4.986974E+01 1.084909E+05
+             (001,01,05)  3.428032E-01 0.000000E+00 2.575243E-01 1.189492E+00
+      755     0 00:12:35  5.114487E-01 4.935706E+01 4.986851E+01 1.084909E+05
+             (001,01,05)  3.379464E-01 0.000000E+00 1.244405E-01 1.174973E+00
+      756     0 00:12:36  5.104793E-01 4.935706E+01 4.986754E+01 1.084909E+05
+             (001,01,05)  3.427533E-01 0.000000E+00 2.578708E-01 1.189171E+00
+      757     0 00:12:37  5.091739E-01 4.935707E+01 4.986624E+01 1.084909E+05
+             (001,01,05)  3.379237E-01 0.000000E+00 1.247237E-01 1.174723E+00
+      758     0 00:12:38  5.081646E-01 4.935707E+01 4.986523E+01 1.084909E+05
+             (001,01,05)  3.427522E-01 0.000000E+00 2.581551E-01 1.188999E+00
+      759     0 00:12:39  5.068434E-01 4.935707E+01 4.986391E+01 1.084909E+05
+             (001,01,05)  3.379495E-01 0.000000E+00 1.249354E-01 1.174629E+00
+      760     0 00:12:40  5.058407E-01 4.935707E+01 4.986291E+01 1.084909E+05
+             (001,01,05)  3.427950E-01 0.000000E+00 2.583575E-01 1.188991E+00
+      761     0 00:12:41  5.045471E-01 4.935706E+01 4.986161E+01 1.084909E+05
+             (001,01,05)  3.380044E-01 0.000000E+00 1.250464E-01 1.174692E+00
+      762     0 00:12:42  5.035916E-01 4.935706E+01 4.986065E+01 1.084909E+05
+             (001,01,05)  3.428669E-01 0.000000E+00 2.583681E-01 1.189129E+00
+      763     0 00:12:43  5.023635E-01 4.935705E+01 4.985941E+01 1.084909E+05
+             (001,01,05)  3.380908E-01 0.000000E+00 1.250197E-01 1.174877E+00
+      764     0 00:12:44  5.014907E-01 4.935704E+01 4.985853E+01 1.084909E+05
+             (001,01,05)  3.429614E-01 0.000000E+00 2.583359E-01 1.189367E+00
+      765     0 00:12:45  5.003620E-01 4.935703E+01 4.985740E+01 1.084909E+05
+             (001,01,05)  3.381897E-01 0.000000E+00 1.249568E-01 1.175135E+00
+      766     0 00:12:46  4.996052E-01 4.935702E+01 4.985663E+01 1.084909E+05
+             (001,01,05)  3.430621E-01 0.000000E+00 2.582513E-01 1.189652E+00
+      767     0 00:12:47  4.986089E-01 4.935701E+01 4.985562E+01 1.084909E+05
+             (001,01,05)  3.382889E-01 0.000000E+00 1.248637E-01 1.175415E+00
+      768     0 00:12:48  4.980008E-01 4.935700E+01 4.985501E+01 1.084909E+05
+             (001,01,05)  3.431597E-01 0.000000E+00 2.581427E-01 1.189939E+00
+      769     0 00:12:49  4.971693E-01 4.935700E+01 4.985417E+01 1.084909E+05
+             (001,01,05)  3.383826E-01 0.000000E+00 1.247665E-01 1.175684E+00
+      770     0 00:12:50  4.967415E-01 4.935699E+01 4.985373E+01 1.084909E+05
+             (001,01,05)  3.432510E-01 0.000000E+00 2.580380E-01 1.190206E+00
+      771     0 00:12:51  4.961046E-01 4.935698E+01 4.985309E+01 1.084909E+05
+             (001,01,05)  3.384700E-01 0.000000E+00 1.246833E-01 1.175930E+00
+      772     0 00:12:52  4.958839E-01 4.935698E+01 4.985287E+01 1.084909E+05
+             (001,01,05)  3.433369E-01 0.000000E+00 2.579506E-01 1.190451E+00
+      773     0 00:12:53  4.954646E-01 4.935698E+01 4.985245E+01 1.084909E+05
+             (001,01,05)  3.385532E-01 0.000000E+00 1.246176E-01 1.176159E+00
+      774     0 00:12:54  4.954697E-01 4.935699E+01 4.985246E+01 1.084909E+05
+             (001,01,05)  3.434196E-01 0.000000E+00 2.578798E-01 1.190683E+00
+      775     0 00:12:55  4.952819E-01 4.935700E+01 4.985228E+01 1.084909E+05
+             (001,01,05)  3.386344E-01 0.000000E+00 1.245645E-01 1.176379E+00
+      776     0 00:12:56  4.955220E-01 4.935701E+01 4.985253E+01 1.084909E+05
+             (001,01,05)  3.435012E-01 0.000000E+00 2.578191E-01 1.190910E+00
+      777     0 00:12:57  4.955706E-01 4.935702E+01 4.985259E+01 1.084909E+05
+             (001,01,05)  3.387149E-01 0.000000E+00 1.245176E-01 1.176597E+00
+      778     0 00:12:58  4.960468E-01 4.935704E+01 4.985309E+01 1.084909E+05
+             (001,01,05)  3.435823E-01 0.000000E+00 2.577624E-01 1.191138E+00
+      779     0 00:12:59  4.963296E-01 4.935707E+01 4.985340E+01 1.084909E+05
+             (001,01,05)  3.387951E-01 0.000000E+00 1.244720E-01 1.176818E+00
+      780     0 00:13:00  4.970364E-01 4.935709E+01 4.985413E+01 1.084909E+05
+             (001,01,05)  3.436630E-01 0.000000E+00 2.577058E-01 1.191368E+00
+      781     0 00:13:01  4.975442E-01 4.935712E+01 4.985466E+01 1.084909E+05
+             (001,01,05)  3.388748E-01 0.000000E+00 1.244253E-01 1.177042E+00
+      782     0 00:13:02  4.984685E-01 4.935714E+01 4.985561E+01 1.084909E+05
+             (001,01,05)  3.437430E-01 0.000000E+00 2.576461E-01 1.191603E+00
+      783     0 00:13:03  4.991835E-01 4.935717E+01 4.985635E+01 1.084909E+05
+             (001,01,05)  3.389534E-01 0.000000E+00 1.243742E-01 1.177273E+00
+      784     0 00:13:04  5.003019E-01 4.935719E+01 4.985749E+01 1.084909E+05
+             (001,01,05)  3.438216E-01 0.000000E+00 2.575781E-01 1.191847E+00
+      785     0 00:13:05  5.011945E-01 4.935721E+01 4.985841E+01 1.084909E+05
+             (001,01,05)  3.390296E-01 0.000000E+00 1.243137E-01 1.177515E+00
+      786     0 00:13:06  5.024703E-01 4.935723E+01 4.985970E+01 1.084909E+05
+             (001,01,05)  3.438968E-01 0.000000E+00 2.574943E-01 1.192102E+00
+      787     0 00:13:07  5.034967E-01 4.935724E+01 4.986074E+01 1.084909E+05
+             (001,01,05)  3.391007E-01 0.000000E+00 1.242377E-01 1.177771E+00
+      788     0 00:13:08  5.048794E-01 4.935725E+01 4.986213E+01 1.084909E+05
+             (001,01,05)  3.439652E-01 0.000000E+00 2.573871E-01 1.192369E+00
+      789     0 00:13:09  5.059826E-01 4.935726E+01 4.986324E+01 1.084909E+05
+             (001,01,05)  3.391624E-01 0.000000E+00 1.241422E-01 1.178038E+00
+      790     0 00:13:10  5.074101E-01 4.935726E+01 4.986467E+01 1.084909E+05
+             (001,01,05)  3.440212E-01 0.000000E+00 2.572562E-01 1.192639E+00
+      791     0 00:13:11  5.085246E-01 4.935725E+01 4.986578E+01 1.084909E+05
+             (001,01,05)  3.392133E-01 0.000000E+00 1.240314E-01 1.178301E+00
+      792     0 00:13:12  5.099289E-01 4.935724E+01 4.986717E+01 1.084909E+05
+             (001,01,05)  3.440586E-01 0.000000E+00 2.571528E-01 1.192890E+00
+      793     0 00:13:13  5.109860E-01 4.935723E+01 4.986822E+01 1.084909E+05
+             (001,01,05)  3.392293E-01 0.000000E+00 1.239367E-01 1.178533E+00
+      794     0 00:13:14  5.123003E-01 4.935721E+01 4.986951E+01 1.084909E+05
+             (001,01,05)  3.440608E-01 0.000000E+00 2.569625E-01 1.193089E+00
+      795     0 00:13:15  5.132364E-01 4.935719E+01 4.987043E+01 1.084909E+05
+             (001,01,05)  3.392105E-01 0.000000E+00 1.238055E-01 1.178696E+00
+      796     0 00:13:16  5.144016E-01 4.935717E+01 4.987157E+01 1.084909E+05
+             (001,01,05)  3.440233E-01 0.000000E+00 2.567904E-01 1.193192E+00
+      797     0 00:13:17  5.151637E-01 4.935715E+01 4.987231E+01 1.084909E+05
+             (001,01,05)  3.391529E-01 0.000000E+00 1.236964E-01 1.178750E+00
+      798     0 00:13:18  5.161338E-01 4.935712E+01 4.987325E+01 1.084909E+05
+             (001,01,05)  3.439481E-01 0.000000E+00 2.566807E-01 1.193167E+00
+      799     0 00:13:19  5.166834E-01 4.935709E+01 4.987378E+01 1.084909E+05
+             (001,01,05)  3.390567E-01 0.000000E+00 1.236804E-01 1.178670E+00
+      800     0 00:13:20  5.174277E-01 4.935707E+01 4.987450E+01 1.084909E+05
+             (001,01,05)  3.438345E-01 0.000000E+00 2.566548E-01 1.193003E+00
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000009
+      801     0 00:13:21  5.177418E-01 4.935705E+01 4.987479E+01 1.084909E+05
+             (001,01,05)  3.389287E-01 0.000000E+00 1.237320E-01 1.178461E+00
+      802     0 00:13:22  5.182444E-01 4.935703E+01 4.987527E+01 1.084909E+05
+             (001,01,05)  3.436937E-01 0.000000E+00 2.567188E-01 1.192719E+00
+      803     0 00:13:23  5.183134E-01 4.935701E+01 4.987532E+01 1.084909E+05
+             (001,01,05)  3.387805E-01 0.000000E+00 1.238570E-01 1.178151E+00
+      804     0 00:13:24  5.185699E-01 4.935700E+01 4.987557E+01 1.084909E+05
+             (001,01,05)  3.435379E-01 0.000000E+00 2.568613E-01 1.192353E+00
+      805     0 00:13:25  5.183937E-01 4.935699E+01 4.987538E+01 1.084909E+05
+             (001,01,05)  3.386231E-01 0.000000E+00 1.240410E-01 1.177778E+00
+      806     0 00:13:26  5.184076E-01 4.935698E+01 4.987539E+01 1.084909E+05
+             (001,01,05)  3.433774E-01 0.000000E+00 2.570602E-01 1.191938E+00
+      807     0 00:13:27  5.179932E-01 4.935698E+01 4.987497E+01 1.084909E+05
+             (001,01,05)  3.384654E-01 0.000000E+00 1.242673E-01 1.177367E+00
+      808     0 00:13:28  5.177746E-01 4.935698E+01 4.987476E+01 1.084909E+05
+             (001,01,05)  3.432199E-01 0.000000E+00 2.573012E-01 1.191495E+00
+      809     0 00:13:29  5.171355E-01 4.935699E+01 4.987412E+01 1.084909E+05
+             (001,01,05)  3.383140E-01 0.000000E+00 1.245277E-01 1.176931E+00
+      810     0 00:13:30  5.167019E-01 4.935699E+01 4.987370E+01 1.084909E+05
+             (001,01,05)  3.430719E-01 0.000000E+00 2.575814E-01 1.191033E+00
+      811     0 00:13:31  5.158599E-01 4.935700E+01 4.987286E+01 1.084909E+05
+             (001,01,05)  3.381762E-01 0.000000E+00 1.248208E-01 1.176481E+00
+      812     0 00:13:32  5.152380E-01 4.935701E+01 4.987225E+01 1.084909E+05
+             (001,01,05)  3.429418E-01 0.000000E+00 2.579000E-01 1.190570E+00
+      813     0 00:13:33  5.142249E-01 4.935702E+01 4.987125E+01 1.084909E+05
+             (001,01,05)  3.380611E-01 0.000000E+00 1.251405E-01 1.176041E+00
+      814     0 00:13:34  5.134510E-01 4.935703E+01 4.987048E+01 1.084909E+05
+             (001,01,05)  3.428393E-01 0.000000E+00 2.582437E-01 1.190140E+00
+      815     0 00:13:35  5.123073E-01 4.935704E+01 4.986935E+01 1.084909E+05
+             (001,01,05)  3.379782E-01 0.000000E+00 1.254646E-01 1.175651E+00
+      816     0 00:13:36  5.114253E-01 4.935705E+01 4.986847E+01 1.084909E+05
+             (001,01,05)  3.427726E-01 0.000000E+00 2.585771E-01 1.189787E+00
+      817     0 00:13:37  5.101972E-01 4.935705E+01 4.986725E+01 1.084909E+05
+             (001,01,05)  3.379361E-01 0.000000E+00 1.257458E-01 1.175358E+00
+      818     0 00:13:38  5.092541E-01 4.935706E+01 4.986631E+01 1.084909E+05
+             (001,01,05)  3.427511E-01 0.000000E+00 2.588657E-01 1.189557E+00
+      819     0 00:13:39  5.079884E-01 4.935706E+01 4.986505E+01 1.084909E+05
+             (001,01,05)  3.379406E-01 0.000000E+00 1.259790E-01 1.175198E+00
+      820     0 00:13:40  5.070297E-01 4.935706E+01 4.986409E+01 1.084909E+05
+             (001,01,05)  3.427724E-01 0.000000E+00 2.590986E-01 1.189475E+00
+      821     0 00:13:41  5.057696E-01 4.935706E+01 4.986283E+01 1.084909E+05
+             (001,01,05)  3.379801E-01 0.000000E+00 1.261256E-01 1.175185E+00
+      822     0 00:13:42  5.048363E-01 4.935705E+01 4.986189E+01 1.084909E+05
+             (001,01,05)  3.428273E-01 0.000000E+00 2.591917E-01 1.189536E+00
+      823     0 00:13:43  5.036201E-01 4.935705E+01 4.986067E+01 1.084909E+05
+             (001,01,05)  3.380461E-01 0.000000E+00 1.261588E-01 1.175301E+00
+      824     0 00:13:44  5.027482E-01 4.935704E+01 4.985979E+01 1.084909E+05
+             (001,01,05)  3.429055E-01 0.000000E+00 2.591647E-01 1.189712E+00
+      825     0 00:13:45  5.016100E-01 4.935703E+01 4.985864E+01 1.084909E+05
+             (001,01,05)  3.381338E-01 0.000000E+00 1.261055E-01 1.175506E+00
+      826     0 00:13:46  5.008322E-01 4.935703E+01 4.985786E+01 1.084909E+05
+             (001,01,05)  3.429980E-01 0.000000E+00 2.591041E-01 1.189955E+00
+      827     0 00:13:47  4.998042E-01 4.935702E+01 4.985682E+01 1.084909E+05
+             (001,01,05)  3.382281E-01 0.000000E+00 1.260278E-01 1.175757E+00
+      828     0 00:13:48  4.991523E-01 4.935701E+01 4.985616E+01 1.084909E+05
+             (001,01,05)  3.430927E-01 0.000000E+00 2.590095E-01 1.190222E+00
+      829     0 00:13:49  4.982660E-01 4.935700E+01 4.985527E+01 1.084909E+05
+             (001,01,05)  3.383205E-01 0.000000E+00 1.259346E-01 1.176015E+00
+      830     0 00:13:50  4.977713E-01 4.935699E+01 4.985476E+01 1.084909E+05
+             (001,01,05)  3.431834E-01 0.000000E+00 2.589047E-01 1.190484E+00
+      831     0 00:13:51  4.970569E-01 4.935699E+01 4.985404E+01 1.084909E+05
+             (001,01,05)  3.384078E-01 0.000000E+00 1.258449E-01 1.176259E+00
+      832     0 00:13:52  4.967480E-01 4.935698E+01 4.985373E+01 1.084909E+05
+             (001,01,05)  3.432689E-01 0.000000E+00 2.588084E-01 1.190728E+00
+      833     0 00:13:53  4.962318E-01 4.935698E+01 4.985321E+01 1.084909E+05
+             (001,01,05)  3.384903E-01 0.000000E+00 1.257688E-01 1.176485E+00
+      834     0 00:13:54  4.961315E-01 4.935698E+01 4.985311E+01 1.084909E+05
+             (001,01,05)  3.433506E-01 0.000000E+00 2.587271E-01 1.190955E+00
+      835     0 00:13:55  4.958321E-01 4.935699E+01 4.985282E+01 1.084909E+05
+             (001,01,05)  3.385698E-01 0.000000E+00 1.257082E-01 1.176699E+00
+      836     0 00:13:56  4.959548E-01 4.935699E+01 4.985295E+01 1.084909E+05
+             (001,01,05)  3.434301E-01 0.000000E+00 2.586587E-01 1.191174E+00
+      837     0 00:13:57  4.958821E-01 4.935701E+01 4.985289E+01 1.084909E+05
+             (001,01,05)  3.386480E-01 0.000000E+00 1.256557E-01 1.176908E+00
+      838     0 00:13:58  4.962331E-01 4.935702E+01 4.985326E+01 1.084909E+05
+             (001,01,05)  3.435086E-01 0.000000E+00 2.585970E-01 1.191391E+00
+      839     0 00:13:59  4.963887E-01 4.935704E+01 4.985343E+01 1.084909E+05
+             (001,01,05)  3.387256E-01 0.000000E+00 1.256061E-01 1.177117E+00
+      840     0 00:14:00  4.969659E-01 4.935706E+01 4.985403E+01 1.084909E+05
+             (001,01,05)  3.435866E-01 0.000000E+00 2.585371E-01 1.191609E+00
+      841     0 00:14:01  4.973437E-01 4.935708E+01 4.985443E+01 1.084909E+05
+             (001,01,05)  3.388027E-01 0.000000E+00 1.255565E-01 1.177328E+00
+      842     0 00:14:02  4.981373E-01 4.935711E+01 4.985525E+01 1.084909E+05
+             (001,01,05)  3.436642E-01 0.000000E+00 2.584755E-01 1.191830E+00
+      843     0 00:14:03  4.987234E-01 4.935713E+01 4.985586E+01 1.084909E+05
+             (001,01,05)  3.388791E-01 0.000000E+00 1.255040E-01 1.177545E+00
+      844     0 00:14:04  4.997147E-01 4.935716E+01 4.985687E+01 1.084909E+05
+             (001,01,05)  3.437406E-01 0.000000E+00 2.584083E-01 1.192059E+00
+      845     0 00:14:05  5.004849E-01 4.935718E+01 4.985766E+01 1.084909E+05
+             (001,01,05)  3.389536E-01 0.000000E+00 1.254450E-01 1.177771E+00
+      846     0 00:14:06  5.016437E-01 4.935720E+01 4.985884E+01 1.084909E+05
+             (001,01,05)  3.438145E-01 0.000000E+00 2.583297E-01 1.192296E+00
+      847     0 00:14:07  5.025617E-01 4.935721E+01 4.985977E+01 1.084909E+05
+             (001,01,05)  3.390244E-01 0.000000E+00 1.253745E-01 1.178007E+00
+      848     0 00:14:08  5.038454E-01 4.935723E+01 4.986107E+01 1.084909E+05
+             (001,01,05)  3.438834E-01 0.000000E+00 2.582331E-01 1.192544E+00
+      849     0 00:14:09  5.048625E-01 4.935723E+01 4.986210E+01 1.084909E+05
+             (001,01,05)  3.390921E-01 0.000000E+00 1.252882E-01 1.178254E+00
+      850     0 00:14:10  5.062170E-01 4.935724E+01 4.986346E+01 1.084909E+05
+             (001,01,05)  3.439448E-01 0.000000E+00 2.581497E-01 1.192797E+00
+      851     0 00:14:11  5.072747E-01 4.935724E+01 4.986451E+01 1.084909E+05
+             (001,01,05)  3.391458E-01 0.000000E+00 1.252061E-01 1.178503E+00
+      852     0 00:14:12  5.086385E-01 4.935723E+01 4.986587E+01 1.084909E+05
+             (001,01,05)  3.439892E-01 0.000000E+00 2.580320E-01 1.193042E+00
+      853     0 00:14:13  5.096736E-01 4.935723E+01 4.986690E+01 1.084909E+05
+             (001,01,05)  3.391739E-01 0.000000E+00 1.251044E-01 1.178736E+00
+      854     0 00:14:14  5.109835E-01 4.935721E+01 4.986820E+01 1.084909E+05
+             (001,01,05)  3.440067E-01 0.000000E+00 2.578548E-01 1.193254E+00
+      855     0 00:14:15  5.119339E-01 4.935720E+01 4.986913E+01 1.084909E+05
+             (001,01,05)  3.391736E-01 0.000000E+00 1.249773E-01 1.178923E+00
+      856     0 00:14:16  5.131304E-01 4.935718E+01 4.987031E+01 1.084909E+05
+             (001,01,05)  3.439907E-01 0.000000E+00 2.576825E-01 1.193398E+00
+      857     0 00:14:17  5.139409E-01 4.935716E+01 4.987110E+01 1.084909E+05
+             (001,01,05)  3.391381E-01 0.000000E+00 1.248589E-01 1.179028E+00
+      858     0 00:14:18  5.149738E-01 4.935713E+01 4.987211E+01 1.084909E+05
+             (001,01,05)  3.439356E-01 0.000000E+00 2.575428E-01 1.193437E+00
+      859     0 00:14:19  5.156002E-01 4.935711E+01 4.987271E+01 1.084909E+05
+             (001,01,05)  3.390649E-01 0.000000E+00 1.247747E-01 1.179019E+00
+      860     0 00:14:20  5.164322E-01 4.935709E+01 4.987352E+01 1.084909E+05
+             (001,01,05)  3.438477E-01 0.000000E+00 2.574654E-01 1.193349E+00
+      861     0 00:14:21  5.168438E-01 4.935706E+01 4.987391E+01 1.084909E+05
+             (001,01,05)  3.389582E-01 0.000000E+00 1.247996E-01 1.178883E+00
+      862     0 00:14:22  5.174510E-01 4.935704E+01 4.987449E+01 1.084909E+05
+             (001,01,05)  3.437260E-01 0.000000E+00 2.574761E-01 1.193137E+00
+      863     0 00:14:23  5.176310E-01 4.935702E+01 4.987466E+01 1.084909E+05
+             (001,01,05)  3.388253E-01 0.000000E+00 1.248777E-01 1.178634E+00
+      864     0 00:14:24  5.180025E-01 4.935701E+01 4.987501E+01 1.084909E+05
+             (001,01,05)  3.435826E-01 0.000000E+00 2.575672E-01 1.192823E+00
+      865     0 00:14:25  5.179452E-01 4.935700E+01 4.987494E+01 1.084909E+05
+             (001,01,05)  3.386772E-01 0.000000E+00 1.250205E-01 1.178302E+00
+      866     0 00:14:26  5.180799E-01 4.935699E+01 4.987507E+01 1.084909E+05
+             (001,01,05)  3.434290E-01 0.000000E+00 2.577265E-01 1.192441E+00
+      867     0 00:14:27  5.177885E-01 4.935698E+01 4.987477E+01 1.084909E+05
+             (001,01,05)  3.385241E-01 0.000000E+00 1.252156E-01 1.177916E+00
+      868     0 00:14:28  5.176933E-01 4.935698E+01 4.987467E+01 1.084909E+05
+             (001,01,05)  3.432744E-01 0.000000E+00 2.579379E-01 1.192018E+00
+      869     0 00:14:29  5.171781E-01 4.935698E+01 4.987416E+01 1.084909E+05
+             (001,01,05)  3.383740E-01 0.000000E+00 1.254510E-01 1.177498E+00
+      870     0 00:14:30  5.168670E-01 4.935698E+01 4.987385E+01 1.084909E+05
+             (001,01,05)  3.431264E-01 0.000000E+00 2.581915E-01 1.191573E+00
+      871     0 00:14:31  5.161461E-01 4.935699E+01 4.987314E+01 1.084909E+05
+             (001,01,05)  3.382344E-01 0.000000E+00 1.257201E-01 1.177064E+00
+      872     0 00:14:32  5.156414E-01 4.935700E+01 4.987264E+01 1.084909E+05
+             (001,01,05)  3.429926E-01 0.000000E+00 2.584822E-01 1.191121E+00
+      873     0 00:14:33  5.147416E-01 4.935701E+01 4.987175E+01 1.084909E+05
+             (001,01,05)  3.381134E-01 0.000000E+00 1.260163E-01 1.176631E+00
+      874     0 00:14:34  5.140745E-01 4.935702E+01 4.987109E+01 1.084909E+05
+             (001,01,05)  3.428819E-01 0.000000E+00 2.588014E-01 1.190689E+00
+      875     0 00:14:35  5.130312E-01 4.935702E+01 4.987006E+01 1.084909E+05
+             (001,01,05)  3.380199E-01 0.000000E+00 1.263243E-01 1.176232E+00
+      876     0 00:14:36  5.122407E-01 4.935703E+01 4.986927E+01 1.084909E+05
+             (001,01,05)  3.428025E-01 0.000000E+00 2.591234E-01 1.190316E+00
+      877     0 00:14:37  5.110956E-01 4.935704E+01 4.986813E+01 1.084909E+05
+             (001,01,05)  3.379622E-01 0.000000E+00 1.266100E-01 1.175908E+00
+      878     0 00:14:38  5.102253E-01 4.935704E+01 4.986727E+01 1.084909E+05
+             (001,01,05)  3.427621E-01 0.000000E+00 2.594171E-01 1.190041E+00
+      879     0 00:14:39  5.090227E-01 4.935705E+01 4.986607E+01 1.084909E+05
+             (001,01,05)  3.379446E-01 0.000000E+00 1.268487E-01 1.175696E+00
+      880     0 00:14:40  5.081164E-01 4.935705E+01 4.986516E+01 1.084909E+05
+             (001,01,05)  3.427631E-01 0.000000E+00 2.596462E-01 1.189896E+00
+      881     0 00:14:41  5.068988E-01 4.935705E+01 4.986395E+01 1.084909E+05
+             (001,01,05)  3.379681E-01 0.000000E+00 1.270189E-01 1.175616E+00
+      882     0 00:14:42  5.059972E-01 4.935705E+01 4.986304E+01 1.084909E+05
+             (001,01,05)  3.428007E-01 0.000000E+00 2.598061E-01 1.189888E+00
+      883     0 00:14:43  5.048031E-01 4.935704E+01 4.986185E+01 1.084909E+05
+             (001,01,05)  3.380211E-01 0.000000E+00 1.271043E-01 1.175665E+00
+      884     0 00:14:44  5.039424E-01 4.935704E+01 4.986098E+01 1.084909E+05
+             (001,01,05)  3.428651E-01 0.000000E+00 2.598519E-01 1.189999E+00
+      885     0 00:14:45  5.028059E-01 4.935703E+01 4.985984E+01 1.084909E+05
+             (001,01,05)  3.380913E-01 0.000000E+00 1.271014E-01 1.175815E+00
+      886     0 00:14:46  5.020189E-01 4.935703E+01 4.985905E+01 1.084909E+05
+             (001,01,05)  3.429446E-01 0.000000E+00 2.597818E-01 1.190195E+00
+      887     0 00:14:47  5.009717E-01 4.935702E+01 4.985799E+01 1.084909E+05
+             (001,01,05)  3.381773E-01 0.000000E+00 1.270224E-01 1.176028E+00
+      888     0 00:14:48  5.002894E-01 4.935701E+01 4.985730E+01 1.084909E+05
+             (001,01,05)  3.430334E-01 0.000000E+00 2.597022E-01 1.190434E+00
+      889     0 00:14:49  4.993621E-01 4.935700E+01 4.985637E+01 1.084909E+05
+             (001,01,05)  3.382664E-01 0.000000E+00 1.269371E-01 1.176267E+00
+      890     0 00:14:50  4.988149E-01 4.935700E+01 4.985581E+01 1.084909E+05
+             (001,01,05)  3.431221E-01 0.000000E+00 2.596051E-01 1.190683E+00
+      891     0 00:14:51  4.980376E-01 4.935699E+01 4.985503E+01 1.084909E+05
+             (001,01,05)  3.383527E-01 0.000000E+00 1.268477E-01 1.176505E+00
+      892     0 00:14:52  4.976546E-01 4.935698E+01 4.985464E+01 1.084909E+05
+             (001,01,05)  3.432070E-01 0.000000E+00 2.595065E-01 1.190923E+00
+      893     0 00:14:53  4.970549E-01 4.935698E+01 4.985404E+01 1.084909E+05
+             (001,01,05)  3.384346E-01 0.000000E+00 1.267662E-01 1.176729E+00
+      894     0 00:14:54  4.968616E-01 4.935698E+01 4.985384E+01 1.084909E+05
+             (001,01,05)  3.432879E-01 0.000000E+00 2.594181E-01 1.191149E+00
+      895     0 00:14:55  4.964618E-01 4.935698E+01 4.985344E+01 1.084909E+05
+             (001,01,05)  3.385130E-01 0.000000E+00 1.266987E-01 1.176939E+00
+      896     0 00:14:56  4.964768E-01 4.935699E+01 4.985346E+01 1.084909E+05
+             (001,01,05)  3.433658E-01 0.000000E+00 2.593427E-01 1.191362E+00
+      897     0 00:14:57  4.962915E-01 4.935699E+01 4.985329E+01 1.084909E+05
+             (001,01,05)  3.385892E-01 0.000000E+00 1.266408E-01 1.177141E+00
+      898     0 00:14:58  4.965250E-01 4.935701E+01 4.985353E+01 1.084909E+05
+             (001,01,05)  3.434420E-01 0.000000E+00 2.592760E-01 1.191570E+00
+      899     0 00:14:59  4.965600E-01 4.935702E+01 4.985358E+01 1.084909E+05
+             (001,01,05)  3.386644E-01 0.000000E+00 1.265878E-01 1.177340E+00
+      900     0 00:15:00  4.970138E-01 4.935704E+01 4.985405E+01 1.084909E+05
+             (001,01,05)  3.435176E-01 0.000000E+00 2.592133E-01 1.191778E+00
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000010
+      901     0 00:15:01  4.972671E-01 4.935706E+01 4.985432E+01 1.084909E+05
+             (001,01,05)  3.387391E-01 0.000000E+00 1.265361E-01 1.177541E+00
+      902     0 00:15:02  4.979349E-01 4.935708E+01 4.985501E+01 1.084909E+05
+             (001,01,05)  3.435926E-01 0.000000E+00 2.591507E-01 1.191988E+00
+      903     0 00:15:03  4.983960E-01 4.935710E+01 4.985550E+01 1.084909E+05
+             (001,01,05)  3.388131E-01 0.000000E+00 1.264829E-01 1.177746E+00
+      904     0 00:15:04  4.992632E-01 4.935712E+01 4.985639E+01 1.084909E+05
+             (001,01,05)  3.436668E-01 0.000000E+00 2.590843E-01 1.192203E+00
+      905     0 00:15:05  4.999127E-01 4.935714E+01 4.985706E+01 1.084909E+05
+             (001,01,05)  3.388858E-01 0.000000E+00 1.264252E-01 1.177957E+00
+      906     0 00:15:06  5.009548E-01 4.935716E+01 4.985812E+01 1.084909E+05
+             (001,01,05)  3.437392E-01 0.000000E+00 2.590098E-01 1.192425E+00
+      907     0 00:15:07  5.017626E-01 4.935718E+01 4.985894E+01 1.084909E+05
+             (001,01,05)  3.389557E-01 0.000000E+00 1.263590E-01 1.178178E+00
+      908     0 00:15:08  5.029435E-01 4.935720E+01 4.986014E+01 1.084909E+05
+             (001,01,05)  3.438077E-01 0.000000E+00 2.589216E-01 1.192656E+00
+      909     0 00:15:09  5.038683E-01 4.935721E+01 4.986108E+01 1.084909E+05
+             (001,01,05)  3.390297E-01 0.000000E+00 1.262804E-01 1.178407E+00
+      910     0 00:15:10  5.051413E-01 4.935722E+01 4.986236E+01 1.084909E+05
+             (001,01,05)  3.438737E-01 0.000000E+00 2.588962E-01 1.192893E+00
+      911     0 00:15:11  5.061313E-01 4.935722E+01 4.986335E+01 1.084909E+05
+             (001,01,05)  3.390824E-01 0.000000E+00 1.262344E-01 1.178642E+00
+      912     0 00:15:12  5.074415E-01 4.935722E+01 4.986466E+01 1.084909E+05
+             (001,01,05)  3.439215E-01 0.000000E+00 2.587504E-01 1.193129E+00
+      913     0 00:15:13  5.084392E-01 4.935722E+01 4.986566E+01 1.084909E+05
+             (001,01,05)  3.391191E-01 0.000000E+00 1.261198E-01 1.178869E+00
+      914     0 00:15:14  5.097276E-01 4.935721E+01 4.986694E+01 1.084909E+05
+             (001,01,05)  3.439502E-01 0.000000E+00 2.585872E-01 1.193345E+00
+      915     0 00:15:15  5.106742E-01 4.935720E+01 4.986787E+01 1.084909E+05
+             (001,01,05)  3.391333E-01 0.000000E+00 1.259981E-01 1.179068E+00
+      916     0 00:15:16  5.118830E-01 4.935718E+01 4.986907E+01 1.084909E+05
+             (001,01,05)  3.439517E-01 0.000000E+00 2.584234E-01 1.193513E+00
+      917     0 00:15:17  5.127229E-01 4.935717E+01 4.986989E+01 1.084909E+05
+             (001,01,05)  3.391165E-01 0.000000E+00 1.258815E-01 1.179207E+00
+      918     0 00:15:18  5.138001E-01 4.935715E+01 4.987095E+01 1.084909E+05
+             (001,01,05)  3.439183E-01 0.000000E+00 2.582676E-01 1.193601E+00
+      919     0 00:15:19  5.144858E-01 4.935712E+01 4.987161E+01 1.084909E+05
+             (001,01,05)  3.390656E-01 0.000000E+00 1.257790E-01 1.179254E+00
+      920     0 00:15:20  5.153893E-01 4.935710E+01 4.987249E+01 1.084909E+05
+             (001,01,05)  3.438517E-01 0.000000E+00 2.581608E-01 1.193581E+00
+      921     0 00:15:21  5.158843E-01 4.935708E+01 4.987297E+01 1.084909E+05
+             (001,01,05)  3.389801E-01 0.000000E+00 1.257539E-01 1.179187E+00
+      922     0 00:15:22  5.165837E-01 4.935706E+01 4.987364E+01 1.084909E+05
+             (001,01,05)  3.437504E-01 0.000000E+00 2.581219E-01 1.193440E+00
+      923     0 00:15:23  5.168642E-01 4.935704E+01 4.987390E+01 1.084909E+05
+             (001,01,05)  3.388650E-01 0.000000E+00 1.257859E-01 1.179005E+00
+      924     0 00:15:24  5.173417E-01 4.935702E+01 4.987436E+01 1.084909E+05
+             (001,01,05)  3.436227E-01 0.000000E+00 2.581617E-01 1.193187E+00
+      925     0 00:15:25  5.173957E-01 4.935701E+01 4.987440E+01 1.084909E+05
+             (001,01,05)  3.387293E-01 0.000000E+00 1.258851E-01 1.178724E+00
+      926     0 00:15:26  5.176447E-01 4.935700E+01 4.987464E+01 1.084909E+05
+             (001,01,05)  3.434789E-01 0.000000E+00 2.582767E-01 1.192849E+00
+      927     0 00:15:27  5.174705E-01 4.935699E+01 4.987446E+01 1.084909E+05
+             (001,01,05)  3.385832E-01 0.000000E+00 1.260446E-01 1.178374E+00
+      928     0 00:15:28  5.174936E-01 4.935698E+01 4.987448E+01 1.084909E+05
+             (001,01,05)  3.433292E-01 0.000000E+00 2.584535E-01 1.192455E+00
+      929     0 00:15:29  5.170980E-01 4.935698E+01 4.987408E+01 1.084909E+05
+             (001,01,05)  3.384360E-01 0.000000E+00 1.262521E-01 1.177979E+00
+      930     0 00:15:30  5.169057E-01 4.935698E+01 4.987389E+01 1.084909E+05
+             (001,01,05)  3.431824E-01 0.000000E+00 2.586791E-01 1.192029E+00
+      931     0 00:15:31  5.163030E-01 4.935698E+01 4.987329E+01 1.084909E+05
+             (001,01,05)  3.382958E-01 0.000000E+00 1.264973E-01 1.177561E+00
+      932     0 00:15:32  5.159137E-01 4.935699E+01 4.987290E+01 1.084909E+05
+             (001,01,05)  3.430464E-01 0.000000E+00 2.589439E-01 1.191590E+00
+      933     0 00:15:33  5.151263E-01 4.935700E+01 4.987212E+01 1.084909E+05
+             (001,01,05)  3.381706E-01 0.000000E+00 1.267717E-01 1.177138E+00
+      934     0 00:15:34  5.145666E-01 4.935700E+01 4.987157E+01 1.084909E+05
+             (001,01,05)  3.429293E-01 0.000000E+00 2.592395E-01 1.191162E+00
+      935     0 00:15:35  5.136253E-01 4.935701E+01 4.987064E+01 1.084909E+05
+             (001,01,05)  3.380685E-01 0.000000E+00 1.270629E-01 1.176736E+00
+      936     0 00:15:36  5.129295E-01 4.935702E+01 4.986995E+01 1.084909E+05
+             (001,01,05)  3.428394E-01 0.000000E+00 2.595470E-01 1.190775E+00
+      937     0 00:15:37  5.118718E-01 4.935703E+01 4.986890E+01 1.084909E+05
+             (001,01,05)  3.379969E-01 0.000000E+00 1.273469E-01 1.176391E+00
+      938     0 00:15:38  5.110796E-01 4.935703E+01 4.986811E+01 1.084909E+05
+             (001,01,05)  3.427825E-01 0.000000E+00 2.598341E-01 1.190468E+00
+      939     0 00:15:39  5.099465E-01 4.935704E+01 4.986698E+01 1.084909E+05
+             (001,01,05)  3.379623E-01 0.000000E+00 1.275836E-01 1.176139E+00
+      940     0 00:15:40  5.090997E-01 4.935704E+01 4.986614E+01 1.084909E+05
+             (001,01,05)  3.427661E-01 0.000000E+00 2.600774E-01 1.190272E+00
+      941     0 00:15:41  5.079325E-01 4.935704E+01 4.986497E+01 1.084909E+05
+             (001,01,05)  3.379670E-01 0.000000E+00 1.277821E-01 1.176003E+00
+      942     0 00:15:42  5.070709E-01 4.935704E+01 4.986411E+01 1.084909E+05
+             (001,01,05)  3.427854E-01 0.000000E+00 2.602620E-01 1.190202E+00
+      943     0 00:15:43  5.059077E-01 4.935704E+01 4.986295E+01 1.084909E+05
+             (001,01,05)  3.380053E-01 0.000000E+00 1.278981E-01 1.175990E+00
+      944     0 00:15:44  5.050677E-01 4.935704E+01 4.986210E+01 1.084909E+05
+             (001,01,05)  3.428349E-01 0.000000E+00 2.603645E-01 1.190250E+00
+      945     0 00:15:45  5.039429E-01 4.935703E+01 4.986097E+01 1.084909E+05
+             (001,01,05)  3.380657E-01 0.000000E+00 1.279400E-01 1.176083E+00
+      946     0 00:15:46  5.031573E-01 4.935703E+01 4.986018E+01 1.084909E+05
+             (001,01,05)  3.429041E-01 0.000000E+00 2.603626E-01 1.190394E+00
+      947     0 00:15:47  5.021021E-01 4.935702E+01 4.985912E+01 1.084909E+05
+             (001,01,05)  3.381371E-01 0.000000E+00 1.279070E-01 1.176254E+00
+      948     0 00:15:48  5.014012E-01 4.935701E+01 4.985842E+01 1.084909E+05
+             (001,01,05)  3.429824E-01 0.000000E+00 2.602647E-01 1.190598E+00
+      949     0 00:15:49  5.004457E-01 4.935701E+01 4.985745E+01 1.084909E+05
+             (001,01,05)  3.382200E-01 0.000000E+00 1.278125E-01 1.176466E+00
+      950     0 00:15:50  4.998591E-01 4.935700E+01 4.985686E+01 1.084909E+05
+             (001,01,05)  3.430669E-01 0.000000E+00 2.601754E-01 1.190828E+00
+      951     0 00:15:51  4.990325E-01 4.935699E+01 4.985603E+01 1.084909E+05
+             (001,01,05)  3.383039E-01 0.000000E+00 1.277257E-01 1.176691E+00
+      952     0 00:15:52  4.985891E-01 4.935699E+01 4.985558E+01 1.084909E+05
+             (001,01,05)  3.431502E-01 0.000000E+00 2.600802E-01 1.191060E+00
+      953     0 00:15:53  4.979194E-01 4.935698E+01 4.985490E+01 1.084909E+05
+             (001,01,05)  3.383849E-01 0.000000E+00 1.276434E-01 1.176910E+00
+      954     0 00:15:54  4.976459E-01 4.935698E+01 4.985463E+01 1.084909E+05
+             (001,01,05)  3.432303E-01 0.000000E+00 2.599891E-01 1.191282E+00
+      955     0 00:15:55  4.971579E-01 4.935698E+01 4.985414E+01 1.084909E+05
+             (001,01,05)  3.384623E-01 0.000000E+00 1.275711E-01 1.177118E+00
+      956     0 00:15:56  4.970761E-01 4.935698E+01 4.985406E+01 1.084909E+05
+             (001,01,05)  3.433070E-01 0.000000E+00 2.599081E-01 1.191492E+00
+      957     0 00:15:57  4.967880E-01 4.935699E+01 4.985377E+01 1.084909E+05
+             (001,01,05)  3.385370E-01 0.000000E+00 1.275082E-01 1.177315E+00
+      958     0 00:15:58  4.969126E-01 4.935699E+01 4.985391E+01 1.084909E+05
+             (001,01,05)  3.433815E-01 0.000000E+00 2.598367E-01 1.191694E+00
+      959     0 00:15:59  4.968349E-01 4.935700E+01 4.985384E+01 1.084909E+05
+             (001,01,05)  3.386101E-01 0.000000E+00 1.274519E-01 1.177507E+00
+      960     0 00:16:00  4.971719E-01 4.935702E+01 4.985419E+01 1.084909E+05
+             (001,01,05)  3.434548E-01 0.000000E+00 2.597712E-01 1.191893E+00
+      961     0 00:16:01  4.973065E-01 4.935703E+01 4.985434E+01 1.084909E+05
+             (001,01,05)  3.386825E-01 0.000000E+00 1.273985E-01 1.177699E+00
+      962     0 00:16:02  4.978537E-01 4.935705E+01 4.985491E+01 1.084909E+05
+             (001,01,05)  3.435274E-01 0.000000E+00 2.597077E-01 1.192093E+00
+      963     0 00:16:03  4.981942E-01 4.935707E+01 4.985527E+01 1.084909E+05
+             (001,01,05)  3.387542E-01 0.000000E+00 1.273449E-01 1.177893E+00
+      964     0 00:16:04  4.989409E-01 4.935709E+01 4.985603E+01 1.084909E+05
+             (001,01,05)  3.435993E-01 0.000000E+00 2.596423E-01 1.192297E+00
+      965     0 00:16:05  4.994723E-01 4.935711E+01 4.985659E+01 1.084909E+05
+             (001,01,05)  3.388250E-01 0.000000E+00 1.272884E-01 1.178092E+00
+      966     0 00:16:06  5.003986E-01 4.935713E+01 4.985753E+01 1.084909E+05
+             (001,01,05)  3.436699E-01 0.000000E+00 2.595711E-01 1.192506E+00
+      967     0 00:16:07  5.010962E-01 4.935715E+01 4.985825E+01 1.084909E+05
+             (001,01,05)  3.389009E-01 0.000000E+00 1.272258E-01 1.178298E+00
+      968     0 00:16:08  5.021721E-01 4.935717E+01 4.985934E+01 1.084909E+05
+             (001,01,05)  3.437412E-01 0.000000E+00 2.595514E-01 1.192722E+00
+      969     0 00:16:09  5.030004E-01 4.935718E+01 4.986018E+01 1.084909E+05
+             (001,01,05)  3.389678E-01 0.000000E+00 1.271907E-01 1.178513E+00
+      970     0 00:16:10  5.041857E-01 4.935719E+01 4.986138E+01 1.084909E+05
+             (001,01,05)  3.438045E-01 0.000000E+00 2.594747E-01 1.192945E+00
+      971     0 00:16:11  5.050999E-01 4.935720E+01 4.986230E+01 1.084909E+05
+             (001,01,05)  3.390230E-01 0.000000E+00 1.271198E-01 1.178733E+00
+      972     0 00:16:12  5.063459E-01 4.935720E+01 4.986355E+01 1.084909E+05
+             (001,01,05)  3.438561E-01 0.000000E+00 2.593442E-01 1.193169E+00
+      973     0 00:16:13  5.072940E-01 4.935720E+01 4.986450E+01 1.084909E+05
+             (001,01,05)  3.390672E-01 0.000000E+00 1.270154E-01 1.178953E+00
+      974     0 00:16:14  5.085467E-01 4.935720E+01 4.986575E+01 1.084909E+05
+             (001,01,05)  3.438933E-01 0.000000E+00 2.592075E-01 1.193383E+00
+      975     0 00:16:15  5.094736E-01 4.935719E+01 4.986667E+01 1.084909E+05
+             (001,01,05)  3.390909E-01 0.000000E+00 1.269070E-01 1.179155E+00
+      976     0 00:16:16  5.106778E-01 4.935718E+01 4.986786E+01 1.084909E+05
+             (001,01,05)  3.439077E-01 0.000000E+00 2.590433E-01 1.193565E+00
+      977     0 00:16:17  5.115295E-01 4.935717E+01 4.986870E+01 1.084909E+05
+             (001,01,05)  3.390901E-01 0.000000E+00 1.267902E-01 1.179315E+00
+      978     0 00:16:18  5.126333E-01 4.935715E+01 4.986979E+01 1.084909E+05
+             (001,01,05)  3.438929E-01 0.000000E+00 2.588889E-01 1.193688E+00
+      979     0 00:16:19  5.133609E-01 4.935713E+01 4.987050E+01 1.084909E+05
+             (001,01,05)  3.390583E-01 0.000000E+00 1.266826E-01 1.179404E+00
+      980     0 00:16:20  5.143193E-01 4.935712E+01 4.987143E+01 1.084909E+05
+             (001,01,05)  3.438460E-01 0.000000E+00 2.587602E-01 1.193722E+00
+      981     0 00:16:21  5.148823E-01 4.935710E+01 4.987198E+01 1.084909E+05
+             (001,01,05)  3.389935E-01 0.000000E+00 1.266205E-01 1.179397E+00
+      982     0 00:16:22  5.156599E-01 4.935708E+01 4.987273E+01 1.084909E+05
+             (001,01,05)  3.437656E-01 0.000000E+00 2.586841E-01 1.193647E+00
+      983     0 00:16:23  5.160286E-01 4.935706E+01 4.987308E+01 1.084909E+05
+             (001,01,05)  3.388975E-01 0.000000E+00 1.266143E-01 1.179280E+00
+      984     0 00:16:24  5.166014E-01 4.935704E+01 4.987364E+01 1.084909E+05
+             (001,01,05)  3.436557E-01 0.000000E+00 2.586774E-01 1.193459E+00
+      985     0 00:16:25  5.167577E-01 4.935702E+01 4.987378E+01 1.084909E+05
+             (001,01,05)  3.387768E-01 0.000000E+00 1.266716E-01 1.179058E+00
+      986     0 00:16:26  5.171132E-01 4.935701E+01 4.987412E+01 1.084909E+05
+             (001,01,05)  3.435246E-01 0.000000E+00 2.587466E-01 1.193175E+00
+      987     0 00:16:27  5.170498E-01 4.935700E+01 4.987405E+01 1.084909E+05
+             (001,01,05)  3.386404E-01 0.000000E+00 1.267926E-01 1.178752E+00
+      988     0 00:16:28  5.171855E-01 4.935699E+01 4.987417E+01 1.084909E+05
+             (001,01,05)  3.433823E-01 0.000000E+00 2.588841E-01 1.192818E+00
+      989     0 00:16:29  5.169046E-01 4.935698E+01 4.987389E+01 1.084909E+05
+             (001,01,05)  3.384981E-01 0.000000E+00 1.269682E-01 1.178388E+00
+      990     0 00:16:30  5.168270E-01 4.935698E+01 4.987381E+01 1.084909E+05
+             (001,01,05)  3.432385E-01 0.000000E+00 2.590782E-01 1.192417E+00
+      991     0 00:16:31  5.163391E-01 4.935698E+01 4.987332E+01 1.084909E+05
+             (001,01,05)  3.383589E-01 0.000000E+00 1.271878E-01 1.177990E+00
+      992     0 00:16:32  5.160627E-01 4.935698E+01 4.987305E+01 1.084909E+05
+             (001,01,05)  3.431017E-01 0.000000E+00 2.593170E-01 1.191994E+00
+      993     0 00:16:33  5.153864E-01 4.935699E+01 4.987237E+01 1.084909E+05
+             (001,01,05)  3.382309E-01 0.000000E+00 1.274407E-01 1.177579E+00
+      994     0 00:16:34  5.149336E-01 4.935699E+01 4.987193E+01 1.084909E+05
+             (001,01,05)  3.429800E-01 0.000000E+00 2.595892E-01 1.191572E+00
+      995     0 00:16:35  5.140952E-01 4.935700E+01 4.987109E+01 1.084909E+05
+             (001,01,05)  3.381221E-01 0.000000E+00 1.277144E-01 1.177180E+00
+      996     0 00:16:36  5.134959E-01 4.935701E+01 4.987050E+01 1.084909E+05
+             (001,01,05)  3.428814E-01 0.000000E+00 2.598803E-01 1.191179E+00
+      997     0 00:16:37  5.125286E-01 4.935701E+01 4.986954E+01 1.084909E+05
+             (001,01,05)  3.380399E-01 0.000000E+00 1.279903E-01 1.176821E+00
+      998     0 00:16:38  5.118188E-01 4.935702E+01 4.986884E+01 1.084909E+05
+             (001,01,05)  3.428121E-01 0.000000E+00 2.601637E-01 1.190848E+00
+      999     0 00:16:39  5.107605E-01 4.935702E+01 4.986778E+01 1.084909E+05
+             (001,01,05)  3.379909E-01 0.000000E+00 1.282367E-01 1.176538E+00
+     1000     0 00:16:40  5.099792E-01 4.935703E+01 4.986701E+01 1.084909E+05
+             (001,01,05)  3.427786E-01 0.000000E+00 2.604180E-01 1.190611E+00
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000011
+      WRT_AVG   - wrote averaged fields into time record =             0000001
+      WRT_RST   - wrote re-start fields (Index=1,1) into time record = 0000001
+
+ Elapsed CPU time (seconds):
+
+ Thread #  0 CPU:      79.250
+ Total:                79.250
+
+ Nonlinear model elapsed time profile:
+
+  Allocation and array initialization ..............         0.016  ( 0.0202 %)
+  Ocean state initialization .......................         0.031  ( 0.0391 %)
+  Processing of input data .........................         0.171  ( 0.2158 %)
+  Processing of output time averaged data ..........         2.994  ( 3.7779 %)
+  Computation of vertical boundary conditions ......         0.251  ( 0.3167 %)
+  Computation of global information integrals ......         1.349  ( 1.7022 %)
+  Writing of output data ...........................         0.125  ( 0.1577 %)
+  Model 2D kernel ..................................        30.753  (38.8050 %)
+  2D/3D coupling, vertical metrics .................         0.523  ( 0.6599 %)
+  Omega vertical velocity ..........................         0.326  ( 0.4114 %)
+  Equation of state for seawater ...................         0.593  ( 0.7483 %)
+  Sediment tranport module, source/sink terms ......        10.863  (13.7073 %)
+  My2.5 vertical mixing parameterization ...........         7.268  ( 9.1710 %)
+  3D equations right-side terms ....................         1.871  ( 2.3609 %)
+  3D equations predictor step ......................         6.350  ( 8.0126 %)
+  Pressure gradient ................................         0.249  ( 0.3142 %)
+  Biharmonic mixing of tracers, S-surfaces .........         3.362  ( 4.2423 %)
+  Biharmonic stress tensor, S-surfaces .............         2.054  ( 2.5918 %)
+  Corrector time-step for 3D momentum ..............         3.875  ( 4.8896 %)
+  Corrector time-step for tracers ..................         5.446  ( 6.8719 %)
+                                              Total:        78.470   99.0158
+
+ All percentages are with respect to total time =           79.250
+
+ ROMS/TOMS - Output NetCDF summary for Grid 01:
+             number of time records written in HISTORY file = 00000011
+             number of time records written in RESTART file = 00000001
+             number of time records written in AVERAGE file = 00000001
+
+ Analytical header files used:
+
+     ROMS/Functionals/ana_btflux.h
+     ROMS/Functionals/ana_fsobc.h
+     ROMS/Functionals/ana_grid.h
+     ROMS/Functionals/ana_initial.h
+     ROMS/Functionals/ana_psource.h
+     ROMS/Functionals/ana_sediment.h
+     ROMS/Functionals/ana_smflux.h
+     ROMS/Functionals/ana_stflux.h
+     ROMS/Functionals/ana_tobc.h
+
+ ROMS/TOMS: DONE... Tuesday - August 23, 2011 -  8:41:48 AM

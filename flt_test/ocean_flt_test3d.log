@@ -1,0 +1,600 @@
+
+ Model Input Parameters:  ROMS/TOMS version 3.5  
+                          Thursday - May 19, 2011 -  4:14:07 PM
+ -----------------------------------------------------------------------------
+
+ Floats Trajectories 3D Test
+
+ Operating system : CYGWIN
+ CPU/hardware     : i686
+ Compiler system  : gfortran
+ Compiler command : /usr/bin/gfortran
+ Compiler flags   : -frepack-arrays -O3 -ffast-math -ffree-form -ffree-line-length-none -ffree-form -ffree-line-length-none -ffree-form -ffree-line-length-none
+
+ SVN Root URL  : https:://myroms.org/svn/src
+ SVN Revision  : exported
+
+ Local Root    : /home/hadfield/ROMS/roms-local
+ Header Dir    : /home/hadfield/ROMS/roms-test-local/flt_test
+ Header file   : flt_test.h
+ Analytical Dir: /home/hadfield/ROMS/roms-test-local/flt_test
+
+ Resolution, Grid 01: 0014x0012x004,  Parallel Threads:  1,  Tiling: 001x001
+
+
+ Physical Parameters, Grid: 01
+ =============================
+
+        135  ntimes          Number of timesteps for 3-D equations.
+    512.000  dt              Timestep size (s) for 3-D equations.
+          9  ndtfast         Number of timesteps for 2-D equations between
+                               each 3D timestep.
+          1  ERstr           Starting ensemble/perturbation run number.
+          1  ERend           Ending ensemble/perturbation run number.
+          0  nrrec           Number of restart records to read from disk.
+          T  LcycleRST       Switch to recycle time-records in restart file.
+        135  nRST            Number of timesteps between the writing of data
+                               into restart fields.
+          1  ninfo           Number of timesteps between print of information
+                               to standard output.
+          1  nFLT            Number of timesteps between the writing of data
+                               into floats file.
+          T  ldefout         Switch to create a new output NetCDF file(s).
+          3  nHIS            Number of timesteps between the writing fields
+                               into history file.
+ 0.0000E+00  nl_visc2        NLM Horizontal, harmonic mixing coefficient
+                               (m2/s) for momentum.
+ 1.0000E-06  Akt_bak(01)     Background vertical mixing coefficient (m2/s)
+                               for tracer 01: temp
+ 1.0000E-06  Akt_bak(02)     Background vertical mixing coefficient (m2/s)
+                               for tracer 02: salt
+ 1.0000E-05  Akv_bak         Background vertical mixing coefficient (m2/s)
+                               for momentum.
+ 3.0000E-04  rdrg            Linear bottom drag coefficient (m/s).
+ 3.0000E-03  rdrg2           Quadratic bottom drag coefficient.
+ 2.0000E-02  Zob             Bottom roughness (m).
+          1  levsfrc         Deepest level to apply surface stress as a
+                               bodyforce.
+          4  levbfrc         Shallowest level to apply bottom stress as a
+                               bodyforce.
+          2  Vtransform      S-coordinate transformation equation.
+          4  Vstretching     S-coordinate stretching function.
+ 0.0000E+00  theta_s         S-coordinate surface control parameter.
+ 0.0000E+00  theta_b         S-coordinate bottom  control parameter.
+ 1.0000E+16  Tcline          S-coordinate surface/bottom layer width (m) used
+                               in vertical coordinate stretching.
+   1025.000  rho0            Mean density (kg/m3) for Boussinesq approximation.
+      0.000  dstart          Time-stamp assigned to model initialization (days).
+       0.00  time_ref        Reference time for units attribute (yyyymmdd.dd)
+ 0.0000E+00  Tnudg(01)       Nudging/relaxation time scale (days)
+                               for tracer 01: temp
+ 0.0000E+00  Tnudg(02)       Nudging/relaxation time scale (days)
+                               for tracer 02: salt
+ 0.0000E+00  Znudg           Nudging/relaxation time scale (days)
+                               for free-surface.
+ 0.0000E+00  M2nudg          Nudging/relaxation time scale (days)
+                               for 2D momentum.
+ 0.0000E+00  M3nudg          Nudging/relaxation time scale (days)
+                               for 3D momentum.
+ 0.0000E+00  obcfac          Factor between passive and active
+                               open boundary conditions.
+     15.000  T0              Background potential temperature (C) constant.
+     35.000  S0              Background salinity (PSU) constant.
+   1025.000  R0              Background density (kg/m3) used in linear Equation
+                               of State.
+ 1.7000E-04  Tcoef           Thermal expansion coefficient (1/Celsius).
+ 7.6000E-04  Scoef           Saline contraction coefficient (1/PSU).
+      1.000  gamma2          Slipperiness variable: free-slip (1.0) or 
+                                                    no-slip (-1.0).
+          T  Hout(idFsur)    Write out free-surface.
+          T  Hout(idUbar)    Write out 2D U-momentum component.
+          T  Hout(idVbar)    Write out 2D V-momentum component.
+          T  Hout(idUvel)    Write out 3D U-momentum component.
+          T  Hout(idVvel)    Write out 3D V-momentum component.
+          T  Hout(idWvel)    Write out W-momentum component.
+          T  Hout(idOvel)    Write out omega vertical velocity.
+          T  Hout(idTvar)    Write out tracer 01: temp
+          T  Hout(idTvar)    Write out tracer 02: salt
+          T  Hout(idDano)    Write out density anomaly.
+
+ Output/Input Files:
+
+             Output Restart File:  ocean_rst.nc
+             Output History File:  ocean_his.nc
+              Output Floats File:  ocean_flt.nc
+   Initial Floats Positions File:  floats_flt_test3d.in
+
+ Tile partition information for Grid 01:  0014x0012x0004  tiling: 001x001
+
+     tile     Istr     Iend     Jstr     Jend     Npts
+
+        0        1       14        1       12      672
+
+ Tile minimum and maximum fractional grid coordinates:
+   (interior points only)
+
+     tile     Xmin     Xmax     Ymin     Ymax     grid
+
+        0    -1.50    16.50     0.50    13.50  RHO-points
+
+        0    -2.00    16.00     0.50    13.50    U-points
+
+        0    -1.50    16.50     0.00    13.00    V-points
+
+
+ Floats Initial Locations, Grid: 01
+ ==================================
+
+ G  C       N         Ft0         Fx0         Fy0         Fz0
+                      Fdt         Fdx         Fdy         Fdz
+
+ 0  1     240    0.100000    0.500000    0.500000    2.000000
+                 0.000000    0.000000    0.050000    0.000000
+
+        240  Nfloats         Number of float trajectories to compute.
+
+ Activated C-preprocessing Options:
+
+ FLT_TEST            Floats Trajectories 3D Test
+ ANA_BSFLUX          Analytical kinematic bottom salinity flux.
+ ANA_BTFLUX          Analytical kinematic bottom temperature flux.
+ ANA_GRID            Analytical grid set-up.
+ ANA_INITIAL         Analytical initial conditions.
+ ANA_SMFLUX          Analytical kinematic surface momentum flux.
+ ANA_SSFLUX          Analytical kinematic surface salinity flux.
+ ANA_STFLUX          Analytical kinematic surface temperature flux.
+ ASSUMED_SHAPE       Using assumed-shape arrays.
+ BODYFORCE           Momentum stresses as body-forces.
+ DJ_GRADPS           Parabolic Splines density Jacobian (Shchepetkin, 2002).
+ DOUBLE_PRECISION    Double precision arithmetic.
+ EW_PERIODIC         East-West periodic boundaries.
+ FLOATS              Simulated Lagrangian drifters.
+ MASKING             Land/Sea masking.
+ MIX_S_UV            Mixing of momentum along constant S-surfaces.
+ NONLINEAR           Nonlinear Model.
+ !NONLIN_EOS         Linear Equation of State for seawater.
+ NORTHERN_WALL       Wall boundary at Northern edge.
+ POWER_LAW           Power-law shape time-averaging barotropic filter.
+ PROFILE             Time profiling activated .
+ !RST_SINGLE         Double precision fields in restart NetCDF file.
+ SALINITY            Using salinity.
+ SOLVE3D             Solving 3D Primitive Equations.
+ SOUTHERN_WALL       Wall boundary at Southern edge.
+ SPLINES             Conservative parabolic spline reconstruction.
+ TS_A4HADVECTION     Fourth-order Akima horizontal advection of tracers.
+ TS_A4VADVECTION     Fourth-order Akima vertical advection of tracers.
+ UV_ADV              Advection of momentum.
+ UV_U3HADVECTION     Third-order upstream horizontal advection of 3D momentum.
+ UV_C4VADVECTION     Fourth-order centered vertical advection of momentum.
+ UV_QDRAG            Quadratic bottom stress.
+ UV_VIS2             Harmonic mixing of momentum.
+ VAR_RHO_2D          Variable density barotropic mode.
+
+ Process Information:
+
+ Thread #  0 (pid=       0) is active.
+
+ INITIAL: Configuring and initializing forward nonlinear model ...
+
+
+ Vertical S-coordinate System: 
+
+ level   S-coord     Cs-curve   Z   at hmin       at hc    half way     at hmax
+
+     4   0.0000000   0.0000000        0.000       0.000       0.000       0.000
+     3  -0.2500000  -0.0625000       -2.500      -2.500      -2.500      -2.500
+     2  -0.5000000  -0.2500000       -5.000      -5.000      -5.000      -5.000
+     1  -0.7500000  -0.5625000       -7.500      -7.500      -7.500      -7.500
+     0  -1.0000000  -1.0000000      -10.000     -10.000     -10.000     -10.000
+
+ Time Splitting Weights: ndtfast =   9    nfast =  13
+
+    Primary            Secondary            Accumulated to Current Step
+
+  1 0.0020364543700988 0.1111111111111111 0.0020364543700988 0.1111111111111111
+  2 0.0081423516807324 0.1108848384033223 0.0101788060508311 0.2219959495144334
+  3 0.0182864997349408 0.1099801326610187 0.0284653057857720 0.3319760821754522
+  4 0.0323475955445464 0.1079482993571364 0.0608129013303184 0.4399243815325886
+  5 0.0500102513402867 0.1043541220744091 0.1108231526706051 0.5442785036069977
+  6 0.0706194309860016 0.0987974274810439 0.1814425836566068 0.6430759310880416
+  7 0.0929932967968731 0.0909508240381548 0.2744358804534798 0.7340267551261964
+  8 0.1151944667617183 0.0806182355051689 0.3896303472151981 0.8146449906313653
+  9 0.1342596821693365 0.0678188503094224 0.5238900293845346 0.8824638409407878
+ 10 0.1458878856389088 0.0529011078461628 0.6697779150234433 0.9353649487869506
+ 11 0.1440867095544515 0.0366913427751730 0.8138646245778949 0.9720562915621236
+ 12 0.1207773749033226 0.0206817083802339 0.9346419994812174 0.9927379999423575
+ 13 0.0653580005187826 0.0072620000576425 1.0000000000000000 1.0000000000000000
+
+ ndtfast, nfast =    9  13   nfast/ndtfast =  1.44444
+
+ Centers of gravity and integrals (values must be 1, 1, approx 1/2, 1, 1):
+
+    1.000000000000 1.083631825329 0.541815912665 1.000000000000 1.000000000000
+
+ Power filter parameters, Fgamma, gamma =  0.28400   0.00000
+
+ Minimum X-grid spacing, DXmin =  1.00000000E+00 km
+ Maximum X-grid spacing, DXmax =  1.00000000E+00 km
+ Minimum Y-grid spacing, DYmin =  1.00000000E+00 km
+ Maximum Y-grid spacing, DYmax =  1.00000000E+00 km
+ Minimum Z-grid spacing, DZmin =  2.50000000E+00 m
+ Maximum Z-grid spacing, DZmax =  2.50000000E+00 m
+
+ Minimum barotropic Courant Number =  7.96850690E-01
+ Maximum barotropic Courant Number =  7.96850690E-01
+ Maximum Coriolis   Courant Number =  0.00000000E+00
+
+
+ Maximum grid stiffness ratios:  rx0 =   0.000000E+00 (Beckmann and Haidvogel)
+                                 rx1 =   0.000000E+00 (Haney)
+
+
+ Initial basin volumes: TotVolume =  1.3600000000E+09 m3
+                        MinVolume =  2.5000000000E+06 m3
+                        MaxVolume =  2.5000000000E+06 m3
+                          Max/Min =  1.0000000000E+00
+
+
+ NL ROMS/TOMS: started time-stepping: (Grid: 01 TimeSteps: 00000001 - 00000135)
+
+
+     STEP   Day HH:MM:SS  KINETIC_ENRG  POTEN_ENRG   TOTAL_ENRG   NET_VOLUME
+            C => (i,j,k)       Cu           Cv           Cw        Max Speed
+
+        0     0 00:00:00  0.000000E+00 4.776592E+01 4.776592E+01 1.680000E+09
+               (00,00,0)  0.000000E+00 0.000000E+00 0.000000E+00 0.000000E+00
+      DEF_HIS   - creating history file: ocean_his.nc
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000001
+      DEF_FLOATS  - creating floats file: ocean_flt.nc
+        1     0 00:08:32  1.014393E-03 4.776593E+01 4.776694E+01 1.680000E+09
+               (09,05,3)  2.900364E-02 1.015845E-02 0.000000E+00 6.420537E-02
+        2     0 00:17:04  4.021188E-03 4.776593E+01 4.776995E+01 1.680000E+09
+               (09,05,4)  6.043328E-02 2.061701E-02 3.452875E-04 1.340612E-01
+        3     0 00:25:36  8.878179E-03 4.776592E+01 4.777480E+01 1.680000E+09
+               (06,05,4)  8.759179E-02 3.209863E-02 6.121725E-04 1.969782E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000002
+        4     0 00:34:08  1.533084E-02 4.776593E+01 4.778126E+01 1.680000E+09
+               (06,05,4)  1.132827E-01 4.247373E-02 6.570443E-04 2.555168E-01
+        5     0 00:42:40  2.303828E-02 4.776593E+01 4.778897E+01 1.680000E+09
+               (06,05,4)  1.389158E-01 5.433009E-02 7.985478E-04 3.160064E-01
+        6     0 00:51:12  3.161081E-02 4.776592E+01 4.779753E+01 1.680000E+09
+               (06,05,4)  1.609750E-01 6.555688E-02 1.126303E-03 3.673057E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000003
+        7     0 00:59:44  4.065898E-02 4.776593E+01 4.780659E+01 1.680000E+09
+               (06,05,4)  1.803211E-01 7.660793E-02 6.335799E-04 4.121083E-01
+        8     0 01:08:16  4.981950E-02 4.776593E+01 4.781575E+01 1.680000E+09
+               (06,05,4)  1.984715E-01 8.799073E-02 1.715619E-05 4.543976E-01
+        9     0 01:16:48  5.877598E-02 4.776593E+01 4.782471E+01 1.680000E+09
+               (06,05,4)  2.140626E-01 9.869885E-02 1.215337E-03 4.883132E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000004
+       10     0 01:25:20  6.728922E-02 4.776594E+01 4.783322E+01 1.680000E+09
+               (06,05,4)  2.273851E-01 1.085302E-01 1.041312E-03 5.155254E-01
+       11     0 01:33:52  7.518960E-02 4.776594E+01 4.784113E+01 1.680000E+09
+               (06,05,4)  2.396325E-01 1.177930E-01 6.549309E-04 5.395991E-01
+       12     0 01:42:24  8.236735E-02 4.776594E+01 4.784831E+01 1.680000E+09
+               (06,05,4)  2.503335E-01 1.260077E-01 1.493185E-03 5.594918E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000005
+       13     0 01:50:56  8.877799E-02 4.776594E+01 4.785472E+01 1.680000E+09
+               (06,05,4)  2.593747E-01 1.329799E-01 1.460560E-03 5.816683E-01
+       14     0 01:59:28  9.442121E-02 4.776595E+01 4.786037E+01 1.680000E+09
+               (06,05,4)  2.675138E-01 1.390395E-01 1.256026E-03 6.012430E-01
+       15     0 02:08:00  9.932386E-02 4.776595E+01 4.786527E+01 1.680000E+09
+               (06,05,4)  2.746348E-01 1.441310E-01 1.784678E-03 6.176369E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000006
+       16     0 02:16:32  1.035391E-01 4.776595E+01 4.786949E+01 1.680000E+09
+               (06,05,4)  2.804870E-01 1.481958E-01 1.816627E-03 6.307961E-01
+       17     0 02:25:04  1.071327E-01 4.776595E+01 4.787309E+01 1.680000E+09
+               (06,05,4)  2.855647E-01 1.515570E-01 1.715299E-03 6.422161E-01
+       18     0 02:33:36  1.101719E-01 4.776595E+01 4.787613E+01 1.680000E+09
+               (06,05,4)  2.899360E-01 1.543243E-01 2.014293E-03 6.524407E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000007
+       19     0 02:42:08  1.127260E-01 4.776596E+01 4.787868E+01 1.680000E+09
+               (06,05,4)  2.933969E-01 1.564716E-01 2.073482E-03 6.605020E-01
+       20     0 02:50:40  1.148624E-01 4.776596E+01 4.788082E+01 1.680000E+09
+               (06,05,4)  2.963032E-01 1.582239E-01 2.017122E-03 6.672440E-01
+       21     0 02:59:12  1.166407E-01 4.776596E+01 4.788260E+01 1.680000E+09
+               (06,05,4)  2.987785E-01 1.596871E-01 2.171160E-03 6.729621E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000008
+       22     0 03:07:44  1.181150E-01 4.776596E+01 4.788407E+01 1.680000E+09
+               (06,05,4)  3.006891E-01 1.608256E-01 2.232807E-03 6.773797E-01
+       23     0 03:16:16  1.193342E-01 4.776596E+01 4.788529E+01 1.680000E+09
+               (06,05,4)  3.022634E-01 1.617653E-01 2.196526E-03 6.810248E-01
+       24     0 03:24:48  1.203396E-01 4.776596E+01 4.788630E+01 1.680000E+09
+               (06,05,4)  3.036086E-01 1.625734E-01 2.269443E-03 6.841421E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000009
+       25     0 03:33:20  1.211664E-01 4.776596E+01 4.788713E+01 1.680000E+09
+               (06,05,4)  3.046397E-01 1.632135E-01 2.321892E-03 6.865436E-01
+       26     0 03:41:52  1.218455E-01 4.776596E+01 4.788781E+01 1.680000E+09
+               (06,05,4)  3.054834E-01 1.637483E-01 2.297133E-03 6.885183E-01
+       27     0 03:50:24  1.224023E-01 4.776596E+01 4.788836E+01 1.680000E+09
+               (06,05,4)  3.062141E-01 1.642183E-01 2.329252E-03 6.902341E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000010
+       28     0 03:58:56  1.228579E-01 4.776596E+01 4.788882E+01 1.680000E+09
+               (06,05,4)  3.067791E-01 1.645978E-01 2.368896E-03 6.915707E-01
+       29     0 04:07:28  1.232306E-01 4.776596E+01 4.788919E+01 1.680000E+09
+               (06,05,4)  3.072396E-01 1.649161E-01 2.352782E-03 6.926678E-01
+       30     0 04:16:00  1.235351E-01 4.776596E+01 4.788950E+01 1.680000E+09
+               (06,05,4)  3.076443E-01 1.651991E-01 2.365940E-03 6.936359E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000011
+       31     0 04:24:32  1.237834E-01 4.776596E+01 4.788975E+01 1.680000E+09
+               (06,05,4)  3.079631E-01 1.654318E-01 2.393534E-03 6.944047E-01
+       32     0 04:33:04  1.239861E-01 4.776596E+01 4.788995E+01 1.680000E+09
+               (06,05,4)  3.082212E-01 1.656265E-01 2.384104E-03 6.950329E-01
+       33     0 04:41:36  1.241513E-01 4.776596E+01 4.789011E+01 1.680000E+09
+               (06,05,4)  3.084511E-01 1.658000E-01 2.388916E-03 6.955934E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000012
+       34     0 04:50:08  1.242857E-01 4.776596E+01 4.789025E+01 1.680000E+09
+               (06,05,4)  3.086366E-01 1.659443E-01 2.406918E-03 6.960484E-01
+       35     0 04:58:40  1.243952E-01 4.776596E+01 4.789036E+01 1.680000E+09
+               (06,05,4)  3.087860E-01 1.660632E-01 2.402197E-03 6.964169E-01
+       36     0 05:07:12  1.244843E-01 4.776596E+01 4.789045E+01 1.680000E+09
+               (06,05,4)  3.089205E-01 1.661674E-01 2.403443E-03 6.967468E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000013
+       37     0 05:15:44  1.245566E-01 4.776596E+01 4.789052E+01 1.680000E+09
+               (06,05,4)  3.090320E-01 1.662529E-01 2.414572E-03 6.970188E-01
+       38     0 05:24:16  1.246154E-01 4.776596E+01 4.789058E+01 1.680000E+09
+               (06,05,4)  3.091211E-01 1.663200E-01 2.412722E-03 6.972349E-01
+       39     0 05:32:48  1.246632E-01 4.776596E+01 4.789063E+01 1.680000E+09
+               (06,05,4)  3.092015E-01 1.663756E-01 2.412485E-03 6.974258E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000014
+       40     0 05:41:20  1.247019E-01 4.776596E+01 4.789067E+01 1.680000E+09
+               (06,05,4)  3.092691E-01 1.664183E-01 2.419015E-03 6.975826E-01
+       41     0 05:49:52  1.247333E-01 4.776596E+01 4.789070E+01 1.680000E+09
+               (06,05,4)  3.093221E-01 1.664475E-01 2.418618E-03 6.977018E-01
+       42     0 05:58:24  1.247588E-01 4.776596E+01 4.789072E+01 1.680000E+09
+               (06,05,4)  3.093689E-01 1.664681E-01 2.417807E-03 6.978026E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000015
+       43     0 06:06:56  1.247794E-01 4.776596E+01 4.789074E+01 1.680000E+09
+               (06,05,4)  3.094078E-01 1.664802E-01 2.421401E-03 6.978822E-01
+       44     0 06:15:28  1.247961E-01 4.776596E+01 4.789076E+01 1.680000E+09
+               (06,05,4)  3.094368E-01 1.664837E-01 2.421554E-03 6.979367E-01
+       45     0 06:24:00  1.248097E-01 4.776596E+01 4.789077E+01 1.680000E+09
+               (06,05,4)  3.094609E-01 1.664820E-01 2.420583E-03 6.979783E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000016
+       46     0 06:32:32  1.248207E-01 4.776596E+01 4.789078E+01 1.680000E+09
+               (06,05,4)  3.094801E-01 1.664759E-01 2.422386E-03 6.980074E-01
+       47     0 06:41:04  1.248296E-01 4.776596E+01 4.789079E+01 1.680000E+09
+               (06,05,4)  3.094928E-01 1.664656E-01 2.422629E-03 6.980213E-01
+       48     0 06:49:36  1.248368E-01 4.776596E+01 4.789080E+01 1.680000E+09
+               (06,05,4)  3.095021E-01 1.664533E-01 2.421709E-03 6.980277E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000017
+       49     0 06:58:08  1.248427E-01 4.776596E+01 4.789081E+01 1.680000E+09
+               (06,05,4)  3.095087E-01 1.664401E-01 2.422484E-03 6.980282E-01
+       50     0 07:06:40  1.248475E-01 4.776596E+01 4.789081E+01 1.680000E+09
+               (06,05,4)  3.095117E-01 1.664259E-01 2.422660E-03 6.980214E-01
+       51     0 07:15:12  1.248515E-01 4.776596E+01 4.789082E+01 1.680000E+09
+               (06,05,4)  3.095129E-01 1.664121E-01 2.421898E-03 6.980118E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000018
+       52     0 07:23:44  1.248547E-01 4.776596E+01 4.789082E+01 1.680000E+09
+               (06,05,4)  3.095131E-01 1.663992E-01 2.422142E-03 6.980010E-01
+       53     0 07:32:16  1.248574E-01 4.776596E+01 4.789082E+01 1.680000E+09
+               (06,05,4)  3.095117E-01 1.663872E-01 2.422241E-03 6.979881E-01
+       54     0 07:40:48  1.248597E-01 4.776596E+01 4.789082E+01 1.680000E+09
+               (06,05,4)  3.095099E-01 1.663766E-01 2.421681E-03 6.979754E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000019
+       55     0 07:49:20  1.248615E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095081E-01 1.663676E-01 2.421694E-03 6.979641E-01
+       56     0 07:57:52  1.248631E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095059E-01 1.663599E-01 2.421754E-03 6.979533E-01
+       57     0 08:06:24  1.248644E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095039E-01 1.663536E-01 2.421388E-03 6.979439E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000020
+       58     0 08:14:56  1.248655E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095024E-01 1.663487E-01 2.421331E-03 6.979365E-01
+       59     0 08:23:28  1.248664E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663448E-01 2.421381E-03 6.979303E-01
+       60     0 08:32:00  1.248672E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095000E-01 1.663419E-01 2.421170E-03 6.979255E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000021
+       61     0 08:40:32  1.248679E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.094994E-01 1.663398E-01 2.421113E-03 6.979222E-01
+       62     0 08:49:04  1.248685E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.094990E-01 1.663384E-01 2.421161E-03 6.979198E-01
+       63     0 08:57:36  1.248690E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.094988E-01 1.663374E-01 2.421056E-03 6.979183E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000022
+       64     0 09:06:08  1.248694E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.094988E-01 1.663367E-01 2.421016E-03 6.979175E-01
+       65     0 09:14:40  1.248697E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.094990E-01 1.663364E-01 2.421060E-03 6.979172E-01
+       66     0 09:23:12  1.248700E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.094991E-01 1.663361E-01 2.421016E-03 6.979172E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000023
+       67     0 09:31:44  1.248702E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.094994E-01 1.663360E-01 2.420992E-03 6.979174E-01
+       68     0 09:40:16  1.248704E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.094997E-01 1.663360E-01 2.421026E-03 6.979178E-01
+       69     0 09:48:48  1.248706E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.094999E-01 1.663360E-01 2.421011E-03 6.979181E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000024
+       70     0 09:57:20  1.248708E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095002E-01 1.663359E-01 2.420996E-03 6.979185E-01
+       71     0 10:05:52  1.248709E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095004E-01 1.663359E-01 2.421019E-03 6.979188E-01
+       72     0 10:14:24  1.248710E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095005E-01 1.663359E-01 2.421016E-03 6.979190E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000025
+       73     0 10:22:56  1.248710E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095006E-01 1.663358E-01 2.421005E-03 6.979192E-01
+       74     0 10:31:28  1.248711E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095007E-01 1.663357E-01 2.421018E-03 6.979193E-01
+       75     0 10:40:00  1.248712E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095008E-01 1.663357E-01 2.421018E-03 6.979193E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000026
+       76     0 10:48:32  1.248712E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095008E-01 1.663356E-01 2.421010E-03 6.979193E-01
+       77     0 10:57:04  1.248712E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095008E-01 1.663356E-01 2.421016E-03 6.979194E-01
+       78     0 11:05:36  1.248713E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095009E-01 1.663355E-01 2.421018E-03 6.979193E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000027
+       79     0 11:14:08  1.248713E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095009E-01 1.663355E-01 2.421012E-03 6.979193E-01
+       80     0 11:22:40  1.248713E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095009E-01 1.663355E-01 2.421015E-03 6.979193E-01
+       81     0 11:31:12  1.248713E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095009E-01 1.663354E-01 2.421016E-03 6.979193E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000028
+       82     0 11:39:44  1.248713E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095009E-01 1.663354E-01 2.421012E-03 6.979193E-01
+       83     0 11:48:16  1.248713E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095009E-01 1.663354E-01 2.421013E-03 6.979193E-01
+       84     0 11:56:48  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095009E-01 1.663354E-01 2.421014E-03 6.979193E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000029
+       85     0 12:05:20  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095009E-01 1.663354E-01 2.421012E-03 6.979193E-01
+       86     0 12:13:52  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095009E-01 1.663354E-01 2.421013E-03 6.979193E-01
+       87     0 12:22:24  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095009E-01 1.663355E-01 2.421014E-03 6.979194E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000030
+       88     0 12:30:56  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095010E-01 1.663355E-01 2.421013E-03 6.979194E-01
+       89     0 12:39:28  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095010E-01 1.663355E-01 2.421013E-03 6.979195E-01
+       90     0 12:48:00  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095010E-01 1.663355E-01 2.421014E-03 6.979195E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000031
+       91     0 12:56:32  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095010E-01 1.663355E-01 2.421014E-03 6.979195E-01
+       92     0 13:05:04  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095010E-01 1.663355E-01 2.421014E-03 6.979196E-01
+       93     0 13:13:36  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095010E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000032
+       94     0 13:22:08  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095010E-01 1.663355E-01 2.421015E-03 6.979196E-01
+       95     0 13:30:40  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095010E-01 1.663355E-01 2.421015E-03 6.979196E-01
+       96     0 13:39:12  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000033
+       97     0 13:47:44  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+       98     0 13:56:16  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+       99     0 14:04:48  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000034
+      100     0 14:13:20  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      101     0 14:21:52  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      102     0 14:30:24  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000035
+      103     0 14:38:56  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      104     0 14:47:28  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      105     0 14:56:00  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000036
+      106     0 15:04:32  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      107     0 15:13:04  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      108     0 15:21:36  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000037
+      109     0 15:30:08  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      110     0 15:38:40  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      111     0 15:47:12  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000038
+      112     0 15:55:44  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      113     0 16:04:16  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      114     0 16:12:48  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000039
+      115     0 16:21:20  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      116     0 16:29:52  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      117     0 16:38:24  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000040
+      118     0 16:46:56  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      119     0 16:55:28  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      120     0 17:04:00  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000041
+      121     0 17:12:32  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      122     0 17:21:04  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      123     0 17:29:36  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000042
+      124     0 17:38:08  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      125     0 17:46:40  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      126     0 17:55:12  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000043
+      127     0 18:03:44  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      128     0 18:12:16  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      129     0 18:20:48  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000044
+      130     0 18:29:20  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      131     0 18:37:52  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      132     0 18:46:24  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=1,1) into time record = 0000045
+      133     0 18:54:56  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      134     0 19:03:28  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      135     0 19:12:00  1.248714E-01 4.776596E+01 4.789083E+01 1.680000E+09
+               (06,05,4)  3.095011E-01 1.663355E-01 2.421015E-03 6.979196E-01
+      WRT_HIS   - wrote history  fields (Index=2,2) into time record = 0000046
+      WRT_RST   - wrote re-start fields (Index=2,2) into time record = 0000001
+
+ Elapsed CPU time (seconds):
+
+ Thread #  0 CPU:       0.952
+ Total:                 0.952
+
+ Nonlinear model elapsed time profile:
+
+  Computation of global information integrals ......         0.061  ( 6.4076 %)
+  Writing of output data ...........................         0.203  (21.3235 %)
+  Model 2D kernel ..................................         0.363  (38.1303 %)
+  Lagrangian floats trajectories ...................         0.031  ( 3.2563 %)
+  2D/3D coupling, vertical metrics .................         0.015  ( 1.5756 %)
+  3D equations right-side terms ....................         0.031  ( 3.2563 %)
+  3D equations predictor step ......................         0.109  (11.4496 %)
+  Pressure gradient ................................         0.046  ( 4.8319 %)
+  Harmonic stress tensor, S-surfaces ...............         0.016  ( 1.6807 %)
+  Corrector time-step for tracers ..................         0.046  ( 4.8319 %)
+                                              Total:         0.921   96.7437
+
+ All percentages are with respect to total time =            0.952
+
+ ROMS/TOMS - Output NetCDF summary for Grid 01:
+             number of time records written in HISTORY file = 00000046
+             number of time records written in RESTART file = 00000001
+
+ Analytical header files used:
+
+     ROMS/Functionals/ana_btflux.h
+     ROMS/Functionals/ana_grid.h
+     ROMS/Functionals/ana_initial.h
+     ROMS/Functionals/ana_mask.h
+     ROMS/Functionals/ana_smflux.h
+     ROMS/Functionals/ana_stflux.h
+
+ ROMS/TOMS: DONE... Thursday - May 19, 2011 -  4:14:23 PM

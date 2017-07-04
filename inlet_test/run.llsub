@@ -1,0 +1,25 @@
+#! /bin/bash
+
+# MGH 2011-05-24
+#   A Loadleveller script to run the INLET_TEST case and save the output.
+#   Before running this script, build the executable with build.bash
+
+# MGH 2013-01-14
+#   Class keyword changed to general and account keyword added to work
+#   under the current queue configuration on Fitzroy
+
+#@ job_name         = ocean
+#@ output           = inlet_test_llsub.log
+#@ error            = inlet_test_llsub.err
+#@ job_type         = parallel
+#@ class            = General
+#@ account_no       = COBR1304
+#@ tasks_per_node   = 2
+#@ task_affinity    = cpu(1)
+#@ node             = 1
+#@ notification     = never
+#@ queue
+
+export MP_SHARED_MEMORY=no
+
+poe ./oceanM coupling_inlet_test.in

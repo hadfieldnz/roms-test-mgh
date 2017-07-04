@@ -39,7 +39,7 @@
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 parallel=0
-clean=1
+clean=0
 
 while [ $# -gt 0 ]
 do
@@ -56,9 +56,9 @@ do
       fi
       ;;
 
-    -noclean )
+    -clean )
       shift
-      clean=0
+      clean=1
       ;;
 
     * )
@@ -85,7 +85,7 @@ export   ROMS_APPLICATION=GRAV_ADJ
 # Set a local environmental variable to define the path to the directories
 # where all this project's files are kept.
 
-export        MY_ROOT_DIR=${HOME}/ocean/repository
+export        MY_ROOT_DIR=${ROMS_ROOT}/roms-trunk-mgh
 export     MY_PROJECT_DIR=${PWD}
 
 # The path to the user's local current ROMS source code.
@@ -98,8 +98,7 @@ export     MY_PROJECT_DIR=${PWD}
 # machine. This script is designed to more easily allow for differing paths
 # to the code and inputs on differing machines.
 
-#export       MY_ROMS_SRC=${MY_ROOT_DIR}/branches/arango
- export       MY_ROMS_SRC=${MY_ROOT_DIR}/trunk
+ export       MY_ROMS_SRC=${MY_ROOT_DIR}
 
 # Set path of the directory containing makefile configuration (*.mk) files.
 # The user has the option to specify a customized version of these files
@@ -108,7 +107,6 @@ export     MY_PROJECT_DIR=${PWD}
 # these configurations files up-to-date.
 
  export         COMPILERS=${MY_ROMS_SRC}/Compilers
-#export         COMPILERS=${HOME}/Compilers
 
 # Set tunable CPP options.
 #
@@ -143,7 +141,7 @@ export     MY_PROJECT_DIR=${PWD}
 # Set deprecated lateral boundary conditions CPP flags for backward
 # compatibility with older versions of the code.
 
- export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
+#export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
 
 if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEASTERN_WALL"
@@ -165,12 +163,8 @@ fi
 
 #export        USE_OpenMP=on            # shared-memory parallelism
 
- export              FORT=ifort
-#export              FORT=gfortran
-#export              FORT=pgi
-
 #export         USE_DEBUG=on            # use Fortran debugging flags
- export         USE_LARGE=on            # activate 64-bit compilation
+#export         USE_LARGE=on            # activate 64-bit compilation
 #export       USE_NETCDF4=on            # compile with NetCDF-4 library
 #export   USE_PARALLEL_IO=on            # Parallel I/O with Netcdf-4/HDF5
 
@@ -414,7 +408,7 @@ fi
 # Put the f90 files in a project specific Build directory to avoid conflict
 # with other projects.
 
- export       SCRATCH_DIR=${MY_PROJECT_DIR}/Build
+ export       SCRATCH_DIR=$(roms_bldir)-$(uname -s -m | tr " " "-")-$(basename ${FORT})
 
 # Go to the users source directory to compile. The options set above will
 # pick up the application-specific code from the appropriate place.
