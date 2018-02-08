@@ -29,33 +29,18 @@
 #                                                                       :::
 # Options:                                                              :::
 #                                                                       :::
-#    -j [N]      Compile in parallel using N CPUs                       :::
-#                  omit argument for all available CPUs                 :::
-#    -noclean    Do not clean already compiled objects                  :::
+#    -clean    Do not clean already compiled objects                  :::
 #                                                                       :::
 # Notice that sometimes the parallel compilation fail to find MPI       :::
 # include file "mpif.h".                                                :::
 #                                                                       :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-parallel=0
 clean=0
 
 while [ $# -gt 0 ]
 do
   case "$1" in
-    -j )
-      shift
-      parallel=1
-      test=`echo $1 | grep '^[0-9]\+$'`
-      if [ "$test" != "" ]; then
-        NCPUS="-j $1"
-        shift
-      else
-        NCPUS="-j"
-      fi
-      ;;
-
     -clean )
       shift
       clean=1
@@ -67,9 +52,7 @@ do
       echo ""
       echo "Available Options:"
       echo ""
-      echo "-j [N]      Compile in parallel using N CPUs"
-      echo "              omit argument for all avaliable CPUs"
-      echo "-noclean    Do not clean already compiled objects"
+      echo "-clean    Clean already compiled objects"
       echo ""
       exit 1
       ;;
@@ -122,8 +105,8 @@ export     MY_PROJECT_DIR=${PWD}
 # can be used to write time-averaged fields. Notice that you can have as
 # many definitions as you want by appending values.
 
- export      MY_CPP_FLAGS="-DSWAN_COUPLING"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMCT_LIB"
+export      MY_CPP_FLAGS="-DSWAN_COUPLING"
+export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMCT_LIB"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
@@ -134,37 +117,12 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMB_BBL"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSG_BBL"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSSW_BBL"
+export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSSW_BBL"
 
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNEARSHORE_MELLOR05"
+export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNEARSHORE_MELLOR05"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBEDLOAD_SOULSBY"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBEDLOAD_MPM"
-
-# Set deprecated lateral boundary conditions CPP flags for backward
-# compatibility with older versions of the code.
-
-#export BACK_COMPATIBILITY=on           # needed for ROMS 3.4 or older
-
-if [ -n "${BACK_COMPATIBILITY:+1}" ]; then
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSOUTHERN_WALL"
-
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_FSGRADIENT"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_M2REDUCED"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DFSOBC_REDUCED"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_M3GRADIENT"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNORTH_TGRADIENT"
-
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_FSGRADIENT"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_M2GRADIENT"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_M3GRADIENT"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWEST_TGRADIENT"
-
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_FSGRADIENT"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_M2GRADIENT"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_M3GRADIENT"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DEAST_TGRADIENT"
-fi
 
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to
@@ -172,8 +130,8 @@ fi
 # out. Any string value (including off) will evaluate to TRUE in
 # conditional if-statements.
 
-#export           USE_MPI=on            # distributed-memory parallelism
-#export        USE_MPIF90=on            # compile with mpif90 script
+export           USE_MPI=on            # distributed-memory parallelism
+export        USE_MPIF90=on            # compile with mpif90 script
 #export         which_MPI=mpich         # compile with MPICH library
 #export         which_MPI=mpich2        # compile with MPICH2 library
 #export         which_MPI=openmpi       # compile with OpenMPI library
@@ -186,51 +144,6 @@ fi
 #export   USE_PARALLEL_IO=on            # Parallel I/O with Netcdf-4/HDF5
 
 #export       USE_MY_LIBS=on            # use my library paths below
-
-# There are several MPI libraries available. Here, we set the desired
-# "mpif90" script to use during compilation. This only works if the make
-# configuration file (say, Linux-pgi.mk) in the "Compilers" directory
-# has the following definition for FC (Fortran Compiler) in the USE_MPI
-# section:
-#
-#              FC := mpif90
-#
-# that is, "mpif90" defined without any path. Notice that the path
-# where the MPI library is installed is computer dependent. Recall
-# that you still need to use the appropriate "mpirun" to execute.
-
-if [ -n "${USE_MPIF90:+1}" ]; then
-  case "$FORT" in
-    ifort )
-      if [ "${which_MPI}" = "mpich" ]; then
-        export PATH=/opt/intelsoft/mpich/bin:$PATH
-      elif [ "${which_MPI}" = "mpich2" ]; then
-        export PATH=/opt/intelsoft/mpich2/bin:$PATH
-      elif [ "${which_MPI}" = "openmpi" ]; then
-        export PATH=/opt/intelsoft/openmpi/bin:$PATH
-      fi
-      ;;
-
-    pgi )
-      if [ "${which_MPI}" = "mpich" ]; then
-        export PATH=/opt/pgisoft/mpich/bin:$PATH
-      elif [ "${which_MPI}" = "mpich2" ]; then
-        export PATH=/opt/pgisoft/mpich2/bin:$PATH
-      elif [ "${which_MPI}" = "openmpi" ]; then
-        export PATH=/opt/pgisoft/openmpi/bin:$PATH
-      fi
-      ;;
-
-    gfortran )
-      if [ "${which_MPI}" = "mpich2" ]; then
-        export PATH=/opt/gfortransoft/mpich2/bin:$PATH
-      elif [ "${which_MPI}" = "openmpi" ]; then
-        export PATH=/opt/gfortransoft/openmpi/bin:$PATH
-      fi
-      ;;
-
-  esac
-fi
 
 # If the USE_MY_LIBS is activated above, the path of the libraries
 # required by ROMS can be set here using environmental variables
@@ -414,23 +327,23 @@ fi
 # customized biology model header file (like fennel.h, nemuro.h, ecosim.h,
 # etc).
 
- export     MY_HEADER_DIR=${MY_PROJECT_DIR}
+export     MY_HEADER_DIR=${MY_PROJECT_DIR}
 
- export MY_ANALYTICAL_DIR=${MY_PROJECT_DIR}
+export MY_ANALYTICAL_DIR=${MY_PROJECT_DIR}
 
 # Put the binary to execute in the following directory.
 
- export            BINDIR=${MY_PROJECT_DIR}
+export            BINDIR=${MY_PROJECT_DIR}
 
 # Put the f90 files in a project specific Build directory to avoid conflict
 # with other projects.
 
- export       SCRATCH_DIR=$(roms_bldir)-$(uname -s -m | tr " " "-")-$(basename ${FORT})
+export       SCRATCH_DIR=$(roms_bldir)-$(uname -s -m | tr " " "-")-${FORT}
 
 # Go to the users source directory to compile. The options set above will
 # pick up the application-specific code from the appropriate place.
 
- cd ${MY_ROMS_SRC}
+cd ${MY_ROMS_SRC}
 
 # Remove build directory.
 
@@ -440,8 +353,4 @@ fi
 
 # Compile (the binary will go to BINDIR set above).
 
-if [ $parallel -eq 1 ]; then
-  make $NCPUS
-else
-  make
-fi
+make
