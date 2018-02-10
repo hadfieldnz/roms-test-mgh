@@ -1422,18 +1422,18 @@
   'r2dvar'
   1.0d0
 
-'latent'                                           ! Input/Output
+'latent'                                           ! Output
   'net latent heat flux'
-  'watt meter-2'                                   ! Input:  [Watt/m2]
+  'watt meter-2'
   'latent heat flux, scalar, series'               ! [Celsius m/s]
   'lhf_time'                                       ! Output: [Watt/m2]
   'idLhea'
   'r2dvar'
   1.0d0
 
-'sensible'                                         ! Input/Output
+'sensible'                                         ! Output
   'net sensible heat flux'
-  'watt meter-2'                                   ! Input:  [Watt/m2]
+  'watt meter-2'
   'sensible heat flux, scalar, series'             ! [Celsius m/s]
   'shf_time'                                       ! Output: [Watt/m2]
   'idShea'
@@ -2146,6 +2146,15 @@
   'v3d_time'
   'idVads'
   'v3dvar'
+  1.0d0
+
+'w'                                                ! Input
+  'w-momentum component functional'
+  'meter second-1'                                 ! [m/s]
+  'w-velocity, scalar, series'
+  'v3d_time'
+  'idWads'
+  'w3dvar'
   1.0d0
 
 'temp'                                             ! Input
@@ -5389,6 +5398,15 @@
   'nulvar'
   'datum'
   'idOval'
+  'nulvar'
+  1.0d0
+
+'obs_meta'                                         ! Input
+  'observation meta value'
+  'nondimensional'                                 ! [Meta units]
+  'nulvar'
+  'datum'
+  'idOmet'
   'nulvar'
   1.0d0
 
