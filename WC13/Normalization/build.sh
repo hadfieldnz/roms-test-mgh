@@ -1,8 +1,8 @@
 #!/bin/csh -f
 #
 # svn $Id$
-#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::: John Wilkin :::
-# Copyright (c) 2002-2017 The ROMS/TOMS Group                           :::
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+# Copyright (c) 2002-2018 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
@@ -31,6 +31,11 @@
 #                                                                       :::
 #    -j [N]      Compile in parallel using N CPUs                       :::
 #                  omit argument for all available CPUs                 :::
+#                                                                       :::
+#    -p macro    Prints any Makefile macro value. For example,          :::
+#                                                                       :::
+#                  build.sh -p FFLAGS                                   :::
+#                                                                       :::
 #    -noclean    Do not clean already compiled objects                  :::
 #                                                                       :::
 # Notice that sometimes the parallel compilation fail to find MPI       :::
@@ -38,14 +43,25 @@
 #                                                                       :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+set which_MPI = openmpi                      #  default, overwritten below
+
 set parallel = 0
 set clean = 1
+set dprint = 0
 
 while ( ($#argv) > 0 )
   switch ($1)
     case "-noclean"
       shift
       set clean = 0
+    breaksw
+
+    case "-p"
+      shift
+      set clean = 0
+      set dprint = 1
+      set debug = "print-$1"
+      shift
     breaksw
 
     case "-j"
@@ -67,6 +83,10 @@ while ( ($#argv) > 0 )
       echo ""
       echo "-j [N]      Compile in parallel using N CPUs"
       echo "              omit argument for all avaliable CPUs"
+      echo ""
+      echo "-p macro    Prints any Makefile macro value"
+      echo "              For example:  build.sh -p FFLAGS"
+      echo ""
       echo "-noclean    Do not clean already compiled objects"
       echo ""
       exit 1
@@ -79,13 +99,13 @@ end
 # determine the name of the ".h" header file with the application
 # CPP definitions.
 
-setenv ROMS_APPLICATION     WC13
+setenv ROMS_APPLICATION      WC13
 
 # Set a local environmental variable to define the path to the directories
 # where all this project's files are kept.
 
-setenv MY_ROOT_DIR          ${HOME}/ocean/repository
-setenv MY_PROJECT_DIR       ${PWD}
+setenv MY_ROOT_DIR           ${HOME}/ocean/repository
+setenv MY_PROJECT_DIR        ${PWD}
 
 # The path to the user's local current ROMS source code.
 #
@@ -135,30 +155,6 @@ setenv MY_PROJECT_DIR       ${PWD}
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
-# Set deprecated lateral boundary conditions CPP flags for backward
-# compatibility with older versions of the code.
-
- setenv BACK_COMPATIBILITY  on          # needed for ROMS 3.4 or older
-
-if ($?BACK_COMPATIBILITY) then
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DEASTERN_WALL"
-
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_FSCHAPMAN"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M2FLATHER"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_M3CLAMPED"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DWEST_TCLAMPED"
-
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_FSCHAPMAN"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_M2FLATHER"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_M3CLAMPED"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNORTH_TCLAMPED"
-
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_FSCHAPMAN"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_M2FLATHER"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_M3CLAMPED"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSOUTH_TCLAMPED"
-endif
-
 # Other user defined environmental variables. See the ROMS makefile for
 # details on other options the user might want to set here. Be sure to
 # leave the switches meant to be off set to an empty string or commented
@@ -181,8 +177,6 @@ endif
  setenv USE_LARGE           on          # activate 64-bit compilation
 #setenv USE_NETCDF4         on          # compile with NetCDF-4 library
 #setenv USE_PARALLEL_IO     on          # Parallel I/O with NetCDF-4/HDF5
-
-#setenv USE_MY_LIBS         on          # use my library paths below
 
 # There are several MPI libraries available. Here, we set the desired
 # "mpif90" script to use during compilation. This only works if the make
@@ -230,7 +224,11 @@ if ($?USE_MPIF90) then
   endsw
 endif
 
-# If the USE_MY_LIBS is activated above, the path of the libraries
+#--------------------------------------------------------------------------
+# Set libraries to compile.
+#--------------------------------------------------------------------------
+
+# If the USE_MY_LIBS is activated below, the path of the libraries
 # required by ROMS can be set here using environmental variables
 # which take precedence to the values specified in the make macro
 # definitions file (Compilers/*.mk). For most applications, only
@@ -258,15 +256,19 @@ endif
 # Recall also that the MPI library comes in several flavors:
 # MPICH, MPICH2, OpenMPI, etc.
 
-if ($?USE_MY_LIBS) then
+
+ setenv USE_MY_LIBS no           # don't use my library paths below
+#setenv USE_MY_LIBS yes          # use my library paths below
+
+if ($USE_MY_LIBS == 'yes') then
+
   switch ($FORT)
 
     case "ifort"
-      setenv ESMF_OS              Linux
-      setenv ESMF_COMPILER        ifort
+      setenv ESMF_COMPILER        intelgcc
       setenv ESMF_BOPT            O
       setenv ESMF_ABI             64
-      setenv ESMF_COMM            mpich
+      setenv ESMF_COMM            ${which_MPI}
       setenv ESMF_SITE            default
 
       setenv ARPACK_LIBDIR        /opt/intelsoft/serial/ARPACK
@@ -312,11 +314,10 @@ if ($?USE_MY_LIBS) then
     breaksw
 
     case "pgi"
-      setenv ESMF_OS              Linux
       setenv ESMF_COMPILER        pgi
       setenv ESMF_BOPT            O
       setenv ESMF_ABI             64
-      setenv ESMF_COMM            mpich
+      setenv ESMF_COMM            ${which_MPI}
       setenv ESMF_SITE            default
 
       setenv ARPACK_LIBDIR        /opt/pgisoft/serial/ARPACK
@@ -362,11 +363,10 @@ if ($?USE_MY_LIBS) then
     breaksw
 
     case "gfortran"
-      setenv ESMF_OS              Linux
       setenv ESMF_COMPILER        gfortran
       setenv ESMF_BOPT            O
       setenv ESMF_ABI             64
-      setenv ESMF_COMM            mpich
+      setenv ESMF_COMM            ${which_MPI}
       setenv ESMF_SITE            default
 
       setenv ARPACK_LIBDIR        /opt/gfortransoft/serial/ARPACK
@@ -438,6 +438,10 @@ if ( ${?USE_MPI} & ${?USE_OpenMP} ) then
   exit 1
 endif
 
+#--------------------------------------------------------------------------
+# Compile.
+#--------------------------------------------------------------------------
+
 # Remove build directory.
 
 if ( $clean == 1 ) then
@@ -446,8 +450,12 @@ endif
 
 # Compile (the binary will go to BINDIR set above).
 
-if ( $parallel == 1 ) then
-  make $NCPUS
+if ( $dprint == 1 ) then
+  make $debug
 else
-  make
+  if ( $parallel == 1 ) then
+    make $NCPUS
+  else
+    make
+  endif
 endif

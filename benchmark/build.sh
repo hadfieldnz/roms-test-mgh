@@ -1,7 +1,7 @@
 #!/bin/csh -f
 #
 # svn $Id$
-#:::::::::::::::::::::::::::::::::::::::::::::::::::::::::: John Wilkin :::
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 # Copyright (c) 2002-2018 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
@@ -42,6 +42,8 @@
 # include file "mpif.h".                                                :::
 #                                                                       :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+set which_MPI = openmpi                      #  default, overwritten below
 
 set parallel = 0
 set clean = 1
@@ -255,8 +257,8 @@ endif
 # MPICH, MPICH2, OpenMPI, etc.
 
 
-#setenv USE_MY_LIBS no           # don't use my library paths below
- setenv USE_MY_LIBS yes          # use my library paths below
+ setenv USE_MY_LIBS no           # don't use my library paths below
+#setenv USE_MY_LIBS yes          # use my library paths below
 
 if ($USE_MY_LIBS == 'yes') then
 
