@@ -2,7 +2,7 @@
 #
 # svn $Id$
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2017 The ROMS/TOMS Group                           :::
+# Copyright (c) 2002-2018 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #:::::::::::::::::::::::::::::::::::::::::::::::::::::: David Robertson :::
@@ -27,8 +27,8 @@
 #                                                                       :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-search="2002-2016 The ROMS/TOMS"
-replace="2002-2017 The ROMS/TOMS"
+search="2002-2017 The ROMS/TOMS"
+replace="2002-2018 The ROMS/TOMS"
 
 # Directories to search for replacements.
 
@@ -120,36 +120,36 @@ done
 echo -e "\nDone.\n"
 
 if [ $setsvn -eq 1 ]; then
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' External
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' bin
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' basin
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' benchmark
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' bio_toy
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' bl_test
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' canyon
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' channel
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' DAMEE_4
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' double_gyre
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' dogbone
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' estuary_test
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' flt_test
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' grav_adj
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' inlet_test
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' kelvin
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' lab_canyon
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' lake_jersey
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' lmd_test
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' riverplume
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' seamount
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' sed_test
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' shoreface
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' soliton
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' test_chan
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' test_head
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' upwelling
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' WC13
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' weddell
-  svn propset -R copyright '(c) 2002-2017 The ROMS/TOMS Group' windbasin
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' External
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' bin
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' basin
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' benchmark
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' bio_toy
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' bl_test
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' canyon
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' channel
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' DAMEE_4
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' double_gyre
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' dogbone
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' estuary_test
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' flt_test
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' grav_adj
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' inlet_test
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' kelvin
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' lab_canyon
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' lake_jersey
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' lmd_test
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' riverplume
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' seamount
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' sed_test
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' shoreface
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' soliton
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' test_chan
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' test_head
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' upwelling
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' WC13
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' weddell
+  svn propset -R copyright '(c) 2002-2018 The ROMS/TOMS Group' windbasin
 else
   echo -e "Not updating svn properties.\n"
 fi

@@ -2,7 +2,7 @@
 #
 # svn $Id$
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2017 The ROMS/TOMS Group                           :::
+# Copyright (c) 2002-2018 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
@@ -29,18 +29,48 @@
 #                                                                       :::
 # Options:                                                              :::
 #                                                                       :::
-#    -clean    Do not clean already compiled objects                  :::
+#    -clean    Clean already compiled objects                  :::
+#    -j [N]      Compile in parallel using N CPUs                       :::
+#                  omit argument for all available CPUs                 :::
+#                                                                       :::
+#    -p macro    Prints any Makefile macro value. For example,          :::
+#                                                                       :::
+#                  build.bash -p FFLAGS                                 :::
 #                                                                       :::
 # Notice that sometimes the parallel compilation fail to find MPI       :::
 # include file "mpif.h".                                                :::
 #                                                                       :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
+which_MPI=openmpi                            # default, overwriten below
+
 clean=0
+parallel=0
+dprint=0
 
 while [ $# -gt 0 ]
 do
   case "$1" in
+    -j )
+      shift
+      parallel=1
+      test=`echo $1 | grep '^[0-9]\+$'`
+      if [ "$test" != "" ]; then
+        NCPUS="-j $1"
+        shift
+      else
+        NCPUS="-j"
+      fi
+      ;;
+
+    -p )
+      shift
+      clean=0
+      dprint=1
+      debug="print-$1"
+      shift
+      ;;
+
     -clean )
       shift
       clean=1
@@ -52,7 +82,13 @@ do
       echo ""
       echo "Available Options:"
       echo ""
-      echo "-clean    Clean already compiled objects"
+      echo "-j [N]      Compile in parallel using N CPUs"
+      echo "              omit argument for all avaliable CPUs"
+      echo ""
+      echo "-p macro    Prints any Makefile macro value"
+      echo "              For example:  build.bash -p FFLAGS"
+      echo ""
+      echo "-noclean    Do not clean already compiled objects"
       echo ""
       exit 1
       ;;
@@ -141,6 +177,55 @@ export           USE_MPI=on            # distributed-memory parallelism
 
 #export       USE_MY_LIBS=on            # use my library paths below
 
+# There are several MPI libraries available. Here, we set the desired
+# "mpif90" script to use during compilation. This only works if the make
+# configuration file (say, Linux-pgi.mk) in the "Compilers" directory
+# has the following definition for FC (Fortran Compiler) in the USE_MPI
+# section:
+#
+#              FC := mpif90
+#
+# that is, "mpif90" defined without any path. Notice that the path
+# where the MPI library is installed is computer dependent. Recall
+# that you still need to use the appropriate "mpirun" to execute.
+
+if [ -n "${USE_MPIF90:+1}" ]; then
+  case "$FORT" in
+    ifort )
+      if [ "${which_MPI}" = "mpich" ]; then
+        export PATH=/opt/intelsoft/mpich/bin:$PATH
+      elif [ "${which_MPI}" = "mpich2" ]; then
+        export PATH=/opt/intelsoft/mpich2/bin:$PATH
+      elif [ "${which_MPI}" = "openmpi" ]; then
+        export PATH=/opt/intelsoft/openmpi/bin:$PATH
+      fi
+      ;;
+
+    pgi )
+      if [ "${which_MPI}" = "mpich" ]; then
+        export PATH=/opt/pgisoft/mpich/bin:$PATH
+      elif [ "${which_MPI}" = "mpich2" ]; then
+        export PATH=/opt/pgisoft/mpich2/bin:$PATH
+      elif [ "${which_MPI}" = "openmpi" ]; then
+        export PATH=/opt/pgisoft/openmpi/bin:$PATH
+      fi
+      ;;
+
+    gfortran )
+      if [ "${which_MPI}" = "mpich2" ]; then
+        export PATH=/opt/gfortransoft/mpich2/bin:$PATH
+      elif [ "${which_MPI}" = "openmpi" ]; then
+        export PATH=/opt/gfortransoft/openmpi/bin:$PATH
+      fi
+      ;;
+
+  esac
+fi
+
+#--------------------------------------------------------------------------
+# Set libraries to compile.
+#--------------------------------------------------------------------------
+
 # If the USE_MY_LIBS is activated above, the path of the libraries
 # required by ROMS can be set here using environmental variables
 # which take precedence to the values specified in the make macro
@@ -169,14 +254,15 @@ export           USE_MPI=on            # distributed-memory parallelism
 # Recall also that the MPI library comes in several flavors:
 # MPICH, MPICH2, OpenMPI, etc.
 
+#export USE_MY_LIBS=on            # use my library paths below
+
 if [ -n "${USE_MY_LIBS:+1}" ]; then
   case "$FORT" in
     ifort )
-      export             ESMF_OS=Linux
-      export       ESMF_COMPILER=ifort
+      export       ESMF_COMPILER=intelgcc
       export           ESMF_BOPT=O
       export            ESMF_ABI=64
-      export           ESMF_COMM=mpich
+      export           ESMF_COMM=%{which_MPI}
       export           ESMF_SITE=default
 
       export       ARPACK_LIBDIR=/opt/intelsoft/serial/ARPACK
@@ -222,11 +308,10 @@ if [ -n "${USE_MY_LIBS:+1}" ]; then
       ;;
 
     pgi )
-      export             ESMF_OS=Linux
       export       ESMF_COMPILER=pgi
       export           ESMF_BOPT=O
       export            ESMF_ABI=64
-      export           ESMF_COMM=mpich
+      export           ESMF_COMM=%{which_MPI}
       export           ESMF_SITE=default
 
       export       ARPACK_LIBDIR=/opt/pgisoft/serial/ARPACK
@@ -272,11 +357,10 @@ if [ -n "${USE_MY_LIBS:+1}" ]; then
       ;;
 
     gfortran )
-      export             ESMF_OS=Linux
       export       ESMF_COMPILER=gfortran
       export           ESMF_BOPT=O
       export            ESMF_ABI=64
-      export           ESMF_COMM=mpich
+      export           ESMF_COMM=%{which_MPI}
       export           ESMF_SITE=default
 
       export       ARPACK_LIBDIR=/opt/gfortransoft/serial/ARPACK
@@ -341,6 +425,10 @@ export       SCRATCH_DIR=$(roms_bldir)-$(uname -s -m | tr " " "-")-${FORT}
 
 cd ${MY_ROMS_SRC}
 
+#--------------------------------------------------------------------------
+# Compile.
+#--------------------------------------------------------------------------
+
 # Remove build directory.
 
 if [ $clean -eq 1 ]; then
@@ -349,4 +437,13 @@ fi
 
 # Compile (the binary will go to BINDIR set above).
 
-make
+if [ $dprint -eq 1 ]; then
+  make $debug
+else
+  if [ $parallel -eq 1 ]; then
+    make $NCPUS
+  else
+    make
+  fi
+fi
+
