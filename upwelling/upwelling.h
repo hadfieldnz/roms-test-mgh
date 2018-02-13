@@ -14,12 +14,16 @@
 
 #define UV_ADV
 #define UV_COR
+#define UV_LDRAG
 #define DJ_GRADPS
 #define SPLINES_VDIFF
 #define SPLINES_VVISC
 
 #define SALINITY
 #define SOLVE3D
+#define AVERAGES
+#define DIAGNOSTICS_TS
+#define DIAGNOSTICS_UV
 
 #define ANA_GRID
 #define ANA_INITIAL
@@ -60,6 +64,7 @@
 # define OXYGEN
 # define DENITRIFICATION
 # define BIO_SEDIMENT
+# define DIAGNOSTICS_BIO
 #endif
 
 #ifdef ECOSIM
@@ -68,4 +73,12 @@
 # define ANA_PAIR
 # define ANA_TAIR
 # define ANA_WINDS
+#endif
+
+#ifdef PERFECT_RESTART
+# undef  AVERAGES
+# undef  DIAGNOSTICS_BIO
+# undef  DIAGNOSTICS_TS
+# undef  DIAGNOSTICS_UV
+# define OUT_DOUBLE
 #endif

@@ -418,7 +418,7 @@ fi
 # Put the f90 files in a project specific Build directory to avoid conflict
 # with other projects.
 
- export       SCRATCH_DIR=$(roms_bldir)-$(uname -s -m | tr " " "-")-$(basename ${FORT})
+ export       SCRATCH_DIR=$(roms_bldir)/$(uname -s -m | tr " " "-")-${FORT}
 
 # Go to the users source directory to compile. The options set above will
 # pick up the application-specific code from the appropriate place.
