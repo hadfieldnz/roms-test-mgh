@@ -905,19 +905,19 @@ Dout(iTvdif) == F F     ! temp_vdiff, ...    vertical diffusion
 
 ! Output NetCDF file names, [1:Ngrids].
 
-     DAINAME == ocean_dai.nc
-     GSTNAME == ocean_gst.nc
-     RSTNAME == ocean_rst.nc
-     HISNAME == ocean_his.nc
-     QCKNAME == ocean_qck.nc
-     TLMNAME == ocean_tlm.nc
-     TLFNAME == ocean_tlf.nc
-     ADJNAME == ocean_adj.nc
-     AVGNAME == ocean_avg.nc
-     HARNAME == ocean_har.nc
-     DIANAME == ocean_dia.nc
-     STANAME == ocean_sta.nc
-     FLTNAME == ocean_flt.nc
+     DAINAME == ocean_dai_2d.nc
+     GSTNAME == ocean_gst_2d.nc
+     RSTNAME == ocean_rst_2d.nc
+     HISNAME == ocean_his_2d.nc
+     QCKNAME == ocean_qck_2d.nc
+     TLMNAME == ocean_tlm_2d.nc
+     TLFNAME == ocean_tlf_2d.nc
+     ADJNAME == ocean_adj_2d.nc
+     AVGNAME == ocean_avg_2d.nc
+     HARNAME == ocean_har_2d.nc
+     DIANAME == ocean_dia_2d.nc
+     STANAME == ocean_sta_2d.nc
+     FLTNAME == ocean_flt_2d.nc
 
 ! Input ASCII parameter filenames.
 

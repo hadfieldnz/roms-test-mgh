@@ -2,6 +2,6 @@
 
 # MGH 2012-01-20
 #   A script to run the SOLITON case and save the output. Before running
-#   this script, build the executable with build.bash
+#   this script, build the executable with roms_build
 
-./oceanS < ocean_soliton.in | tee ocean_soliton.log
+./ocean < ocean_soliton.in | tee ocean_soliton.log

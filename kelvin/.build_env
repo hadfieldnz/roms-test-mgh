@@ -1,0 +1,8 @@
+# Specify variables used by script roms_build
+
+export ROMS_APPLICATION=KELVIN
+
+export MY_ROMS_SRC=${ROMS_ROOT}/roms-trunk-mgh
+export MY_ROMS_BRANCH=master
+
+export MY_HEADER_DIR=${PWD}

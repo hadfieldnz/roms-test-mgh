@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# MGH 2011-05-18
+# MGH 2018-02-20
 #   A script to run the KELVIN case and save the output. Before running
-#   this script, build the executable with build.bash
+#   this script, build the executable with roms_build
 
-./oceanS < ocean_kelvin.in | tee ocean_kelvin.log
+./ocean < ocean_kelvin.in | tee ocean_kelvin.log

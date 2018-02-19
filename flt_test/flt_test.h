@@ -13,6 +13,8 @@
 **                     floats_flt_test2d.in, floats_flt_test3d.in
 */
 
+#define FLOATS
+
 #define UV_ADV
 #define UV_QDRAG
 #define UV_VIS2
