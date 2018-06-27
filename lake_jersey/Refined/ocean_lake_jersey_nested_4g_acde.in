@@ -997,7 +997,6 @@ Dout(iTvdif) == 8*T     ! temp_vdiff, ...    vertical diffusion
 
      ADJNAME == lake_jersey_adj.nc
 
-
      AVGNAME == lake_jersey_avg_a.nc \
                 lake_jersey_avg_c.nc \
                 lake_jersey_avg_d.nc \
