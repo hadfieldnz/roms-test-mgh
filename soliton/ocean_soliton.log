@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Tuesday - February 20, 2018 - 10:28:49 AM
+                          Wednesday - July 4, 2018 -  2:32:42 PM
  --------------------------------------------------------------------------------
 
  Equatorial Rossby Soliton Test
@@ -12,7 +12,7 @@
  Compiler flags   : -frepack-arrays -O3 -ffast-math -ffree-form -ffree-line-length-none -ffree-form -ffree-line-length-none
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 76d3604b85bc7bb2b0c0fdb1162636a906377fb9
+ Git Revision  : master commit 6d5f13928ddd238493498f49ed3c5777b3dc255a
  Git Status    : The working tree is clean
 
  Local Root    : /home/hadfield/ROMS/roms-trunk-mgh
@@ -124,7 +124,7 @@
 
  Process Information:
 
- Thread #  0 (pid=   24756) is active.
+ Thread #  0 (pid=    8471) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -5030,26 +5030,26 @@
 
  Elapsed CPU time (seconds):
 
- Thread #  0 CPU:       1.270
- Total:                 1.270
+ Thread #  0 CPU:       1.625
+ Total:                 1.625
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.001  ( 0.0548 %)
-  Ocean state initialization .......................         0.001  ( 0.0755 %)
-  Reading of input data ............................         0.001  ( 0.0946 %)
-  Processing of input data .........................         0.007  ( 0.5570 %)
-  Computation of vertical boundary conditions ......         0.039  ( 3.0559 %)
-  Computation of global information integrals ......         0.089  ( 6.9998 %)
-  Writing of output data ...........................         0.008  ( 0.6327 %)
-  Model 2D kernel ..................................         1.103  (86.8526 %)
-                                              Total:         1.248   98.3229
+  Allocation and array initialization ..............         0.001  ( 0.0536 %)
+  Ocean state initialization .......................         0.001  ( 0.0600 %)
+  Reading of input data ............................         0.002  ( 0.1406 %)
+  Processing of input data .........................         0.008  ( 0.4957 %)
+  Computation of vertical boundary conditions ......         0.031  ( 1.9320 %)
+  Computation of global information integrals ......         0.083  ( 5.0868 %)
+  Writing of output data ...........................         0.010  ( 0.6005 %)
+  Model 2D kernel ..................................         1.461  (89.8921 %)
+                                              Total:         1.597   98.2612
 
-  Unique code regions profiled .....................         1.248   98.3229 %
-  Residual, non-profiled code ......................         0.021    1.6771 %
+  Unique code regions profiled .....................         1.597   98.2612 %
+  Residual, non-profiled code ......................         0.028    1.7388 %
 
 
- All percentages are with respect to total time =            1.270
+ All percentages are with respect to total time =            1.625
 
 
  ROMS/TOMS - Output NetCDF summary for Grid 01:
@@ -5062,4 +5062,4 @@
      ROMS/Functionals/ana_initial.h
      ROMS/Functionals/ana_smflux.h
 
- ROMS/TOMS: DONE... Tuesday - February 20, 2018 - 10:28:50 AM
+ ROMS/TOMS: DONE... Wednesday - July 4, 2018 -  2:32:44 PM
