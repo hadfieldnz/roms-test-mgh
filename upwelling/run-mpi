@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# MGH 2018-07-18
+#   A script to run the UPWELLING case in MPI mode and save the output.
+
+set -e
+
+if test ! -f oceanM
+then
+  echo The oceanM executable is missing: build it with \"roms_build -m\"
+  exit 1
+fi
+
+while getopts "i:j:" opt
+do
+  case "${opt}" in
+    i)
+      ni=${OPTARG}
+      ;;
+    j)
+      nj=${OPTARG}
+      ;;
+  esac
+done
+shift $(( ${OPTIND}-1 ))
+
+test -z "${ni}" && ni=4
+test -z "${nj}" && nj=2
+
+infile=ocean_${ni}x${nj}.in
+echo Writing temporary input file ${infile}
+cat ocean_upwelling.in | \
+    sed -e "s/NtileI ==/NtileI == ${ni} ! /" \
+        -e "s/NtileJ ==/NtileJ == ${nj} ! /" > ${infile}
+
+echo Running ROMS in MPI mode
+mpirun -np $((${ni}*${nj})) ./oceanM ${infile} | tee ocean_upwelling_mpi.log

@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# MGH 2018-02-13
+# MGH 2018-07-18
 #   A script to run the UPWELLING case in serial mode and save the output.
 
 if test ! -f oceanS
 then
-  echo The ocean executable is missing: build it with roms_build
+  echo The oceanS executable is missing: build it with roms_build
   exit 1
 fi
 
