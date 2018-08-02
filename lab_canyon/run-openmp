@@ -1,0 +1,39 @@
+#!/bin/bash
+
+# MGH 2018-08-02
+#   A script to run the LAB_CANYON case in OpenMP mode and save the output.
+
+set -e
+
+if test ! -f oceanO
+then
+  echo The oceanO executable is missing: build it with \"roms_build -o\"
+  exit 1
+fi
+
+while getopts "i:j:" opt
+do
+  case "${opt}" in
+    i)
+      ni=${OPTARG}
+      ;;
+    j)
+      nj=${OPTARG}
+      ;;
+  esac
+done
+shift $(( ${OPTIND}-1 ))
+
+test -z "${ni}" && ni=1
+test -z "${nj}" && nj=4
+
+infile=ocean_${ni}x${nj}.in
+echo Writing temporary input file ${infile}
+cat ocean_lab_canyon.in | \
+    sed -e "s/NtileI ==/NtileI == ${ni} ! /" \
+        -e "s/NtileJ ==/NtileJ == ${nj} ! /" > ${infile}
+
+export OMP_NUM_THREADS=$((${ni}*${nj}))
+
+echo Running ROMS in OpenMP mode
+./oceanO < ${infile} | tee ocean_lab_canyon_openmp.log
