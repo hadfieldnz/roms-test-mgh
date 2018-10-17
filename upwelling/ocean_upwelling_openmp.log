@@ -1,18 +1,18 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Wednesday - July 18, 2018 -  1:28:24 PM
- --------------------------------------------------------------------------------
+                          Wednesday - October 17, 2018 -  4:54:41 PM
+--------------------------------------------------------------------------------
 
  Wind-Driven Upwelling/Downwelling over a Periodic Channel
 
  Operating system : Linux
  CPU/hardware     : x86_64
  Compiler system  : gfortran
- Compiler command : /bin/gfortran
+ Compiler command : /usr/bin/gfortran
  Compiler flags   : -frepack-arrays -fopenmp -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 980b1fa2c4d10065239c7f7761b119b437a48825
+ Git Revision  : master commit 82698c0f38f9fdd6ab90cac8578ce2e05a39279b
  Git Status    : The working tree is clean
 
  Host Name     : niwa-1019320.niwa.local
@@ -21,7 +21,7 @@
  Header file   : upwelling.h
  Analytical Dir: /home/hadfield/ROMS/roms-test-mgh/upwelling
 
- Resolution, Grid 01: 0041x0080x016,  Parallel Threads:  4,  Tiling: 001x004
+ Resolution, Grid 01: 41x80x16,  Parallel Threads: 4,  Tiling: 1x4
 
 
  Physical Parameters, Grid: 01
@@ -171,7 +171,7 @@
             Output Averages File:  ocean_avg.nc
          Output Diagnostics File:  ocean_dia.nc
 
- Tile partition information for Grid 01:  0041x0080x0016  tiling: 001x004
+ Tile partition information for Grid 01:  41x80x16  tiling: 1x4
 
      tile     Istr     Iend     Jstr     Jend     Npts
 
@@ -236,7 +236,7 @@
  DIAGNOSTICS_TS      Computing and writing tracer diagnostic terms.
  DIAGNOSTICS_UV      Computing and writing momentum diagnostic terms.
  DJ_GRADPS           Parabolic Splines density Jacobian (Shchepetkin, 2002).
- DOUBLE_PRECISION    Double precision arithmetic.
+ DOUBLE_PRECISION    Double precision arithmetic numerical kernel.
  NONLINEAR           Nonlinear Model.
  !NONLIN_EOS         Linear Equation of State for seawater.
  _OPENMP             OpenMP parallel shared-memory directives.
@@ -258,10 +258,10 @@
 
  Process Information:
 
- Thread #  1 (pid=    7361) is active.
- Thread #  0 (pid=    7361) is active.
- Thread #  3 (pid=    7361) is active.
- Thread #  2 (pid=    7361) is active.
+ Thread #    3 (pid=   25016) is active.
+ Thread #    1 (pid=   25016) is active.
+ Thread #    2 (pid=   25016) is active.
+ Thread #    0 (pid=   25016) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -1018,39 +1018,54 @@
 
  Elapsed CPU time (seconds):
 
- Thread #  3 CPU:       6.147
- Thread #  1 CPU:       6.147
- Thread #  0 CPU:       6.147
- Thread #  2 CPU:       6.147
- Total:                24.588
+ Thread #    2 CPU:       4.901
+ Thread #    3 CPU:       4.901
+ Thread #    0 CPU:       4.901
+ Thread #    1 CPU:       4.901
+ Total:                  19.604
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.178  ( 0.7245 %)
-  Ocean state initialization .......................         0.076  ( 0.3086 %)
-  Reading of input data ............................         0.000  ( 0.0013 %)
-  Processing of input data .........................         0.014  ( 0.0588 %)
-  Processing of output time averaged data ..........         2.462  (10.0116 %)
-  Computation of vertical boundary conditions ......         0.012  ( 0.0501 %)
-  Computation of global information integrals ......         0.232  ( 0.9430 %)
-  Writing of output data ...........................         0.116  ( 0.4734 %)
-  Model 2D kernel ..................................         8.849  (35.9887 %)
-  2D/3D coupling, vertical metrics .................         0.288  ( 1.1710 %)
-  Omega vertical velocity ..........................         0.189  ( 0.7685 %)
-  Equation of state for seawater ...................         0.125  ( 0.5093 %)
-  3D equations right-side terms ....................         0.982  ( 3.9924 %)
-  3D equations predictor step ......................         2.704  (10.9964 %)
-  Pressure gradient ................................         0.545  ( 2.2182 %)
-  Corrector time-step for 3D momentum ..............         2.036  ( 8.2820 %)
-  Corrector time-step for tracers ..................         1.352  ( 5.4993 %)
-                                              Total:        20.161   81.9969
+  Allocation and array initialization ..............         0.172  ( 0.8765 %)
+  Ocean state initialization .......................         0.042  ( 0.2118 %)
+  Reading of input data ............................         0.000  ( 0.0015 %)
+  Processing of input data .........................         0.014  ( 0.0737 %)
+  Processing of output time averaged data ..........         2.308  (11.7718 %)
+  Computation of vertical boundary conditions ......         0.012  ( 0.0616 %)
+  Computation of global information integrals ......         0.178  ( 0.9093 %)
+  Writing of output data ...........................         0.110  ( 0.5592 %)
+  Model 2D kernel ..................................         7.238  (36.9229 %)
+  2D/3D coupling, vertical metrics .................         0.253  ( 1.2889 %)
+  Omega vertical velocity ..........................         0.154  ( 0.7881 %)
+  Equation of state for seawater ...................         0.106  ( 0.5411 %)
+  3D equations right-side terms ....................         0.904  ( 4.6124 %)
+  3D equations predictor step ......................         2.479  (12.6456 %)
+  Pressure gradient ................................         0.450  ( 2.2963 %)
+  Corrector time-step for 3D momentum ..............         1.754  ( 8.9497 %)
+  Corrector time-step for tracers ..................         1.200  ( 6.1200 %)
+                                              Total:        17.375   88.6304
 
-  Unique code regions profiled .....................        20.161   81.9969 %
-  Residual, non-profiled code ......................         4.427   18.0031 %
+  Unique code regions profiled .....................        17.375   88.6304 %
+  Residual, non-profiled code ......................         2.229   11.3696 %
 
 
- All percentages are with respect to total time =           24.588
+ All percentages are with respect to total time =           19.604
 
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ Dynamic and Automatic memory (MB) usage for Grid 01:  41x80x16  tiling: 1x4
+
+     tile          Dynamic        Automatic            USAGE
+
+        0            62.16             1.12            63.28
+        1             0.00             1.12             1.12
+        2             0.00             1.12             1.12
+        3             0.00             1.12             1.12
+
+    TOTAL            62.16             4.48            66.64
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
  ROMS/TOMS - Output NetCDF summary for Grid 01:
              number of time records written in HISTORY file = 00000005
@@ -1066,4 +1081,4 @@
      ROMS/Functionals/ana_stflux.h
      ROMS/Functionals/ana_vmix.h
 
- ROMS/TOMS: DONE... Wednesday - July 18, 2018 -  1:28:30 PM
+ ROMS/TOMS: DONE... Wednesday - October 17, 2018 -  4:54:46 PM
