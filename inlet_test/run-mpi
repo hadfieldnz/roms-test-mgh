@@ -6,5 +6,8 @@
 # MGH 2018-02-14
 #   The executable should now be built with "roms_build -m", using environment
 #   variables set in .build_env. The executable name is now "ocean".
+# MGH 2018-11-20
+#   This script renamed from run.bash to run-mpi. The executable name is now
+#   "oceanM".
 
-mpirun -np 2 ./ocean coupling_inlet_test.in | tee inlet_test.log
+mpirun -np 2 ./oceanM coupling_inlet_test.in | tee inlet_test.log
