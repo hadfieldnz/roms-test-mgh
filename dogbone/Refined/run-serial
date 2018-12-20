@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# MGH 2018-12-20
+#   A script to run the DOGBONE case in serial mode and save the output.
+
+if test ! -f oceanS
+then
+  echo The oceanS executable is missing: build it with roms_build
+  exit 1
+fi
+
+./oceanS < ocean_dogbone.in | tee ocean_dogbone.log

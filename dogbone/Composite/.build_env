@@ -1,4 +1,4 @@
-# Specify the build environment for the DOGBONE Whole test case
+# Specify the build environment for the DOGBONE Composite test case
 
 export ROMS_APPLICATION=DOGBONE
 
@@ -10,4 +10,4 @@ export MY_ANALYTICAL_DIR=${PWD}
 
 # The following CPP flags match those in the roms-test branch's build.bash script.
 
-export MY_CPP_FLAGS="-DSOLVE3D -DOUT_DOUBLE -DAVERAGES -DTS_U3HADVECTION -DTS_C4VADVECTION -DGLS_MIXING"
+export MY_CPP_FLAGS="-DSOLVE3D -DOUT_DOUBLE -DAVERAGES -DTS_U3HADVECTION -DTS_C4VADVECTION -DGLS_MIXING -DNESTING"
