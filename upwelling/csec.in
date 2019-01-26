@@ -38,9 +38,9 @@ F     WRTDATE: logical switch to write out current date.
 ~/ocean/repository/plot/Data/varid.dat
 ~/ocean/repository/plot/Palettes/natlan1.pal
 ~/ocean/repository/plot/Data/default.cnt
-ocean_avg.nc
-ocean_his.nc
-ocean_grd.nc
+roms_avg.nc
+roms_his.nc
+roms_grd.nc
 
 
 !svn $Id$

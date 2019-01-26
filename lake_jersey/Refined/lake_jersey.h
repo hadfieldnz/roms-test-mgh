@@ -13,9 +13,9 @@
 **
 ** Application flag: LAKE_JERSEY
 **
-** Input scripts:    ocean_lake_jersey_nested2_bot.in    coarse & bottom-left
-**                   ocean_lake_jersey_nested2_top.in    coarse & top-right
-**                   ocean_lake_jersey_nested3.in        coarse & bottom & top
+** Input scripts:    roms_lake_jersey_nested2_bot.in    coarse & bottom-left
+**                   roms_lake_jersey_nested2_top.in    coarse & top-right
+**                   roms_lake_jersey_nested3.in        coarse & bottom & top
 */
 
 #define UV_ADV

@@ -14,26 +14,26 @@
 *                                                                     *
 *  References:                                                        *
 *                                                                     *
-*    Moore, A.M., H.G. Arango, G. Broquet, B.S. Powell, J.            *
-*      Zavala-Garay, and A.T. Weaver, 2011: The Regional Ocean        *
-*      Modeling System (ROMS) 4-dimensional variational data          *
-*      assimilation systems, Part I: System overview, Progress        *
-*      in Oceanography, submitted.                                    *
+*    Moore, A.M., H.G. Arango, G. Broquet, B.S. Powell, A.T. Weaver,  *
+*      and J. Zavala-Garay, 2011: The Regional Ocean Modeling System  *
+*      (ROMS)  4-dimensional variational data assimilations systems,  *
+*      Part I - System overview and formulation, Prog. Oceanogr., 91, *
+*      34-49, doi:10.1016/j.pocean.2011.05.004.                       *
 *                                                                     *
-*    Moore, A.M., H.G. Arango, and G. Broquet, C. Edwards, M.         *
-*      Veneziani, B.S. Powell, D. Foley, J. Doyle, D. Costa, and      *
-*      P. Robinson, 2011: The Regional Ocean Modeling System          *
-*      (ROMS) 4-dimensional variational data assimilation systems,    *
-*      Part II: Performance and application to the California         *
-*      Current System, Progress in Oceanography, submitted.           *
+*    Moore, A.M., H.G. Arango, G. Broquet, C. Edward, M. Veneziani,   *
+*      B. Powell, D. Foley, J.D. Doyle, D. Costa, and P. Robinson,    *
+*      2011: The Regional Ocean Modeling System (ROMS) 4-dimensional  *
+*      variational data assimilations systems, Part II - Performance  *
+*      and application to the California Current System, Prog.        *
+*      Oceanogr., 91, 50-73, doi:10.1016/j.pocean.2011.05.003.        *
 *                                                                     *
-*    Moore, A.M., H.G. Arango, and G. Broquet, C. Edwards, M.         *
-*      Veneziani, B.S. Powell, D. Foley, J. Doyle, D. Costa, and      *
-*      P. Robinson, 2011: The Regional Ocean Modeling System          *
-*      (ROMS) 4-dimensional variational data assimilation systems,    *
-*      Part III: Observation Impact and Observation Sensitivity       *
-*      in the California Current System, Progress in Oceanography,    *
-*      submitted.                                                     *
+*    Moore, A.M., H.G. Arango, G. Broquet, C. Edward, M. Veneziani,   *
+*      B. Powell, D. Foley, J.D. Doyle, D. Costa, and P. Robinson,    *
+*      2011: The Regional Ocean Modeling System (ROMS) 4-dimensional  *
+*      variational data assimilations systems, Part III - Observation *
+*      impact and observation sensitivity in the California Current   *
+*      System, Prog. Oceanogr., 91, 74-94,                            *
+*      doi:10.1016/j.pocean.2011.05.005.                              *
 *                                                                     *
 ***********************************************************************
 *
@@ -74,14 +74,14 @@ Input NetCDF files:
 
 Currently, you can find the following files here:
 
-   build.bash          bash shell script to compile application
-   build.sh            csh Unix script to compile application
+   build_roms.bash     bash shell script to compile application
+   build_roms.sh       csh Unix script to compile application
    job_psas_sen.sh     job configuration script
-   ocean_wc13.in       ROMS standard input script for WC13
+   roms_wc13.in        ROMS standard input script for WC13
    s4dvar.in           4D-Var standard input script template
    wc13.h              WC13 header with CPP options
 
-Important parameters in standard input "ocean_wc13.in" script:
+Important parameters in standard input "roms_wc13.in" script:
 
    * Notice that this driver uses the following adjoint sensitivity
      parameters (see input script for details):
@@ -235,7 +235,7 @@ To run this application you need to take the following steps:
       The adjoint sensitivity functional is defined as the
       time-averaged transport crossing 37N in the upper 500m.
 
-  (5) Customize your preferred "build" script and provide the
+  (5) Customize your preferred "build_roms" script and provide the
       appropriate values for:
 
       * Root directory, MY_ROOT_DIR
@@ -249,9 +249,9 @@ To run this application you need to take the following steps:
         assignment for the variable USE_MY_LIBS.
 
   (6) Notice that the most important CPP options for this application
-      are specified in the "build" script instead of "wc13.h":
+      are specified in the "build_roms" script instead of "wc13.h":
 
-      setenv MY_CPP_FLAGS "-DW4DPSAS_SENSITIVITY"
+      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DW4DPSAS_SENSITIVITY"
       setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DAD_IMPULSE"
       setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOBS_IMPACT"
       setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOBS_IMPACT_SPLIT"
@@ -262,9 +262,9 @@ To run this application you need to take the following steps:
       avoided in the header file "wc13.h" since it has precedence
       during C-preprocessing.
 
-  (7) You MUST use the "build" script to compile.
+  (7) You MUST use the "build_roms" script to compile.
 
-  (8) Customize the ROMS input script "ocean_wc13.in" and specify
+  (8) Customize the ROMS input script "roms_wc13.in" and specify
       the appropriate values for the distributed-memory partition.
       It is set by default to:
 
@@ -285,7 +285,7 @@ To run this application you need to take the following steps:
       ROMS_ROOT environmental variable in your .cshrc login
       script. For example, I have:
 
-      setenv ROMS_ROOT /home/arango/ocean/toms/repository/trunk
+      setenv ROMS_ROOT ${HOME}/ocean/repository/trunk
 
  (10) Execute the configuration "job_psas_sen.sh" BEFORE running
       the model.  It copies the required files and creates "psas.in"
@@ -296,7 +296,7 @@ To run this application you need to take the following steps:
 
  (11) Run ROMS with data assimilation:
 
-      mpirun -np 4 oceanM ocean_wc13.in > & log &
+      mpirun -np 4 romsM roms_wc13.in > & log &
 
  (12) Analyze the results using the plotting Matlab script
       provided in the ../plotting directory:

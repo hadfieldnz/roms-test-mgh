@@ -26,8 +26,8 @@ function plt_floats(Hname, Fname);
 %===========================================================================%
 
 if (nargin < 1),
-  Hname='ocean_his.nc';
-  Fname='ocean_flt.nc';
+  Hname='roms_his.nc';
+  Fname='roms_flt.nc';
 end,
 
 PPM_MOVIE = 0; 
