@@ -232,8 +232,12 @@ fi
  export USE_MY_LIBS=no            # use system default library paths
 #export USE_MY_LIBS=yes           # use my customized library paths
 
-if [ "${USE_MY_LIBS}" = "yes" ]; then
-  source ${COMPILERS}/my_build_paths.bash
+MY_PATHS=${COMPILERS}/my_build_paths.bash
+
+MY_PATHS=${COMPILERS}/my_build_paths.bash
+
+if [ "${${MY_PATHS} ${MY_PATHS}
+  source ${MY_PATHS} ${MY_PATHS}
 fi
 
 #--------------------------------------------------------------------------
