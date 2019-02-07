@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# MGH 2018-07-18
-#   A script to run the UPWELLING case in serial mode and save the output.
+# A script to run the UPWELLING case in serial mode and save the output.
+
+set -e
 
 if test ! -f romsS
 then
@@ -9,4 +10,4 @@ then
   exit 1
 fi
 
-./romsS < ocean_upwelling.in | tee ocean_upwelling.log
+./romsS < roms_upwelling.in | tee upwelling.log

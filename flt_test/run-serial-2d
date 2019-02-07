@@ -1,9 +1,6 @@
 #!/bin/bash
 
-# MGH 2018-02-20
-#   A script to run the FLT_TEST (2D) case and save the output.
-# MGH 2019-01-28
-#   Now checks for the presence of the executable
+# A script to run the FLT_TEST (2D) case and save the output.
 
 if test ! -f romsS
 then
@@ -11,4 +8,4 @@ then
   exit 1
 fi
 
-./romsS < ocean_flt_test2d.in | tee ocean_flt_test2d.log
+./romsS < roms_flt_test2d.in | tee flt_test2d.log

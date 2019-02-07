@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Thursday - January 31, 2019 - 11:28:48 AM
+                          Thursday - February 7, 2019 -  2:42:44 PM
 --------------------------------------------------------------------------------
 
  Floats Trajectories 2D Test
@@ -12,8 +12,8 @@
  Compiler flags   : -frepack-arrays -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 25c99104ec433e7ee92ab833c03c63036acf7697
- Git Status    : The working tree is clean
+ Git Revision  : master commit 4bcebd211800df7eadd478e01b200fc65601ebc3
+ Git Status    : The working tree is DIRTY with     1 changes
 
  Host Name     : niwa-1019320.niwa.local
  Local Root    : /home/hadfield/ROMS/roms-trunk-mgh
@@ -79,9 +79,9 @@
 
  Output/Input Files:
 
-             Output Restart File:  ocean_rst_2d.nc
-             Output History File:  ocean_his_2d.nc
-              Output Floats File:  ocean_flt_2d.nc
+             Output Restart File:  roms_rst.nc
+             Output History File:  roms_his.nc
+              Output Floats File:  roms_flt.nc
    Initial Floats Positions File:  floats_flt_test2d.in
 
  Tile partition information for Grid 01:  14x12  tiling: 1x1
@@ -125,24 +125,24 @@
 
  Activated C-preprocessing Options:
 
- FLT_TEST            Floats Trajectories 2D Test
- ANA_GRID            Analytical grid set-up.
- ANA_INITIAL         Analytical initial conditions.
- ANA_SMFLUX          Analytical kinematic surface momentum flux.
- ASSUMED_SHAPE       Using assumed-shape arrays.
- DOUBLE_PRECISION    Double precision arithmetic numerical kernel.
- FLOATS              Simulated Lagrangian drifters.
- MASKING             Land/Sea masking.
- NONLINEAR           Nonlinear Model.
- PROFILE             Time profiling activated .
- !RST_SINGLE         Double precision fields in restart NetCDF file.
- UV_ADV              Advection of momentum.
- UV_QDRAG            Quadratic bottom stress.
- UV_VIS2             Harmonic mixing of momentum.
+ FLT_TEST                Floats Trajectories 2D Test
+ ANA_GRID                Analytical grid set-up
+ ANA_INITIAL             Analytical initial conditions
+ ANA_SMFLUX              Analytical kinematic surface momentum flux
+ ASSUMED_SHAPE           Using assumed-shape arrays
+ DOUBLE_PRECISION        Double precision arithmetic numerical kernel.
+ FLOATS                  Simulated Lagrangian drifters
+ MASKING                 Land/Sea masking
+ NONLINEAR               Nonlinear Model
+ PROFILE                 Time profiling activated
+ !RST_SINGLE             Double precision fields in restart NetCDF file
+ UV_ADV                  Advection of momentum
+ UV_QDRAG                Quadratic bottom stress
+ UV_VIS2                 Harmonic mixing of momentum
 
  Process Information:
 
- Thread #    0 (pid=   18730) is active.
+ Thread #    0 (pid=    4443) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -217,10 +217,10 @@
 
          0 0001-01-01 00:00:00.00  0.000000E+00  0.000000E+00  0.000000E+00  1.680000E+09
                           (00,00)  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00
-      DEF_HIS     - creating  history      file, Grid 01: ocean_his_2d.nc
+      DEF_HIS     - creating  history      file, Grid 01: roms_his.nc
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000001
-      DEF_FLOATS  - creating  floats       file, Grid 01: ocean_flt_2d.nc
-      DEF_RST   - creating restart file: ocean_rst_2d.nc
+      DEF_FLOATS  - creating  floats       file, Grid 01: roms_flt.nc
+      DEF_RST   - creating restart file: roms_rst.nc
          1 0001-01-01 00:01:00.00  1.435714E-05  0.000000E+00  1.435714E-05  1.680000E+09
                           (01,02)  3.600000E-04  0.000000E+00  3.600000E-04  6.000000E-03
          2 0001-01-01 00:02:00.00  5.664063E-05  2.910623E-07  5.693169E-05  1.680000E+09
@@ -2593,27 +2593,27 @@
 
  Elapsed CPU time (seconds):
 
- Thread #    0 CPU:       0.138
- Total:                   0.138
+ Thread #    0 CPU:       0.145
+ Total:                   0.145
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.000  ( 0.0790 %)
-  Ocean state initialization .......................         0.000  ( 0.0471 %)
-  Reading of input data ............................         0.001  ( 0.8593 %)
-  Processing of input data .........................         0.002  ( 1.1783 %)
-  Computation of vertical boundary conditions ......         0.004  ( 2.7794 %)
-  Computation of global information integrals ......         0.034  (24.6367 %)
-  Writing of output data ...........................         0.010  ( 7.0902 %)
-  Model 2D kernel ..................................         0.034  (24.9463 %)
-  Lagrangian floats trajectories ...................         0.037  (26.9818 %)
-                                              Total:         0.122   88.5982
+  Allocation and array initialization ..............         0.000  ( 0.0726 %)
+  Ocean state initialization .......................         0.000  ( 0.0443 %)
+  Reading of input data ............................         0.001  ( 0.8706 %)
+  Processing of input data .........................         0.002  ( 1.2993 %)
+  Computation of vertical boundary conditions ......         0.003  ( 2.1442 %)
+  Computation of global information integrals ......         0.027  (18.8251 %)
+  Writing of output data ...........................         0.011  ( 7.3682 %)
+  Model 2D kernel ..................................         0.041  (28.3700 %)
+  Lagrangian floats trajectories ...................         0.042  (29.1859 %)
+                                              Total:         0.128   88.1801
 
-  Unique code regions profiled .....................         0.122   88.5982 %
-  Residual, non-profiled code ......................         0.016   11.4018 %
+  Unique code regions profiled .....................         0.128   88.1801 %
+  Residual, non-profiled code ......................         0.017   11.8199 %
 
 
- All percentages are with respect to total time =            0.138
+ All percentages are with respect to total time =            0.145
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -2639,4 +2639,4 @@
      ROMS/Functionals/ana_mask.h
      ROMS/Functionals/ana_smflux.h
 
- ROMS/TOMS: DONE... Thursday - January 31, 2019 - 11:28:48 AM
+ ROMS/TOMS: DONE... Thursday - February 7, 2019 -  2:42:45 PM

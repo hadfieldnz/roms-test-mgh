@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Thursday - January 31, 2019 - 11:31:55 AM
+                          Thursday - February 7, 2019 -  2:44:58 PM
 --------------------------------------------------------------------------------
 
  Floats Trajectories 3D Test
@@ -12,7 +12,7 @@
  Compiler flags   : -frepack-arrays -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 25c99104ec433e7ee92ab833c03c63036acf7697
+ Git Revision  : master commit 0c863db314841bc302051a75f0ae6d08192a5839
  Git Status    : The working tree is clean
 
  Host Name     : niwa-1019320.niwa.local
@@ -124,9 +124,9 @@
 
  Output/Input Files:
 
-             Output Restart File:  ocean_rst_3d.nc
-             Output History File:  ocean_his_3d.nc
-              Output Floats File:  ocean_flt_3d.nc
+             Output Restart File:  roms_rst.nc
+             Output History File:  roms_his.nc
+              Output Floats File:  roms_flt.nc
    Initial Floats Positions File:  floats_flt_test3d.in
 
  Tile partition information for Grid 01:  14x12x4  tiling: 1x1
@@ -178,39 +178,39 @@
 
  Activated C-preprocessing Options:
 
- FLT_TEST            Floats Trajectories 3D Test
- ANA_BTFLUX          Analytical kinematic bottom temperature flux.
- ANA_GRID            Analytical grid set-up.
- ANA_INITIAL         Analytical initial conditions.
- ANA_SMFLUX          Analytical kinematic surface momentum flux.
- ANA_STFLUX          Analytical kinematic surface temperature flux.
- ASSUMED_SHAPE       Using assumed-shape arrays.
- BODYFORCE           Momentum stresses as body-forces.
- DJ_GRADPS           Parabolic Splines density Jacobian (Shchepetkin, 2002).
- DOUBLE_PRECISION    Double precision arithmetic numerical kernel.
- FLOATS              Simulated Lagrangian drifters.
- MASKING             Land/Sea masking.
- MIX_S_UV            Mixing of momentum along constant S-surfaces.
- NONLINEAR           Nonlinear Model.
- !NONLIN_EOS         Linear Equation of State for seawater.
- POWER_LAW           Power-law shape time-averaging barotropic filter.
- PROFILE             Time profiling activated .
- !RST_SINGLE         Double precision fields in restart NetCDF file.
- SOLVE3D             Solving 3D Primitive Equations.
- SPLINES_VDIFF       Parabolic Spline Reconstruction for Vertical Diffusion.
- SPLINES_VVISC       Parabolic Spline Reconstruction for Vertical Viscosity.
- TS_A4HADVECTION     Fourth-order Akima horizontal advection of tracers.
- TS_A4VADVECTION     Fourth-order Akima vertical advection of tracers.
- UV_ADV              Advection of momentum.
- UV_U3HADVECTION     Third-order upstream horizontal advection of 3D momentum.
- UV_C4VADVECTION     Fourth-order centered vertical advection of momentum.
- UV_QDRAG            Quadratic bottom stress.
- UV_VIS2             Harmonic mixing of momentum.
- VAR_RHO_2D          Variable density barotropic mode.
+ FLT_TEST                Floats Trajectories 3D Test
+ ANA_BTFLUX              Analytical kinematic bottom temperature flux
+ ANA_GRID                Analytical grid set-up
+ ANA_INITIAL             Analytical initial conditions
+ ANA_SMFLUX              Analytical kinematic surface momentum flux
+ ANA_STFLUX              Analytical kinematic surface temperature flux
+ ASSUMED_SHAPE           Using assumed-shape arrays
+ BODYFORCE               Momentum stresses as body-forces
+ DJ_GRADPS               Parabolic Splines density Jacobian (Shchepetkin, 2002)
+ DOUBLE_PRECISION        Double precision arithmetic numerical kernel.
+ FLOATS                  Simulated Lagrangian drifters
+ MASKING                 Land/Sea masking
+ MIX_S_UV                Mixing of momentum along constant S-surfaces
+ NONLINEAR               Nonlinear Model
+ !NONLIN_EOS             Linear Equation of State for seawater
+ POWER_LAW               Power-law shape time-averaging barotropic filter
+ PROFILE                 Time profiling activated
+ !RST_SINGLE             Double precision fields in restart NetCDF file
+ SOLVE3D                 Solving 3D Primitive Equations
+ SPLINES_VDIFF           Parabolic Spline Reconstruction for Vertical Diffusion
+ SPLINES_VVISC           Parabolic Spline Reconstruction for Vertical Viscosity
+ TS_A4HADVECTION         Fourth-order Akima horizontal advection of tracers
+ TS_A4VADVECTION         Fourth-order Akima vertical advection of tracers
+ UV_ADV                  Advection of momentum
+ UV_U3HADVECTION         Third-order upstream horizontal advection of 3D momentum
+ UV_C4VADVECTION         Fourth-order centered vertical advection of momentum
+ UV_QDRAG                Quadratic bottom stress
+ UV_VIS2                 Harmonic mixing of momentum
+ VAR_RHO_2D              Variable density barotropic mode
 
  Process Information:
 
- Thread #    0 (pid=   21328) is active.
+ Thread #    0 (pid=    7235) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -334,10 +334,10 @@
 
          0 0001-01-01 00:00:00.00  0.000000E+00  4.882213E+01  4.882213E+01  1.680000E+09
                         (00,00,0)  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00
-      DEF_HIS     - creating  history      file, Grid 01: ocean_his_3d.nc
+      DEF_HIS     - creating  history      file, Grid 01: roms_his.nc
       WRT_HIS     - wrote history     fields (Index=1,1) in record = 0000001
-      DEF_FLOATS  - creating  floats       file, Grid 01: ocean_flt_3d.nc
-      DEF_RST   - creating restart file: ocean_rst_3d.nc
+      DEF_FLOATS  - creating  floats       file, Grid 01: roms_flt.nc
+      DEF_RST   - creating restart file: roms_rst.nc
          1 0001-01-01 00:08:32.00  1.014313E-03  4.882214E+01  4.882315E+01  1.680000E+09
                         (09,05,3)  2.904382E-02  1.017683E-02  0.000000E+00  6.430572E-02
          2 0001-01-01 00:17:04.00  4.021193E-03  4.882214E+01  4.882616E+01  1.680000E+09
@@ -657,36 +657,36 @@
 
  Elapsed CPU time (seconds):
 
- Thread #    0 CPU:       0.141
- Total:                   0.141
+ Thread #    0 CPU:       0.138
+ Total:                   0.138
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.000  ( 0.2039 %)
-  Ocean state initialization .......................         0.000  ( 0.0874 %)
-  Reading of input data ............................         0.000  ( 0.1258 %)
-  Processing of input data .........................         0.000  ( 0.2302 %)
-  Computation of vertical boundary conditions ......         0.000  ( 0.3325 %)
-  Computation of global information integrals ......         0.005  ( 3.5045 %)
-  Writing of output data ...........................         0.020  (14.0465 %)
-  Model 2D kernel ..................................         0.064  (45.4442 %)
-  Lagrangian floats trajectories ...................         0.011  ( 8.1687 %)
-  2D/3D coupling, vertical metrics .................         0.002  ( 1.0886 %)
-  Omega vertical velocity ..........................         0.001  ( 0.8363 %)
-  Equation of state for seawater ...................         0.001  ( 0.5137 %)
-  3D equations right-side terms ....................         0.004  ( 2.9382 %)
-  3D equations predictor step ......................         0.007  ( 4.6471 %)
-  Pressure gradient ................................         0.003  ( 1.9320 %)
-  Harmonic stress tensor, S-surfaces ...............         0.002  ( 1.5910 %)
-  Corrector time-step for 3D momentum ..............         0.005  ( 3.2224 %)
-  Corrector time-step for tracers ..................         0.006  ( 3.9749 %)
-                                              Total:         0.131   92.8880
+  Allocation and array initialization ..............         0.000  ( 0.2740 %)
+  Ocean state initialization .......................         0.000  ( 0.1077 %)
+  Reading of input data ............................         0.000  ( 0.1453 %)
+  Processing of input data .........................         0.000  ( 0.2335 %)
+  Computation of vertical boundary conditions ......         0.000  ( 0.2884 %)
+  Computation of global information integrals ......         0.005  ( 3.4315 %)
+  Writing of output data ...........................         0.019  (13.6320 %)
+  Model 2D kernel ..................................         0.063  (45.7350 %)
+  Lagrangian floats trajectories ...................         0.011  ( 8.2589 %)
+  2D/3D coupling, vertical metrics .................         0.001  ( 1.0373 %)
+  Omega vertical velocity ..........................         0.001  ( 0.8190 %)
+  Equation of state for seawater ...................         0.001  ( 0.5306 %)
+  3D equations right-side terms ....................         0.004  ( 3.0158 %)
+  3D equations predictor step ......................         0.006  ( 4.4226 %)
+  Pressure gradient ................................         0.003  ( 1.9677 %)
+  Harmonic stress tensor, S-surfaces ...............         0.002  ( 1.6127 %)
+  Corrector time-step for 3D momentum ..............         0.004  ( 3.2501 %)
+  Corrector time-step for tracers ..................         0.006  ( 4.0091 %)
+                                              Total:         0.128   92.7712
 
-  Unique code regions profiled .....................         0.131   92.8880 %
-  Residual, non-profiled code ......................         0.010    7.1120 %
+  Unique code regions profiled .....................         0.128   92.7712 %
+  Residual, non-profiled code ......................         0.010    7.2288 %
 
 
- All percentages are with respect to total time =            0.141
+ All percentages are with respect to total time =            0.138
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -714,4 +714,4 @@
      ROMS/Functionals/ana_smflux.h
      ROMS/Functionals/ana_stflux.h
 
- ROMS/TOMS: DONE... Thursday - January 31, 2019 - 11:31:56 AM
+ ROMS/TOMS: DONE... Thursday - February 7, 2019 -  2:44:58 PM

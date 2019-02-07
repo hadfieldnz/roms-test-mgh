@@ -1,6 +1,5 @@
 #!/bin/bash
 
-# MGH 2018-07-18
 #   A script to run the UPWELLING case in MPI mode and save the output.
 
 set -e
@@ -27,11 +26,11 @@ shift $(( ${OPTIND}-1 ))
 test -z "${ni}" && ni=4
 test -z "${nj}" && nj=2
 
-infile=ocean_${ni}x${nj}.in
+infile=roms_${ni}x${nj}.in
 echo Writing temporary input file ${infile}
-cat ocean_upwelling.in | \
+cat roms_upwelling.in | \
     sed -e "s/NtileI ==/NtileI == ${ni} ! /" \
         -e "s/NtileJ ==/NtileJ == ${nj} ! /" > ${infile}
 
 echo Running ROMS in MPI mode
-mpirun -np $((${ni}*${nj})) ./romsM ${infile} | tee ocean_upwelling_mpi.log
+mpirun -np $((${ni}*${nj})) ./romsM ${infile} | tee upwelling_mpi.log
