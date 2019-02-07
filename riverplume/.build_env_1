@@ -1,0 +1,20 @@
+# Specify variables used by script roms_build
+
+# Test roms_build's use_mpi variable to ensure MPI is selected
+if test -z "${use_mpi}"
+then
+  echo "This simulation must be built with the -m (MPI) option" 1>&2
+  exit 1
+fi
+
+export ROMS_APPLICATION=RIVERPLUME1
+
+export MY_ROMS_SRC=${ROMS_ROOT}/roms-trunk-mgh
+export MY_ROMS_BRANCH=master
+
+export MY_HEADER_DIR=${PWD}
+export MY_ANALYTICAL_DIR=${PWD}
+
+# The following CPP flags match those in the roms-test branch's build.bash script.
+
+export MY_CPP_FLAGS="-DAVERAGES -DTS_MPDATA -DTS_DIF2 -DMIX_S_TS -DUV_VIS2 -DMIX_GEO_UV"

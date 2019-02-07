@@ -5,9 +5,9 @@
 
 set -e
 
-if test ! -f oceanO
+if test ! -f romsO
 then
-  echo The oceanO executable is missing: build it with \"roms_build -o\"
+  echo The romsO executable is missing: build it with \"roms_build -o\"
   exit 1
 fi
 
@@ -36,4 +36,4 @@ cat ocean_lab_canyon.in | \
 export OMP_NUM_THREADS=$((${ni}*${nj}))
 
 echo Running ROMS in OpenMP mode
-./oceanO < ${infile} | tee ocean_lab_canyon_openmp.log
+./romsO < ${infile} | tee ocean_lab_canyon_openmp.log

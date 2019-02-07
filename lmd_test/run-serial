@@ -3,10 +3,10 @@
 # MGH 2018-09-03
 #   A script to run the LMD_TEST case in serial mode and save the output.
 
-if test ! -f oceanS
+if test ! -f romsS
 then
-  echo The oceanS executable is missing: build it with roms_build
+  echo The romsS executable is missing: build it with \"roms_build\"
   exit 1
 fi
 
-./oceanS < ocean_lmd_test.in | tee ocean_lmd_test.log
+./romsS < ocean_lmd_test.in | tee ocean_lmd_test.log

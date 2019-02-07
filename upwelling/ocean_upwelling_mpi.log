@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Wednesday - October 17, 2018 -  5:08:29 PM
+                          Wednesday - January 30, 2019 -  4:42:07 PM
 --------------------------------------------------------------------------------
 
  Wind-Driven Upwelling/Downwelling over a Periodic Channel
@@ -15,7 +15,7 @@
  Input Script  : ocean_4x2.in
 
  Git Root URL  : git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 82698c0f38f9fdd6ab90cac8578ce2e05a39279b
+ Git Revision  : master commit 0116ca3a02b9b21854638945aa404f05d2cd8699
  Git Status    : The working tree is clean
 
  Host Name     : niwa-1019320.niwa.local
@@ -288,14 +288,14 @@
 
  Process Information:
 
- Node #    0 (pid=   28005) is active.
- Node #    2 (pid=   28007) is active.
- Node #    6 (pid=   28011) is active.
- Node #    1 (pid=   28006) is active.
- Node #    3 (pid=   28008) is active.
- Node #    5 (pid=   28010) is active.
- Node #    7 (pid=   28012) is active.
- Node #    4 (pid=   28009) is active.
+ Node #    0 (pid=    4542) is active.
+ Node #    2 (pid=    4544) is active.
+ Node #    4 (pid=    4546) is active.
+ Node #    6 (pid=    4549) is active.
+ Node #    7 (pid=    4550) is active.
+ Node #    3 (pid=    4545) is active.
+ Node #    1 (pid=    4543) is active.
+ Node #    5 (pid=    4547) is active.
 
 
  INITIAL: Configuring and initializing forward nonlinear model ...
@@ -1052,53 +1052,53 @@
 
  Elapsed CPU time (seconds):
 
- Node   #    0 CPU:       9.264
- Node   #    7 CPU:      10.018
- Node   #    1 CPU:      10.345
- Node   #    4 CPU:      10.100
- Node   #    3 CPU:       9.649
- Node   #    2 CPU:      10.052
- Node   #    5 CPU:      10.472
- Node   #    6 CPU:      10.129
- Total:                  80.030
+ Node   #    6 CPU:       9.481
+ Node   #    0 CPU:      10.650
+ Node   #    3 CPU:      10.599
+ Node   #    5 CPU:      10.725
+ Node   #    2 CPU:      10.462
+ Node   #    1 CPU:      10.140
+ Node   #    4 CPU:      11.257
+ Node   #    7 CPU:       9.952
+ Total:                  83.267
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.079  ( 0.0990 %)
-  Ocean state initialization .......................         0.066  ( 0.0829 %)
-  Reading of input data ............................         0.008  ( 0.0099 %)
-  Processing of input data .........................         0.219  ( 0.2741 %)
-  Processing of output time averaged data ..........         5.653  ( 7.0638 %)
-  Computation of vertical boundary conditions ......         0.201  ( 0.2506 %)
-  Computation of global information integrals ......         0.749  ( 0.9357 %)
-  Writing of output data ...........................         3.010  ( 3.7616 %)
-  Model 2D kernel ..................................        37.625  (47.0136 %)
-  2D/3D coupling, vertical metrics .................         1.559  ( 1.9476 %)
-  Omega vertical velocity ..........................         1.069  ( 1.3360 %)
-  Equation of state for seawater ...................         0.754  ( 0.9423 %)
-  3D equations right-side terms ....................         2.251  ( 2.8123 %)
-  3D equations predictor step ......................        11.908  (14.8790 %)
-  Pressure gradient ................................         1.027  ( 1.2834 %)
-  Corrector time-step for 3D momentum ..............         5.841  ( 7.2980 %)
-  Corrector time-step for tracers ..................         4.927  ( 6.1563 %)
-                                              Total:        76.945   96.1462
+  Allocation and array initialization ..............         0.100  ( 0.1197 %)
+  Ocean state initialization .......................         0.179  ( 0.2147 %)
+  Reading of input data ............................         0.007  ( 0.0082 %)
+  Processing of input data .........................         0.780  ( 0.9365 %)
+  Processing of output time averaged data ..........         5.685  ( 6.8280 %)
+  Computation of vertical boundary conditions ......         0.169  ( 0.2031 %)
+  Computation of global information integrals ......         0.716  ( 0.8597 %)
+  Writing of output data ...........................         3.153  ( 3.7869 %)
+  Model 2D kernel ..................................        37.819  (45.4194 %)
+  2D/3D coupling, vertical metrics .................         2.544  ( 3.0548 %)
+  Omega vertical velocity ..........................         1.729  ( 2.0767 %)
+  Equation of state for seawater ...................         0.673  ( 0.8082 %)
+  3D equations right-side terms ....................         2.327  ( 2.7949 %)
+  3D equations predictor step ......................        10.326  (12.4017 %)
+  Pressure gradient ................................         0.844  ( 1.0132 %)
+  Corrector time-step for 3D momentum ..............         7.772  ( 9.3342 %)
+  Corrector time-step for tracers ..................         6.019  ( 7.2284 %)
+                                              Total:        80.842   97.0883
 
  Nonlinear model message Passage profile, Grid: 01
 
-  Message Passage: 2D halo exchanges ...............        20.956  (26.1850 %)
-  Message Passage: 3D halo exchanges ...............         4.472  ( 5.5885 %)
-  Message Passage: 4D halo exchanges ...............         8.713  (10.8871 %)
-  Message Passage: data broadcast ..................         1.962  ( 2.4519 %)
-  Message Passage: data reduction ..................         0.330  ( 0.4128 %)
-  Message Passage: data gathering ..................         0.639  ( 0.7984 %)
-  Message Passage: synchronization barrier .........         0.003  ( 0.0044 %)
-                                              Total:        37.076   46.3281
+  Message Passage: 2D halo exchanges ...............        20.844  (25.0327 %)
+  Message Passage: 3D halo exchanges ...............         6.761  ( 8.1192 %)
+  Message Passage: 4D halo exchanges ...............         7.613  ( 9.1423 %)
+  Message Passage: data broadcast ..................         1.959  ( 2.3522 %)
+  Message Passage: data reduction ..................         0.356  ( 0.4270 %)
+  Message Passage: data gathering ..................         0.794  ( 0.9535 %)
+  Message Passage: synchronization barrier .........         0.105  ( 0.1259 %)
+                                              Total:        38.430   46.1529
 
-  Unique code regions profiled .....................        76.945   96.1462 %
-  Residual, non-profiled code ......................         3.084    3.8538 %
+  Unique code regions profiled .....................        80.842   97.0883 %
+  Residual, non-profiled code ......................         2.424    2.9117 %
 
 
- All percentages are with respect to total time =           80.030
+ All percentages are with respect to total time =           83.267
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1134,4 +1134,4 @@
      ROMS/Functionals/ana_stflux.h
      ROMS/Functionals/ana_vmix.h
 
- ROMS/TOMS: DONE... Wednesday - October 17, 2018 -  5:08:40 PM
+ ROMS/TOMS: DONE... Wednesday - January 30, 2019 -  4:42:19 PM

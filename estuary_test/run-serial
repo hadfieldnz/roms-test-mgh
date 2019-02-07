@@ -1,0 +1,14 @@
+#!/bin/bash
+
+# MGH 2011-05-18
+#   A script to run the ESTUARY_TEST case and save the output.
+# MGH 2019-01-28
+#   Now checks for the presence of the executable
+
+if test ! -f romsS
+then
+  echo The romsS executable is missing: build it with \"roms_build\"
+  exit 1
+fi
+
+./romsS < ocean_estuary_test.in | tee estuary_test.log

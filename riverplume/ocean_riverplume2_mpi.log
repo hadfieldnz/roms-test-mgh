@@ -1,0 +1,438 @@
+--------------------------------------------------------------------------------
+ Model Input Parameters:  ROMS/TOMS version 3.7  
+                          Tuesday - February 5, 2019 - 11:00:45 PM
+--------------------------------------------------------------------------------
+
+ River Plume Test 2 (Hyatt and Signell, ECM 2000)
+
+ Operating system : Linux
+ CPU/hardware     : x86_64
+ Compiler system  : gfortran
+ Compiler command : /usr/lib64/openmpi/bin/mpif90
+ Compiler flags   : -frepack-arrays -O3 -ffast-math -
+ MPI Communicator : 0  PET size = 2
+
+ Input Script  : ocean_riverplume2.in
+
+ Git Root URL  : git@github.com:hadfieldnz/roms-trunk-mgh.git
+ Git Revision  : master commit 4bcebd211800df7eadd478e01b200fc65601ebc3
+ Git Status    : The working tree is clean
+
+ Host Name     : niwa-1019320.niwa.local
+ Local Root    : /home/hadfield/ROMS/roms-trunk-mgh
+ Header Dir    : /home/hadfield/ROMS/roms-test-mgh/riverplume
+ Header file   : riverplume2.h
+ Analytical Dir: /home/hadfield/ROMS/roms-test-mgh/riverplume
+
+ Resolution, Grid 01: 50x70x13,  Parallel Nodes: 2,  Tiling: 1x2
+
+
+ Physical Parameters, Grid: 01
+ =============================
+
+      28880  ntimes            Number of timesteps for 3-D equations.
+    120.000  dt                Timestep size (s) for 3-D equations.
+         20  ndtfast           Number of timesteps for 2-D equations between
+                                 each 3D timestep.
+          1  ERstr             Starting ensemble/perturbation run number.
+          1  ERend             Ending ensemble/perturbation run number.
+          0  nrrec             Number of restart records to read from disk.
+          T  LcycleRST         Switch to recycle time-records in restart file.
+        360  nRST              Number of timesteps between the writing of data
+                                 into restart fields.
+          1  ninfo             Number of timesteps between print of information
+                                 to standard output.
+          T  ldefout           Switch to create a new output NetCDF file(s).
+        180  nHIS              Number of timesteps between the writing fields
+                                 into history file.
+          0  nQCK              Number of timesteps between the writing fields
+                                 into quicksave file.
+          1  ntsAVG            Starting timestep for the accumulation of output
+                                 time-averaged data.
+        180  nAVG              Number of timesteps between the writing of
+                                 time-averaged data into averages file.
+ 0.0000E+00  nl_tnu2(01)       NLM Horizontal, harmonic mixing coefficient
+                                 (m2/s) for tracer 01: temp
+ 0.0000E+00  nl_tnu2(02)       NLM Horizontal, harmonic mixing coefficient
+                                 (m2/s) for tracer 02: salt
+ 0.0000E+00  nl_visc2          NLM Horizontal, harmonic mixing coefficient
+                                 (m2/s) for momentum.
+          F  LuvSponge         Turning OFF sponge on horizontal momentum.
+          F  LtracerSponge(01) Turning OFF sponge on tracer 01: temp
+          F  LtracerSponge(02) Turning OFF sponge on tracer 02: salt
+ 5.0000E-06  Akt_bak(01)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 01: temp
+ 5.0000E-06  Akt_bak(02)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 02: salt
+ 5.0000E-06  Akv_bak           Background vertical mixing coefficient (m2/s)
+                                 for momentum.
+ 3.0000E-04  rdrg              Linear bottom drag coefficient (m/s).
+ 3.0000E-03  rdrg2             Quadratic bottom drag coefficient.
+ 3.0000E-03  Zob               Bottom roughness (m).
+          2  Vtransform        S-coordinate transformation equation.
+          4  Vstretching       S-coordinate stretching function.
+ 3.0000E+00  theta_s           S-coordinate surface control parameter.
+ 1.0000E+00  theta_b           S-coordinate bottom  control parameter.
+     30.000  Tcline            S-coordinate surface/bottom layer width (m) used
+                                 in vertical coordinate stretching.
+   1025.000  rho0              Mean density (kg/m3) for Boussinesq approximation.
+      0.000  dstart            Time-stamp assigned to model initialization (days).
+       0.00  time_ref          Reference time for units attribute (yyyymmdd.dd)
+ 0.0000E+00  Tnudg(01)         Nudging/relaxation time scale (days)
+                                 for tracer 01: temp
+ 0.0000E+00  Tnudg(02)         Nudging/relaxation time scale (days)
+                                 for tracer 02: salt
+ 0.0000E+00  Znudg             Nudging/relaxation time scale (days)
+                                 for free-surface.
+ 0.0000E+00  M2nudg            Nudging/relaxation time scale (days)
+                                 for 2D momentum.
+ 0.0000E+00  M3nudg            Nudging/relaxation time scale (days)
+                                 for 3D momentum.
+ 0.0000E+00  obcfac            Factor between passive and active
+                                 open boundary conditions.
+          F  VolCons(1)        NLM western  edge boundary volume conservation.
+          F  VolCons(2)        NLM southern edge boundary volume conservation.
+          F  VolCons(3)        NLM eastern  edge boundary volume conservation.
+          F  VolCons(4)        NLM northern edge boundary volume conservation.
+      4.000  T0                Background potential temperature (C) constant.
+     32.000  S0                Background salinity (PSU) constant.
+     -1.000  gamma2            Slipperiness variable: free-slip (1.0) or 
+                                                      no-slip (-1.0).
+          T  LuvSrc            Turning ON  momentum point Sources/Sinks.
+          F  LwSrc             Turning OFF volume influx point Sources/Sinks.
+          T  LtracerSrc(01)    Turning ON  point Sources/Sinks on tracer 01: temp
+          T  LtracerSrc(02)    Turning ON  point Sources/Sinks on tracer 02: salt
+          F  LsshCLM           Turning OFF processing of SSH climatology.
+          F  Lm2CLM            Turning OFF processing of 2D momentum climatology.
+          F  Lm3CLM            Turning OFF processing of 3D momentum climatology.
+          F  LtracerCLM(01)    Turning OFF processing of climatology tracer 01: temp
+          F  LtracerCLM(02)    Turning OFF processing of climatology tracer 02: salt
+          F  LnudgeM2CLM       Turning OFF nudging of 2D momentum climatology.
+          F  LnudgeM3CLM       Turning OFF nudging of 3D momentum climatology.
+          F  LnudgeTCLM(01)    Turning OFF nudging of climatology tracer 01: temp
+          F  LnudgeTCLM(02)    Turning OFF nudging of climatology tracer 02: salt
+
+          T  Hout(idFsur)      Write out free-surface.
+          T  Hout(idUbar)      Write out 2D U-momentum component.
+          T  Hout(idVbar)      Write out 2D V-momentum component.
+          T  Hout(idUvel)      Write out 3D U-momentum component.
+          T  Hout(idVvel)      Write out 3D V-momentum component.
+          T  Hout(idWvel)      Write out W-momentum component.
+          T  Hout(idOvel)      Write out omega vertical velocity.
+          T  Hout(idTvar)      Write out tracer 01: temp
+          T  Hout(idTvar)      Write out tracer 02: salt
+          T  Hout(idDano)      Write out density anomaly.
+          T  Hout(idVvis)      Write out vertical viscosity: AKv.
+          T  Hout(idTdif)      Write out vertical diffusion: AKt(itemp).
+          T  Hout(idSdif)      Write out vertical diffusion: AKt(isalt).
+
+          T  Aout(idFsur)      Write out averaged free-surface.
+          T  Aout(idUbar)      Write out averaged 2D U-momentum component.
+          T  Aout(idVbar)      Write out averaged 2D V-momentum component.
+          T  Aout(idUvel)      Write out averaged 3D U-momentum component.
+          T  Aout(idVvel)      Write out averaged 3D V-momentum component.
+          T  Aout(idWvel)      Write out averaged W-momentum component.
+          T  Aout(idOvel)      Write out averaged omega vertical velocity.
+          T  Aout(idTvar)      Write out averaged tracer 01: temp
+          T  Aout(idTvar)      Write out averaged tracer 02: salt
+
+ Output/Input Files:
+
+             Output Restart File:  ocean_rst.nc
+             Output History File:  ocean_his.nc
+            Output Averages File:  ocean_avg.nc
+
+ Tile partition information for Grid 01:  50x70x13  tiling: 1x2
+
+     tile     Istr     Iend     Jstr     Jend     Npts
+
+        0        1       50        1       35    22750
+        1        1       50       36       70    22750
+
+ Tile minimum and maximum fractional coordinates for Grid 01:
+   (interior points only)
+
+     tile     Xmin     Xmax     Ymin     Ymax     grid
+
+        0     0.50    50.50     0.50    35.50  RHO-points
+        1     0.50    50.50    35.50    70.50  RHO-points
+
+        0     1.00    50.00     0.50    35.50    U-points
+        1     1.00    50.00    35.50    70.50    U-points
+
+        0     0.50    50.50     1.00    35.50    V-points
+        1     0.50    50.50    35.50    70.00    V-points
+
+ Maximum halo size in XI and ETA directions:
+
+               HaloSizeI(1) =     183
+               HaloSizeJ(1) =     144
+                TileSide(1) =      55
+                TileSize(1) =    2310
+
+
+ Lateral Boundary Conditions: NLM
+ ============================
+
+ Variable               Grid  West Edge    South Edge   East Edge    North Edge
+ ---------              ----  ----------   ----------   ----------   ----------
+
+ zeta                     1   Closed       Chapman Imp  Closed       Chapman Imp
+
+ ubar                     1   Closed       Gradient     Closed       Gradient
+
+ vbar                     1   Closed       Gradient     Closed       Gradient
+
+ u                        1   Closed       Gradient     Closed       Gradient
+
+ v                        1   Closed       Gradient     Closed       Gradient
+
+ temp                     1   Closed       Gradient     Closed       Gradient
+
+ salt                     1   Closed       Gradient     Closed       Gradient
+
+ Activated C-preprocessing Options:
+
+ RIVERPLUME2             River Plume Test 2 (Hyatt and Signell, ECM 2000)
+ ANA_BSFLUX              Analytical kinematic bottom salinity flux
+ ANA_BTFLUX              Analytical kinematic bottom temperature flux
+ ANA_GRID                Analytical grid set-up
+ ANA_INITIAL             Analytical initial conditions
+ ANA_PSOURCE             Analytical point sources and sinks
+ ANA_SMFLUX              Analytical kinematic surface momentum flux
+ ANA_SSFLUX              Analytical kinematic surface salinity flux
+ ANA_STFLUX              Analytical kinematic surface temperature flux
+ ASSUMED_SHAPE           Using assumed-shape arrays
+ AVERAGES                Writing out time-averaged nonlinear model fields
+ !BOUNDARY_ALLGATHER     Using mpi_allreduce in mp_boundary routine
+ !COLLECT_ALL...         Using mpi_isend/mpi_recv in mp_collect routine
+ DJ_GRADPS               Parabolic Splines density Jacobian (Shchepetkin, 2002)
+ DOUBLE_PRECISION        Double precision arithmetic numerical kernel.
+ MASKING                 Land/Sea masking
+ MIX_S_TS                Mixing of tracers along constant S-surfaces
+ MIX_GEO_UV              Mixing of momentum along geopotential surfaces
+ MPI                     MPI distributed-memory configuration
+ NONLINEAR               Nonlinear Model
+ NONLIN_EOS              Nonlinear Equation of State for seawater
+ POWER_LAW               Power-law shape time-averaging barotropic filter
+ PROFILE                 Time profiling activated
+ REDUCE_ALLGATHER        Using mpi_allgather in mp_reduce routine
+ !RST_SINGLE             Double precision fields in restart NetCDF file
+ SALINITY                Using salinity
+ SOLVE3D                 Solving 3D Primitive Equations
+ SPLINES_VDIFF           Parabolic Spline Reconstruction for Vertical Diffusion
+ SPLINES_VVISC           Parabolic Spline Reconstruction for Vertical Viscosity
+ TS_MPDATA               Recursive flux corrected MPDATA 3D advection of tracers
+ TS_DIF2                 Harmonic mixing of tracers
+ UV_ADV                  Advection of momentum
+ UV_COR                  Coriolis term
+ UV_U3HADVECTION         Third-order upstream horizontal advection of 3D momentum
+ UV_C4VADVECTION         Fourth-order centered vertical advection of momentum
+ UV_QDRAG                Quadratic bottom stress
+ UV_VIS2                 Harmonic mixing of momentum
+ VAR_RHO_2D              Variable density barotropic mode
+
+ Process Information:
+
+ Node #    1 (pid=    8183) is active.
+ Node #    0 (pid=    8182) is active.
+
+ INITIAL: Configuring and initializing forward nonlinear model ...
+ *******
+
+    ANA_GRID    - x-location of PSI-points: x_psi
+                   (Grid = 01, Min =  0.00000000E+00 Max =  1.00000000E+05)
+    ANA_GRID    - y-location of PSI-points: y_psi
+                   (Grid = 01, Min =  0.00000000E+00 Max =  2.10000000E+05)
+    ANA_GRID    - x-location of RHO-points: x_rho
+                   (Grid = 01, Min = -1.00000000E+03 Max =  1.01000000E+05)
+    ANA_GRID    - y-location of RHO-points: y_rho
+                   (Grid = 01, Min = -1.50000000E+03 Max =  2.11500000E+05)
+    ANA_GRID    - x-location of U-points: x_u
+                   (Grid = 01, Min =  0.00000000E+00 Max =  1.00000000E+05)
+    ANA_GRID    - y-location of U-points: y_u
+                   (Grid = 01, Min = -1.50000000E+03 Max =  2.11500000E+05)
+    ANA_GRID    - x-location of V-points: x_v
+                   (Grid = 01, Min = -1.00000000E+03 Max =  1.01000000E+05)
+    ANA_GRID    - y-location of V-points: y_v
+                   (Grid = 01, Min =  0.00000000E+00 Max =  2.10000000E+05)
+    ANA_GRID    - reciprocal XI-grid spacing: pm
+                   (Grid = 01, Min =  5.00000000E-04 Max =  5.00000000E-04)
+    ANA_GRID    - reciprocal ETA-grid spacing: pn
+                   (Grid = 01, Min =  3.33333333E-04 Max =  3.33333333E-04)
+    ANA_GRID    - angle between XI-axis and EAST: angler
+                   (Grid = 01, Min =  0.00000000E+00 Max =  0.00000000E+00)
+    ANA_GRID    - Coriolis parameter at RHO-points: f
+                   (Grid = 01, Min =  1.00000000E-04 Max =  1.00000000E-04)
+    ANA_GRID    - bathymetry at RHO-points: h
+                   (Grid = 01, Min =  1.50000000E+01 Max =  1.93977273E+02)
+    ANA_MASK    - mask on PSI-points: mask_psi
+                   (Grid = 01, Min =  0.00000000E+00 Max =  1.00000000E+00)
+    ANA_MASK    - mask on RHO-points: mask_rho
+                   (Grid = 01, Min =  0.00000000E+00 Max =  1.00000000E+00)
+    ANA_MASK    - mask on U-points: mask_u
+                   (Grid = 01, Min =  0.00000000E+00 Max =  1.00000000E+00)
+    ANA_MASK    - mask on V-points: mask_v
+                   (Grid = 01, Min =  0.00000000E+00 Max =  1.00000000E+00)
+
+ Vertical S-coordinate System, Grid 01:
+
+ level   S-coord     Cs-curve   Z   at hmin       at hc    half way     at hmax
+
+    13   0.0000000   0.0000000        0.000       0.000       0.000       0.000
+    12  -0.0769231  -0.0046593       -0.793      -1.224      -2.171      -2.781
+    11  -0.1538462  -0.0188015       -1.632      -2.590      -5.112      -7.156
+    10  -0.2307692  -0.0429133       -2.522      -4.105      -8.862     -13.205
+     9  -0.3076923  -0.0777804       -3.466      -5.782     -13.486     -21.061
+     8  -0.3846154  -0.1244405       -4.468      -7.636     -19.067     -30.898
+     7  -0.4615385  -0.1840996       -5.536      -9.685     -25.703     -42.919
+     6  -0.5384615  -0.2579933       -6.675     -11.947     -33.495     -57.332
+     5  -0.6153846  -0.3471719       -7.890     -14.438     -42.527     -74.312
+     4  -0.6923077  -0.4521902       -9.184     -17.167     -52.845     -93.953
+     3  -0.7692308  -0.5726962      -10.556     -20.129     -64.421    -116.196
+     2  -0.8461538  -0.7069434      -11.996     -23.296     -77.112    -140.748
+     1  -0.9230769  -0.8513110      -13.487     -26.616     -90.625    -167.000
+     0  -1.0000000  -1.0000000      -15.000     -30.000    -104.489    -193.977
+
+ Time Splitting Weights for Grid 01:    ndtfast =  20    nfast =  29
+ ==================================
+
+    Primary            Secondary            Accumulated to Current Step
+
+  1-0.0009651193358779 0.0500000000000000-0.0009651193358779 0.0500000000000000
+  2-0.0013488780126037 0.0500482559667939-0.0023139973484816 0.1000482559667939
+  3-0.0011514592651644 0.0501156998674241-0.0034654566136460 0.1501639558342180
+  4-0.0003735756740661 0.0501732728306823-0.0038390322877122 0.2003372286649003
+  5 0.0009829200513762 0.0501919516143856-0.0028561122363360 0.2505291802792859
+  6 0.0029141799764308 0.0501428056118168 0.0000580677400949 0.3006719858911027
+  7 0.0054132615310267 0.0499970966129953 0.0054713292711215 0.3506690825040980
+  8 0.0084687837865133 0.0497264335364439 0.0139401130576348 0.4003955160405419
+  9 0.0120633394191050 0.0493029943471183 0.0260034524767398 0.4496985103876601
+ 10 0.0161716623600090 0.0486998273761630 0.0421751148367488 0.4983983377638231
+ 11 0.0207585511322367 0.0478912442581626 0.0629336659689855 0.5462895820219857
+ 12 0.0257765478740990 0.0468533167015507 0.0887102138430846 0.5931428987235364
+ 13 0.0311633730493853 0.0455644893078458 0.1198735868924699 0.6387073880313822
+ 14 0.0368391158442262 0.0440063206553765 0.1567127027366961 0.6827137086867586
+ 15 0.0427031802506397 0.0421643648631652 0.1994158829873358 0.7248780735499238
+ 16 0.0486309868367616 0.0400292058506332 0.2480468698240974 0.7649072794005570
+ 17 0.0544704302037592 0.0375976565087951 0.3025173000278565 0.8025049359093521
+ 18 0.0600380921294286 0.0348741349986072 0.3625553921572851 0.8373790709079593
+ 19 0.0651152103984763 0.0318722303921357 0.4276706025557614 0.8692513013000950
+ 20 0.0694434033194839 0.0286164698722119 0.4971140058752453 0.8978677711723069
+ 21 0.0727201499285570 0.0251442997062377 0.5698341558038023 0.9230120708785446
+ 22 0.0745940258796570 0.0215082922098099 0.6444281816834592 0.9445203630883545
+ 23 0.0746596950216179 0.0177785909158270 0.7190878767050771 0.9622989540041815
+ 24 0.0724526566618460 0.0140456061647461 0.7915405333669231 0.9763445601689277
+ 25 0.0674437485167025 0.0104229733316538 0.8589842818836255 0.9867675335005816
+ 26 0.0590334053485720 0.0070507859058187 0.9180176872321975 0.9938183194064003
+ 27 0.0465456732896125 0.0040991156383901 0.9645633605218099 0.9979174350447905
+ 28 0.0292219798521905 0.0017718319739095 0.9937853403740003 0.9996892670187000
+ 29 0.0062146596259993 0.0003107329813000 0.9999999999999997 1.0000000000000000
+
+ ndtfast, nfast =   20  29   nfast/ndtfast =  1.45000
+
+ Centers of gravity and integrals (values must be 1, 1, approx 1/2, 1, 1):
+
+    1.000000000000 1.060707743385 0.530353871693 1.000000000000 1.000000000000
+
+ Power filter parameters, Fgamma, gamma =  0.28400   0.14200
+
+ Metrics information for Grid 01:
+ ===============================
+
+ Minimum X-grid spacing, DXmin =  2.00000000E+00 km
+ Maximum X-grid spacing, DXmax =  2.00000000E+00 km
+ Minimum Y-grid spacing, DYmin =  3.00000000E+00 km
+ Maximum Y-grid spacing, DYmax =  3.00000000E+00 km
+ Minimum Z-grid spacing, DZmin =  7.92527058E-01 m
+ Maximum Z-grid spacing, DZmax =  2.69776838E+01 m
+
+ Minimum barotropic Courant Number =  4.37372839E-02
+ Maximum barotropic Courant Number =  1.57282935E-01
+ Maximum Coriolis   Courant Number =  1.20000000E-02
+
+    ANA_INITIAL - vertically integrated u-momentum component: ubar
+                   (Grid = 01, Min =  0.00000000E+00 Max =  0.00000000E+00)
+    ANA_INITIAL - vertically integrated v-momentum component: vbar
+                   (Grid = 01, Min = -5.00000000E-02 Max = -5.00000000E-02)
+    ANA_INITIAL - free-surface: zeta
+                   (Grid = 01, Min =  0.00000000E+00 Max =  0.00000000E+00)
+    ANA_INITIAL - u-momentum component: u
+                   (Grid = 01, Min =  0.00000000E+00 Max =  0.00000000E+00)
+    ANA_INITIAL - v-momentum component: v
+                   (Grid = 01, Min = -5.64744972E-02 Max = -3.67845800E-02)
+    ANA_INITIAL - potential temperature: temp
+                   (Grid = 01, Min =  4.00000000E+00 Max =  4.00000000E+00)
+    ANA_INITIAL - salinity: salt
+                   (Grid = 01, Min =  3.20000000E+01 Max =  3.20000000E+01)
+ Found Error: 02   Line: 8378     Source: ROMS/Modules/mod_netcdf.F, netcdf_open
+
+ NETCDF_OPEN - unable to open existing NetCDF file:
+               ocean_rivers.nc
+               call from:  ROMS/Utility/check_multifile.F, check_file
+ Found Error: 03   Line: 591      Source: ROMS/Utility/check_multifile.F
+
+ CHECK_FILE - unable to open grid NetCDF file: ocean_rivers.nc
+ Found Error: 03   Line: 213      Source: ROMS/Utility/check_multifile.F
+ Found Error: 03   Line: 757      Source: ROMS/Nonlinear/initial.F
+ Found Error: 03   Line: 188      Source: ROMS/Drivers/nl_ocean.h
+
+ Elapsed CPU time (seconds):
+
+ Node   #    1 CPU:       0.013
+ Node   #    0 CPU:       0.013
+ Total:                   0.025
+
+ Nonlinear model elapsed CPU time profile, Grid: 01
+
+  Allocation and array initialization ..............         0.014  (54.2317 %)
+  2D/3D coupling, vertical metrics .................         0.001  ( 4.3679 %)
+  Omega vertical velocity ..........................         0.000  ( 1.0624 %)
+  Equation of state for seawater ...................         0.001  ( 3.4359 %)
+                                              Total:         0.016   63.0978
+
+ Nonlinear model message Passage profile, Grid: 01
+
+  Message Passage: 2D halo exchanges ...............         0.001  ( 4.7747 %)
+  Message Passage: 3D halo exchanges ...............         0.001  ( 2.1287 %)
+  Message Passage: data broadcast ..................         0.000  ( 1.4652 %)
+  Message Passage: data reduction ..................         0.001  ( 2.3024 %)
+  Message Passage: point data gathering ............         0.001  ( 2.2235 %)
+  Message Passage: synchronization barrier .........         0.000  ( 0.4107 %)
+                                              Total:         0.003   13.3052
+
+  Unique code regions profiled .....................         0.016   63.0978 %
+  Residual, non-profiled code ......................         0.009   36.9022 %
+
+
+ All percentages are with respect to total time =            0.025
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ Dynamic and Automatic memory (MB) usage for Grid 01:  50x70x13  tiling: 1x2
+
+     tile          Dynamic        Automatic            USAGE      MPI-Buffers
+
+        0            10.07             1.75            11.82             0.27
+        1            10.31             1.75            12.05             0.27
+
+    TOTAL            20.37             3.50            23.87             0.54
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+ ROMS/TOMS - Output NetCDF summary for Grid 01:
+
+ Analytical header files used:
+
+     ROMS/Functionals/ana_grid.h
+     ROMS/Functionals/ana_initial.h
+     ROMS/Functionals/ana_mask.h
+     ROMS/Functionals/ana_psource.h
+ Found Error: 03   Line: 350      Source: ROMS/Utility/close_io.F
+
+ ROMS/TOMS - Output error ............ exit_flag:   3
+
+
+ ERROR: Abnormal termination: NetCDF OUTPUT.
+ REASON: No such file or directory                                                       

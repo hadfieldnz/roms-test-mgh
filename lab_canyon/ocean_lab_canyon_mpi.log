@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Thursday - August 2, 2018 -  4:53:07 PM
- --------------------------------------------------------------------------------
+                          Thursday - January 31, 2019 -  4:57:29 PM
+--------------------------------------------------------------------------------
 
  Lab Canyon, A True Annulus Example, Polar Coordinates
 
@@ -15,7 +15,7 @@
  Input Script  : ocean_4x2.in
 
  Git Root URL  : git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 980b1fa2c4d10065239c7f7761b119b437a48825
+ Git Revision  : master commit 25c99104ec433e7ee92ab833c03c63036acf7697
  Git Status    : The working tree is clean
 
  Host Name     : niwa-1019320.niwa.local
@@ -24,7 +24,7 @@
  Header file   : lab_canyon.h
  Analytical Dir: /home/hadfield/ROMS/roms-test-mgh/lab_canyon
 
- Resolution, Grid 01: 0110x0250x025,  Parallel Nodes:   8,  Tiling: 004x002
+ Resolution, Grid 01: 110x250x25,  Parallel Nodes: 8,  Tiling: 4x2
 
 
  Physical Parameters, Grid: 01
@@ -120,7 +120,7 @@
              Output Restart File:  ocean_rst.nc
              Output History File:  ocean_his.nc
 
- Tile partition information for Grid 01:  0110x0250x0025  tiling: 004x002
+ Tile partition information for Grid 01:  110x250x25  tiling: 4x2
 
      tile     Istr     Iend     Jstr     Jend     Npts
 
@@ -206,7 +206,7 @@
  !COLLECT_ALL...     Using mpi_isend/mpi_recv in mp_collect routine.
  CURVGRID            Orthogonal curvilinear grid.
  DJ_GRADPS           Parabolic Splines density Jacobian (Shchepetkin, 2002).
- DOUBLE_PRECISION    Double precision arithmetic.
+ DOUBLE_PRECISION    Double precision arithmetic numerical kernel.
  MIX_GEO_TS          Mixing of tracers along geopotential surfaces.
  MIX_S_UV            Mixing of momentum along constant S-surfaces.
  MPI                 MPI distributed-memory configuration.
@@ -232,14 +232,14 @@
 
  Process Information:
 
- Node #  1 (pid=   15174) is active.
- Node #  2 (pid=   15175) is active.
- Node #  3 (pid=   15176) is active.
- Node #  5 (pid=   15178) is active.
- Node #  6 (pid=   15179) is active.
- Node #  7 (pid=   15181) is active.
- Node #  0 (pid=   15173) is active.
- Node #  4 (pid=   15177) is active.
+ Node #    0 (pid=   13126) is active.
+ Node #    2 (pid=   13128) is active.
+ Node #    3 (pid=   13129) is active.
+ Node #    4 (pid=   13130) is active.
+ Node #    5 (pid=   13131) is active.
+ Node #    6 (pid=   13132) is active.
+ Node #    7 (pid=   13133) is active.
+ Node #    1 (pid=   13127) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -1014,55 +1014,74 @@
 
  Elapsed CPU time (seconds):
 
- Node   #  2 CPU:      51.445
- Node   #  4 CPU:      48.452
- Node   #  3 CPU:      51.014
- Node   #  5 CPU:      48.950
- Node   #  6 CPU:      51.298
- Node   #  0 CPU:      48.794
- Node   #  7 CPU:      50.058
- Node   #  1 CPU:      49.306
- Total:               399.316
+ Node   #    0 CPU:      45.143
+ Node   #    7 CPU:      42.974
+ Node   #    1 CPU:      45.498
+ Node   #    2 CPU:      45.029
+ Node   #    3 CPU:      44.606
+ Node   #    5 CPU:      44.990
+ Node   #    6 CPU:      43.596
+ Node   #    4 CPU:      44.869
+ Total:                 356.704
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.135  ( 0.0339 %)
-  Ocean state initialization .......................         0.866  ( 0.2170 %)
-  Reading of input data ............................         0.007  ( 0.0017 %)
-  Processing of input data .........................         0.370  ( 0.0926 %)
-  Computation of vertical boundary conditions ......         0.388  ( 0.0973 %)
-  Computation of global information integrals ......         5.020  ( 1.2573 %)
-  Writing of output data ...........................        52.877  (13.2419 %)
-  Model 2D kernel ..................................       198.378  (49.6795 %)
-  2D/3D coupling, vertical metrics .................        13.597  ( 3.4051 %)
-  Omega vertical velocity ..........................         8.215  ( 2.0574 %)
-  Equation of state for seawater ...................         6.408  ( 1.6046 %)
-  3D equations right-side terms ....................        12.415  ( 3.1092 %)
-  3D equations predictor step ......................        37.483  ( 9.3867 %)
-  Pressure gradient ................................         9.513  ( 2.3824 %)
-  Harmonic mixing of tracers, geopotentials ........         7.496  ( 1.8772 %)
-  Harmonic stress tensor, S-surfaces ...............         5.939  ( 1.4873 %)
-  Corrector time-step for 3D momentum ..............        20.786  ( 5.2054 %)
-  Corrector time-step for tracers ..................        10.801  ( 2.7048 %)
-                                              Total:       390.694   97.8410
+  Allocation and array initialization ..............         0.144  ( 0.0405 %)
+  Ocean state initialization .......................         0.475  ( 0.1331 %)
+  Reading of input data ............................         0.007  ( 0.0019 %)
+  Processing of input data .........................         1.313  ( 0.3682 %)
+  Computation of vertical boundary conditions ......         0.680  ( 0.1906 %)
+  Computation of global information integrals ......         5.669  ( 1.5893 %)
+  Writing of output data ...........................        47.829  (13.4087 %)
+  Model 2D kernel ..................................       165.378  (46.3629 %)
+  2D/3D coupling, vertical metrics .................        14.384  ( 4.0326 %)
+  Omega vertical velocity ..........................         8.852  ( 2.4815 %)
+  Equation of state for seawater ...................         6.940  ( 1.9455 %)
+  3D equations right-side terms ....................        14.418  ( 4.0421 %)
+  3D equations predictor step ......................        24.391  ( 6.8380 %)
+  Pressure gradient ................................         9.811  ( 2.7503 %)
+  Harmonic mixing of tracers, geopotentials ........         7.640  ( 2.1419 %)
+  Harmonic stress tensor, S-surfaces ...............         6.465  ( 1.8126 %)
+  Corrector time-step for 3D momentum ..............        21.422  ( 6.0055 %)
+  Corrector time-step for tracers ..................        11.635  ( 3.2617 %)
+                                              Total:       347.454   97.4069
 
  Nonlinear model message Passage profile, Grid: 01
 
-  Message Passage: 2D halo exchanges ...............        87.869  (22.0048 %)
-  Message Passage: 3D halo exchanges ...............        17.202  ( 4.3077 %)
-  Message Passage: 4D halo exchanges ...............        19.692  ( 4.9313 %)
-  Message Passage: data broadcast ..................        28.245  ( 7.0734 %)
-  Message Passage: data reduction ..................         0.530  ( 0.1327 %)
-  Message Passage: data gathering ..................        14.588  ( 3.6532 %)
-  Message Passage: synchronization barrier .........         0.002  ( 0.0006 %)
-                                              Total:       168.127   42.1037
+  Message Passage: 2D halo exchanges ...............        57.481  (16.1144 %)
+  Message Passage: 3D halo exchanges ...............        19.911  ( 5.5819 %)
+  Message Passage: 4D halo exchanges ...............         7.462  ( 2.0919 %)
+  Message Passage: data broadcast ..................        24.719  ( 6.9298 %)
+  Message Passage: data reduction ..................         1.090  ( 0.3055 %)
+  Message Passage: data gathering ..................        13.095  ( 3.6710 %)
+  Message Passage: synchronization barrier .........         0.008  ( 0.0023 %)
+                                              Total:       123.765   34.6968
 
-  Unique code regions profiled .....................       390.694   97.8410 %
-  Residual, non-profiled code ......................         8.621    2.1590 %
+  Unique code regions profiled .....................       347.454   97.4069 %
+  Residual, non-profiled code ......................         9.250    2.5931 %
 
 
- All percentages are with respect to total time =          399.316
+ All percentages are with respect to total time =          356.704
 
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ Dynamic and Automatic memory (MB) usage for Grid 01:  110x250x25  tiling: 4x2
+
+     tile          Dynamic        Automatic            USAGE      MPI-Buffers
+
+        0            22.43            11.74            34.17             7.47
+        1            23.91            11.74            35.65             7.47
+        2            23.91            11.74            35.65             7.47
+        3            23.17            11.74            34.91             7.47
+        4            22.43            11.74            34.17             7.47
+        5            23.91            11.74            35.65             7.47
+        6            23.91            11.74            35.65             7.47
+        7            23.17            11.74            34.91             7.47
+
+    TOTAL           186.80            93.93           280.73            59.74
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
  ROMS/TOMS - Output NetCDF summary for Grid 01:
              number of time records written in HISTORY file = 00000024
@@ -1076,4 +1095,4 @@
      ROMS/Functionals/ana_smflux.h
      ROMS/Functionals/ana_stflux.h
 
- ROMS/TOMS: DONE... Thursday - August 2, 2018 -  4:54:00 PM
+ ROMS/TOMS: DONE... Thursday - January 31, 2019 -  4:58:16 PM

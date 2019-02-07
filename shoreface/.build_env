@@ -1,0 +1,22 @@
+# Specify variables used by script roms_build
+
+export ROMS_APPLICATION=SHOREFACE
+
+export MY_ROMS_SRC=${ROMS_ROOT}/roms-trunk-mgh
+export MY_ROMS_BRANCH=master
+
+export MY_HEADER_DIR=${PWD}
+
+# The following CPP flags match those in the roms-test branch's build.bash script.
+
+export  MY_CPP_FLAGS="-DAVERAGES"
+export  MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSTATIONS"
+export  MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNEARSHORE_MELLOR05"
+export  MY_CPP_FLAGS="${MY_CPP_FLAGS} -DWET_DRY -DMASKING"
+export  MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_MPDATA"
+export  MY_CPP_FLAGS="${MY_CPP_FLAGS} -DUV_VIS2"
+export  MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMIX_S_UV"
+export  MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSEDIMENT"
+export  MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMY25_MIXING"
+export  MY_CPP_FLAGS="${MY_CPP_FLAGS} -DUV_QDRAG"
+

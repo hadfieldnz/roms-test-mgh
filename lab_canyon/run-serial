@@ -3,10 +3,10 @@
 # MGH 2018-08-02
 #   A script to run the LAB_CANYON case in serial mode and save the output.
 
-if test ! -f oceanS
+if test ! -f romsS
 then
-  echo The oceanS executable is missing: build it with roms_build
+  echo The romsS executable is missing: build it with \"roms_build\"
   exit 1
 fi
 
-./oceanS < ocean_lab_canyon.in | tee ocean_lab_canyon.log
+./romsS < ocean_lab_canyon.in | tee ocean_lab_canyon.log

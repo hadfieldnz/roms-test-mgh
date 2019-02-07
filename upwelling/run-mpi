@@ -5,9 +5,9 @@
 
 set -e
 
-if test ! -f oceanM
+if test ! -f romsM
 then
-  echo The oceanM executable is missing: build it with \"roms_build -m\"
+  echo The romsM executable is missing: build it with \"roms_build -m\"
   exit 1
 fi
 
@@ -34,4 +34,4 @@ cat ocean_upwelling.in | \
         -e "s/NtileJ ==/NtileJ == ${nj} ! /" > ${infile}
 
 echo Running ROMS in MPI mode
-mpirun -np $((${ni}*${nj})) ./oceanM ${infile} | tee ocean_upwelling_mpi.log
+mpirun -np $((${ni}*${nj})) ./romsM ${infile} | tee ocean_upwelling_mpi.log

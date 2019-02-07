@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# MGH 2011-09-06
+#   A script to run the RIVERPLUME1 case and save the output.
+
+# MGH 2019-01-31
+#   Now uses MPI to allow TS_MPDATA with multiple tiles
+
+if test ! -f romsM
+then
+  echo The romsM executable is missing: build it with \"roms_build -m -b .build_env_1\"
+  exit 1
+fi
+
+mpirun -np 2 ./romsM ocean_riverplume1.in | tee ocean_riverplume1_mpi.log

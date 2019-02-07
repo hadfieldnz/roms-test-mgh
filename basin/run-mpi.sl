@@ -14,12 +14,12 @@
 #SBATCH --share
 #SBATCH --hint=nomultithread
 
-if test ! -f oceanM
+if test ! -f romsM
 then
-  echo The oceanM executable is missing: build it with "roms_build -m"
+  echo The romsM executable is missing: build it with \"roms_build -m\"
   exit 1
 fi
 
 date
-srun ./oceanM ocean_basin.in
+srun ./romsM ocean_basin.in
 date

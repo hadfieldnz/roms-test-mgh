@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#   A script to run the SOLITON case in serial mode and save the output.
+
+if test ! -f romsS
+then
+  echo The romsS executable is missing: build it with \"roms_build\"
+  exit 1
+fi
+
+./romsS < ocean_soliton.in | tee ocean_soliton.log

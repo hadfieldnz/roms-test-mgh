@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Tuesday - February 20, 2018 - 10:50:14 AM
- --------------------------------------------------------------------------------
+                          Thursday - January 31, 2019 - 11:31:55 AM
+--------------------------------------------------------------------------------
 
  Floats Trajectories 3D Test
 
@@ -9,18 +9,19 @@
  CPU/hardware     : x86_64
  Compiler system  : gfortran
  Compiler command : /usr/bin/gfortran
- Compiler flags   : -frepack-arrays -O3 -ffast-math -ffree-form -ffree-line-length-none -ffree-form -ffree-line-length-none
+ Compiler flags   : -frepack-arrays -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 76d3604b85bc7bb2b0c0fdb1162636a906377fb9
+ Git Revision  : master commit 25c99104ec433e7ee92ab833c03c63036acf7697
  Git Status    : The working tree is clean
 
+ Host Name     : niwa-1019320.niwa.local
  Local Root    : /home/hadfield/ROMS/roms-trunk-mgh
  Header Dir    : /home/hadfield/ROMS/roms-test-mgh/flt_test
  Header file   : flt_test.h
  Analytical Dir: /home/hadfield/ROMS/roms-trunk-mgh/ROMS/Functionals
 
- Resolution, Grid 01: 0014x0012x004,  Parallel Threads:  1,  Tiling: 001x001
+ Resolution, Grid 01: 14x12x4,  Parallel Threads: 1,  Tiling: 1x1
 
 
  Physical Parameters, Grid: 01
@@ -128,7 +129,7 @@
               Output Floats File:  ocean_flt_3d.nc
    Initial Floats Positions File:  floats_flt_test3d.in
 
- Tile partition information for Grid 01:  0014x0012x0004  tiling: 001x001
+ Tile partition information for Grid 01:  14x12x4  tiling: 1x1
 
      tile     Istr     Iend     Jstr     Jend     Npts
 
@@ -186,7 +187,7 @@
  ASSUMED_SHAPE       Using assumed-shape arrays.
  BODYFORCE           Momentum stresses as body-forces.
  DJ_GRADPS           Parabolic Splines density Jacobian (Shchepetkin, 2002).
- DOUBLE_PRECISION    Double precision arithmetic.
+ DOUBLE_PRECISION    Double precision arithmetic numerical kernel.
  FLOATS              Simulated Lagrangian drifters.
  MASKING             Land/Sea masking.
  MIX_S_UV            Mixing of momentum along constant S-surfaces.
@@ -209,7 +210,7 @@
 
  Process Information:
 
- Thread #  0 (pid=   11694) is active.
+ Thread #    0 (pid=   21328) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -656,37 +657,49 @@
 
  Elapsed CPU time (seconds):
 
- Thread #  0 CPU:       0.119
- Total:                 0.119
+ Thread #    0 CPU:       0.141
+ Total:                   0.141
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.001  ( 0.4387 %)
-  Ocean state initialization .......................         0.000  ( 0.1867 %)
-  Reading of input data ............................         0.000  ( 0.0887 %)
-  Processing of input data .........................         0.000  ( 0.1842 %)
-  Computation of vertical boundary conditions ......         0.000  ( 0.2319 %)
-  Computation of global information integrals ......         0.004  ( 3.1548 %)
-  Writing of output data ...........................         0.020  (16.3701 %)
-  Model 2D kernel ..................................         0.053  (44.5172 %)
-  Lagrangian floats trajectories ...................         0.010  ( 8.3508 %)
-  2D/3D coupling, vertical metrics .................         0.001  ( 0.9352 %)
-  Omega vertical velocity ..........................         0.001  ( 0.8657 %)
-  Equation of state for seawater ...................         0.001  ( 0.4672 %)
-  3D equations right-side terms ....................         0.004  ( 3.1196 %)
-  3D equations predictor step ......................         0.006  ( 4.6962 %)
-  Pressure gradient ................................         0.002  ( 2.0655 %)
-  Harmonic stress tensor, S-surfaces ...............         0.002  ( 1.6034 %)
-  Corrector time-step for 3D momentum ..............         0.004  ( 3.2486 %)
-  Corrector time-step for tracers ..................         0.005  ( 4.1218 %)
-                                              Total:         0.113   94.6466
+  Allocation and array initialization ..............         0.000  ( 0.2039 %)
+  Ocean state initialization .......................         0.000  ( 0.0874 %)
+  Reading of input data ............................         0.000  ( 0.1258 %)
+  Processing of input data .........................         0.000  ( 0.2302 %)
+  Computation of vertical boundary conditions ......         0.000  ( 0.3325 %)
+  Computation of global information integrals ......         0.005  ( 3.5045 %)
+  Writing of output data ...........................         0.020  (14.0465 %)
+  Model 2D kernel ..................................         0.064  (45.4442 %)
+  Lagrangian floats trajectories ...................         0.011  ( 8.1687 %)
+  2D/3D coupling, vertical metrics .................         0.002  ( 1.0886 %)
+  Omega vertical velocity ..........................         0.001  ( 0.8363 %)
+  Equation of state for seawater ...................         0.001  ( 0.5137 %)
+  3D equations right-side terms ....................         0.004  ( 2.9382 %)
+  3D equations predictor step ......................         0.007  ( 4.6471 %)
+  Pressure gradient ................................         0.003  ( 1.9320 %)
+  Harmonic stress tensor, S-surfaces ...............         0.002  ( 1.5910 %)
+  Corrector time-step for 3D momentum ..............         0.005  ( 3.2224 %)
+  Corrector time-step for tracers ..................         0.006  ( 3.9749 %)
+                                              Total:         0.131   92.8880
 
-  Unique code regions profiled .....................         0.113   94.6466 %
-  Residual, non-profiled code ......................         0.006    5.3534 %
+  Unique code regions profiled .....................         0.131   92.8880 %
+  Residual, non-profiled code ......................         0.010    7.1120 %
 
 
- All percentages are with respect to total time =            0.119
+ All percentages are with respect to total time =            0.141
 
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ Dynamic and Automatic memory (MB) usage for Grid 01:  14x12x4  tiling: 1x1
+
+     tile          Dynamic        Automatic            USAGE
+
+        0             1.60             0.09             1.69
+
+    TOTAL             1.60             0.09             1.69
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
  ROMS/TOMS - Output NetCDF summary for Grid 01:
              number of time records written in HISTORY file = 00000046
@@ -701,4 +714,4 @@
      ROMS/Functionals/ana_smflux.h
      ROMS/Functionals/ana_stflux.h
 
- ROMS/TOMS: DONE... Tuesday - February 20, 2018 - 10:50:15 AM
+ ROMS/TOMS: DONE... Thursday - January 31, 2019 - 11:31:56 AM

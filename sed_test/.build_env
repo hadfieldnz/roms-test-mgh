@@ -1,0 +1,13 @@
+# Specify variables used by script roms_build
+
+export ROMS_APPLICATION=SED_TEST1
+
+export MY_ROMS_SRC=${ROMS_ROOT}/roms-trunk-mgh
+export MY_ROMS_BRANCH=master
+
+export MY_HEADER_DIR=${PWD}
+
+# The following CPP flags match those in the roms-test branch's build.bash script.
+
+export MY_CPP_FLAGS="-DAVERAGES -DMY25_MIXING"
+

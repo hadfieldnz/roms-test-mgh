@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Tuesday - February 20, 2018 - 10:51:10 AM
- --------------------------------------------------------------------------------
+                          Thursday - January 31, 2019 - 11:28:48 AM
+--------------------------------------------------------------------------------
 
  Floats Trajectories 2D Test
 
@@ -9,18 +9,19 @@
  CPU/hardware     : x86_64
  Compiler system  : gfortran
  Compiler command : /usr/bin/gfortran
- Compiler flags   : -frepack-arrays -O3 -ffast-math -ffree-form -ffree-line-length-none -ffree-form -ffree-line-length-none
+ Compiler flags   : -frepack-arrays -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 76d3604b85bc7bb2b0c0fdb1162636a906377fb9
+ Git Revision  : master commit 25c99104ec433e7ee92ab833c03c63036acf7697
  Git Status    : The working tree is clean
 
+ Host Name     : niwa-1019320.niwa.local
  Local Root    : /home/hadfield/ROMS/roms-trunk-mgh
  Header Dir    : /home/hadfield/ROMS/roms-test-mgh/flt_test
  Header file   : flt_test.h
  Analytical Dir: /home/hadfield/ROMS/roms-trunk-mgh/ROMS/Functionals
 
- Resolution, Grid 01: 0014x0012x001,  Parallel Threads:  1,  Tiling: 001x001
+ Resolution, Grid 01: 14x12x1,  Parallel Threads: 1,  Tiling: 1x1
 
 
  Physical Parameters, Grid: 01
@@ -83,7 +84,7 @@
               Output Floats File:  ocean_flt_2d.nc
    Initial Floats Positions File:  floats_flt_test2d.in
 
- Tile partition information for Grid 01:  0014x0012  tiling: 001x001
+ Tile partition information for Grid 01:  14x12  tiling: 1x1
 
      tile     Istr     Iend     Jstr     Jend     Npts
 
@@ -129,7 +130,7 @@
  ANA_INITIAL         Analytical initial conditions.
  ANA_SMFLUX          Analytical kinematic surface momentum flux.
  ASSUMED_SHAPE       Using assumed-shape arrays.
- DOUBLE_PRECISION    Double precision arithmetic.
+ DOUBLE_PRECISION    Double precision arithmetic numerical kernel.
  FLOATS              Simulated Lagrangian drifters.
  MASKING             Land/Sea masking.
  NONLINEAR           Nonlinear Model.
@@ -141,7 +142,7 @@
 
  Process Information:
 
- Thread #  0 (pid=   14569) is active.
+ Thread #    0 (pid=   18730) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -2592,28 +2593,40 @@
 
  Elapsed CPU time (seconds):
 
- Thread #  0 CPU:       0.113
- Total:                 0.113
+ Thread #    0 CPU:       0.138
+ Total:                   0.138
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.000  ( 0.0859 %)
-  Ocean state initialization .......................         0.000  ( 0.0647 %)
-  Reading of input data ............................         0.001  ( 0.5110 %)
-  Processing of input data .........................         0.001  ( 0.9379 %)
-  Computation of vertical boundary conditions ......         0.002  ( 1.8191 %)
-  Computation of global information integrals ......         0.018  (15.6339 %)
-  Writing of output data ...........................         0.009  ( 7.6642 %)
-  Model 2D kernel ..................................         0.035  (30.9543 %)
-  Lagrangian floats trajectories ...................         0.039  (34.3152 %)
-                                              Total:         0.104   91.9860
+  Allocation and array initialization ..............         0.000  ( 0.0790 %)
+  Ocean state initialization .......................         0.000  ( 0.0471 %)
+  Reading of input data ............................         0.001  ( 0.8593 %)
+  Processing of input data .........................         0.002  ( 1.1783 %)
+  Computation of vertical boundary conditions ......         0.004  ( 2.7794 %)
+  Computation of global information integrals ......         0.034  (24.6367 %)
+  Writing of output data ...........................         0.010  ( 7.0902 %)
+  Model 2D kernel ..................................         0.034  (24.9463 %)
+  Lagrangian floats trajectories ...................         0.037  (26.9818 %)
+                                              Total:         0.122   88.5982
 
-  Unique code regions profiled .....................         0.104   91.9860 %
-  Residual, non-profiled code ......................         0.009    8.0140 %
+  Unique code regions profiled .....................         0.122   88.5982 %
+  Residual, non-profiled code ......................         0.016   11.4018 %
 
 
- All percentages are with respect to total time =            0.113
+ All percentages are with respect to total time =            0.138
 
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ Dynamic and Automatic memory (MB) usage for Grid 01:  14x12  tiling: 1x1
+
+     tile          Dynamic        Automatic            USAGE
+
+        0             1.26             0.10             1.36
+
+    TOTAL             1.26             0.10             1.36
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
  ROMS/TOMS - Output NetCDF summary for Grid 01:
              number of time records written in HISTORY file = 00000065
@@ -2626,4 +2639,4 @@
      ROMS/Functionals/ana_mask.h
      ROMS/Functionals/ana_smflux.h
 
- ROMS/TOMS: DONE... Tuesday - February 20, 2018 - 10:51:11 AM
+ ROMS/TOMS: DONE... Thursday - January 31, 2019 - 11:28:48 AM

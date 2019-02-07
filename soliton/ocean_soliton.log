@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Wednesday - July 4, 2018 -  2:32:42 PM
- --------------------------------------------------------------------------------
+                          Thursday - February 7, 2019 -  1:13:19 PM
+--------------------------------------------------------------------------------
 
  Equatorial Rossby Soliton Test
 
@@ -9,18 +9,19 @@
  CPU/hardware     : x86_64
  Compiler system  : gfortran
  Compiler command : /usr/bin/gfortran
- Compiler flags   : -frepack-arrays -O3 -ffast-math -ffree-form -ffree-line-length-none -ffree-form -ffree-line-length-none
+ Compiler flags   : -frepack-arrays -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 6d5f13928ddd238493498f49ed3c5777b3dc255a
+ Git Revision  : master commit 4bcebd211800df7eadd478e01b200fc65601ebc3
  Git Status    : The working tree is clean
 
+ Host Name     : niwa-1019320.niwa.local
  Local Root    : /home/hadfield/ROMS/roms-trunk-mgh
  Header Dir    : /home/hadfield/ROMS/roms-test-mgh/soliton
  Header file   : soliton.h
  Analytical Dir: /home/hadfield/ROMS/roms-trunk-mgh/ROMS/Functionals
 
- Resolution, Grid 01: 0096x0032x001,  Parallel Threads:  1,  Tiling: 001x001
+ Resolution, Grid 01: 96x32x1,  Parallel Threads: 1,  Tiling: 1x1
 
 
  Physical Parameters, Grid: 01
@@ -43,6 +44,10 @@
                                  into history file.
           0  nQCK              Number of timesteps between the writing fields
                                  into quicksave file.
+          1  ntsAVG            Starting timestep for the accumulation of output
+                                 time-averaged data.
+         80  nAVG              Number of timesteps between the writing of
+                                 time-averaged data into averages file.
           F  LuvSponge         Turning OFF sponge on horizontal momentum.
  3.0000E-04  rdrg              Linear bottom drag coefficient (m/s).
  3.0000E-03  rdrg2             Quadratic bottom drag coefficient.
@@ -72,12 +77,17 @@
           T  Hout(idUbar)      Write out 2D U-momentum component.
           T  Hout(idVbar)      Write out 2D V-momentum component.
 
+          T  Aout(idFsur)      Write out averaged free-surface.
+          T  Aout(idUbar)      Write out averaged 2D U-momentum component.
+          T  Aout(idVbar)      Write out averaged 2D V-momentum component.
+
  Output/Input Files:
 
              Output Restart File:  ocean_rst.nc
              Output History File:  ocean_his.nc
+            Output Averages File:  ocean_avg.nc
 
- Tile partition information for Grid 01:  0096x0032  tiling: 001x001
+ Tile partition information for Grid 01:  96x32  tiling: 1x1
 
      tile     Istr     Iend     Jstr     Jend     Npts
 
@@ -108,23 +118,24 @@
 
  Activated C-preprocessing Options:
 
- SOLITON             Equatorial Rossby Soliton Test
- ANA_GRID            Analytical grid set-up.
- ANA_INITIAL         Analytical initial conditions.
- ANA_SMFLUX          Analytical kinematic surface momentum flux.
- ASSUMED_SHAPE       Using assumed-shape arrays.
- DOUBLE_PRECISION    Double precision arithmetic.
- NONLINEAR           Nonlinear Model.
- PROFILE             Time profiling activated .
- !RST_SINGLE         Double precision fields in restart NetCDF file.
- UV_ADV              Advection of momentum.
- UV_COR              Coriolis term.
- UV_C4ADVECTION      Fourth-order centered differences advection of momentum.
- UV_QDRAG            Quadratic bottom stress.
+ SOLITON                 Equatorial Rossby Soliton Test
+ ANA_GRID                Analytical grid set-up
+ ANA_INITIAL             Analytical initial conditions
+ ANA_SMFLUX              Analytical kinematic surface momentum flux
+ ASSUMED_SHAPE           Using assumed-shape arrays
+ AVERAGES                Writing out time-averaged nonlinear model fields
+ DOUBLE_PRECISION        Double precision arithmetic numerical kernel.
+ NONLINEAR               Nonlinear Model
+ PROFILE                 Time profiling activated
+ !RST_SINGLE             Double precision fields in restart NetCDF file
+ UV_ADV                  Advection of momentum
+ UV_COR                  Coriolis term
+ UV_C4ADVECTION          Fourth-order centered differences advection of momentum
+ UV_QDRAG                Quadratic bottom stress
 
  Process Information:
 
- Thread #  0 (pid=    8471) is active.
+ Thread #    0 (pid=   11884) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -193,6 +204,7 @@
                           (64,16)  2.466277E-02  4.087514E-04  2.507152E-02  2.467417E-01
       DEF_HIS     - creating  history      file, Grid 01: ocean_his.nc
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000001
+      DEF_AVG     - creating  average      file, Grid 01: ocean_avg.nc
       DEF_RST   - creating restart file: ocean_rst.nc
          1 0001-01-01 00:00:00.00  2.207882E-04  1.893988E-04  4.101870E-04  7.714352E+02
                           (64,16)  2.471746E-02  3.588564E-04  2.507631E-02  2.472623E-01
@@ -355,6 +367,7 @@
         80 0001-01-01 00:00:04.00  2.358399E-04  1.735205E-04  4.093604E-04  7.714352E+02
                           (61,16)  2.574454E-02  3.067389E-04  2.605128E-02  2.574979E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000002
+      WRT_AVG     - wrote averaged    fields             in record = 0000001
         81 0001-01-01 00:00:04.00  2.357073E-04  1.736416E-04  4.093489E-04  7.714352E+02
                           (61,16)  2.576343E-02  2.827156E-04  2.604615E-02  2.576765E-01
         82 0001-01-01 00:00:04.00  2.355648E-04  1.737727E-04  4.093375E-04  7.714352E+02
@@ -516,6 +529,7 @@
        160 0001-01-01 00:00:08.00  2.373816E-04  1.711757E-04  4.085573E-04  7.714352E+02
                           (59,16)  2.494354E-02  7.981198E-04  2.574166E-02  2.564654E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000003
+      WRT_AVG     - wrote averaged    fields             in record = 0000002
        161 0001-01-01 00:00:08.00  2.374778E-04  1.710695E-04  4.085473E-04  7.714352E+02
                           (58,16)  2.565572E-02  3.851309E-05  2.569424E-02  2.565584E-01
        162 0001-01-01 00:00:08.00  2.375724E-04  1.709649E-04  4.085373E-04  7.714352E+02
@@ -677,6 +691,7 @@
        240 0001-01-01 00:00:12.00  2.382474E-04  1.695151E-04  4.077624E-04  7.714352E+02
                           (55,16)  2.549412E-02  1.503927E-04  2.564451E-02  2.549515E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000004
+      WRT_AVG     - wrote averaged    fields             in record = 0000003
        241 0001-01-01 00:00:12.00  2.381316E-04  1.696207E-04  4.077523E-04  7.714352E+02
                           (55,17)  2.548939E-02  1.716882E-04  2.566108E-02  2.549086E-01
        242 0001-01-01 00:00:12.00  2.380251E-04  1.697169E-04  4.077421E-04  7.714352E+02
@@ -838,6 +853,7 @@
        320 0001-01-01 00:00:16.00  2.395956E-04  1.673619E-04  4.069575E-04  7.714352E+02
                           (52,17)  2.525820E-02  3.968098E-04  2.565501E-02  2.526581E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000005
+      WRT_AVG     - wrote averaged    fields             in record = 0000004
        321 0001-01-01 00:00:16.00  2.395428E-04  1.674050E-04  4.069479E-04  7.714352E+02
                           (52,17)  2.524672E-02  4.180012E-04  2.566472E-02  2.525543E-01
        322 0001-01-01 00:00:16.00  2.394912E-04  1.674470E-04  4.069382E-04  7.714352E+02
@@ -999,6 +1015,7 @@
        400 0001-01-01 00:00:20.00  2.401833E-04  1.659522E-04  4.061354E-04  7.714352E+02
                           (49,17)  2.489884E-02  5.550892E-04  2.545393E-02  2.502776E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000006
+      WRT_AVG     - wrote averaged    fields             in record = 0000005
        401 0001-01-01 00:00:20.00  2.400946E-04  1.660307E-04  4.061253E-04  7.714352E+02
                           (49,17)  2.486908E-02  5.800989E-04  2.544918E-02  2.506362E-01
        402 0001-01-01 00:00:20.00  2.400091E-04  1.661061E-04  4.061152E-04  7.714352E+02
@@ -1160,6 +1177,7 @@
        480 0001-01-01 00:00:24.00  2.406108E-04  1.646856E-04  4.052964E-04  7.714352E+02
                           (46,17)  2.445232E-02  7.437606E-04  2.519608E-02  2.497520E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000007
+      WRT_AVG     - wrote averaged    fields             in record = 0000006
        481 0001-01-01 00:00:24.00  2.405497E-04  1.647365E-04  4.052862E-04  7.714352E+02
                           (46,17)  2.440910E-02  7.698106E-04  2.517891E-02  2.499512E-01
        482 0001-01-01 00:00:24.00  2.404874E-04  1.647887E-04  4.052761E-04  7.714352E+02
@@ -1321,6 +1339,7 @@
        560 0001-01-01 00:00:28.00  2.403734E-04  1.640756E-04  4.044490E-04  7.714352E+02
                           (42,17)  2.485606E-02  1.830488E-04  2.503911E-02  2.485760E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000008
+      WRT_AVG     - wrote averaged    fields             in record = 0000007
        561 0001-01-01 00:00:28.00  2.402899E-04  1.641486E-04  4.044385E-04  7.714352E+02
                           (42,17)  2.485491E-02  2.143790E-04  2.506929E-02  2.485709E-01
        562 0001-01-01 00:00:28.00  2.402045E-04  1.642235E-04  4.044281E-04  7.714352E+02
@@ -1482,6 +1501,7 @@
        640 0001-01-01 00:00:32.00  2.336737E-04  1.699167E-04  4.035905E-04  7.714352E+02
                           (39,16)  2.450965E-02  3.713346E-04  2.488098E-02  2.451685E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000009
+      WRT_AVG     - wrote averaged    fields             in record = 0000008
        641 0001-01-01 00:00:32.00  2.334543E-04  1.701259E-04  4.035802E-04  7.714352E+02
                           (39,16)  2.448547E-02  4.049876E-04  2.489046E-02  2.449408E-01
        642 0001-01-01 00:00:32.00  2.332330E-04  1.703370E-04  4.035700E-04  7.714352E+02
@@ -1643,6 +1663,7 @@
        720 0001-01-01 00:00:36.00  2.305469E-04  1.722557E-04  4.028026E-04  7.714352E+02
                           (35,17)  2.429121E-02  2.375233E-04  2.452873E-02  2.429395E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000010
+      WRT_AVG     - wrote averaged    fields             in record = 0000009
        721 0001-01-01 00:00:36.00  2.306872E-04  1.721050E-04  4.027922E-04  7.714352E+02
                           (35,17)  2.432923E-02  2.037069E-04  2.453294E-02  2.433122E-01
        722 0001-01-01 00:00:36.00  2.308294E-04  1.719524E-04  4.027818E-04  7.714352E+02
@@ -1804,6 +1825,7 @@
        800 0001-01-01 00:00:40.00  2.392284E-04  1.627411E-04  4.019695E-04  7.714352E+02
                           (32,16)  2.455114E-02  3.345316E-05  2.458460E-02  2.455120E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000011
+      WRT_AVG     - wrote averaged    fields             in record = 0000010
       WRT_RST     - wrote re-start    fields (Index=1)   in record = 0000001
        801 0001-01-01 00:00:40.00  2.392435E-04  1.627153E-04  4.019587E-04  7.714352E+02
                           (31,17)  2.386194E-02  6.874303E-04  2.454937E-02  2.454871E-01
@@ -1966,6 +1988,7 @@
        880 0001-01-01 00:00:44.00  2.383065E-04  1.628124E-04  4.011190E-04  7.714352E+02
                           (28,17)  2.410272E-02  5.240140E-04  2.462673E-02  2.444282E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000012
+      WRT_AVG     - wrote averaged    fields             in record = 0000011
        881 0001-01-01 00:00:44.00  2.382974E-04  1.628109E-04  4.011083E-04  7.714352E+02
                           (28,17)  2.414026E-02  4.947729E-04  2.463503E-02  2.442631E-01
        882 0001-01-01 00:00:44.00  2.382855E-04  1.628121E-04  4.010976E-04  7.714352E+02
@@ -2127,6 +2150,7 @@
        960 0001-01-01 00:00:48.00  2.373439E-04  1.629305E-04  4.002743E-04  7.714352E+02
                           (25,17)  2.430544E-02  3.528652E-04  2.465830E-02  2.431235E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000013
+      WRT_AVG     - wrote averaged    fields             in record = 0000012
        961 0001-01-01 00:00:48.00  2.373359E-04  1.629277E-04  4.002636E-04  7.714352E+02
                           (25,17)  2.432528E-02  3.238524E-04  2.464913E-02  2.433105E-01
        962 0001-01-01 00:00:48.00  2.373269E-04  1.629259E-04  4.002528E-04  7.714352E+02
@@ -2288,6 +2312,7 @@
       1040 0001-01-01 00:00:52.00  2.366892E-04  1.627463E-04  3.994355E-04  7.714352E+02
                           (22,17)  2.434892E-02  1.269650E-04  2.447588E-02  2.434988E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000014
+      WRT_AVG     - wrote averaged    fields             in record = 0000013
       1041 0001-01-01 00:00:52.00  2.367038E-04  1.627212E-04  3.994250E-04  7.714352E+02
                           (22,17)  2.435312E-02  1.005796E-04  2.445370E-02  2.435372E-01
       1042 0001-01-01 00:00:52.00  2.367171E-04  1.626974E-04  3.994145E-04  7.714352E+02
@@ -2449,6 +2474,7 @@
       1120 0001-01-01 00:00:56.00  2.358526E-04  1.627488E-04  3.986014E-04  7.714352E+02
                           (18,17)  2.383171E-02  5.939491E-04  2.442566E-02  2.432770E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000015
+      WRT_AVG     - wrote averaged    fields             in record = 0000014
       1121 0001-01-01 00:00:56.00  2.358422E-04  1.627488E-04  3.985910E-04  7.714352E+02
                           (18,17)  2.387540E-02  5.692491E-04  2.444465E-02  2.431538E-01
       1122 0001-01-01 00:00:56.00  2.358320E-04  1.627485E-04  3.985806E-04  7.714352E+02
@@ -2610,6 +2636,7 @@
       1200 0001-01-01 00:01:00.00  2.350044E-04  1.627683E-04  3.977727E-04  7.714352E+02
                           (16,17)  2.415097E-02  2.777518E-04  2.442872E-02  2.415579E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000016
+      WRT_AVG     - wrote averaged    fields             in record = 0000015
       1201 0001-01-01 00:01:00.00  2.349963E-04  1.627661E-04  3.977624E-04  7.714352E+02
                           (16,17)  2.412312E-02  3.039338E-04  2.442705E-02  2.412890E-01
       1202 0001-01-01 00:01:00.00  2.349901E-04  1.627620E-04  3.977521E-04  7.714352E+02
@@ -2771,6 +2798,7 @@
       1280 0001-01-01 00:01:04.00  2.329303E-04  1.640162E-04  3.969465E-04  7.714352E+02
                           (13,17)  2.388112E-02  4.706210E-04  2.435174E-02  2.416016E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000017
+      WRT_AVG     - wrote averaged    fields             in record = 0000016
       1281 0001-01-01 00:01:04.00  2.328564E-04  1.640798E-04  3.969362E-04  7.714352E+02
                           (12,17)  2.416991E-02  1.610312E-04  2.433094E-02  2.417162E-01
       1282 0001-01-01 00:01:04.00  2.327799E-04  1.641458E-04  3.969258E-04  7.714352E+02
@@ -2932,6 +2960,7 @@
       1360 0001-01-01 00:01:08.00  2.220875E-04  1.740623E-04  3.961499E-04  7.714352E+02
                           (10,17)  2.296121E-02  7.051548E-04  2.366637E-02  2.341103E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000018
+      WRT_AVG     - wrote averaged    fields             in record = 0000017
       1361 0001-01-01 00:01:08.00  2.220123E-04  1.741288E-04  3.961411E-04  7.714352E+02
                           (10,17)  2.288826E-02  7.243635E-04  2.361262E-02  2.339243E-01
       1362 0001-01-01 00:01:08.00  2.219380E-04  1.741943E-04  3.961323E-04  7.714352E+02
@@ -3093,6 +3122,7 @@
       1440 0001-01-01 00:01:12.00  2.304848E-04  1.648892E-04  3.953739E-04  7.714352E+02
                           (06,17)  2.415146E-02  2.183919E-04  2.436985E-02  2.415390E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000019
+      WRT_AVG     - wrote averaged    fields             in record = 0000018
       1441 0001-01-01 00:01:12.00  2.307010E-04  1.646636E-04  3.953646E-04  7.714352E+02
                           (06,17)  2.413249E-02  2.427845E-04  2.437528E-02  2.413559E-01
       1442 0001-01-01 00:01:12.00  2.309082E-04  1.644471E-04  3.953553E-04  7.714352E+02
@@ -3254,6 +3284,7 @@
       1520 0001-01-01 00:01:16.00  2.325787E-04  1.619808E-04  3.945595E-04  7.714352E+02
                           (03,17)  2.385424E-02  3.356200E-04  2.418986E-02  2.388236E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000020
+      WRT_AVG     - wrote averaged    fields             in record = 0000019
       1521 0001-01-01 00:01:16.00  2.326184E-04  1.619313E-04  3.945497E-04  7.714352E+02
                           (03,17)  2.382516E-02  3.691519E-04  2.419431E-02  2.390683E-01
       1522 0001-01-01 00:01:16.00  2.326720E-04  1.618682E-04  3.945401E-04  7.714352E+02
@@ -3415,6 +3446,7 @@
       1600 0001-01-01 00:01:20.00  2.315968E-04  1.621553E-04  3.937521E-04  7.714352E+02
                           (95,17)  2.395451E-02  2.053536E-04  2.415986E-02  2.395666E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000021
+      WRT_AVG     - wrote averaged    fields             in record = 0000020
       WRT_RST     - wrote re-start    fields (Index=1)   in record = 0000002
       1601 0001-01-01 00:01:20.00  2.314507E-04  1.622909E-04  3.937416E-04  7.714352E+02
                           (95,17)  2.396536E-02  1.770955E-04  2.414246E-02  2.396692E-01
@@ -3577,6 +3609,7 @@
       1680 0001-01-01 00:01:24.00  2.328352E-04  1.601196E-04  3.929548E-04  7.714352E+02
                           (92,17)  2.391449E-02  6.194338E-05  2.397644E-02  2.391472E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000022
+      WRT_AVG     - wrote averaged    fields             in record = 0000021
       1681 0001-01-01 00:01:24.00  2.328306E-04  1.601146E-04  3.929452E-04  7.714352E+02
                           (92,16)  2.390798E-02  7.811451E-05  2.398610E-02  2.390839E-01
       1682 0001-01-01 00:01:24.00  2.328053E-04  1.601301E-04  3.929355E-04  7.714352E+02
@@ -3738,6 +3771,7 @@
       1760 0001-01-01 00:01:28.00  2.298790E-04  1.622668E-04  3.921459E-04  7.714352E+02
                           (89,17)  2.377523E-02  3.051782E-04  2.408040E-02  2.378034E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000023
+      WRT_AVG     - wrote averaged    fields             in record = 0000022
       1761 0001-01-01 00:01:28.00  2.300402E-04  1.620968E-04  3.921370E-04  7.714352E+02
                           (89,17)  2.375384E-02  3.325736E-04  2.408642E-02  2.376000E-01
       1762 0001-01-01 00:01:28.00  2.302140E-04  1.619141E-04  3.921282E-04  7.714352E+02
@@ -3899,6 +3933,7 @@
       1840 0001-01-01 00:01:32.00  2.298332E-04  1.615153E-04  3.913485E-04  7.714352E+02
                           (85,17)  2.373574E-02  2.680784E-04  2.400382E-02  2.373999E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000024
+      WRT_AVG     - wrote averaged    fields             in record = 0000023
       1841 0001-01-01 00:01:32.00  2.296776E-04  1.616608E-04  3.913384E-04  7.714352E+02
                           (85,17)  2.375287E-02  2.409998E-04  2.399387E-02  2.375627E-01
       1842 0001-01-01 00:01:32.00  2.295324E-04  1.617958E-04  3.913282E-04  7.714352E+02
@@ -4060,6 +4095,7 @@
       1920 0001-01-01 00:01:36.00  2.306423E-04  1.599185E-04  3.905608E-04  7.714352E+02
                           (83,17)  2.322046E-02  6.017101E-04  2.382217E-02  2.378788E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000025
+      WRT_AVG     - wrote averaged    fields             in record = 0000024
       1921 0001-01-01 00:01:36.00  2.306855E-04  1.598659E-04  3.905514E-04  7.714352E+02
                           (82,17)  2.378986E-02  5.917404E-06  2.379578E-02  2.378986E-01
       1922 0001-01-01 00:01:36.00  2.307092E-04  1.598327E-04  3.905419E-04  7.714352E+02
@@ -4221,6 +4257,7 @@
       2000 0001-01-01 00:01:40.00  2.227350E-04  1.670215E-04  3.897565E-04  7.714352E+02
                           (79,17)  2.361093E-02  1.577181E-04  2.376865E-02  2.361230E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000026
+      WRT_AVG     - wrote averaged    fields             in record = 0000025
       2001 0001-01-01 00:01:40.00  2.226213E-04  1.671259E-04  3.897472E-04  7.714352E+02
                           (79,17)  2.359539E-02  1.864488E-04  2.378184E-02  2.359732E-01
       2002 0001-01-01 00:01:40.00  2.225250E-04  1.672130E-04  3.897380E-04  7.714352E+02
@@ -4382,6 +4419,7 @@
       2080 0001-01-01 00:01:44.00  2.182058E-04  1.708290E-04  3.890348E-04  7.714352E+02
                           (75,17)  2.286295E-02  3.538003E-04  2.321675E-02  2.286967E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000027
+      WRT_AVG     - wrote averaged    fields             in record = 0000026
       2081 0001-01-01 00:01:44.00  2.182572E-04  1.707684E-04  3.890255E-04  7.714352E+02
                           (75,17)  2.290595E-02  3.362050E-04  2.324215E-02  2.291186E-01
       2082 0001-01-01 00:01:44.00  2.183058E-04  1.707105E-04  3.890162E-04  7.714352E+02
@@ -4543,6 +4581,7 @@
       2160 0001-01-01 00:01:48.00  2.273308E-04  1.609331E-04  3.882639E-04  7.714352E+02
                           (73,17)  2.326929E-02  5.086083E-04  2.377790E-02  2.356468E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000028
+      WRT_AVG     - wrote averaged    fields             in record = 0000027
       2161 0001-01-01 00:01:48.00  2.274632E-04  1.607918E-04  3.882550E-04  7.714352E+02
                           (73,17)  2.322724E-02  5.334196E-04  2.376066E-02  2.357748E-01
       2162 0001-01-01 00:01:48.00  2.275971E-04  1.606489E-04  3.882461E-04  7.714352E+02
@@ -4704,6 +4743,7 @@
       2240 0001-01-01 00:01:52.00  2.279094E-04  1.595711E-04  3.874804E-04  7.714352E+02
                           (69,16)  2.365569E-02  3.496084E-05  2.369065E-02  2.365574E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000029
+      WRT_AVG     - wrote averaged    fields             in record = 0000028
       2241 0001-01-01 00:01:52.00  2.278290E-04  1.596415E-04  3.874705E-04  7.714352E+02
                           (69,16)  2.365103E-02  7.245821E-06  2.365828E-02  2.365106E-01
       2242 0001-01-01 00:01:52.00  2.277520E-04  1.597086E-04  3.874606E-04  7.714352E+02
@@ -4865,6 +4905,7 @@
       2320 0001-01-01 00:01:56.00  2.269349E-04  1.597666E-04  3.867015E-04  7.714352E+02
                           (66,16)  2.348595E-02  1.808361E-04  2.366679E-02  2.348789E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000030
+      WRT_AVG     - wrote averaged    fields             in record = 0000029
       2321 0001-01-01 00:01:56.00  2.269900E-04  1.597020E-04  3.866920E-04  7.714352E+02
                           (66,16)  2.346903E-02  2.027827E-04  2.367182E-02  2.347151E-01
       2322 0001-01-01 00:01:56.00  2.270426E-04  1.596400E-04  3.866825E-04  7.714352E+02
@@ -5026,35 +5067,50 @@
       2400 0001-01-01 00:02:00.00  2.257650E-04  1.601580E-04  3.859230E-04  7.714352E+02
                           (62,17)  2.339312E-02  2.910044E-04  2.368412E-02  2.339801E-01
       WRT_HIS     - wrote history     fields (Index=1)   in record = 0000031
+      WRT_AVG     - wrote averaged    fields             in record = 0000030
       WRT_RST     - wrote re-start    fields (Index=1)   in record = 0000001
 
  Elapsed CPU time (seconds):
 
- Thread #  0 CPU:       1.625
- Total:                 1.625
+ Thread #    0 CPU:       1.842
+ Total:                   1.842
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.001  ( 0.0536 %)
-  Ocean state initialization .......................         0.001  ( 0.0600 %)
-  Reading of input data ............................         0.002  ( 0.1406 %)
-  Processing of input data .........................         0.008  ( 0.4957 %)
-  Computation of vertical boundary conditions ......         0.031  ( 1.9320 %)
-  Computation of global information integrals ......         0.083  ( 5.0868 %)
-  Writing of output data ...........................         0.010  ( 0.6005 %)
-  Model 2D kernel ..................................         1.461  (89.8921 %)
-                                              Total:         1.597   98.2612
+  Allocation and array initialization ..............         0.001  ( 0.0654 %)
+  Ocean state initialization .......................         0.001  ( 0.0696 %)
+  Reading of input data ............................         0.003  ( 0.1367 %)
+  Processing of input data .........................         0.010  ( 0.5614 %)
+  Processing of output time averaged data ..........         0.074  ( 4.0341 %)
+  Computation of vertical boundary conditions ......         0.045  ( 2.4441 %)
+  Computation of global information integrals ......         0.089  ( 4.8451 %)
+  Writing of output data ...........................         0.015  ( 0.8315 %)
+  Model 2D kernel ..................................         1.569  (85.1986 %)
+                                              Total:         1.809   98.1864
 
-  Unique code regions profiled .....................         1.597   98.2612 %
-  Residual, non-profiled code ......................         0.028    1.7388 %
+  Unique code regions profiled .....................         1.809   98.1864 %
+  Residual, non-profiled code ......................         0.033    1.8136 %
 
 
- All percentages are with respect to total time =            1.625
+ All percentages are with respect to total time =            1.842
 
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+ Dynamic and Automatic memory (MB) usage for Grid 01:  96x32  tiling: 1x1
+
+     tile          Dynamic        Automatic            USAGE
+
+        0             2.75             1.14             3.88
+
+    TOTAL             2.75             1.14             3.88
+
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
  ROMS/TOMS - Output NetCDF summary for Grid 01:
              number of time records written in HISTORY file = 00000031
              number of time records written in RESTART file = 00000002
+             number of time records written in AVERAGE file = 00000030
 
  Analytical header files used:
 
@@ -5062,4 +5118,4 @@
      ROMS/Functionals/ana_initial.h
      ROMS/Functionals/ana_smflux.h
 
- ROMS/TOMS: DONE... Wednesday - July 4, 2018 -  2:32:44 PM
+ ROMS/TOMS: DONE... Thursday - February 7, 2019 -  1:13:20 PM

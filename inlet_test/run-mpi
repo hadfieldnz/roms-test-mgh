@@ -9,5 +9,13 @@
 # MGH 2018-11-20
 #   This script renamed from run.bash to run-mpi. The executable name is now
 #   "oceanM".
+# MGH 2019-01-28
+#   The executable name is now "romsM".
 
-mpirun -np 2 ./oceanM coupling_inlet_test.in | tee inlet_test.log
+if test ! -f romsM
+then
+  echo The romsM executable is missing: build it with \"roms_build -m\"
+  exit 1
+fi
+
+mpirun -np 2 ./romsM coupling_inlet_test.in | tee inlet_test.log

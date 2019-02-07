@@ -3,10 +3,10 @@
 # MGH 2018-10-04
 #   A script to run the BASIN case in MPI mode and save the output.
 
-if test ! -f oceanM
+if test ! -f romsM
 then
-  echo The oceanM executable is missing: build it with "roms_build -m"
+  echo The romsM executable is missing: build it with \"roms_build -m\"
   exit 1
 fi
 
-mpirun -np 4 ./oceanM ocean_basin.in | tee ocean_basin.log
+mpirun -np 4 ./romsM ocean_basin.in | tee ocean_basin.log

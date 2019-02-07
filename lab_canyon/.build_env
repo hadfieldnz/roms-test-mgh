@@ -7,3 +7,5 @@ export MY_ROMS_BRANCH=master
 
 export MY_HEADER_DIR=${PWD}
 export MY_ANALYTICAL_DIR=${PWD}
+
+export MY_CPP_FLAGS="-DAVERAGES"

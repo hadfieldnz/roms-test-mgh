@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# MGH 2011-06-29
+#   A script to run the SED_TEST case and save the output.
+
+if test ! -f romsS
+then
+  echo The romsS executable is missing: build it with \"roms_build\"
+  exit 1
+fi
+
+./romsS < ocean_sed_test1.in | tee sed_test1.log

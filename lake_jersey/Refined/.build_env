@@ -1,0 +1,14 @@
+# Specify the build environment for the DOGBONE Refined test case
+
+export ROMS_APPLICATION=LAKE_JERSEY
+
+export MY_ROMS_SRC=${ROMS_ROOT}/roms-trunk-mgh
+export MY_ROMS_BRANCH=master
+
+export MY_HEADER_DIR=${PWD}
+export MY_ANALYTICAL_DIR=${PWD}
+
+# The following CPP flags match those in the roms-test branch's build.bash script.
+
+export MY_CPP_FLAGS="-DNESTING -DAVERAGES -DTS_U3HADVECTION -DTS_C4VADVECTION -DUV_LOGDRAG -DGLS_MIXING -DKANTA_CLAYSON -DN2S2_HORAVG"
+

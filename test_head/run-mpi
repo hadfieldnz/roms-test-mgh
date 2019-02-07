@@ -1,0 +1,11 @@
+#!/bin/bash
+
+#   A script to run the TEST_HEAD case in MPI mode and save the output.
+
+if test ! -f romsM
+then
+  echo The romsM executable is missing: build it with \"roms_build -m\"
+  exit 1
+fi
+
+mpirun -np 2 ./romsM coupling_test_head.in | tee test_head.log

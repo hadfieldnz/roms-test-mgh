@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Thursday - December 20, 2018 -  2:17:30 PM
+                          Thursday - January 31, 2019 - 11:16:58 AM
 --------------------------------------------------------------------------------
 
  Dog-bone Nesting Test Case: Refinement Grids
@@ -12,7 +12,7 @@
  Compiler flags   : -frepack-arrays -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 6b9943281af6cc72808febd71d340ff7044237ba
+ Git Revision  : master commit 25c99104ec433e7ee92ab833c03c63036acf7697
  Git Status    : The working tree is clean
 
  Host Name     : niwa-1019320.niwa.local
@@ -394,7 +394,7 @@
 
  Process Information:
 
- Thread #    0 (pid=   24289) is active.
+ Thread #    0 (pid=   13474) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -17325,62 +17325,62 @@
 
  Elapsed CPU time (seconds):
 
- Thread #    0 CPU:      49.855
- Total:                  49.855
+ Thread #    0 CPU:      49.964
+ Total:                  49.964
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.005  ( 0.0099 %)
-  Ocean state initialization .......................         0.001  ( 0.0017 %)
-  Reading of input data ............................         0.003  ( 0.0059 %)
-  Processing of input data .........................         0.009  ( 0.0178 %)
-  Processing of output time averaged data ..........         0.074  ( 0.1492 %)
-  Computation of vertical boundary conditions ......         0.014  ( 0.0280 %)
-  Computation of global information integrals ......         0.145  ( 0.2904 %)
-  Writing of output data ...........................         0.117  ( 0.2345 %)
-  Model 2D kernel ..................................         4.137  ( 8.2982 %)
-  2D/3D coupling, vertical metrics .................         0.119  ( 0.2379 %)
-  Omega vertical velocity ..........................         0.064  ( 0.1293 %)
-  Equation of state for seawater ...................         0.083  ( 0.1660 %)
-  GLS vertical mixing parameterization .............         3.613  ( 7.2464 %)
-  3D equations right-side terms ....................         0.262  ( 0.5261 %)
-  3D equations predictor step ......................         0.437  ( 0.8770 %)
-  Pressure gradient ................................         0.216  ( 0.4336 %)
-  Corrector time-step for 3D momentum ..............         0.344  ( 0.6907 %)
-  Corrector time-step for tracers ..................         0.371  ( 0.7435 %)
-  Nesting algorithm ................................         0.153  ( 0.3075 %)
-  Reading model state vector .......................         0.001  ( 0.0013 %)
-                                              Total:        10.168   20.3949
+  Allocation and array initialization ..............         0.007  ( 0.0132 %)
+  Ocean state initialization .......................         0.001  ( 0.0020 %)
+  Reading of input data ............................         0.003  ( 0.0062 %)
+  Processing of input data .........................         0.010  ( 0.0197 %)
+  Processing of output time averaged data ..........         0.075  ( 0.1501 %)
+  Computation of vertical boundary conditions ......         0.017  ( 0.0337 %)
+  Computation of global information integrals ......         0.161  ( 0.3231 %)
+  Writing of output data ...........................         0.118  ( 0.2359 %)
+  Model 2D kernel ..................................         4.119  ( 8.2442 %)
+  2D/3D coupling, vertical metrics .................         0.130  ( 0.2600 %)
+  Omega vertical velocity ..........................         0.069  ( 0.1385 %)
+  Equation of state for seawater ...................         0.084  ( 0.1673 %)
+  GLS vertical mixing parameterization .............         3.613  ( 7.2307 %)
+  3D equations right-side terms ....................         0.261  ( 0.5233 %)
+  3D equations predictor step ......................         0.438  ( 0.8776 %)
+  Pressure gradient ................................         0.216  ( 0.4328 %)
+  Corrector time-step for 3D momentum ..............         0.347  ( 0.6939 %)
+  Corrector time-step for tracers ..................         0.371  ( 0.7429 %)
+  Nesting algorithm ................................         0.156  ( 0.3117 %)
+  Reading model state vector .......................         0.001  ( 0.0016 %)
+                                              Total:        10.197   20.4084
 
  Nonlinear model elapsed CPU time profile, Grid: 02
 
-  Allocation and array initialization ..............         0.005  ( 0.0099 %)
-  Ocean state initialization .......................         0.001  ( 0.0017 %)
-  Reading of input data ............................         0.006  ( 0.0129 %)
-  Processing of input data .........................         0.031  ( 0.0622 %)
-  Processing of output time averaged data ..........         0.250  ( 0.5016 %)
-  Computation of vertical boundary conditions ......         0.037  ( 0.0737 %)
-  Computation of global information integrals ......         0.467  ( 0.9372 %)
-  Writing of output data ...........................         0.132  ( 0.2654 %)
-  Model 2D kernel ..................................        14.536  (29.1574 %)
-  2D/3D coupling, vertical metrics .................         0.320  ( 0.6412 %)
-  Omega vertical velocity ..........................         0.203  ( 0.4065 %)
-  Equation of state for seawater ...................         0.352  ( 0.7051 %)
-  GLS vertical mixing parameterization .............        12.562  (25.1979 %)
-  3D equations right-side terms ....................         0.934  ( 1.8726 %)
-  3D equations predictor step ......................         1.350  ( 2.7081 %)
-  Pressure gradient ................................         0.715  ( 1.4333 %)
-  Corrector time-step for 3D momentum ..............         1.227  ( 2.4610 %)
-  Corrector time-step for tracers ..................         1.233  ( 2.4733 %)
-  Nesting algorithm ................................         1.446  ( 2.8999 %)
-  Reading model state vector .......................         0.001  ( 0.0014 %)
-                                              Total:        35.807   71.8221
+  Allocation and array initialization ..............         0.007  ( 0.0132 %)
+  Ocean state initialization .......................         0.001  ( 0.0020 %)
+  Reading of input data ............................         0.006  ( 0.0127 %)
+  Processing of input data .........................         0.033  ( 0.0663 %)
+  Processing of output time averaged data ..........         0.253  ( 0.5068 %)
+  Computation of vertical boundary conditions ......         0.048  ( 0.0955 %)
+  Computation of global information integrals ......         0.513  ( 1.0277 %)
+  Writing of output data ...........................         0.136  ( 0.2715 %)
+  Model 2D kernel ..................................        14.482  (28.9847 %)
+  2D/3D coupling, vertical metrics .................         0.321  ( 0.6426 %)
+  Omega vertical velocity ..........................         0.211  ( 0.4227 %)
+  Equation of state for seawater ...................         0.356  ( 0.7119 %)
+  GLS vertical mixing parameterization .............        12.594  (25.2062 %)
+  3D equations right-side terms ....................         0.931  ( 1.8643 %)
+  3D equations predictor step ......................         1.348  ( 2.6973 %)
+  Pressure gradient ................................         0.712  ( 1.4254 %)
+  Corrector time-step for 3D momentum ..............         1.234  ( 2.4704 %)
+  Corrector time-step for tracers ..................         1.237  ( 2.4764 %)
+  Nesting algorithm ................................         1.451  ( 2.9039 %)
+  Reading model state vector .......................         0.001  ( 0.0018 %)
+                                              Total:        35.876   71.8031
 
-  Unique code regions profiled .....................        45.975   92.2170 %
-  Residual, non-profiled code ......................         3.880    7.7830 %
+  Unique code regions profiled .....................        46.073   92.2115 %
+  Residual, non-profiled code ......................         3.891    7.7885 %
 
 
- All percentages are with respect to total time =           49.855
+ All percentages are with respect to total time =           49.964
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -17421,4 +17421,4 @@
      ROMS/Functionals/ana_smflux.h
      ROMS/Functionals/ana_stflux.h
 
- ROMS/TOMS: DONE... Thursday - December 20, 2018 -  2:18:23 PM
+ ROMS/TOMS: DONE... Thursday - January 31, 2019 - 11:17:48 AM

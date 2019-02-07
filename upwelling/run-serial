@@ -3,10 +3,10 @@
 # MGH 2018-07-18
 #   A script to run the UPWELLING case in serial mode and save the output.
 
-if test ! -f oceanS
+if test ! -f romsS
 then
-  echo The oceanS executable is missing: build it with roms_build
+  echo The romsS executable is missing: build it with \"roms_build\"
   exit 1
 fi
 
-./oceanS < ocean_upwelling.in | tee ocean_upwelling.log
+./romsS < ocean_upwelling.in | tee ocean_upwelling.log

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# MGH 2011-02-05
+#   A script to run the RIVERPLUME case and save the output.
+
+if test ! -f romsM
+then
+  echo The romsM executable is missing: build it with \"roms_build -m -b .build_env_2\"
+  exit 1
+fi
+
+mpirun -np 2 ./romsM ocean_riverplume2.in | tee ocean_riverplume2_mpi.log

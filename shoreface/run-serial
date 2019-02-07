@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# MGH 2019-02-07
+#   A script to run the SHOREFACE case in serial mode and save the output.
+
+if test ! -f romsS
+then
+  echo The romsS executable is missing: build it with \"roms_build\"
+  exit 1
+fi
+
+./romsS < ocean_shoreface.in | tee shoreface.log

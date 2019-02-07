@@ -6,10 +6,10 @@
 # MGH 2018-12-20
 #   This copy intended to run in single precision
 
-if test ! -f oceanS
+if test ! -f romsS
 then
-  echo The oceanS executable is missing: build it with \"roms_build -e .build_env_single\"
+  echo The romsS executable is missing: build it with \"roms_build -e .build_env_single\"
   exit 1
 fi
 
-./oceanS < ocean_upwelling.in | tee ocean_upwelling_single.log
+./romsS < ocean_upwelling.in | tee ocean_upwelling_single.log
