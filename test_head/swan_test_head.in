@@ -1,5 +1,5 @@
 PROJECT 'TEST HEAD' ''
-'ocean_test_head test case to drive ROMS'
+'roms_test_head test case to drive ROMS'
 ''
 ''
 

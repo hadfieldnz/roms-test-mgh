@@ -38,14 +38,14 @@ F     WRTDATE: logical switch to write out current date.
 ~/ocean/repository/plot/Data/varid.dat
 ~/ocean/repository/plot/Palettes/natlan1.pal
 ~/ocean/repository/plot/Data/default.cnt
-ocean_avg.nc
-ocean_his.nc
-ocean_grd.nc
+roms_avg.nc
+roms_his.nc
+roms_grd.nc
 
 
 !svn $Id$
 !========================================================= Hernan G. Arango ===
-!  Copyright (c) 2002-2018 The ROMS/TOMS Group                              ===
+!  Copyright (c) 2002-2019 The ROMS/TOMS Group                              ===
 !    Licensed under a MIT/X style license                                   ===
 !    See License_ROMS.txt                                                   ===
 !==============================================================================
