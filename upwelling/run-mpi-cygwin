@@ -33,5 +33,8 @@ cat roms_upwelling.in | \
         -e "s/NtileJ ==/NtileJ == ${nj} ! /" > ${infile}
 
 
+# My Cygwin system has only 2 slots available to Open MPI executables.
+# The --oversubscribe option in the following command works around this limit
+
 echo Running ROMS in MPI mode
-mpirun -np $((${ni}*${nj})) ./romsM ${infile} | tee upwelling_mpi.log
+mpirun -np $((${ni}*${nj})) --oversubscribe ./romsM ${infile} | tee upwelling_mpi.log
