@@ -4,7 +4,7 @@
 
 if test ! -f romsS
 then
-  echo The romsS executable is missing: build it with \"roms_build -e .build_env_single\"
+  echo The romsS executable is missing: build it with \"roms_build -b .build_env_single\"
   exit 1
 fi
 

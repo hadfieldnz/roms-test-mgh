@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# A script to run the UPWELLING case in serial mode with netCDF4 output and save the output.
+
+if test ! -f romsS
+then
+  echo The romsS executable is missing: build it with \"roms_build -b .build_env_netcdf4\"
+  exit 1
+fi
+
+./romsS < roms_upwelling.in | tee upwelling_netcdf4.log
