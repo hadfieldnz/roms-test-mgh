@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Thursday - February 7, 2019 -  3:04:13 PM
+                          Tuesday - February 19, 2019 - 10:29:34 AM
 --------------------------------------------------------------------------------
 
  Wind-Driven Upwelling/Downwelling over a Periodic Channel
@@ -12,7 +12,7 @@
  Compiler flags   : -frepack-arrays -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 0c863db314841bc302051a75f0ae6d08192a5839
+ Git Revision  : master commit fc32326585036fb320546aa51a24755e69a340f9
  Git Status    : The working tree is clean
 
  Host Name     : niwa-1019320.niwa.local
@@ -186,6 +186,7 @@
               Output Floats File:  roms_flt.nc
           Station positions File:  stations.in
    Initial Floats Positions File:  floats_upwelling.in
+         Biology Parameters File:  bio_Fennel.in
 
  Tile partition information for Grid 01:  41x80x16  tiling: 3x3
 
@@ -237,6 +238,253 @@
         8    -2.50    42.50    -0.50    81.00    V-points
 
 
+ Fennel Model Parameters, Grid: 01
+ =================================
+
+          1  BioIter           Number of iterations for nonlinear convergence.
+ 4.0000E-02  AttSW             Light attenuation of seawater (m-1).
+ 2.4860E-02  AttChl            Light attenuation by chlorophyll (1/(mg_Chl m-2)).
+ 4.3000E-01  PARfrac           Fraction of shortwave radiation that is
+                                 photosynthetically active (nondimensional).
+ 1.0000E+00  Vp0               Eppley temperature-limited growth parameter
+                                 (nondimensional).
+ 9.5000E-03  I_thNH4           Radiation threshold for nitrification (W/m2).
+ 1.0000E-01  D_p5NH4           Half-saturation radiation for nitrification (W/m2).
+ 5.0000E-02  NitriR            Nitrification rate (day-1).
+ 2.0000E+00  K_NO3             Inverse half-saturation for phytoplankton NO3
+                                 uptake (1/(mmol_N m-3)).
+ 2.0000E+00  K_NH4             Inverse half-saturation for phytoplankton NH4
+                                 uptake (1/(mmol_N m-3)).
+ 2.0000E+00  K_Phy             Zooplankton half-saturation constant for ingestion
+                                 (mmol_N m-3)^2.
+ 5.3500E-02  Chl2C_m           Maximum chlorophyll to carbon ratio (mg_Chl/mg_C).
+ 1.0000E-03  ChlMin            Chlorophyll minimum threshold (mg_Chl/m3).
+ 6.6250E+00  PhyCN             Phytoplankton Carbon:Nitrogen ratio (mol_C/mol_N).
+ 1.5000E+00  PhyIP             Phytoplankton NH4 inhibition parameter (1/mmol_N).
+ 2.5000E-02  PhyIS             Phytoplankton growth, initial slope of P-I curve
+                                 (mg_C/(mg_Chl Watts m-2 day)).
+ 1.0000E-03  PhyMin            Phytoplankton minimum threshold (mmol_N/m3).
+ 1.5000E-01  PhyMR             Phytoplankton mortality rate (day-1).
+ 7.5000E-01  ZooAE_N           Zooplankton nitrogen assimilation efficiency
+                                 (nondimensional).
+ 1.0000E-01  ZooBM             Rate for zooplankton basal metabolism (1/day).
+ 6.6250E+00  ZooCN             Zooplankton Carbon:Nitrogen ratio (mol_C/mol_N).
+ 1.0000E-01  ZooER             Zooplankton specific excretion rate (day-1).
+ 6.0000E-01  ZooGR             Zooplankton maximum growth rate (day-1).
+ 1.0000E-03  ZooMin            Zooplankton minimum threshold (mmol_N/m3).
+ 2.5000E-02  ZooMR             Zooplankton mortality rate (day-1).
+ 1.0000E-02  LDeRRN            Large detritus N re-mineralization rate (day-1).
+ 1.0000E-02  LDeRRC            Large detritus C re-mineralization rate (day-1).
+ 5.0000E-03  CoagR             Coagulation rate (day-1).
+ 3.0000E-02  SDeRRN            Remineralization rate for small detritus N (day-1).
+ 3.0000E-02  SDeRRC            Remineralization rate for small detritus C (day-1).
+ 1.0000E-01  wPhy              Phytoplankton sinking velocity (m/day).
+ 1.0000E+00  wLDet             Large detritus sinking velocity (m/day).
+ 1.0000E-01  wSDet             Small detritus sinking velocity (m/day).
+ 3.7000E+02  pCO2air           CO2 partial pressure in air (ppm by volume).
+          F  LtracerSponge(03) Turning OFF sponge on tracer 03: NO3
+          F  LtracerSponge(04) Turning OFF sponge on tracer 04: NH4
+          F  LtracerSponge(05) Turning OFF sponge on tracer 05: chlorophyll
+          F  LtracerSponge(06) Turning OFF sponge on tracer 06: phytoplankton
+          F  LtracerSponge(07) Turning OFF sponge on tracer 07: zooplankton
+          F  LtracerSponge(08) Turning OFF sponge on tracer 08: LdetritusN
+          F  LtracerSponge(09) Turning OFF sponge on tracer 09: SdetritusN
+          F  LtracerSponge(10) Turning OFF sponge on tracer 10: LdetritusC
+          F  LtracerSponge(11) Turning OFF sponge on tracer 11: SdetritusC
+          F  LtracerSponge(12) Turning OFF sponge on tracer 12: TIC
+          F  LtracerSponge(13) Turning OFF sponge on tracer 13: alkalinity
+          F  LtracerSponge(14) Turning OFF sponge on tracer 14: oxygen
+ 1.0000E-06  Akt_bak(03)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 03: NO3
+ 1.0000E-06  Akt_bak(04)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 04: NH4
+ 1.0000E-06  Akt_bak(05)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 05: chlorophyll
+ 1.0000E-06  Akt_bak(06)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 06: phytoplankton
+ 1.0000E-06  Akt_bak(07)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 07: zooplankton
+ 1.0000E-06  Akt_bak(08)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 08: LdetritusN
+ 1.0000E-06  Akt_bak(09)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 09: SdetritusN
+ 1.0000E-06  Akt_bak(10)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 10: LdetritusC
+ 1.0000E-06  Akt_bak(11)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 11: SdetritusC
+ 1.0000E-06  Akt_bak(12)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 12: TIC
+ 1.0000E-06  Akt_bak(13)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 13: alkalinity
+ 1.0000E-06  Akt_bak(14)       Background vertical mixing coefficient (m2/s)
+                                 for tracer 14: oxygen
+ 0.0000E+00  Tnudg(03)         Nudging/relaxation time scale (days)
+                                 for tracer 03: NO3
+ 0.0000E+00  Tnudg(04)         Nudging/relaxation time scale (days)
+                                 for tracer 04: NH4
+ 0.0000E+00  Tnudg(05)         Nudging/relaxation time scale (days)
+                                 for tracer 05: chlorophyll
+ 0.0000E+00  Tnudg(06)         Nudging/relaxation time scale (days)
+                                 for tracer 06: phytoplankton
+ 0.0000E+00  Tnudg(07)         Nudging/relaxation time scale (days)
+                                 for tracer 07: zooplankton
+ 0.0000E+00  Tnudg(08)         Nudging/relaxation time scale (days)
+                                 for tracer 08: LdetritusN
+ 0.0000E+00  Tnudg(09)         Nudging/relaxation time scale (days)
+                                 for tracer 09: SdetritusN
+ 0.0000E+00  Tnudg(10)         Nudging/relaxation time scale (days)
+                                 for tracer 10: LdetritusC
+ 0.0000E+00  Tnudg(11)         Nudging/relaxation time scale (days)
+                                 for tracer 11: SdetritusC
+ 0.0000E+00  Tnudg(12)         Nudging/relaxation time scale (days)
+                                 for tracer 12: TIC
+ 0.0000E+00  Tnudg(13)         Nudging/relaxation time scale (days)
+                                 for tracer 13: alkalinity
+ 0.0000E+00  Tnudg(14)         Nudging/relaxation time scale (days)
+                                 for tracer 14: oxygen
+          F  LtracerSrc(03)    Turning OFF point sources/Sink on tracer 03: NO3
+          F  LtracerSrc(04)    Turning OFF point sources/Sink on tracer 04: NH4
+          F  LtracerSrc(05)    Turning OFF point sources/Sink on tracer 05: chlorophyll
+          F  LtracerSrc(06)    Turning OFF point sources/Sink on tracer 06: phytoplankton
+          F  LtracerSrc(07)    Turning OFF point sources/Sink on tracer 07: zooplankton
+          F  LtracerSrc(08)    Turning OFF point sources/Sink on tracer 08: LdetritusN
+          F  LtracerSrc(09)    Turning OFF point sources/Sink on tracer 09: SdetritusN
+          F  LtracerSrc(10)    Turning OFF point sources/Sink on tracer 10: LdetritusC
+          F  LtracerSrc(11)    Turning OFF point sources/Sink on tracer 11: SdetritusC
+          F  LtracerSrc(12)    Turning OFF point sources/Sink on tracer 12: TIC
+          F  LtracerSrc(13)    Turning OFF point sources/Sink on tracer 13: alkalinity
+          F  LtracerSrc(14)    Turning OFF point sources/Sink on tracer 14: oxygen
+          F  LtracerCLM(03)    Turning OFF processing of climatology tracer 03: NO3
+          F  LtracerCLM(04)    Turning OFF processing of climatology tracer 04: NH4
+          F  LtracerCLM(05)    Turning OFF processing of climatology tracer 05: chlorophyll
+          F  LtracerCLM(06)    Turning OFF processing of climatology tracer 06: phytoplankton
+          F  LtracerCLM(07)    Turning OFF processing of climatology tracer 07: zooplankton
+          F  LtracerCLM(08)    Turning OFF processing of climatology tracer 08: LdetritusN
+          F  LtracerCLM(09)    Turning OFF processing of climatology tracer 09: SdetritusN
+          F  LtracerCLM(10)    Turning OFF processing of climatology tracer 10: LdetritusC
+          F  LtracerCLM(11)    Turning OFF processing of climatology tracer 11: SdetritusC
+          F  LtracerCLM(12)    Turning OFF processing of climatology tracer 12: TIC
+          F  LtracerCLM(13)    Turning OFF processing of climatology tracer 13: alkalinity
+          F  LtracerCLM(14)    Turning OFF processing of climatology tracer 14: oxygen
+          F  LnudgeTCLM(03)    Turning OFF nudging of climatology tracer 03: NO3
+          F  LnudgeTCLM(04)    Turning OFF nudging of climatology tracer 04: NH4
+          F  LnudgeTCLM(05)    Turning OFF nudging of climatology tracer 05: chlorophyll
+          F  LnudgeTCLM(06)    Turning OFF nudging of climatology tracer 06: phytoplankton
+          F  LnudgeTCLM(07)    Turning OFF nudging of climatology tracer 07: zooplankton
+          F  LnudgeTCLM(08)    Turning OFF nudging of climatology tracer 08: LdetritusN
+          F  LnudgeTCLM(09)    Turning OFF nudging of climatology tracer 09: SdetritusN
+          F  LnudgeTCLM(10)    Turning OFF nudging of climatology tracer 10: LdetritusC
+          F  LnudgeTCLM(11)    Turning OFF nudging of climatology tracer 11: SdetritusC
+          F  LnudgeTCLM(12)    Turning OFF nudging of climatology tracer 12: TIC
+          F  LnudgeTCLM(13)    Turning OFF nudging of climatology tracer 13: alkalinity
+          F  LnudgeTCLM(14)    Turning OFF nudging of climatology tracer 14: oxygen
+
+          T  Hout(idTvar)      Write out tracer 03: NO3
+          T  Hout(idTvar)      Write out tracer 04: NH4
+          T  Hout(idTvar)      Write out tracer 05: chlorophyll
+          T  Hout(idTvar)      Write out tracer 06: phytoplankton
+          T  Hout(idTvar)      Write out tracer 07: zooplankton
+          T  Hout(idTvar)      Write out tracer 08: LdetritusN
+          T  Hout(idTvar)      Write out tracer 09: SdetritusN
+          T  Hout(idTvar)      Write out tracer 10: LdetritusC
+          T  Hout(idTvar)      Write out tracer 11: SdetritusC
+          T  Hout(idTvar)      Write out tracer 12: TIC
+          T  Hout(idTvar)      Write out tracer 13: alkalinity
+          T  Hout(idTvar)      Write out tracer 14: oxygen
+
+          T  Aout(idTvar)      Write out averaged tracer 03: NO3
+          T  Aout(idTvar)      Write out averaged tracer 04: NH4
+          T  Aout(idTvar)      Write out averaged tracer 05: chlorophyll
+          T  Aout(idTvar)      Write out averaged tracer 06: phytoplankton
+          T  Aout(idTvar)      Write out averaged tracer 07: zooplankton
+          T  Aout(idTvar)      Write out averaged tracer 08: LdetritusN
+          T  Aout(idTvar)      Write out averaged tracer 09: SdetritusN
+          T  Aout(idTvar)      Write out averaged tracer 10: LdetritusC
+          T  Aout(idTvar)      Write out averaged tracer 11: SdetritusC
+          T  Aout(idTvar)      Write out averaged tracer 12: TIC
+          T  Aout(idTvar)      Write out averaged tracer 13: alkalinity
+          T  Aout(idTvar)      Write out averaged tracer 14: oxygen
+
+          T  Dout(iTrate)      Write out rate of change of tracer 03: NO3
+          T  Dout(iTrate)      Write out rate of change of tracer 04: NH4
+          T  Dout(iTrate)      Write out rate of change of tracer 05: chlorophyll
+          T  Dout(iTrate)      Write out rate of change of tracer 06: phytoplankton
+          T  Dout(iTrate)      Write out rate of change of tracer 07: zooplankton
+          T  Dout(iTrate)      Write out rate of change of tracer 08: LdetritusN
+          T  Dout(iTrate)      Write out rate of change of tracer 09: SdetritusN
+          T  Dout(iTrate)      Write out rate of change of tracer 10: LdetritusC
+          T  Dout(iTrate)      Write out rate of change of tracer 11: SdetritusC
+          T  Dout(iTrate)      Write out rate of change of tracer 12: TIC
+          T  Dout(iTrate)      Write out rate of change of tracer 13: alkalinity
+          T  Dout(iTrate)      Write out rate of change of tracer 14: oxygen
+          T  Dout(iThadv)      Write out horizontal advection, tracer 03: NO3
+          T  Dout(iThadv)      Write out horizontal advection, tracer 04: NH4
+          T  Dout(iThadv)      Write out horizontal advection, tracer 05: chlorophyll
+          T  Dout(iThadv)      Write out horizontal advection, tracer 06: phytoplankton
+          T  Dout(iThadv)      Write out horizontal advection, tracer 07: zooplankton
+          T  Dout(iThadv)      Write out horizontal advection, tracer 08: LdetritusN
+          T  Dout(iThadv)      Write out horizontal advection, tracer 09: SdetritusN
+          T  Dout(iThadv)      Write out horizontal advection, tracer 10: LdetritusC
+          T  Dout(iThadv)      Write out horizontal advection, tracer 11: SdetritusC
+          T  Dout(iThadv)      Write out horizontal advection, tracer 12: TIC
+          T  Dout(iThadv)      Write out horizontal advection, tracer 13: alkalinity
+          T  Dout(iThadv)      Write out horizontal advection, tracer 14: oxygen
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 03: NO3
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 04: NH4
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 05: chlorophyll
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 06: phytoplankton
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 07: zooplankton
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 08: LdetritusN
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 09: SdetritusN
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 10: LdetritusC
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 11: SdetritusC
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 12: TIC
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 13: alkalinity
+          T  Dout(iTxadv)      Write out horizontal X-advection, tracer 14: oxygen
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 03: NO3
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 04: NH4
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 05: chlorophyll
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 06: phytoplankton
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 07: zooplankton
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 08: LdetritusN
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 09: SdetritusN
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 10: LdetritusC
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 11: SdetritusC
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 12: TIC
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 13: alkalinity
+          T  Dout(iTyadv)      Write out horizontal Y-advection, tracer 14: oxygen
+          T  Dout(iTvadv)      Write out vertical advection, tracer 03: NO3
+          T  Dout(iTvadv)      Write out vertical advection, tracer 04: NH4
+          T  Dout(iTvadv)      Write out vertical advection, tracer 05: chlorophyll
+          T  Dout(iTvadv)      Write out vertical advection, tracer 06: phytoplankton
+          T  Dout(iTvadv)      Write out vertical advection, tracer 07: zooplankton
+          T  Dout(iTvadv)      Write out vertical advection, tracer 08: LdetritusN
+          T  Dout(iTvadv)      Write out vertical advection, tracer 09: SdetritusN
+          T  Dout(iTvadv)      Write out vertical advection, tracer 10: LdetritusC
+          T  Dout(iTvadv)      Write out vertical advection, tracer 11: SdetritusC
+          T  Dout(iTvadv)      Write out vertical advection, tracer 12: TIC
+          T  Dout(iTvadv)      Write out vertical advection, tracer 13: alkalinity
+          T  Dout(iTvadv)      Write out vertical advection, tracer 14: oxygen
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 03: NO3
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 04: NH4
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 05: chlorophyll
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 06: phytoplankton
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 07: zooplankton
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 08: LdetritusN
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 09: SdetritusN
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 10: LdetritusC
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 11: SdetritusC
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 12: TIC
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 13: alkalinity
+          T  Dout(iTvdif)      Write out vertical diffusion, tracer 14: oxygen
+          T  Hout(iDbio2)      Write out diagnostics for denitrification
+          T  Hout(iDbio2)      Write out diagnostics for CO2_airsea
+          T  Hout(iDbio2)      Write out diagnostics for pCO2
+          T  Hout(iDbio2)      Write out diagnostics for O2_airsea
+          T  Hout(iDbio3)      Write out diagnostics for P_Production
+          T  Hout(iDbio3)      Write out diagnostics for NO3_uptake
+
+
  Floats Initial Locations, Grid: 01
  ==================================
 
@@ -283,6 +531,18 @@
           T  Sout(idOvel)    Write out omega vertical velocity.
           T  Sout(idTvar)    Write out tracer 01: temp
           T  Sout(idTvar)    Write out tracer 02: salt
+          T  Sout(idTvar)    Write out tracer 03: NO3
+          T  Sout(idTvar)    Write out tracer 04: NH4
+          T  Sout(idTvar)    Write out tracer 05: chlorophyll
+          T  Sout(idTvar)    Write out tracer 06: phytoplankton
+          T  Sout(idTvar)    Write out tracer 07: zooplankton
+          T  Sout(idTvar)    Write out tracer 08: LdetritusN
+          T  Sout(idTvar)    Write out tracer 09: SdetritusN
+          T  Sout(idTvar)    Write out tracer 10: LdetritusC
+          T  Sout(idTvar)    Write out tracer 11: SdetritusC
+          T  Sout(idTvar)    Write out tracer 12: TIC
+          T  Sout(idTvar)    Write out tracer 13: alkalinity
+          T  Sout(idTvar)    Write out tracer 14: oxygen
           T  Sout(idDano)    Write out density anomaly.
           T  Sout(idVvis)    Write out vertical viscosity coefficient.
           T  Sout(idTdif)    Write out vertical T-diffusion coefficient.
@@ -310,20 +570,53 @@
 
  salt                     1   Periodic     Closed       Periodic     Closed
 
+ NO3                      1   Periodic     Closed       Periodic     Closed
+
+ NH4                      1   Periodic     Closed       Periodic     Closed
+
+ chlorophyll              1   Periodic     Closed       Periodic     Closed
+
+ phytoplankton            1   Periodic     Closed       Periodic     Closed
+
+ zooplankton              1   Periodic     Closed       Periodic     Closed
+
+ LdetritusN               1   Periodic     Closed       Periodic     Closed
+
+ SdetritusN               1   Periodic     Closed       Periodic     Closed
+
+ LdetritusC               1   Periodic     Closed       Periodic     Closed
+
+ SdetritusC               1   Periodic     Closed       Periodic     Closed
+
+ TIC                      1   Periodic     Closed       Periodic     Closed
+
+ alkalinity               1   Periodic     Closed       Periodic     Closed
+
+ oxygen                   1   Periodic     Closed       Periodic     Closed
+
  Activated C-preprocessing Options:
 
  UPWELLING               Wind-Driven Upwelling/Downwelling over a Periodic Channel
+ ANA_BIOLOGY             Analytical biology initial conditions
+ ANA_BPFLUX              Analytical bottom passive tracers fluxes
  ANA_BSFLUX              Analytical kinematic bottom salinity flux
  ANA_BTFLUX              Analytical kinematic bottom temperature flux
  ANA_DRAG_GRID           Analytical spatially varying linear drag coefficient
  ANA_GRID                Analytical grid set-up
  ANA_INITIAL             Analytical initial conditions
  ANA_SMFLUX              Analytical kinematic surface momentum flux
+ ANA_SPFLUX              Analytical surface passive tracer fluxes
+ ANA_SRFLUX              Analytical kinematic shortwave radiation flux
  ANA_SSFLUX              Analytical kinematic surface salinity flux
  ANA_STFLUX              Analytical kinematic surface temperature flux
  ANA_VMIX                Analytical vertical mixing coefficients
  ASSUMED_SHAPE           Using assumed-shape arrays
  AVERAGES                Writing out time-averaged nonlinear model fields
+ BIO_FENNEL              Fennel et al. (2006) nitrogen-based model
+ BIO_SEDIMENT            Restore fallen particulate material to the nutrient pool
+ CARBON                  Add Carbon constituents
+ DENITRIFICATION         Add denitrification processes
+ DIAGNOSTICS_BIO         Computing and writing biological diagnostic terms
  DIAGNOSTICS_TS          Computing and writing tracer diagnostic terms
  DIAGNOSTICS_UV          Computing and writing momentum diagnostic terms
  DJ_GRADPS               Parabolic Splines density Jacobian (Shchepetkin, 2002)
@@ -333,6 +626,8 @@
  MIX_S_UV                Mixing of momentum along constant S-surfaces
  NONLINEAR               Nonlinear Model
  !NONLIN_EOS             Linear Equation of State for seawater
+ !OCMIP_OXYGEN_SC        Schmidt number from Wanninkhof (1992)
+ OXYGEN                  Add oxygen dynamics
  POWER_LAW               Power-law shape time-averaging barotropic filter
  PROFILE                 Time profiling activated
  !RST_SINGLE             Double precision fields in restart NetCDF file
@@ -341,6 +636,7 @@
  SPLINES_VDIFF           Parabolic Spline Reconstruction for Vertical Diffusion
  SPLINES_VVISC           Parabolic Spline Reconstruction for Vertical Viscosity
  STATIONS                Writing out station data
+ !TALK_NONCONSERV        Alkalinity is passive and unaffected by nitrate or ammonium
  TS_U3HADVECTION         Third-order upstream horizontal advection of tracers
  TS_C4VADVECTION         Fourth-order centered vertical advection of tracers
  UV_ADV                  Advection of momentum
@@ -355,7 +651,7 @@
 
  Process Information:
 
- Thread #    0 (pid=   32513) is active.
+ Thread #    0 (pid=   26711) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -493,6 +789,30 @@
                    (Grid = 01, Min =  1.45204834E+01 Max =  2.19365219E+01)
     ANA_INITIAL - salinity: salt
                    (Grid = 01, Min =  3.50000000E+01 Max =  3.50000000E+01)
+    ANA_BIOLOGY - nitrate concentration: NO3
+                   (Grid = 01, Min =  1.67000000E+00 Max =  2.26358685E+00)
+    ANA_BIOLOGY - ammonium concentration: NH4
+                   (Grid = 01, Min =  1.00000000E-01 Max =  1.00000000E-01)
+    ANA_BIOLOGY - chlorophyll concentration: chlorophyll
+                   (Grid = 01, Min =  2.00000000E-02 Max =  2.00000000E-02)
+    ANA_BIOLOGY - phytoplankton concentration: phytoplankton
+                   (Grid = 01, Min =  8.00000000E-02 Max =  8.00000000E-02)
+    ANA_BIOLOGY - zooplankton concentration: zooplankton
+                   (Grid = 01, Min =  6.00000000E-02 Max =  6.00000000E-02)
+    ANA_BIOLOGY - large fraction nitrogen detritus concentration: LdetritusN
+                   (Grid = 01, Min =  2.00000000E-02 Max =  2.00000000E-02)
+    ANA_BIOLOGY - small fraction nitrogen detritus concentration: SdetritusN
+                   (Grid = 01, Min =  4.00000000E-02 Max =  4.00000000E-02)
+    ANA_BIOLOGY - large fraction carbon detritus concentration: LdetritusC
+                   (Grid = 01, Min =  2.00000000E-03 Max =  2.00000000E-03)
+    ANA_BIOLOGY - small fraction carbon detritus concentration: SdetritusC
+                   (Grid = 01, Min =  6.00000000E-02 Max =  6.00000000E-02)
+    ANA_BIOLOGY - total inorganic carbon: TIC
+                   (Grid = 01, Min =  2.10000000E+03 Max =  2.10000000E+03)
+    ANA_BIOLOGY - total alkalinity: alkalinity
+                   (Grid = 01, Min =  2.35000000E+03 Max =  2.35000000E+03)
+    ANA_BIOLOGY - dissolved oxygen concentration: oxygen
+                   (Grid = 01, Min =  4.46229362E+02 Max =  4.46229362E+02)
     ANA_DRAG    - linear bottom drag coefficient: rdrag
                    (Grid = 01, Min =  4.76811688E-04 Max =  1.66711947E-03)
 
@@ -1116,37 +1436,38 @@
 
  Elapsed CPU time (seconds):
 
- Thread #    0 CPU:      23.000
- Total:                  23.000
+ Thread #    0 CPU:      48.070
+ Total:                  48.070
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.031  ( 0.1342 %)
-  Ocean state initialization .......................         0.005  ( 0.0238 %)
-  Reading of input data ............................         0.001  ( 0.0024 %)
-  Processing of input data .........................         0.011  ( 0.0460 %)
-  Processing of output time averaged data ..........         1.931  ( 8.3967 %)
-  Computation of vertical boundary conditions ......         0.010  ( 0.0426 %)
-  Computation of global information integrals ......         0.181  ( 0.7861 %)
-  Writing of output data ...........................         0.158  ( 0.6852 %)
-  Model 2D kernel ..................................        12.227  (53.1583 %)
-  Lagrangian floats trajectories ...................         0.006  ( 0.0262 %)
-  2D/3D coupling, vertical metrics .................         0.164  ( 0.7120 %)
-  Omega vertical velocity ..........................         0.168  ( 0.7305 %)
-  Equation of state for seawater ...................         0.106  ( 0.4613 %)
-  3D equations right-side terms ....................         0.968  ( 4.2070 %)
-  3D equations predictor step ......................         2.312  (10.0507 %)
-  Pressure gradient ................................         0.452  ( 1.9643 %)
-  Harmonic stress tensor, S-surfaces ...............         0.491  ( 2.1364 %)
-  Corrector time-step for 3D momentum ..............         1.879  ( 8.1704 %)
-  Corrector time-step for tracers ..................         1.153  ( 5.0110 %)
-                                              Total:        22.252   96.7453
+  Allocation and array initialization ..............         0.055  ( 0.1141 %)
+  Ocean state initialization .......................         0.009  ( 0.0181 %)
+  Reading of input data ............................         0.001  ( 0.0014 %)
+  Processing of input data .........................         0.049  ( 0.1011 %)
+  Processing of output time averaged data ..........         6.043  (12.5719 %)
+  Computation of vertical boundary conditions ......         0.010  ( 0.0200 %)
+  Computation of global information integrals ......         0.192  ( 0.3998 %)
+  Writing of output data ...........................         0.396  ( 0.8235 %)
+  Model 2D kernel ..................................        12.080  (25.1290 %)
+  Lagrangian floats trajectories ...................         0.007  ( 0.0143 %)
+  2D/3D coupling, vertical metrics .................         0.173  ( 0.3593 %)
+  Omega vertical velocity ..........................         0.193  ( 0.4023 %)
+  Equation of state for seawater ...................         0.120  ( 0.2495 %)
+  Biological module, source/sink terms .............         6.530  (13.5845 %)
+  3D equations right-side terms ....................         1.127  ( 2.3450 %)
+  3D equations predictor step ......................         7.991  (16.6237 %)
+  Pressure gradient ................................         0.491  ( 1.0220 %)
+  Harmonic stress tensor, S-surfaces ...............         0.521  ( 1.0849 %)
+  Corrector time-step for 3D momentum ..............         1.882  ( 3.9151 %)
+  Corrector time-step for tracers ..................         9.398  (19.5505 %)
+                                              Total:        47.267   98.3301
 
-  Unique code regions profiled .....................        22.252   96.7453 %
-  Residual, non-profiled code ......................         0.749    3.2547 %
+  Unique code regions profiled .....................        47.267   98.3301 %
+  Residual, non-profiled code ......................         0.803    1.6699 %
 
 
- All percentages are with respect to total time =           23.000
+ All percentages are with respect to total time =           48.070
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1155,17 +1476,17 @@
 
      tile          Dynamic        Automatic            USAGE
 
-        0            69.82             0.96            70.78
-        1             0.00             0.96             0.96
-        2             0.00             0.96             0.96
-        3             0.00             0.96             0.96
-        4             0.00             0.96             0.96
-        5             0.00             0.96             0.96
-        6             0.00             0.96             0.96
-        7             0.00             0.96             0.96
-        8             0.00             0.96             0.96
+        0           162.33             1.52           163.85
+        1             0.00             1.52             1.52
+        2             0.00             1.44             1.44
+        3             0.00             1.52             1.52
+        4             0.00             1.52             1.52
+        5             0.00             1.44             1.44
+        6             0.00             1.48             1.48
+        7             0.00             1.48             1.48
+        8             0.00             1.40             1.40
 
-    TOTAL            69.82             8.63            78.46
+    TOTAL           162.33            13.33           175.66
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -1177,12 +1498,18 @@
 
  Analytical header files used:
 
+     ROMS/Functionals/ana_biology.h
      ROMS/Functionals/ana_drag.h
      ROMS/Functionals/ana_btflux.h
      ROMS/Functionals/ana_grid.h
      /home/hadfield/ROMS/roms-test-mgh/upwelling/ana_initial.h
      ROMS/Functionals/ana_smflux.h
+     ROMS/Functionals/ana_srflux.h
      ROMS/Functionals/ana_stflux.h
      ROMS/Functionals/ana_vmix.h
 
- ROMS/TOMS: DONE... Thursday - February 7, 2019 -  3:04:36 PM
+ Biology model header files used:
+
+     /home/hadfield/ROMS/roms-test-mgh/upwelling/fennel.h
+
+ ROMS/TOMS: DONE... Tuesday - February 19, 2019 - 10:30:22 AM
