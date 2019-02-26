@@ -6,8 +6,8 @@
 
 #SBATCH --partition=nesi_research
 #SBATCH --job-name=ROMS
-#SBATCH --output=ocean_basin_slurm.log
-#SBATCH --error=ocean_basin_slurm.err
+#SBATCH --output=basin_slurm.log
+#SBATCH --error=basin_slurm.err
 #SBATCH --nodes=1
 #SBATCH --ntasks=4
 #SBATCH --time=06:00:00
@@ -21,5 +21,5 @@ then
 fi
 
 date
-srun ./romsM ocean_basin.in
+srun ./romsM roms_basin.in
 date

@@ -9,4 +9,4 @@ then
   exit 1
 fi
 
-mpirun -np 4 ./romsM ocean_basin.in | tee ocean_basin.log
+mpirun -np 4 ./romsM roms_basin.in | tee basin.log
