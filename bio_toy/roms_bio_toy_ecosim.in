@@ -185,8 +185,8 @@ ad_VolCons(north) ==  F                            ! northern boundary
 
 ! Time-Stepping parameters.
 
-      NTIMES == 1600
-          DT == 540.0d0
+      NTIMES == 48160            ! 301 days
+          DT == 540.0d0          ! 9 min, 160 timesteps per day
      NDTFAST == 30
 
 ! Model iteration loops parameters.
@@ -216,15 +216,15 @@ ad_VolCons(north) ==  F                            ! northern boundary
 ! Output history, quicksave, average, and diagnostic files parameters.
 
      LDEFOUT == T
-        NHIS == 80
+        NHIS == 80         ! every 12 hours
      NDEFHIS == 0
         NQCK == 0
      NDEFQCK == 0
       NTSAVG == 1
-        NAVG == 80
+        NAVG == 160        ! daily average
      NDEFAVG == 0
       NTSDIA == 1
-        NDIA == 80
+        NDIA == 160        ! daily average
      NDEFDIA == 0
 
 ! Output tangent linear and adjoint models parameters.
@@ -373,7 +373,7 @@ LtracerSponge == F F                            ! temperature, salinity, inert
 
       DSTART =  0.0d0                      ! days
   TIDE_START =  0.0d0                      ! days
-    TIME_REF =  0.0d0                      ! yyyymmdd.dd
+    TIME_REF =  20010101.5d0               ! yyyymmdd.dd
 
 ! Nudging/relaxation time scales, inverse scales will be computed
 ! internally, [1:Ngrids].
