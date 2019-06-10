@@ -49,6 +49,7 @@
 #define ANA_SSFLUX
 #define ANA_BSFLUX
 #define ANA_BTFLUX
+#define DIURNAL_SRFLUX
 
 /*
 **  Biological model options.
