@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Tuesday - February 19, 2019 - 10:29:34 AM
+                          Monday - June 10, 2019 -  4:28:39 PM
 --------------------------------------------------------------------------------
 
  Wind-Driven Upwelling/Downwelling over a Periodic Channel
@@ -12,7 +12,7 @@
  Compiler flags   : -frepack-arrays -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit fc32326585036fb320546aa51a24755e69a340f9
+ Git Revision  : master commit bc913091be1509c638d46d012d01f02a37216703
  Git Status    : The working tree is clean
 
  Host Name     : niwa-1019320.niwa.local
@@ -477,12 +477,12 @@
           T  Dout(iTvdif)      Write out vertical diffusion, tracer 12: TIC
           T  Dout(iTvdif)      Write out vertical diffusion, tracer 13: alkalinity
           T  Dout(iTvdif)      Write out vertical diffusion, tracer 14: oxygen
-          T  Hout(iDbio2)      Write out diagnostics for denitrification
-          T  Hout(iDbio2)      Write out diagnostics for CO2_airsea
-          T  Hout(iDbio2)      Write out diagnostics for pCO2
-          T  Hout(iDbio2)      Write out diagnostics for O2_airsea
-          T  Hout(iDbio3)      Write out diagnostics for P_Production
-          T  Hout(iDbio3)      Write out diagnostics for NO3_uptake
+          T  Dout(iDbio2)      Write out diagnostics for denitrification
+          T  Dout(iDbio2)      Write out diagnostics for CO2_airsea
+          T  Dout(iDbio2)      Write out diagnostics for pCO2
+          T  Dout(iDbio2)      Write out diagnostics for O2_airsea
+          T  Dout(iDbio3)      Write out diagnostics for P_Production
+          T  Dout(iDbio3)      Write out diagnostics for NO3_uptake
 
 
  Floats Initial Locations, Grid: 01
@@ -651,7 +651,7 @@
 
  Process Information:
 
- Thread #    0 (pid=   26711) is active.
+ Thread #    0 (pid=   21883) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -1436,38 +1436,38 @@
 
  Elapsed CPU time (seconds):
 
- Thread #    0 CPU:      48.070
- Total:                  48.070
+ Thread #    0 CPU:      51.418
+ Total:                  51.418
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.055  ( 0.1141 %)
-  Ocean state initialization .......................         0.009  ( 0.0181 %)
-  Reading of input data ............................         0.001  ( 0.0014 %)
-  Processing of input data .........................         0.049  ( 0.1011 %)
-  Processing of output time averaged data ..........         6.043  (12.5719 %)
-  Computation of vertical boundary conditions ......         0.010  ( 0.0200 %)
-  Computation of global information integrals ......         0.192  ( 0.3998 %)
-  Writing of output data ...........................         0.396  ( 0.8235 %)
-  Model 2D kernel ..................................        12.080  (25.1290 %)
-  Lagrangian floats trajectories ...................         0.007  ( 0.0143 %)
-  2D/3D coupling, vertical metrics .................         0.173  ( 0.3593 %)
-  Omega vertical velocity ..........................         0.193  ( 0.4023 %)
-  Equation of state for seawater ...................         0.120  ( 0.2495 %)
-  Biological module, source/sink terms .............         6.530  (13.5845 %)
-  3D equations right-side terms ....................         1.127  ( 2.3450 %)
-  3D equations predictor step ......................         7.991  (16.6237 %)
-  Pressure gradient ................................         0.491  ( 1.0220 %)
-  Harmonic stress tensor, S-surfaces ...............         0.521  ( 1.0849 %)
-  Corrector time-step for 3D momentum ..............         1.882  ( 3.9151 %)
-  Corrector time-step for tracers ..................         9.398  (19.5505 %)
-                                              Total:        47.267   98.3301
+  Allocation and array initialization ..............         0.093  ( 0.1799 %)
+  Ocean state initialization .......................         0.009  ( 0.0171 %)
+  Reading of input data ............................         0.001  ( 0.0013 %)
+  Processing of input data .........................         0.049  ( 0.0948 %)
+  Processing of output time averaged data ..........         6.543  (12.7245 %)
+  Computation of vertical boundary conditions ......         0.010  ( 0.0197 %)
+  Computation of global information integrals ......         0.200  ( 0.3888 %)
+  Writing of output data ...........................         0.433  ( 0.8416 %)
+  Model 2D kernel ..................................        12.521  (24.3505 %)
+  Lagrangian floats trajectories ...................         0.007  ( 0.0141 %)
+  2D/3D coupling, vertical metrics .................         0.179  ( 0.3487 %)
+  Omega vertical velocity ..........................         0.207  ( 0.4017 %)
+  Equation of state for seawater ...................         0.127  ( 0.2466 %)
+  Biological module, source/sink terms .............         6.876  (13.3718 %)
+  3D equations right-side terms ....................         1.195  ( 2.3241 %)
+  3D equations predictor step ......................         8.867  (17.2443 %)
+  Pressure gradient ................................         0.554  ( 1.0769 %)
+  Harmonic stress tensor, S-surfaces ...............         0.573  ( 1.1152 %)
+  Corrector time-step for 3D momentum ..............         1.926  ( 3.7462 %)
+  Corrector time-step for tracers ..................        10.237  (19.9088 %)
+                                              Total:        50.604   98.4165
 
-  Unique code regions profiled .....................        47.267   98.3301 %
-  Residual, non-profiled code ......................         0.803    1.6699 %
+  Unique code regions profiled .....................        50.604   98.4165 %
+  Residual, non-profiled code ......................         0.814    1.5835 %
 
 
- All percentages are with respect to total time =           48.070
+ All percentages are with respect to total time =           51.418
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1476,17 +1476,17 @@
 
      tile          Dynamic        Automatic            USAGE
 
-        0           162.33             1.52           163.85
-        1             0.00             1.52             1.52
-        2             0.00             1.44             1.44
-        3             0.00             1.52             1.52
-        4             0.00             1.52             1.52
-        5             0.00             1.44             1.44
-        6             0.00             1.48             1.48
-        7             0.00             1.48             1.48
-        8             0.00             1.40             1.40
+        0           167.93             1.65           169.58
+        1             0.00             1.65             1.65
+        2             0.00             1.57             1.57
+        3             0.00             1.65             1.65
+        4             0.00             1.65             1.65
+        5             0.00             1.57             1.57
+        6             0.00             1.60             1.60
+        7             0.00             1.60             1.60
+        8             0.00             1.52             1.52
 
-    TOTAL           162.33            13.33           175.66
+    TOTAL           167.93            14.48           182.41
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -1512,4 +1512,4 @@
 
      /home/hadfield/ROMS/roms-test-mgh/upwelling/fennel.h
 
- ROMS/TOMS: DONE... Tuesday - February 19, 2019 - 10:30:22 AM
+ ROMS/TOMS: DONE... Monday - June 10, 2019 -  4:29:31 PM
