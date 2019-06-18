@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.7  
-                          Monday - June 10, 2019 -  4:28:39 PM
+                          Wednesday - June 19, 2019 - 10:31:23 AM
 --------------------------------------------------------------------------------
 
  Wind-Driven Upwelling/Downwelling over a Periodic Channel
@@ -12,7 +12,7 @@
  Compiler flags   : -frepack-arrays -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit bc913091be1509c638d46d012d01f02a37216703
+ Git Revision  : master commit 7e724e206817ca52f4486494c8a0229101e6ace9
  Git Status    : The working tree is clean
 
  Host Name     : niwa-1019320.niwa.local
@@ -651,7 +651,7 @@
 
  Process Information:
 
- Thread #    0 (pid=   21883) is active.
+ Thread #    0 (pid=   14008) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -1436,38 +1436,38 @@
 
  Elapsed CPU time (seconds):
 
- Thread #    0 CPU:      51.418
- Total:                  51.418
+ Thread #    0 CPU:      48.189
+ Total:                  48.189
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.093  ( 0.1799 %)
-  Ocean state initialization .......................         0.009  ( 0.0171 %)
-  Reading of input data ............................         0.001  ( 0.0013 %)
-  Processing of input data .........................         0.049  ( 0.0948 %)
-  Processing of output time averaged data ..........         6.543  (12.7245 %)
-  Computation of vertical boundary conditions ......         0.010  ( 0.0197 %)
-  Computation of global information integrals ......         0.200  ( 0.3888 %)
-  Writing of output data ...........................         0.433  ( 0.8416 %)
-  Model 2D kernel ..................................        12.521  (24.3505 %)
-  Lagrangian floats trajectories ...................         0.007  ( 0.0141 %)
-  2D/3D coupling, vertical metrics .................         0.179  ( 0.3487 %)
-  Omega vertical velocity ..........................         0.207  ( 0.4017 %)
-  Equation of state for seawater ...................         0.127  ( 0.2466 %)
-  Biological module, source/sink terms .............         6.876  (13.3718 %)
-  3D equations right-side terms ....................         1.195  ( 2.3241 %)
-  3D equations predictor step ......................         8.867  (17.2443 %)
-  Pressure gradient ................................         0.554  ( 1.0769 %)
-  Harmonic stress tensor, S-surfaces ...............         0.573  ( 1.1152 %)
-  Corrector time-step for 3D momentum ..............         1.926  ( 3.7462 %)
-  Corrector time-step for tracers ..................        10.237  (19.9088 %)
-                                              Total:        50.604   98.4165
+  Allocation and array initialization ..............         0.058  ( 0.1194 %)
+  Ocean state initialization .......................         0.009  ( 0.0183 %)
+  Reading of input data ............................         0.001  ( 0.0015 %)
+  Processing of input data .........................         0.048  ( 0.1005 %)
+  Processing of output time averaged data ..........         6.062  (12.5796 %)
+  Computation of vertical boundary conditions ......         0.010  ( 0.0214 %)
+  Computation of global information integrals ......         0.193  ( 0.4012 %)
+  Writing of output data ...........................         0.429  ( 0.8901 %)
+  Model 2D kernel ..................................        12.036  (24.9761 %)
+  Lagrangian floats trajectories ...................         0.007  ( 0.0148 %)
+  2D/3D coupling, vertical metrics .................         0.174  ( 0.3604 %)
+  Omega vertical velocity ..........................         0.192  ( 0.3994 %)
+  Equation of state for seawater ...................         0.120  ( 0.2490 %)
+  Biological module, source/sink terms .............         6.639  (13.7770 %)
+  3D equations right-side terms ....................         1.111  ( 2.3058 %)
+  3D equations predictor step ......................         7.979  (16.5580 %)
+  Pressure gradient ................................         0.491  ( 1.0180 %)
+  Harmonic stress tensor, S-surfaces ...............         0.518  ( 1.0753 %)
+  Corrector time-step for 3D momentum ..............         1.887  ( 3.9154 %)
+  Corrector time-step for tracers ..................         9.396  (19.4980 %)
+                                              Total:        47.360   98.2793
 
-  Unique code regions profiled .....................        50.604   98.4165 %
-  Residual, non-profiled code ......................         0.814    1.5835 %
+  Unique code regions profiled .....................        47.360   98.2793 %
+  Residual, non-profiled code ......................         0.829    1.7207 %
 
 
- All percentages are with respect to total time =           51.418
+ All percentages are with respect to total time =           48.189
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1512,4 +1512,4 @@
 
      /home/hadfield/ROMS/roms-test-mgh/upwelling/fennel.h
 
- ROMS/TOMS: DONE... Monday - June 10, 2019 -  4:29:31 PM
+ ROMS/TOMS: DONE... Wednesday - June 19, 2019 - 10:32:12 AM
