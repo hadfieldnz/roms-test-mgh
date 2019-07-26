@@ -78,7 +78,7 @@ balance(isVvel) =  T                      ! 3D momentum (u, v)
 ! analysis to disregard potentially unphysical array modes (that is, all
 ! the eigenvectors < Nctv are disgarded).
 
-           Nvct =  50
+           Nvct =  10
 
 ! Upper bound on the relative error of the gradient for the Lanczos
 ! conjugate gradient algorithm.

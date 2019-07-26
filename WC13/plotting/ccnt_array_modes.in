@@ -2,9 +2,9 @@
 
 
 Representer Matrix Array Modes
-Free Surface (m)
+State Variables
 8     NFIELDS: number of fields to plot. Line below, field(s) types:
-21,1,2,23,24,68,69,124   field identification: FLDID(1:NFIELDS)
+21,1,2,23,24   field identification: FLDID(1:NFIELDS)
 1     NLEVELS: number of levels and/or depths to plot (0 for all levels)
 -100           levels (>0) or depths (<0) to plot: FLDLEV(1:NLEVELS)
 0     FRSTD  : first day to plot
@@ -43,10 +43,10 @@ T     CST    : logical switch to read and plot coastlines and islands.
   30.0   48.0 : bottom and top map Y-coordinares (south latitudes are negative).
 -134.0 -116.0 : left and right map X-coordinates (west longitudes are negative).
 ~/ocean/repository/plot/Data/varid.dat
-~/ocean/repository/plot/Palettes/natlan1.pal
+~/ocean/repository/plot/Palettes/vivid2_90.pal
 default1.cnt
-../ARRAY_MODES/wc13_tlm_003.nc
-../ARRAY_MODES/wc13_tlm_003.nc
+../ARRAY_MODES/EX7/wc13_tlm_003.nc
+../ARRAY_MODES/EX7/wc13_tlm_003.nc
 ../Data/wc13_grd.nc
 ~/ocean/repository/plot/Data/NAwest_high.cst
 

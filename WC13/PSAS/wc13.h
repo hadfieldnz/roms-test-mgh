@@ -72,7 +72,6 @@
 
 #ifdef NLM_DRIVER
 # define AVERAGES           /* define if writing out time-averaged data */
-# define RI_SPLINES
 #endif
 
 /*
@@ -83,6 +82,7 @@
 #ifdef GLS_MIXING
 # define N2S2_HORAVG
 # define KANTHA_CLAYSON
+# define RI_SPLINES
 #endif
 
 /*
@@ -150,7 +150,6 @@
 # define NL_BULK_FLUXES
 # define VCONVOLUTION
 # define IMPLICIT_VCONV
-# define BALANCE_OPERATOR
 # ifdef BALANCE_OPERATOR
 #  define ZETA_ELLIPTIC
 # endif

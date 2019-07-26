@@ -3,11 +3,11 @@
 %
 
 % svn $Id$
-%===========================================================================%
-%  Copyright (c) 2002-2019 The ROMS/TOMS Group                              %
-%    Licensed under a MIT/X style license                                   %
-%    See License_ROMS.txt                                                   %
-%===========================================================================%
+%=========================================================================%
+%  Copyright (c) 2002-2019 The ROMS/TOMS Group                            %
+%    Licensed under a MIT/X style license                                 %
+%    See License_ROMS.txt                                                 %
+%=========================================================================%
 
 clear                                  % clear workspace
 close all                              % close all figures
@@ -18,8 +18,8 @@ SHADING_INTERP=1;                      % switch for shading interp (1) or
 
 % Set input NetCDF files.
 
-Inpb='../PSAS/wc13_fwd_000.nc';        % prior circulation
-Inpa='../PSAS/wc13_fwd_001.nc';        % posterior circulation
+Inpb='../PSAS/EX3_RPCG/wc13_fwd_000.nc';      % prior circulation
+Inpa='../PSAS/EX3_RPCG/wc13_fwd_001.nc';      % posterior circulation
 
 Grd='../Data/wc13_grd.nc';             % grid
 
@@ -126,9 +126,9 @@ colorbar; hold on;
 plot(coast.lon,coast.lat,'k');
 title('S increment');
 
-if (PRINT),
+if (PRINT)
   print -dpng -r300 plot_psas_increments_page1.png
-end,
+end
 
 % Plot 4D-PSAS surface forcing variables increments.
 
@@ -155,6 +155,6 @@ colorbar; hold on;
 plot(coast.lon,coast.lat,'k');
 title('Q increment (W/m^2)');
 
-if (PRINT),
+if (PRINT)
   print -dpng -r300 plot_psas_increments_page2.png
-end,
+end

@@ -134,6 +134,11 @@ export     MY_PROJECT_DIR=${PWD}
 
 #--------------------------------------------------------------------------
 # Set tunable CPP options.
+#
+# 4D-Var Tutorial: https://www.myroms.org/wiki/4DVar_Tutorial_Introduction
+#                  Exercise 03 and Exercise 04
+#
+#         Results: https://www.myroms.org/wiki/PSAS_Tutorial
 #--------------------------------------------------------------------------
 #
 # Sometimes it is desirable to activate one or more CPP options to run
@@ -149,14 +154,19 @@ export     MY_PROJECT_DIR=${PWD}
 # many definitions as you want by appending values.
 
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DW4DPSAS"
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMINRES"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DRPCG"
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBGQC"
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTIME_CONV"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_EOFS"     # Nouter=1
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_ERROR_I"  # Nouter=1
-
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DANA_SPONGE"
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMINRES"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DRPCG"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTIME_CONV"
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBGQC"
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_EOFS"     # Nouter=1
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSTERIOR_ERROR_I"  # Nouter=1
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DCOLLECT_ALLREDUCE"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DREDUCE_ALLGATHER"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"

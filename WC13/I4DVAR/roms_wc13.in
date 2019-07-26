@@ -107,7 +107,7 @@ GridsInLayer =  1
 ! indices (Istr,Iend) and (Jstr,Jend), [1:Ngrids].
 
       NtileI == 2                               ! I-direction partition
-      NtileJ == 2                               ! J-direction partition
+      NtileJ == 4                               ! J-direction partition
 
 ! Set lateral boundary conditions keyword. Notice that a value is expected
 ! for each boundary segment per nested grid for each state variable.
@@ -200,7 +200,9 @@ ad_VolCons(north) ==  F                            ! northern boundary
        ERstr =  1
        ERend =  1
       Nouter =  1
-      Ninner =  50
+!     Nouter =  2
+      Ninner =  25
+!     Ninner =  50
   Nintervals =  1
 
 ! Number of eigenvalues (NEV) and eigenvectors (NCV) to compute for the
@@ -866,18 +868,18 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 ! be regular adjoint forcing files just like ADSname. If the forecast
 ! error metric is defined in observation space (OBS_SPACE is activated)
 ! then the forecast is initialized OIFnameA and OIFnameB (specified in
-! s4dva4.in input script) will have the structure of a 4D-Var observation
+! s4dvar.in input script) will have the structure of a 4D-Var observation
 ! file.
 
-    FOInameA == roms_foi_a.nc
-    FOInameB == roms_foi_b.nc
+    FOInameA == wc13_foi_a.nc
+    FOInameB == wc13_foi_b.nc
 
 ! Input NetCDF filenames for the forecasts initialized from the analysis
 ! of the current 4D-Var cycle (FCTnameA) and initialized from the analysis
 ! of the previous 4D-Var cycle (FCTnameB).
 
-    FCTnameA == roms_fct_a.nc
-    FCTnameB == roms_fct_b.nc
+    FCTnameA == wc13_fct_a.nc
+    FCTnameB == wc13_fct_b.nc
 
 ! Nesting grids connectivity data: contact points information. This
 ! NetCDF file is special and complex. It is currently generated using

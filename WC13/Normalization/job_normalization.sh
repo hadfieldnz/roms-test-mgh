@@ -34,10 +34,6 @@
 
  set SUBSTITUTE=${ROMS_ROOT}/ROMS/Bin/substitute
 
-# Copy nonlinear model initial conditions file.
-
- cp -p ${Dir}/Data/wc13_ini.nc wc13_ini.nc
-
 # Set model, initial conditions, boundary conditions and surface
 # forcing error covariance standard deviations files.
 
@@ -70,8 +66,8 @@
  $SUBSTITUTE $NORM roms_nrm_i.nc $NRMnameI
  $SUBSTITUTE $NORM roms_nrm_b.nc $NRMnameB
  $SUBSTITUTE $NORM roms_nrm_f.nc $NRMnameF
- $SUBSTITUTE $NORM roms_obs.nc wc13_obs.nc
- $SUBSTITUTE $NORM roms_hss.nc wc13_hss.nc
- $SUBSTITUTE $NORM roms_lcz.nc wc13_lcz.nc
- $SUBSTITUTE $NORM roms_mod.nc wc13_mod.nc
- $SUBSTITUTE $NORM roms_err.nc wc13_err.nc
+ $SUBSTITUTE $NORM roms_obs.nc   wc13_obs.nc
+ $SUBSTITUTE $NORM roms_hss.nc   wc13_hss.nc
+ $SUBSTITUTE $NORM roms_lcz.nc   wc13_lcz.nc
+ $SUBSTITUTE $NORM roms_mod.nc   wc13_mod.nc
+ $SUBSTITUTE $NORM roms_err.nc   wc13_err.nc

@@ -81,8 +81,8 @@
  $SUBSTITUTE $PSAS roms_nrm_i.nc $NRMnameI
  $SUBSTITUTE $PSAS roms_nrm_b.nc $NRMnameB
  $SUBSTITUTE $PSAS roms_nrm_f.nc $NRMnameF
- $SUBSTITUTE $PSAS roms_obs.nc $OBSname
- $SUBSTITUTE $PSAS roms_hss.nc wc13_hss.nc
- $SUBSTITUTE $PSAS roms_lcz.nc wc13_lcz.nc
- $SUBSTITUTE $PSAS roms_mod.nc wc13_mod.nc
- $SUBSTITUTE $PSAS roms_err.nc wc13_err.nc
+ $SUBSTITUTE $PSAS roms_obs.nc   $OBSname
+ $SUBSTITUTE $PSAS roms_hss.nc   wc13_hss.nc
+ $SUBSTITUTE $PSAS roms_lcz.nc   wc13_lcz.nc
+ $SUBSTITUTE $PSAS roms_mod.nc   wc13_mod.nc
+ $SUBSTITUTE $PSAS roms_err.nc   wc13_err.nc

@@ -5,9 +5,9 @@ I4D-Var Increment
 Free Surface (m)
 8     NFIELDS: number of fields to plot. Line below, field(s) types:
 21,1,2,23,24,68,69,124   field identification: FLDID(1:NFIELDS)
-1     NLEVELS: number of levels and/or depths to plot (0 for all levels)
--100           levels (>0) or depths (<0) to plot: FLDLEV(1:NLEVELS)
--1    FRSTD  : first day to plot
+2     NLEVELS: number of levels and/or depths to plot (0 for all levels)
+30,-100        levels (>0) or depths (<0) to plot: FLDLEV(1:NLEVELS)-
+1    FRSTD  : first day to plot
 -1    LASTD  : last day to plot
 0     DSKIP  : plot every other DSKIP days (0.0 plot at its own time frequency)
 1     FINDX  : forecast record to process, if any (atmospheric files only).
@@ -34,7 +34,7 @@ Free Surface (m)
 -1    NPAGE  : number of plots per page (currently 1, 2, or 4)
 T     READGRD: logical switch to read in positions from grid NetCDF file.
 F     PLTLOGO: logical switch draw Logo.
-T     WRTHDR : logical switch to write out the plot header titles.
+F     WRTHDR : logical switch to write out the plot header titles.
 T     WRTBLAB: logical switch to write out the plot bottom title.
 T     WRTRANG: logical switch to write out data range values and CI.
 F     WRTFNAM: logical switch to write out input primary filename.
@@ -43,13 +43,12 @@ T     CST    : logical switch to read and plot coastlines and islands.
   30.0   48.0 : bottom and top map Y-coordinares (south latitudes are negative).
 -134.0 -116.0 : left and right map X-coordinates (west longitudes are negative).
 ~/ocean/repository/plot/Data/varid.dat
-~/ocean/repository/plot/Palettes/natlan1.pal
+~/ocean/repository/plot/Palettes/vivid2_90.pal
 default1.cnt
-../I4DVAR/wc13_fwd_001.nc
-../I4DVAR/wc13_fwd_000.nc
+../I4DVAR/EX1/wc13_fwd_001.nc
+../I4DVAR/EX1/wc13_fwd_000.nc
 ../Data/wc13_grd.nc
 ~/ocean/repository/plot/Data/NAwest_high.cst
-
 
 !svn $Id$
 !========================================================= Hernan G. Arango ===

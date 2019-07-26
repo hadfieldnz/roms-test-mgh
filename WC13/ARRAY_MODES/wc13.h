@@ -150,7 +150,6 @@
 # define NL_BULK_FLUXES
 # define VCONVOLUTION
 # define IMPLICIT_VCONV
-# define BALANCE_OPERATOR
 # ifdef BALANCE_OPERATOR
 #  define ZETA_ELLIPTIC
 # endif
@@ -166,5 +165,5 @@
 
 #if defined ARRAY_MODES || \
     defined W4DVAR      || defined W4DVAR_SENSITIVITY
-# define RPM_RELAXATION
+# undef RPM_RELAXATION
 #endif

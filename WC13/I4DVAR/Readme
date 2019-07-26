@@ -37,9 +37,16 @@
 ***********************************************************************
 *
 
+4D-Var Tutorial: https://www.myroms.org/wiki/4DVar_Tutorial_Introduction
+                 Exercise 01 and Exercise 02
+
+        Results: https://www.myroms.org/wiki/I4DVAR_Tutorial
+
 Important CPP options:
 
    IS4DVAR                 I4D-Var driver
+   ANA_SPONGE              Analytical enhanced viscosity/diffusion sponge
+   BGQC                    Backgound quality control of observations
    WC13                    Application CPP option
 
 Input NetCDF files:
@@ -140,23 +147,30 @@ To run this application you need to take the following steps:
       LdefNRM == F F F F        ! Create a new normalization files
       LwrtNRM == F F F F        ! Compute and write normalization
 
-      CnormI(isFsur) =  T       ! 2D variable at RHO-points
-      CnormI(isUbar) =  T       ! 2D variable at U-points
-      CnormI(isVbar) =  T       ! 2D variable at V-points 
-      CnormI(isUvel) =  T       ! 3D variable at U-points
-      CnormI(isVvel) =  T       ! 3D variable at V-points
-      CnormI(isTvar) =  T T     ! NT tracers
+      CnormM(isFsur) =  T       ! Model, 2D variable at RHO-points
+      CnormM(isUbar) =  T       ! Model, 2D variable at U-points
+      CnormM(isVbar) =  T       ! Model, 2D variable at V-points 
+      CnormM(isUvel) =  T       ! Model, 3D variable at U-points
+      CnormM(isVvel) =  T       ! Model, 3D variable at V-points
+      CnormM(isTvar) =  T T     ! Model, NT tracers
 
-      CnormB(isFsur) =  T       ! 2D variable at RHO-points
-      CnormB(isUbar) =  T       ! 2D variable at U-points
-      CnormB(isVbar) =  T       ! 2D variable at V-points
-      CnormB(isUvel) =  T       ! 3D variable at U-points
-      CnormB(isVvel) =  T       ! 3D variable at V-points
-      CnormB(isTvar) =  T T     ! NT tracers
+      CnormI(isFsur) =  T       ! IC, 2D variable at RHO-points
+      CnormI(isUbar) =  T       ! IC, 2D variable at U-points
+      CnormI(isVbar) =  T       ! IC, 2D variable at V-points 
+      CnormI(isUvel) =  T       ! IC, 3D variable at U-points
+      CnormI(isVvel) =  T       ! IC, 3D variable at V-points
+      CnormI(isTvar) =  T T     ! IC, NT tracers
 
-      CnormF(isUstr) =  T       ! surface U-momentum stress
-      CnormF(isVstr) =  T       ! surface V-momentum stress
-      CnormF(isTsur) =  T T     ! NT surface tracers flux
+      CnormB(isFsur) =  T       ! OBC, 2D variable at RHO-points
+      CnormB(isUbar) =  T       ! OBC, 2D variable at U-points
+      CnormB(isVbar) =  T       ! OBC, 2D variable at V-points
+      CnormB(isUvel) =  T       ! OBC, 3D variable at U-points
+      CnormB(isVvel) =  T       ! OBC, 3D variable at V-points
+      CnormB(isTvar) =  T T     ! OBC, NT tracers
+
+      CnormF(isUstr) =  T       ! Surface Forcing, U-momentum stress
+      CnormF(isVstr) =  T       ! Surface Forcing, V-momentum stress
+      CnormF(isTsur) =  T T     ! Surface Forcing, NT tracers fluxes
 
       These normalization coefficients have already been computed
       for you (../Normalization) using the exact method since this
@@ -195,6 +209,7 @@ To run this application you need to take the following steps:
       is specified in the "build_roms" script instead of "wc13.h":
 
       setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DIS4DVAR"
+      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DANA_SPONGE"
 
       this is to allow flexibility with different CPP options.
 
@@ -209,7 +224,7 @@ To run this application you need to take the following steps:
       It is set by default to:
 
       NtileI == 2                               ! I-direction partition
-      NtileJ == 2                               ! J-direction partition
+      NtileJ == 4                               ! J-direction partition
 
       Notice that the adjoint-based algorithms can only be run
       in parallel using MPI.  This is because of the way that the
@@ -237,9 +252,18 @@ To run this application you need to take the following steps:
 
   (9) Run ROMS with data assimilation:
 
-      mpirun -np 4 romsM roms_wc13.in > & log &
+      mpirun -np 8 romsM roms_wc13.in > & log &
 
- (10) Analyze the results using the plotting scripts (Matlab or
+ (10) We recommend creating a new subdirectories EX1 (Tutorial Exercise 1)
+      and EX2 (Tutorial Exercise 2) to save the solution in it for
+      analysis and plotting to avoid overwriting output files when playing
+      with difference CPP options and parameters. For example:
+
+      mkdir EX1
+      mv Build_roms i4dvar.in *.nc log EX1
+      cp -p romsM roms_wc13.in EX1
+
+ (11) Analyze the results using the plotting scripts (Matlab or
       ROMS plotting package) provided in the ../plotting directory:
 
       plot_i4dvar_cost.m           plots I4D-Var cost function

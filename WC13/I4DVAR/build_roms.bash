@@ -134,6 +134,11 @@ export     MY_PROJECT_DIR=${PWD}
 
 #--------------------------------------------------------------------------
 # Set tunable CPP options.
+#
+# 4D-Var Tutorial: https://www.myroms.org/wiki/4DVar_Tutorial_Introduction
+#                  Exercise 01 and Exercise 02
+#
+#         Results: https://www.myroms.org/wiki/I4DVAR_Tutorial
 #--------------------------------------------------------------------------
 #
 # Sometimes it is desirable to activate one or more CPP options to run
@@ -149,8 +154,12 @@ export     MY_PROJECT_DIR=${PWD}
 # many definitions as you want by appending values.
 
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DIS4DVAR"
-
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DANA_SPONGE"
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBGQC"
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DCOLLECT_ALLREDUCE"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DREDUCE_ALLGATHER"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
