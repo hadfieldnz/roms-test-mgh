@@ -3,20 +3,19 @@
 %
 
 % svn $Id$
-%===========================================================================%
-%  Copyright (c) 2002-2019 The ROMS/TOMS Group                              %
-%    Licensed under a MIT/X style license                                   %
-%    See License_ROMS.txt                                                   %
-%===========================================================================%
+%=========================================================================%
+%  Copyright (c) 2002-2019 The ROMS/TOMS Group                            %
+%    Licensed under a MIT/X style license                                 %
+%    See License_ROMS.txt                                                 %
+%=========================================================================%
 
 clear                                  % clear workspace
-close all                              % close all figures
 
-PRINT=0;                               % switch to save figure as PNG
+PRINT=true;                            % switch to save figure as PNG
 
 % Set input NetCDF files.
 
-Inp='../I4DVAR/wc13_mod.nc';           % ROMS 4D-Var file
+Inp='../I4DVAR/EX1/wc13_mod_i4dvar.nc';       % ROMS 4D-Var file
 
 % Read in cost function variables.
 
@@ -43,6 +42,7 @@ figure;
 
 plot(log10(J),'k','LineWidth',2);
 hold on;
+grid on;
 plot(log10(Jo),'b','LineWidth',2);
 plot(log10(Jb),'r','LineWidth',2);
 line([1 Niter],[log10(Jmin) log10(Jmin)], ...
@@ -58,6 +58,6 @@ legend('J','J_o','J_b','J_{min}','J_{NL}','Location','Southeast')
 
 title('I4D-Var Cost Function')
 
-if (PRINT),
+if (PRINT)
   print -dpng -r300 plot_i4dvar_cost.png
-end,
+end

@@ -3,11 +3,11 @@
 %
 
 % svn $Id$
-%===========================================================================%
-%  Copyright (c) 2002-2019 The ROMS/TOMS Group                              %
-%    Licensed under a MIT/X style license                                   %
-%    See License_ROMS.txt                                                   %
-%===========================================================================%
+%=========================================================================%
+%  Copyright (c) 2002-2019 The ROMS/TOMS Group                            %
+%    Licensed under a MIT/X style license                                 %
+%    See License_ROMS.txt                                                 %
+%=========================================================================%
 
 clear                                  % clear workspace
 close all                              % close all figures
@@ -18,8 +18,8 @@ SHADING_INTERP=1;                      % switch for shading interp (1) or
 
 % Set input NetCDF files.
 
-Inpb='../I4DVAR/wc13_fwd_000.nc';      % prior circulation
-Inpa='../I4DVAR/wc13_fwd_001.nc';      % posterior circulation
+Inpb='../I4DVAR/EX1/wc13_fwd_000.nc';      % prior circulation
+Inpa='../I4DVAR/EX1/wc13_fwd_001.nc';      % posterior circulation
 
 Grd='../Data/wc13_grd.nc';             % grid
 

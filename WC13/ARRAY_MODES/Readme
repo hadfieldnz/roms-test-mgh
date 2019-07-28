@@ -13,6 +13,10 @@
 *                                                                     *
 *  References:                                                        *
 *                                                                     *
+*    Moore, A.M., H.G. Arango, C.A. Edwards, 2017: Reduced-Rank       *
+*      Array Modes of the California Current Observing System,        *
+*      J. Geophys. Res. Ocean, 122, doi:10.1002/2017JC013172.         *
+*                                                                     *
 *    Moore, A.M., H.G. Arango, G. Broquet, B.S. Powell, A.T. Weaver,  *
 *      and J. Zavala-Garay, 2011: The Regional Ocean Modeling System  *
 *      (ROMS)  4-dimensional variational data assimilations systems,  *
@@ -37,10 +41,18 @@
 ***********************************************************************
 *
 
+4D-Var Tutorial: https://www.myroms.org/wiki/4DVar_Tutorial_Introduction
+                 Exercise 07
+
+        Results: https://www.myroms.org/wiki/Array_Modes_Tutorial
+
 Important CPP options:
 
    ARRAY_MODES             Representer Matrix Array Modes driver
+   ANA_SPONGE              Analytical enhanced viscosity/diffusion sponge
    ARRAY_MODES_SPLIT       Analysis due to IC, surface forcing, and OBC
+   RPCG                    Restricted B-preconditioned Lanczos minimization
+   SKIP_NLM                Skipping running NLM, reading NLM state trajectory
    WC13                    Application CPP option
 
 Input NetCDF files:
@@ -145,23 +157,30 @@ To run this application you need to take the following steps:
       LdefNRM == F F F F        ! Create a new normalization files
       LwrtNRM == F F F F        ! Compute and write normalization
 
-      CnormI(isFsur) =  T       ! 2D variable at RHO-points
-      CnormI(isUbar) =  T       ! 2D variable at U-points
-      CnormI(isVbar) =  T       ! 2D variable at V-points 
-      CnormI(isUvel) =  T       ! 3D variable at U-points
-      CnormI(isVvel) =  T       ! 3D variable at V-points
-      CnormI(isTvar) =  T T     ! NT tracers
+      CnormM(isFsur) =  T       ! Model, 2D variable at RHO-points
+      CnormM(isUbar) =  T       ! Model, 2D variable at U-points
+      CnormM(isVbar) =  T       ! Model, 2D variable at V-points 
+      CnormM(isUvel) =  T       ! Model, 3D variable at U-points
+      CnormM(isVvel) =  T       ! Model, 3D variable at V-points
+      CnormM(isTvar) =  T T     ! Model, NT tracers
 
-      CnormB(isFsur) =  T       ! 2D variable at RHO-points
-      CnormB(isUbar) =  T       ! 2D variable at U-points
-      CnormB(isVbar) =  T       ! 2D variable at V-points
-      CnormB(isUvel) =  T       ! 3D variable at U-points
-      CnormB(isVvel) =  T       ! 3D variable at V-points
-      CnormB(isTvar) =  T T     ! NT tracers
+      CnormI(isFsur) =  T       ! IC, 2D variable at RHO-points
+      CnormI(isUbar) =  T       ! IC, 2D variable at U-points
+      CnormI(isVbar) =  T       ! IC, 2D variable at V-points 
+      CnormI(isUvel) =  T       ! IC, 3D variable at U-points
+      CnormI(isVvel) =  T       ! IC, 3D variable at V-points
+      CnormI(isTvar) =  T T     ! IC, NT tracers
 
-      CnormF(isUstr) =  T       ! surface U-momentum stress
-      CnormF(isVstr) =  T       ! surface V-momentum stress
-      CnormF(isTsur) =  T T     ! NT surface tracers flux
+      CnormB(isFsur) =  T       ! OBC, 2D variable at RHO-points
+      CnormB(isUbar) =  T       ! OBC, 2D variable at U-points
+      CnormB(isVbar) =  T       ! OBC, 2D variable at V-points
+      CnormB(isUvel) =  T       ! OBC, 3D variable at U-points
+      CnormB(isVvel) =  T       ! OBC, 3D variable at V-points
+      CnormB(isTvar) =  T T     ! OBC, NT tracers
+
+      CnormF(isUstr) =  T       ! Surface Forcing, U-momentum stress
+      CnormF(isVstr) =  T       ! Surface Forcing, V-momentum stress
+      CnormF(isTsur) =  T T     ! Surface Forcing, NT tracers fluxes
 
       These normalization coefficients have already been computed
       for you (../Normalization) using the exact method since this
@@ -210,7 +229,10 @@ To run this application you need to take the following steps:
       are specified in the "build_roms" script instead of "wc13.h":
 
       setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DARRAY_MODES"
+      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DANA_SPONGE"
       setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DARRAY_MODES_SPLIT"
+      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DRPCG"
+      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSKIP_NLM"
 
       this is to allow flexibility with different CPP options.
 
@@ -225,7 +247,7 @@ To run this application you need to take the following steps:
       It is set by default to:
 
       NtileI == 2                               ! I-direction partition
-      NtileJ == 2                               ! J-direction partition
+      NtileJ == 4                               ! J-direction partition
 
       Notice that the adjoint-based algorithms can only be run
       in parallel using MPI.  This is because of the way that the
@@ -243,27 +265,47 @@ To run this application you need to take the following steps:
 
       setenv ROMS_ROOT ${HOME}/ocean/repository/trunk
 
-  (9) Execute the configuration "job_array_modes.sh" BEFORE running
+  (9) The only change that you need to make is to "s4dvar.in", where you
+      will select the array mode that you wish to calculate (you may
+      only calculate on mode at a time). The choice of array mode is
+      determined by the parameter Nvct. The array modes are referenced
+      in reverse order, so choosing Nvct=Ninner-1 is the array mode is
+      the important. Note that Nvct must be assigned a numeric value
+      (i.e. Nvct=10 for the 4D-PSAS tutorial). 
+
+ (10) Execute the configuration "job_array_modes.sh" BEFORE running
       the model.  It copies the required files and creates "r4dvar.in"
       input script from template "s4dvar.in". This has to be done
       EVERY TIME that you run this application. We need a clean and
       fresh copy of the initial conditions and observation files
       since they are modified by ROMS during execution.
 
- (10) Run ROMS with data assimilation:
+ (11) Run ROMS with data assimilation:
 
       mpirun -np 4 romsM roms_wc13.in > & log &
 
- (11) Analyze the results using the plotting scripts (Matlab or
+ (12) We recommend creating a new subdirectory EX7 (Tutorial Exercise 7),
+      and saving the solution in it for analysis and plotting to avoid
+      overwriting output files when playing with difference CPP options
+      and parameters. For example:
+
+      mkdir EX7
+      mv Build_roms psas.in *.nc log EX7
+      cp -p romsM roms_wc13.in EX7
+
+ (13) Analyze the results using the plotting scripts (Matlab or
       ROMS plotting package) provided in the ../plotting directory:
 
       plot_array_modes.m           plots chosen stabilized representer
                                    matrix array modes.
 
+      plot_array_modes_spectrum.m  Plots array modes eigenvalues
+                                   spectrum
 
-      ccnt_array_modes.in          plots chosen stabilized representer
-                                   matrix array modes contours at z=-100m
+      ccnt_array_modes*.in         plots chosen stabilized representer
+                                   matrix array modes maps at the
+                                   surface or at z=-100m
 
-      csec_array_modes.in          plots chosen stabilized representer
+      csec_array_modes*.in         plots chosen stabilized representer
                                    matrix array modes cross-sections
                                    along 37N

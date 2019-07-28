@@ -3,14 +3,13 @@
 %
 
 % svn $Id$
-%===========================================================================%
-%  Copyright (c) 2002-2019 The ROMS/TOMS Group                              %
-%    Licensed under a MIT/X style license                                   %
-%    See License_ROMS.txt                                                   %
-%===========================================================================%
+%=========================================================================%
+%  Copyright (c) 2002-2019 The ROMS/TOMS Group                            %
+%    Licensed under a MIT/X style license                                 %
+%    See License_ROMS.txt                                                 %
+%=========================================================================%
 
 clear                                  % clear workspace
-close all                              % close all figures
 
 PRINT=0;                               % switch to save figures as PNG
 SHADING_INTERP=1;                      % switch for shading interp (1) or
@@ -18,7 +17,7 @@ SHADING_INTERP=1;                      % switch for shading interp (1) or
 
 % Set input NetCDF files.
 
-Inp='../ARRAY_MODES/wc13_tlm_003.nc';  % Array modes file (saved in TLM)
+Inp='../ARRAY_MODES/EX7/wc13_tlm_003.nc';  % Array modes file (saved in TLM)
 
 Grd='../Data/wc13_grd.nc';
 
@@ -62,9 +61,9 @@ for rec=1:Nrec
   title(['\zeta time=',num2str(rec-1,1),' days']);
 end,
 
-if (PRINT),
+if (PRINT)
   print -dpng -r300 plot_array_modes_zeta.png
-end,
+end
 
 figure
 
@@ -78,9 +77,9 @@ for rec=1:Nrec
   title(['u time=',num2str(rec-1,1),' days']);
 end,
 
-if (PRINT),
+if (PRINT)
   print -dpng -r300 plot_array_modes_u.png
-end,
+end
 
 figure
 
@@ -92,11 +91,11 @@ for rec=1:Nrec
   colorbar; hold on;
   plot(coast.lon,coast.lat,'k');
   title(['v time=',num2str(rec-1,1),' days']);
-end,
+end
 
-if (PRINT),
+if (PRINT)
   print -dpng -r300 plot_array_modes_v.png
-end,
+end
 
 figure
 
@@ -108,11 +107,11 @@ for rec=1:Nrec
   colorbar; hold on;
   plot(coast.lon,coast.lat,'k');
   title(['T time=',num2str(rec-1,1),' days']);
-end,
+end
 
-if (PRINT),
+if (PRINT)
   print -dpng -r300 plot_array_modes_temp.png
-end,
+end
 
 figure
 
@@ -124,9 +123,8 @@ for rec=1:Nrec
   colorbar; hold on;
   plot(coast.lon,coast.lat,'k');
   title(['S time=',num2str(rec-1,1),' days']);
-end,
+end
 
 if (PRINT),
   print -dpng -r300 plot_array_modes_salt.png
-end,
-
+end

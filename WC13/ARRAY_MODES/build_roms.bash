@@ -149,9 +149,16 @@ export     MY_PROJECT_DIR=${PWD}
 # many definitions as you want by appending values.
 
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DARRAY_MODES"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DARRAY_MODES_SPLIT"
-
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DANA_SPONGE"
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DARRAY_MODES_SPLIT"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DRPCG"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSKIP_NLM"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBGQC"
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DCOLLECT_ALLREDUCE"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DREDUCE_ALLGATHER"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"

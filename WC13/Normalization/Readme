@@ -191,6 +191,11 @@ To run this application you need to take the following steps:
       NADJ = 48 to force the computation of model error
       normalization coefficients.
 
+      NTIMES == 192
+      ...
+        NADJ == 48      ! force to compute model error normalization factors
+!       NADJ == 192     ! avoid computing  model error normalization factors
+
   (2) Customize your preferred "build_roms" script and provide the
       appropriate values for:
 
@@ -248,7 +253,19 @@ To run this application you need to take the following steps:
 
       mpirun -np 8 romsM roms_wc13.in > & log &
 
-  (9) Analyze the results using the plotting scripts (ROMS plotting
+  (9) We recommend creating a new subdirectory "exact" or "random",
+      and saving the solution in it for analysis and plotting to avoid
+      overwriting output files when playing with difference CPP options
+      and parameters. For example:
+
+      mkdir exact
+      mv Build_roms c4dvar.in *.nc log exact
+      cp -p romsM roms_wc13.in exact
+
+      The Normalization coefficients have been already computed for
+      the WC13 application using the exact method.
+
+ (10) Analyze the results using the plotting scripts (ROMS plotting
       package) provided in the ../plotting directory:
 
       ccnt_normalization_f.in      plots error covariance normalization
@@ -256,3 +273,4 @@ To run this application you need to take the following steps:
 
       ccnt_normalization_i.in      plots error covariance normalization
                                    coefficients for initial conditions
+                                   at the surface or at z=-100m

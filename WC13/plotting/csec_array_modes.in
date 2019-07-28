@@ -2,10 +2,10 @@
 
 
 Representer Matrix Array Modes along 37N
-Temperature (Celsius)
+State Variables
 4     NFIELDS: number of fields to plot. Line below, field(s) types:
 1,2,23,24      field identification: FLDID(1:NFIELDS).
-0    FRSTD  : first day (>0) or time record (<0) to plot
+0     FRSTD  : first day (>0) or time record (<0) to plot
 0     LASTD  : last day (>0) or time record (<0) to plot
 0     DSKIP  : plot every other DSKIP days (see below)
 1     FINDX  : forecast record to process, if any (atmospheric files only).
@@ -36,10 +36,10 @@ T     WRTRANG: logical switch to write out data range values and CI.
 F     WRTFNAM: logical switch to write out input primary filename.
 F     WRTDATE: logical switch to write out current date.
 ~/ocean/repository/plot/Data/varid.dat
-~/ocean/repository/plot/Palettes/natlan1.pal
+~/ocean/repository/plot/Palettes/vivid2_90.pal
 default1.cnt
-../ARRAY_MODES/wc13_tlm_003.nc
-../ARRAY_MODES/wc13_tlm_003.nc
+../ARRAY_MODES/EX7/wc13_tlm_003.nc
+../ARRAY_MODES/EX7/wc13_tlm_003.nc
 ../Data/wc13_grd.nc
 
 

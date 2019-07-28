@@ -38,12 +38,21 @@
 ***********************************************************************
 *
 
+4D-Var Tutorial: https://www.myroms.org/wiki/4DVar_Tutorial_Introduction
+                 Exercise 03 and Exercise 04
+
+        Results: https://www.myroms.org/wiki/PSAS_Tutorial
+
 Important CPP options:
 
    W4DPSAS                 4D-PSAS driver (observation space)
+   ANA_SPONGE              Analytical enhanced viscosity/diffusion sponge
+   BGQC                    Backgound quality control of observations
    MINRES                  Minimal Residual Method for minimization
+   RPCG                    Restricted B-preconditioned Lanczos minimization
    POSTERIOR_EOFS          Estimate posterior analysis error
    POSTERIOR_ERROR_I       Estimate initial posterior analysis error
+   TIME_CONV               Weak-constraint 4D-Var time convolution
    WC13                    Application CPP option
 
 Input NetCDF files:
@@ -147,6 +156,13 @@ To run this application you need to take the following steps:
       LdefNRM == F F F F        ! Create a new normalization files
       LwrtNRM == F F F F        ! Compute and write normalization
 
+      CnormM(isFsur) =  T       ! 2D variable at RHO-points
+      CnormM(isUbar) =  T       ! 2D variable at U-points
+      CnormM(isVbar) =  T       ! 2D variable at V-points 
+      CnormM(isUvel) =  T       ! 3D variable at U-points
+      CnormM(isVvel) =  T       ! 3D variable at V-points
+      CnormM(isTvar) =  T T     ! NT tracers
+
       CnormI(isFsur) =  T       ! 2D variable at RHO-points
       CnormI(isUbar) =  T       ! 2D variable at U-points
       CnormI(isVbar) =  T       ! 2D variable at V-points 
@@ -202,9 +218,16 @@ To run this application you need to take the following steps:
   (4) Notice that the most important CPP options for this application
       are specified in the "build_roms" script instead of "wc13.h":
 
-      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DW4DPSAS"
-      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSTERIOR_EOFS"
-      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSTERIOR_ERROR_I"
+       setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DW4DPSAS"
+       setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DANA_SPONGE"
+      #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMINRES"
+      #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DRPCG"
+      #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTIME_CONV"
+
+      #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBGQC"
+
+      #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSTERIOR_EOFS"
+      #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSTERIOR_ERROR_I"
 
       this is to allow flexibility with different CPP options.
 
@@ -219,7 +242,7 @@ To run this application you need to take the following steps:
       It is set by default to:
 
       NtileI == 2                               ! I-direction partition
-      NtileJ == 2                               ! J-direction partition
+      NtileJ == 4                               ! J-direction partition
 
       Notice that the adjoint-based algorithms can only be run
       in parallel using MPI.  This is because of the way that the
@@ -246,9 +269,22 @@ To run this application you need to take the following steps:
 
   (9) Run ROMS with data assimilation:
 
-      mpirun -np 4 romsM roms_wc13.in > & log &
+      mpirun -np 8 romsM roms_wc13.in > & log &
 
- (10) Analyze the results using the plotting scripts (Matlab or
+ (10) We recommend creating a new subdirectories EX3_CONGRAD,
+      EXE_MINRES, and EX3_RPCG (Tutorial Exercise 3 using
+      default, MINRES, and RPCG algorithms) to save the solution
+      in it for analysis and plotting to avoid overwriting output
+      files when activating different CPP options and parameters.
+      For example:
+
+      mkdir EX3_RPCG
+      mv Build_roms psas.in *.nc log EX3_RPCG
+      cp -p romsM roms_wc13.in EX3_RPCG
+
+      Check Exercise 3 instructions for more details.
+
+ (11) Analyze the results using the plotting scripts (Matlab or
       ROMS plotting package) provided in the ../plotting directory:
 
       plot_psas_cost.m               plots 4D-PSAS cost function
