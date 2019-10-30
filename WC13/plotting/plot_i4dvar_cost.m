@@ -15,7 +15,7 @@ PRINT=true;                            % switch to save figure as PNG
 
 % Set input NetCDF files.
 
-Inp='../I4DVAR/EX1/wc13_mod_i4dvar.nc';       % ROMS 4D-Var file
+Inp='../I4DVAR/EX1/wc13_mod.nc';       % ROMS 4D-Var file
 
 % Read in cost function variables.
 
