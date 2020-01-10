@@ -26,6 +26,10 @@
 #                                                                     #
 #######################################################################
 
+ echo ' '
+ echo '4D-Var Error Covariance Normalization Coefficients Configuration:'
+ echo ' '
+
 # Set path definition to one directory up in the tree.
 
  set Dir=`dirname ${PWD}`
@@ -56,7 +60,7 @@
  if (-e $NORM) then
    /bin/rm $NORM
  endif
- cp s4dvar.in $NORM
+ cp -v s4dvar.in $NORM
 
  $SUBSTITUTE $NORM roms_std_m.nc $STDnameM
  $SUBSTITUTE $NORM roms_std_i.nc $STDnameI

@@ -148,7 +148,7 @@ export     MY_PROJECT_DIR=${PWD}
 # can be used to write time-averaged fields. Notice that you can have as
 # many definitions as you want by appending values.
 
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} cd-DAVERAGES"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DAVERAGES"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"

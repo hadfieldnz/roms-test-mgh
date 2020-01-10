@@ -120,13 +120,14 @@ setenv MY_PROJECT_DIR        ${PWD}
 # to the code and inputs on differing machines.
 
 #setenv MY_ROMS_SRC         ${MY_ROOT_DIR}/branches/arango
- setenv MY_ROMS_SRC         ${MY_ROOT_DIR}/trunk
+ setenv MY_ROMS_SRC         ${MY_ROOT_DIR}/tadv
+#setenv MY_ROMS_SRC         ${MY_ROOT_DIR}/trunk
 
 # Set path of the directory containing makefile configuration (*.mk) files.
 # The user has the option to specify a customized version of these files
 # in a different directory than the one distributed with the source code,
-# ${MY_ROMS_SRC}/Compilers. If this is the case, the you need to keep
-# these configurations files up-to-date.
+# ${MY_ROMS_SRC}/Compilers. If this is the case, you need to keep these
+# configurations files up-to-date.
 
  setenv COMPILERS            ${MY_ROMS_SRC}/Compilers
 #setenv COMPILERS            ${HOME}/Compilers/ROMS
@@ -185,6 +186,7 @@ setenv MY_PROJECT_DIR        ${PWD}
  setenv USE_MPIF90          on          # compile with mpif90 script
 #setenv which_MPI           mpich       # compile with MPICH library
 #setenv which_MPI           mpich2      # compile with MPICH2 library
+#setenv which_MPI           mvapich2    # compile with MVAPICH2 library
  setenv which_MPI           openmpi     # compile with OpenMPI library
 
 #setenv USE_OpenMP          on          # shared-memory parallelism
@@ -231,14 +233,14 @@ endif
 # If applicable, use my specified library paths.
 #--------------------------------------------------------------------------
 
- setenv USE_MY_LIBS no           # use system default library paths
-#setenv USE_MY_LIBS yes          # use my customized library paths
+#setenv USE_MY_LIBS no           # use system default library paths
+ setenv USE_MY_LIBS yes          # use my customized library paths
 
 set MY_PATHS = ${COMPILERS}/my_build_paths.sh
 
 set MY_PATHS = ${COMPILERS}/my_build_paths.sh
 
-if ($USE${MY_PATHS} ${MY_PATHS}
+if ($USE_MY_LIBS == 'yes') then
   source ${MY_PATHS} ${MY_PATHS}
 endif
 

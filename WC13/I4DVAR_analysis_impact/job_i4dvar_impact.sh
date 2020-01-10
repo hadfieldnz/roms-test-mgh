@@ -31,6 +31,10 @@
 #                                                                     #
 #######################################################################
 
+ echo ' '
+ echo 'Incremental I4D-Var Observations Impact Configuration:'
+ echo ' '
+
 # Set path definition to one directory up in the tree.
 
  set Dir=`dirname ${PWD}`
@@ -41,16 +45,16 @@
 
 # Copy nonlinear model initial conditions file.
 
- cp -p ${Dir}/Data/wc13_ini.nc wc13_ini.nc
+ cp -vp ${Dir}/Data/wc13_ini.nc wc13_ini.nc
 
 # Copy Lanczos vectors (adjoint Netcdf file) from a previous I4D-Var
-# run.
+# run (Exercise 1).
 
- cp -p ${Dir}/I4DVAR/wc13_adj_001.nc wc13_lcz.nc
+ cp -vp ${Dir}/I4DVAR/EX1/wc13_adj_001.nc wc13_lcz.nc
 
 # Copy adjoint sensitivity functional.
 
- cp -p ${Dir}/Data/wc13_ads.nc wc13_ads.nc
+ cp -vp ${Dir}/Data/wc13_ads.nc wc13_ads.nc
 
 # Set initial conditions, boundary conditions and surface forcing
 # error covariance standard deviations files.
@@ -73,7 +77,7 @@
 # Get a clean copy of the observation file.  This is really
 # important since this file is modified.
 
- cp -p ${Dir}/Data/${OBSname} .
+ cp -vp ${Dir}/Data/${OBSname} .
 
 # Modify 4D-Var template input script and specify above files.
 
@@ -81,7 +85,7 @@
  if (-e $I4DVAR) then
    /bin/rm $I4DVAR
  endif
- cp s4dvar.in $I4DVAR
+ cp -v s4dvar.in $I4DVAR
 
  $SUBSTITUTE $I4DVAR roms_std_i.nc $STDnameI
  $SUBSTITUTE $I4DVAR roms_std_b.nc $STDnameB

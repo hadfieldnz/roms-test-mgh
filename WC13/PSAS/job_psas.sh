@@ -28,6 +28,10 @@
 #                                                                     #
 #######################################################################
 
+ echo ' '
+ echo 'Strong/Weak Constraint 4D-PSAS Configuration:'
+ echo ' '
+
 # Set path definition to one directory up in the tree.
 
  set Dir=`dirname ${PWD}`
@@ -38,7 +42,7 @@
 
 # Copy nonlinear model initial conditions file.
 
- cp -p ${Dir}/Data/wc13_ini.nc wc13_ini.nc
+ cp -vp ${Dir}/Data/wc13_ini.nc wc13_ini.nc
 
 # Set model, initial conditions, boundary conditions and surface
 # forcing error covariance standard deviations files.
@@ -63,7 +67,7 @@
 # Get a clean copy of the observation file.  This is really
 # important since this file is modified.
 
- cp -p ${Dir}/Data/${OBSname} .
+ cp -vp ${Dir}/Data/${OBSname} .
 
 # Modify 4D-Var template input script and specify above files.
 
@@ -71,7 +75,7 @@
  if (-e $PSAS) then
    /bin/rm $PSAS
  endif
- cp s4dvar.in $PSAS
+ cp -v s4dvar.in $PSAS
 
  $SUBSTITUTE $PSAS roms_std_m.nc $STDnameM
  $SUBSTITUTE $PSAS roms_std_i.nc $STDnameI

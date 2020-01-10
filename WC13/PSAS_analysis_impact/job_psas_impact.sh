@@ -7,8 +7,8 @@
 #   See License_ROMS.txt                                              #
 #######################################################################
 #                                                                     #
-# Strong/Weak constraint 4D-PSAS observation impact or sensitivity    #
-# job script:                                                         #
+# Strong/Weak constraint 4D-PSAS analysis observation impact job      #
+# script:                                                             #
 #                                                                     #
 # This script NEEDS to be run before any run:                         #
 #                                                                     #
@@ -33,6 +33,10 @@
 #                                                                     #
 #######################################################################
 
+ echo ' '
+ echo '4D-PSAS Analysis Observation Impact Configuration:'
+ echo ' '
+
 # Set path definition to one directory up in the tree.
 
  set Dir=`dirname ${PWD}`
@@ -43,16 +47,16 @@
 
 # Copy nonlinear model initial conditions file.
 
- cp -p ${Dir}/Data/wc13_ini.nc wc13_ini.nc
+ cp -vp ${Dir}/Data/wc13_ini.nc wc13_ini.nc
 
 # Copy Lanczos vectors from previous 4D-PSAS run. They are stored
 # in 4D-Var data assimilation file.
 
- cp -p ${Dir}/PSAS/EX3_RPCG/wc13_mod.nc wc13_lcz.nc
+ cp -vp ${Dir}/PSAS/EX3_RPCG/wc13_mod.nc wc13_lcz.nc
 
 # Copy adjoint sensitivity functional.
 
- cp -p ${Dir}/Data/wc13_ads.nc wc13_ads.nc
+ cp -vp ${Dir}/Data/wc13_ads.nc wc13_ads.nc
 
 # Set model, initial conditions, boundary conditions and surface
 # forcing error covariance standard deviations files.
@@ -77,7 +81,7 @@
 # Get a clean copy of the observation file.  This is really
 # important since this file is modified.
 
- cp -p ${Dir}/Data/${OBSname} .
+ cp -vp ${Dir}/Data/${OBSname} .
 
 # Modify 4D-Var template input script and specify above files.
 
@@ -85,7 +89,7 @@
  if (-e $PSAS) then
    /bin/rm $PSAS
  endif
- cp s4dvar.in $PSAS
+ cp -v s4dvar.in $PSAS
 
  $SUBSTITUTE $PSAS roms_std_m.nc $STDnameM
  $SUBSTITUTE $PSAS roms_std_i.nc $STDnameI

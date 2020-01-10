@@ -41,6 +41,8 @@ Important CPP options:
 
    IS4DVAR_SENSITIVITY     I4D-Var observation sensitivity driver
    AD_IMPULSE              Force ADM with intermittent impulses
+   ANA_SPONGE              Analytical enhanced viscosity/diffusion sponge
+   BGQC                    Backgound quality control of observations
    OBS_IMPACT              Compute observation impact
    OBS_IMPACT_SPLIT        separate impact due to IC, forcing, and OBC
    WC13                    Application CPP option
@@ -70,12 +72,15 @@ Input NetCDF files:
 
 Currently, you can find the following files here:
 
-   build_roms.bash     bash shell script to compile application
-   build_roms.sh       csh Unix script to compile application
-   job_i4dvar_sen.sh   job configuration script
-   roms_wc13.in        ROMS standard input script for WC13
-   s4dvar.in           4D-Var standard input script template
-   wc13.h              WC13 header with CPP options
+   build_roms.bash      bash shell script to compile application
+   build_roms.sh        csh Unix script to compile application
+   job_i4dvar_sen.sh    job configuration script
+   roms_wc13_daily.in   ROMS standard input script for WC13, NHIS=48,
+                          daily forward trajectory snapshots
+   roms_wc13_2hours.in  ROMS standard input script for WC13, NHIS=4,
+                          two-hours forward trajectory snapshots
+   s4dvar.in            4D-Var standard input script template
+   wc13.h               WC13 header with CPP options
 
 Important parameters in standard input "roms_wc13.in" script:
 
@@ -263,7 +268,7 @@ To run this application you need to take the following steps:
       It is set by default to:
 
       NtileI == 2                               ! I-direction partition
-      NtileJ == 2                               ! J-direction partition
+      NtileJ == 4                               ! J-direction partition
 
       Notice that the adjoint-based algorithms can only be run
       in parallel using MPI.  This is because of the way that the
@@ -290,7 +295,23 @@ To run this application you need to take the following steps:
 
  (11) Run ROMS with data assimilation:
 
-      mpirun -np 4 romsM roms_wc13.in > & log &
+      mpirun -np 8 romsM roms_wc13_daily.in > & log &
+
+      or
+
+      mpirun -np 8 romsM roms_wc13_2hours.in > & log &
+
+      Notice that the nonlinear trajectory can be written either
+      daily (NHIS=48 if using roms_wc13_daily.in) or every two-hours
+      (NHIS=4 if using roms_wc13_2hours.in). It is the basic state
+      trajectory used to linearize the tangent linear and adjoint
+      models. It turns out that the daily sampling is over the
+      limit where the tangent linear approximation is valid. The
+      results are much better when using the two-hours snapshots.
+      The two set-ups are provided to make the user aware of the
+      validity of the tangent linear approximation in highly
+      nonlinear circulations. The differences will be noticeable
+      when computing observation impacts and observation sensitivities.
 
  (12) Analyze the results using the plotting Matlab script provided in
       the ../plotting directory:

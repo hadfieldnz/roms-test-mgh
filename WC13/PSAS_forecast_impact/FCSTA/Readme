@@ -6,7 +6,7 @@
 *    See License_ROMS.txt                                             *
 ***********************************************************************
 *                                                                     *
-*  4D-PSAS Forecast Cycle Observation Impacts: Step 2                 *
+*  4D-PSAS Forecast Cycle Observation Impacts: Step 2 (RED FORECAST)  *
 *                                                                     *
 *  Runs ROMS Nonlinear model in forcast mode by initializing with     *
 *  the 4D-PSAS analysis (EX3_RPCG) file "wc13_dai.nc", red curve      *

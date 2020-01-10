@@ -44,6 +44,9 @@
 *                                                                     *
 ***********************************************************************
 *
+4D-Var Tutorial: www.myroms.org/wiki/4DVar_Tutorial_Introduction
+
+        Results: www.myroms.org/wiki/4DVar_Normalization_Tutorial
 
 Important CPP options:
 
@@ -77,12 +80,12 @@ Output NetCDF files:
 
 Currently, you can find the following files here:
 
-   build_roms.bash       bash shell script to compile application
-   build_roms.sh         csh Unix script to compile application
-   job_normalization.sh  job configuration script
-   roms_wc13.in          ROMS standard input script for WC13
-   s4dvar.in             4D-Var standard input script template
-   wc13.h                WC13 header with CPP options
+   build_roms.bash        bash shell script to compile application
+   build_roms.sh          csh Unix script to compile application
+   job_normalization.sh   job configuration script
+   roms_wc13.in           ROMS standard input script for WC13
+   s4dvar.in              4D-Var standard input script template
+   wc13.h                 WC13 header with CPP options
 
 Important Parameters:
 

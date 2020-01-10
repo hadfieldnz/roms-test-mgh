@@ -6,7 +6,7 @@
 *    See License_ROMS.txt                                             *
 ***********************************************************************
 *                                                                     *
-*  4D-PSAS Forecast Cycle Observation Impacts: Step 3                 *
+*  4D-PSAS Forecast Cycle Observation Impacts: Step 3 (BLUE FORECASt) *
 *                                                                     *
 *  Runs ROMS Nonlinear model in forcast mode by initializing with     *
 *  the background circulation at the end of the 4D-PSAS cycle         *
