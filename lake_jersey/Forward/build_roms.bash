@@ -34,7 +34,7 @@
 #                                                                       :::
 #    -p macro    Prints any Makefile macro value. For example,          :::
 #                                                                       :::
-#                  build.bash -p FFLAGS                                 :::
+#                  build_roms.bash -p FFLAGS                            :::
 #                                                                       :::
 #    -noclean    Do not clean already compiled objects                  :::
 #                                                                       :::
@@ -89,7 +89,7 @@ do
       echo "              omit argument for all avaliable CPUs"
       echo ""
       echo "-p macro    Prints any Makefile macro value"
-      echo "              For example:  build.bash -p FFLAGS"
+      echo "              For example:  build_roms.bash -p FFLAGS"
       echo ""
       echo "-noclean    Do not clean already compiled objects"
       echo ""
@@ -154,10 +154,6 @@ export     MY_PROJECT_DIR=${PWD}
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_U3HADVECTION"
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_C4VADVECTION"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_MPDATA"
-
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DSEDIMENT"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DUV_LOGDRAG"
@@ -171,6 +167,13 @@ export     MY_PROJECT_DIR=${PWD}
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DN2S2_HORAVG"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DCRAIG_BANNER"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DCHARNOK"
+
+# The tracer advection is specified in the standard input file, but the
+# CPP options can be specified here for older versions for backward
+# compatibility.
+
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_MPDATA"
 
 #--------------------------------------------------------------------------
 # Compiler options.
@@ -235,9 +238,7 @@ fi
 
 MY_PATHS=${COMPILERS}/my_build_paths.bash
 
-MY_PATHS=${COMPILERS}/my_build_paths.bash
-
-if [ "${${MY_PATHS} ${MY_PATHS}
+if [ "${USE_MY_LIBS}" = "yes" ]; then
   source ${MY_PATHS} ${MY_PATHS}
 fi
 

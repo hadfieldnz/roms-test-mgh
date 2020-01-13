@@ -34,7 +34,7 @@
 #                                                                       :::
 #    -p macro    Prints any Makefile macro value. For example,          :::
 #                                                                       :::
-#                  build.bash -p FFLAGS                                 :::
+#                  build_roms.bash -p FFLAGS                            :::
 #                                                                       :::
 #    -noclean    Do not clean already compiled objects                  :::
 #                                                                       :::
@@ -89,7 +89,7 @@ do
       echo "              omit argument for all avaliable CPUs"
       echo ""
       echo "-p macro    Prints any Makefile macro value"
-      echo "              For example:  build.bash -p FFLAGS"
+      echo "              For example:  build_roms.bash -p FFLAGS"
       echo ""
       echo "-noclean    Do not clean already compiled objects"
       echo ""

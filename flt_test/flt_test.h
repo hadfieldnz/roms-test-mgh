@@ -26,8 +26,6 @@
 # define DJ_GRADPS
 # define SPLINES_VDIFF
 # define SPLINES_VVISC
-# define TS_A4HADVECTION
-# define TS_A4VADVECTION
 # define BODYFORCE
 # define ANA_BTFLUX
 # define ANA_STFLUX

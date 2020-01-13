@@ -17,8 +17,6 @@
 #define UV_LOGDRAG
 #define SPLINES_VDIFF
 #define SPLINES_VVISC
-#define TS_U3HADVECTION
-#define TS_C4VADVECTION
 #define SALINITY
 #define SOLVE3D
 

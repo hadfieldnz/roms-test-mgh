@@ -34,7 +34,7 @@
 #                                                                       :::
 #    -p macro    Prints any Makefile macro value. For example,          :::
 #                                                                       :::
-#                  build.sh -p FFLAGS                                   :::
+#                  build_roms.sh -p FFLAGS                              :::
 #                                                                       :::
 #    -noclean    Do not clean already compiled objects                  :::
 #                                                                       :::
@@ -87,7 +87,7 @@ while ( ($#argv) > 0 )
       echo "              omit argument for all avaliable CPUs"
       echo ""
       echo "-p macro    Prints any Makefile macro value"
-      echo "              For example:  build.sh -p FFLAGS"
+      echo "              For example:  build_roms.sh -p FFLAGS"
       echo ""
       echo "-noclean    Do not clean already compiled objects"
       echo ""
@@ -162,6 +162,12 @@ setenv MY_PROJECT_DIR        ${PWD}
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
+
+# The tracer advection is specified in the standard input file, but the
+# CPP options can be specified here for older versions for backward
+# compatibility. 
+
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
 
 #--------------------------------------------------------------------------
 # Compiler options.

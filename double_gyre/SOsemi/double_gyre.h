@@ -50,8 +50,6 @@
 # define DJ_GRADPS
 # define SPLINES_VDIFF
 # define SPLINES_VVISC
-# define TS_U3HADVECTION
-# define TS_C4VADVECTION
 # define TS_DIF2
 # define MIX_S_TS
 # define TCLIMATOLOGY
