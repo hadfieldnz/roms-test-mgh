@@ -1,7 +1,7 @@
 *
 * svn $Id$
 ***********************************************************************
-*  Copyright (c) 2002-2019 The ROMS/TOMS Group                        *
+*  Copyright (c) 2002-2020 The ROMS/TOMS Group                        *
 *    Licensed under a MIT/X style license                             *
 *    See License_ROMS.txt                                             *
 ***********************************************************************
@@ -39,10 +39,10 @@
 ***********************************************************************
 *
 
-4D-Var Tutorial: https://www.myroms.org/wiki/4DVar_Tutorial_Introduction
+4D-Var Tutorial: www.myroms.org/wiki/4DVar_Tutorial_Introduction
                  Exercise 06
 
-        Results: https://www.myroms.org/wiki/PSAS_Analysis_Observation_Sensitivity_Tutorial
+        Results: www.myroms.org/wiki/PSAS_Analysis_Observation_Sensitivity_Tutorial
 
 Important CPP options:
 
@@ -50,7 +50,7 @@ Important CPP options:
    AD_IMPULSE              Force ADM with intermittent impulses
    ANA_SPONGE              Analytical enhanced viscosity/diffusion sponge
    RPCG                    Restricted Preconditioned Conjugate Gradient
-                           for minimization
+                             for minimization
    MINRES                  Minimal Residual Method for minimization
    WC13                    Application CPP option
 
@@ -81,12 +81,15 @@ Input NetCDF files:
 
 Currently, you can find the following files here:
 
-   build_roms.bash     bash shell script to compile application
-   build_roms.sh       csh Unix script to compile application
-   job_psas_sen.sh     job configuration script
-   roms_wc13.in         ROMS standard input script for WC13
-   s4dvar.in           4D-Var standard input script template
-   wc13.h              WC13 header with CPP options
+   build_roms.bash      bash shell script to compile application
+   build_roms.sh        csh Unix script to compile application
+   job_psas_sen.sh      job configuration script
+   roms_wc13_daily.in   ROMS standard input script for WC13, NHIS=48,
+                          daily forward trajectory snapshots
+   roms_wc13_2hours.in  ROMS standard input script for WC13, NHIS=4,
+                          two-hours forward trajectory snapshots
+   s4dvar.in            4D-Var standard input script template
+   wc13.h               WC13 header with CPP options
 
 Important parameters in standard input "roms_wc13.in" script:
 
@@ -310,16 +313,23 @@ To run this application you need to take the following steps:
 
  (11) Run ROMS with data assimilation:
 
-      mpirun -np 4 romsM roms_wc13.in > & log &
+      mpirun -np 8 romsM roms_wc13_daily.in > & log &
 
- (12) We recommend creating a new subdirectory EX6 (Tutorial Exercise 6)
-      and saving the solution in it for  analysis and plotting to avoid
-      overwriting output files when playing with difference CPP options
-      and parameters. For example:
+      or
 
-      mkdir EX6
-      mv Build_roms psas.in *.nc log EX6
-      cp -p romsM roms_wc13.in EX6
+      mpirun -np 8 romsM roms_wc13_2hours.in > & log &
+
+      Notice that the nonlinear trajectory can be written either
+      daily (NHIS=48 if using roms_wc13_daily.in) or every two-hours
+      (NHIS=4 if using roms_wc13_2hours.in). It is the basic state
+      trajectory used to linearize the tangent linear and adjoint
+      models. It turns out that the daily sampling is over the
+      limit where the tangent linear approximation is valid. The
+      results are much better when using the two-hours snapshots.
+      The two set-ups are provided to make the user aware of the
+      validity of the tangent linear approximation in highly
+      nonlinear circulations. The differences will be noticeable
+      when computing observation impacts and observation sensitivities.
 
  (12) Analyze the results using the plotting Matlab script
       provided in the ../plotting directory:

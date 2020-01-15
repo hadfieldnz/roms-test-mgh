@@ -2,7 +2,7 @@
 #
 # svn $Id$
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2019 The ROMS/TOMS Group                           :::
+# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
@@ -34,7 +34,7 @@
 #                                                                       :::
 #    -p macro    Prints any Makefile macro value. For example,          :::
 #                                                                       :::
-#                  build.sh -p FFLAGS                                   :::
+#                  build_roms.sh -p FFLAGS                              :::
 #                                                                       :::
 #    -noclean    Do not clean already compiled objects                  :::
 #                                                                       :::
@@ -87,7 +87,7 @@ while ( ($#argv) > 0 )
       echo "              omit argument for all avaliable CPUs"
       echo ""
       echo "-p macro    Prints any Makefile macro value"
-      echo "              For example:  build.sh -p FFLAGS"
+      echo "              For example:  build_roms.sh -p FFLAGS"
       echo ""
       echo "-noclean    Do not clean already compiled objects"
       echo ""
@@ -157,10 +157,6 @@ setenv MY_PROJECT_DIR        ${PWD}
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_TS"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDIAGNOSTICS_UV"
 
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_A4HADVECTION"
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_A4VADVECTION"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_MPDATA"
-
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_DIF2"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_DIF4"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMIX_GEO_TS"
@@ -172,6 +168,13 @@ setenv MY_PROJECT_DIR        ${PWD}
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DMIX_S_UV"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DLMD_MIXING"
+
+# The tracer advection is specified in the standard input file, but the
+# CPP options can be specified here for older versions for backward
+# compatibility.
+
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_A4HADVECTION -DTS_A4VADVECTION"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_MPDATA"
 
 #--------------------------------------------------------------------------
 # Compiler options.

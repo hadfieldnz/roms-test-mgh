@@ -2,7 +2,7 @@
 #
 # svn $Id$
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2019 The ROMS/TOMS Group                           :::
+# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
@@ -34,7 +34,7 @@
 #                                                                       :::
 #    -p macro    Prints any Makefile macro value. For example,          :::
 #                                                                       :::
-#                  build.sh -p FFLAGS                                   :::
+#                  build_roms.sh -p FFLAGS                              :::
 #                                                                       :::
 #    -noclean    Do not clean already compiled objects                  :::
 #                                                                       :::
@@ -87,7 +87,7 @@ while ( ($#argv) > 0 )
       echo "              omit argument for all avaliable CPUs"
       echo ""
       echo "-p macro    Prints any Makefile macro value"
-      echo "              For example:  build.sh -p FFLAGS"
+      echo "              For example:  build_roms.sh -p FFLAGS"
       echo ""
       echo "-noclean    Do not clean already compiled objects"
       echo ""
@@ -125,8 +125,8 @@ setenv MY_PROJECT_DIR        ${PWD}
 # Set path of the directory containing makefile configuration (*.mk) files.
 # The user has the option to specify a customized version of these files
 # in a different directory than the one distributed with the source code,
-# ${MY_ROMS_SRC}/Compilers. If this is the case, the you need to keep
-# these configurations files up-to-date.
+# ${MY_ROMS_SRC}/Compilers. If this is the case, you need to keep these
+# configurations files up-to-date.
 
  setenv COMPILERS            ${MY_ROMS_SRC}/Compilers
 #setenv COMPILERS            ${HOME}/Compilers/ROMS
@@ -153,10 +153,6 @@ setenv MY_PROJECT_DIR        ${PWD}
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
 
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_U3HADVECTION"
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_C4VADVECTION"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_MPDATA"
-
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DSEDIMENT"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DUV_LOGDRAG"
@@ -170,6 +166,13 @@ setenv MY_PROJECT_DIR        ${PWD}
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DN2S2_HORAVG"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCRAIG_BANNER"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCHARNOK"
+
+# The tracer advection is specified in the standard input file, but the
+# CPP options can be specified here for older versions for backward
+# compatibility.
+
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_MPDATA"
 
 #--------------------------------------------------------------------------
 # Compiler options.
@@ -185,6 +188,7 @@ setenv MY_PROJECT_DIR        ${PWD}
  setenv USE_MPIF90          on          # compile with mpif90 script
 #setenv which_MPI           mpich       # compile with MPICH library
 #setenv which_MPI           mpich2      # compile with MPICH2 library
+#setenv which_MPI           mvapich2    # compile with MVAPICH2 library
  setenv which_MPI           openmpi     # compile with OpenMPI library
 
 #setenv USE_OpenMP          on          # shared-memory parallelism
@@ -238,7 +242,7 @@ set MY_PATHS = ${COMPILERS}/my_build_paths.sh
 
 set MY_PATHS = ${COMPILERS}/my_build_paths.sh
 
-if ($USE${MY_PATHS} ${MY_PATHS}
+if ($USE_MY_LIBS == 'yes') then
   source ${MY_PATHS} ${MY_PATHS}
 endif
 

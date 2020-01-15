@@ -2,7 +2,7 @@
 #
 # svn $Id$
 #######################################################################
-# Copyright (c) 2002-2019 The ROMS/TOMS Group                         #
+# Copyright (c) 2002-2020 The ROMS/TOMS Group                         #
 #   Licensed under a MIT/X style license                              #
 #   See License_ROMS.txt                                              #
 #######################################################################
@@ -25,6 +25,10 @@
 #       covariance normalization factors files to be used.            #
 #                                                                     #
 #######################################################################
+
+ echo ' '
+ echo '4D-Var Error Covariance Normalization Coefficients Configuration:'
+ echo ' '
 
 # Set path definition to one directory up in the tree.
 
@@ -56,7 +60,7 @@
  if (-e $NORM) then
    /bin/rm $NORM
  endif
- cp s4dvar.in $NORM
+ cp -v s4dvar.in $NORM
 
  $SUBSTITUTE $NORM roms_std_m.nc $STDnameM
  $SUBSTITUTE $NORM roms_std_i.nc $STDnameI

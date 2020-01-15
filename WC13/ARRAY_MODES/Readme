@@ -1,7 +1,7 @@
 *
 * svn $Id$
 ***********************************************************************
-*  Copyright (c) 2002-2019 The ROMS/TOMS Group                        *
+*  Copyright (c) 2002-2020 The ROMS/TOMS Group                        *
 *    Licensed under a MIT/X style license                             *
 *    See License_ROMS.txt                                             *
 ***********************************************************************
@@ -41,10 +41,10 @@
 ***********************************************************************
 *
 
-4D-Var Tutorial: https://www.myroms.org/wiki/4DVar_Tutorial_Introduction
+4D-Var Tutorial: www.myroms.org/wiki/4DVar_Tutorial_Introduction
                  Exercise 07
 
-        Results: https://www.myroms.org/wiki/Array_Modes_Tutorial
+        Results: www.myroms.org/wiki/Array_Modes_Tutorial
 
 Important CPP options:
 
@@ -202,12 +202,10 @@ To run this application you need to take the following steps:
       structure are observed near the open boundaries and land/sea
       masking regions.
 
-  (3) Before you run this application, you need to run the standard
-      R4D-VAR (../R4DVAR directory) since we need the Lanczos vectors.
-      Notice that in "job_array_modes.sh" we have the following
-      operation:
+  (3) Before you run this application, you need to execute the job
+      script:
 
-      cp -p ${Dir}/R4DVAR/wc13_mod.nc wc13_lcz.nc
+      job_array_modes.sh
 
       In R4D-Var (observation space minimization), the Lanczos vectors
       are stored in output 4D-Var NetCDF file "wc13_mod.nc".

@@ -2,7 +2,7 @@
 #
 # svn $Id$
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2019 The ROMS/TOMS Group                           :::
+# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
@@ -34,7 +34,7 @@
 #                                                                       :::
 #    -p macro    Prints any Makefile macro value. For example,          :::
 #                                                                       :::
-#                  build.sh -p FFLAGS                                   :::
+#                  build_roms.sh -p FFLAGS                              :::
 #                                                                       :::
 #    -noclean    Do not clean already compiled objects                  :::
 #                                                                       :::
@@ -87,7 +87,7 @@ while ( ($#argv) > 0 )
       echo "              omit argument for all avaliable CPUs"
       echo ""
       echo "-p macro    Prints any Makefile macro value"
-      echo "              For example:  build.sh -p FFLAGS"
+      echo "              For example:  build_roms.sh -p FFLAGS"
       echo ""
       echo "-noclean    Do not clean already compiled objects"
       echo ""
@@ -186,6 +186,12 @@ setenv MY_PROJECT_DIR        ${PWD}
 #setenv USE_NETCDF4         on          # compile with NetCDF-4 library
 #setenv USE_HDF5            on          # compile with HDF5 library
 #setenv USE_PARALLEL_IO     on          # Parallel I/O with NetCDF-4/HDF5
+
+# The tracer advection is specified in the standard input file, but the
+# CPP options can be specified here for older versions for backward
+# compatibility. 
+
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
 
 #--------------------------------------------------------------------------
 # If coupling Earth Systems Models (ESM), set the location of the ESM
