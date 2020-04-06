@@ -101,7 +101,7 @@ end
 # determine the name of the ".h" header file with the application
 # CPP definitions.
 
-setenv ROMS_APPLICATION      UPWELLING
+setenv ROMS_APPLICATION      SOLITON
 
 # Set a local environmental variable to define the path to the directories
 # where all this project's files are kept.
