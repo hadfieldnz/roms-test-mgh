@@ -21,9 +21,9 @@ nAVG=1;
 
 % Define the forecast and verifying analysis history files.
 
-InpA ='../PSAS_forecast_impact/FCSTA/wc13_fwd.nc';
-InpB ='../PSAS_forecast_impact/FCSTB/wc13_fwd.nc';
-InpVA='PSAS_VERIFYING_ANALYSIS/wc13_fwd_001.nc';
+InpA ='../RBL4DVAR_forecast_impact/FCSTA/wc13_fwd.nc';
+InpB ='../RBL4DVAR_forecast_impact/FCSTB/wc13_fwd.nc';
+InpVA='RBL4DVAR_VERIFYING_ANALYSIS/wc13_fwd_001.nc';
 
 % Set variables to process.
 

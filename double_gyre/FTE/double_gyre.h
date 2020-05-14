@@ -21,8 +21,8 @@
 ** GRADIENT_CHECK             TLM/ADM Gradient Check
 ** FORCING_SV                 Forcing Singular Vectors
 ** FT_EIGENMODES              Finite Time Eigenmodes
-** IS4DVAR_OLD                Old Incremental, strong constraint 4DVAR
-** IS4DVAR                    Incremental, strong constraint 4DVAR
+** I4DVAR_OLD                Old Incremental, strong constraint 4DVAR
+** I4DVAR                    Incremental, strong constraint 4DVAR
 ** NLM_DRIVER                 Nonlinear Basic State trajectory
 ** OPT_PERTURBATION           Optimal perturbations
 ** PICARD_TEST                Picard Iterations Test
@@ -31,8 +31,8 @@
 ** SANITY_CHECK               Sanity Check
 ** SO_SEMI                    Stochastic Optimals: Semi-norm
 ** TLM_CHECK                  Tangent Linear Model Check
-** W4DPSAS                    Weak constraint 4D-PSAS
-** W4DVAR                     Weak constraint 4DVAR
+** RBL4DVAR                    Weak constraint RBL4D-Var
+** R4DVAR                     Weak constraint 4DVAR
 */
 
 /*
@@ -119,9 +119,9 @@
 */
 
 #if defined ARRAY_MODES || defined CLIPPING            || \
-    defined IS4DVAR     || defined IS4DVAR_SENSITIVITY || \
-    defined W4DPSAS     || defined W4DPSAS_SENSITIVITY || \
-    defined W4DVAR      || defined W4DVAR_SENSITIVITY
+    defined I4DVAR     || defined I4DVAR_ANA_SENSITIVITY || \
+    defined RBL4DVAR     || defined RBL4DVAR_ANA_SENSITIVITY || \
+    defined R4DVAR      || defined R4DVAR_ANA_SENSITIVITY
 # define VCONVOLUTION
 # define IMPLICIT_VCONV
 # define BALANCE_OPERATOR
@@ -139,7 +139,7 @@
 */
 
 #if defined ARRAY_MODES || \
-    defined W4DVAR      || defined W4DVAR_SENSITIVITY
+    defined R4DVAR      || defined R4DVAR_ANA_SENSITIVITY
 # define RPM_RELAXATION
 #endif
 

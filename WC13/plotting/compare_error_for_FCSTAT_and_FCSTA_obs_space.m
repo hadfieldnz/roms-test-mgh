@@ -18,9 +18,9 @@ flon=-125.5;
 
 % Define the forecast mod and obs files.
 
-InpAT='../PSAS_forecast_impact/FCSTAT/wc13_mod.nc';
-InpA ='../PSAS_forecast_impact/FCSTA/wc13_mod.nc';
-InpB ='../PSAS_forecast_impact/FCSTB/wc13_mod.nc';
+InpAT='../RBL4DVAR_forecast_impact/FCSTAT/wc13_mod.nc';
+InpA ='../RBL4DVAR_forecast_impact/FCSTA/wc13_mod.nc';
+InpB ='../RBL4DVAR_forecast_impact/FCSTB/wc13_mod.nc';
 InpO ='../Data/forecast_obs.nc';
 
 % Define the central CA target region for the SST forecast error metric.

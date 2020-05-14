@@ -152,7 +152,7 @@ setenv MY_PROJECT_DIR        ${PWD}
 # can be used to write time-averaged fields. Notice that you can have as
 # many definitions as you want by appending values.
 
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DIS4DVAR"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DI4DVAR"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DANA_SPONGE"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBGQC"

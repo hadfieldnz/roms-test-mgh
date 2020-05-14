@@ -82,12 +82,12 @@ Input NetCDF files:
 
 Currently, you can find the following files here:
 
-   build_roms.bash     bash shell script to compile application
-   build_roms.sh       csh Unix script to compile application
-   job_array_modes.sh  job configuration script
-   roms_wc13.in        ROMS standard input script for WC13
-   s4dvar.in           4D-Var standard input script template
-   wc13.h              WC13 header with CPP options
+   build_roms.csh       csh Unix script to compile application
+   build_roms.sh        bash shell script to compile application
+   job_array_modes.csh  job configuration script
+   roms_wc13.in         ROMS standard input script for WC13
+   s4dvar.in            4D-Var standard input script template
+   wc13.h               WC13 header with CPP options
 
 To run this application you need to take the following steps:
 
@@ -205,7 +205,7 @@ To run this application you need to take the following steps:
   (3) Before you run this application, you need to execute the job
       script:
 
-      job_array_modes.sh
+      job_array_modes.csh
 
       In R4D-Var (observation space minimization), the Lanczos vectors
       are stored in output 4D-Var NetCDF file "wc13_mod.nc".
@@ -251,7 +251,7 @@ To run this application you need to take the following steps:
       in parallel using MPI.  This is because of the way that the
       adjoint model is constructed.
 
-  (8) Customize the configuration script "job_array_modes.sh" and
+  (8) Customize the configuration script "job_array_modes.csh" and
       provide the appropriate place for the "substitute" Perl script:
 
       set SUBSTITUTE=${ROMS_ROOT}/ROMS/Bin/substitute
@@ -269,9 +269,9 @@ To run this application you need to take the following steps:
       determined by the parameter Nvct. The array modes are referenced
       in reverse order, so choosing Nvct=Ninner-1 is the array mode is
       the important. Note that Nvct must be assigned a numeric value
-      (i.e. Nvct=10 for the 4D-PSAS tutorial). 
+      (i.e. Nvct=10 for the RBL4D-Var tutorial). 
 
- (10) Execute the configuration "job_array_modes.sh" BEFORE running
+ (10) Execute the configuration "job_array_modes.csh" BEFORE running
       the model.  It copies the required files and creates "r4dvar.in"
       input script from template "s4dvar.in". This has to be done
       EVERY TIME that you run this application. We need a clean and
@@ -288,7 +288,7 @@ To run this application you need to take the following steps:
       and parameters. For example:
 
       mkdir EX7
-      mv Build_roms psas.in *.nc log EX7
+      mv Build_roms rbl4var.in *.nc log EX7
       cp -p romsM roms_wc13.in EX7
 
  (13) Analyze the results using the plotting scripts (Matlab or

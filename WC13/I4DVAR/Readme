@@ -44,7 +44,7 @@
 
 Important CPP options:
 
-   IS4DVAR                 I4D-Var driver
+   I4DVAR                 I4D-Var driver
    ANA_SPONGE              Analytical enhanced viscosity/diffusion sponge
    BGQC                    Backgound quality control of observations
    WC13                    Application CPP option
@@ -211,7 +211,7 @@ To run this application you need to take the following steps:
   (4) Notice that the most important CPP option for this application
       is specified in the "build_roms" script instead of "wc13.h":
 
-      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DIS4DVAR"
+      setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DI4DVAR"
       setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DANA_SPONGE"
 
       this is to allow flexibility with different CPP options.

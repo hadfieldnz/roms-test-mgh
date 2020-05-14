@@ -12,10 +12,10 @@ nAVG=1;
 
 % Define the forecast and verifying analysis history files.
 
-InpAT='../PSAS_forecast_impact/FCSTAT/wc13_fwd.nc';
-InpA ='../PSAS_forecast_impact/FCSTA/wc13_fwd.nc';
-InpB ='../PSAS_forecast_impact/FCSTB/wc13_fwd.nc';
-InpVA='../Data/PSAS_VERIFYING_ANALYSIS/wc13_fwd_001.nc';
+InpAT='../RBL4DVAR_forecast_impact/FCSTAT/wc13_fwd.nc';
+InpA ='../RBL4DVAR_forecast_impact/FCSTA/wc13_fwd.nc';
+InpB ='../RBL4DVAR_forecast_impact/FCSTB/wc13_fwd.nc';
+InpVA='../Data/RBL4DVAR_VERIFYING_ANALYSIS/wc13_fwd_001.nc';
 
 % Define the 37N section, over upper "depth" meters.
 

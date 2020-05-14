@@ -54,10 +54,10 @@
 
  cp -p ${Dir}/Data/wc13_ini.nc wc13_irp.nc
 
-# Copies Lanczos vectors from previous W4D-PSAS run. They are stored
+# Copies Lanczos vectors from previous RBL4D-Var run. They are stored
 # in 4D-Var data assimilation file.
 
- cp -vp ${Dir}/PSAS/EX3_RPCG/wc13_mod.nc wc13_lcz.nc
+ cp -vp ${Dir}/RBL4DVAR/EX3_RPCG/wc13_mod.nc wc13_lcz.nc
 
 # Set model, initial conditions, boundary conditions and surface
 # forcing error covariance standard deviations files.
@@ -86,22 +86,22 @@
 
 # Modify 4D-Var template input script and specify above files.
 
- set PSAS=psas.in
- if (-e $PSAS) then
-   /bin/rm $PSAS
+ set RBL4DVAR=rbl4dvar.in
+ if (-e $RBL4DVAR) then
+   /bin/rm $RBL4DVAR
  endif
- cp -v s4dvar.in $PSAS
+ cp -v s4dvar.in $RBL4DVAR
 
- $SUBSTITUTE $PSAS roms_std_m.nc $STDnameM
- $SUBSTITUTE $PSAS roms_std_i.nc $STDnameI
- $SUBSTITUTE $PSAS roms_std_b.nc $STDnameB
- $SUBSTITUTE $PSAS roms_std_f.nc $STDnameF
- $SUBSTITUTE $PSAS roms_nrm_m.nc $NRMnameM
- $SUBSTITUTE $PSAS roms_nrm_i.nc $NRMnameI
- $SUBSTITUTE $PSAS roms_nrm_b.nc $NRMnameB
- $SUBSTITUTE $PSAS roms_nrm_f.nc $NRMnameF
- $SUBSTITUTE $PSAS roms_obs.nc   $OBSname
- $SUBSTITUTE $PSAS roms_hss.nc   wc13_hss.nc
- $SUBSTITUTE $PSAS roms_lcz.nc   wc13_lcz.nc
- $SUBSTITUTE $PSAS roms_mod.nc   wc13_mod_array_modes.nc
- $SUBSTITUTE $PSAS roms_err.nc   wc13_err.nc
+ $SUBSTITUTE $RBL4DVAR roms_std_m.nc $STDnameM
+ $SUBSTITUTE $RBL4DVAR roms_std_i.nc $STDnameI
+ $SUBSTITUTE $RBL4DVAR roms_std_b.nc $STDnameB
+ $SUBSTITUTE $RBL4DVAR roms_std_f.nc $STDnameF
+ $SUBSTITUTE $RBL4DVAR roms_nrm_m.nc $NRMnameM
+ $SUBSTITUTE $RBL4DVAR roms_nrm_i.nc $NRMnameI
+ $SUBSTITUTE $RBL4DVAR roms_nrm_b.nc $NRMnameB
+ $SUBSTITUTE $RBL4DVAR roms_nrm_f.nc $NRMnameF
+ $SUBSTITUTE $RBL4DVAR roms_obs.nc   $OBSname
+ $SUBSTITUTE $RBL4DVAR roms_hss.nc   wc13_hss.nc
+ $SUBSTITUTE $RBL4DVAR roms_lcz.nc   wc13_lcz.nc
+ $SUBSTITUTE $RBL4DVAR roms_mod.nc   wc13_mod_array_modes.nc
+ $SUBSTITUTE $RBL4DVAR roms_err.nc   wc13_err.nc

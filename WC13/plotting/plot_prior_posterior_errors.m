@@ -21,7 +21,7 @@ SHADING_INTERP=1;                      % switch for shading interp (1) or
 
  Inpb='../Data/wc13_std_i.nc';         % prior standard deviations
 
-%Inpa='../PSAS/wc13_err.nc';           % 4D-PSAS posterior error variance
+%Inpa='../RBL4DVAR/wc13_err.nc';           % RBL4D-Var posterior error variance
  Inpa='../R4DVAR/wc13_err.nc';         % R4D-Var posterior error variance
 
 Grd='../Data/wc13_grd.nc';             % grid

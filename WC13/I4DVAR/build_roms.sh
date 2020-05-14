@@ -153,7 +153,7 @@ export     MY_PROJECT_DIR=${PWD}
 # can be used to write time-averaged fields. Notice that you can have as
 # many definitions as you want by appending values.
 
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DIS4DVAR"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DI4DVAR"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DANA_SPONGE"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBGQC"
