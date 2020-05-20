@@ -1,4 +1,4 @@
-#!/bin/csh -f
+#!/bin/bash
 #
 # svn $Id$
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
@@ -12,11 +12,11 @@
 # Script to update the copyright information on 'matlab' source files.  :::
 # This script replaces the copyright string in the source files and     :::
 # updates the copyright svn property. This script must be executed      :::
-# from the top level 'matlab' source code.                              :::
+# from top level of the 'matlab' source code.                           :::
 #                                                                       :::
 # Usage:                                                                :::
 #                                                                       :::
-#    ./bin/copyright.sh [options]                                       :::
+#    ./bin/copyright.bash [options]                                     :::
 #                                                                       :::
 # Options:                                                              :::
 #                                                                       :::
@@ -27,61 +27,58 @@
 #                                                                       :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-set search = "2002-2019 The ROMS/TOMS"
-set replace = "2002-2020 The ROMS/TOMS"
+search="2002-2019 The ROMS/TOMS"
+replace="2002-2020 The ROMS/TOMS"
 
 # Directories to search for replacements.
 
-set c_dirs = "External bin"
-set c_dirs = "$c_dirs basin"
-set c_dirs = "$c_dirs benchmark"
-set c_dirs = "$c_dirs bio_toy"
-set c_dirs = "$c_dirs bl_test"
-set c_dirs = "$c_dirs canyon"
-set c_dirs = "$c_dirs channel"
-set c_dirs = "$c_dirs DAMEE_4"
-set c_dirs = "$c_dirs dogbone"
-set c_dirs = "$c_dirs double_gyre"
-set c_dirs = "$c_dirs estuary_test"
-set c_dirs = "$c_dirs flt_test"
-set c_dirs = "$c_dirs grav_adj"
-set c_dirs = "$c_dirs inlet_test"
-set c_dirs = "$c_dirs kelvin"
-set c_dirs = "$c_dirs lab_canyon"
-set c_dirs = "$c_dirs lake_jersey"
-set c_dirs = "$c_dirs lmd_test"
-set c_dirs = "$c_dirs riverplume"
-set c_dirs = "$c_dirs seamount"
-set c_dirs = "$c_dirs sed_test"
-set c_dirs = "$c_dirs shoreface"
-set c_dirs = "$c_dirs soliton"
-set c_dirs = "$c_dirs test_chan"
-set c_dirs = "$c_dirs test_head"
-set c_dirs = "$c_dirs upwelling"
-set c_dirs = "$c_dirs WC13"
-set c_dirs = "$c_dirs weddell"
-set c_dirs = "$c_dirs windbasin"
+c_dirs="External bin"
+c_dirs="$c_dirs basin"
+c_dirs="$c_dirs benchmark"
+c_dirs="$c_dirs bio_toy"
+c_dirs="$c_dirs bl_test"
+c_dirs="$c_dirs canyon"
+c_dirs="$c_dirs channel"
+c_dirs="$c_dirs DAMEE_4"
+c_dirs="$c_dirs dogbone"
+c_dirs="$c_dirs double_gyre"
+c_dirs="$c_dirs estuary_test"
+c_dirs="$c_dirs flt_test"
+c_dirs="$c_dirs grav_adj"
+c_dirs="$c_dirs inlet_test"
+c_dirs="$c_dirs kelvin"
+c_dirs="$c_dirs lab_canyon"
+c_dirs="$c_dirs lake_jersey"
+c_dirs="$c_dirs lmd_test"
+c_dirs="$c_dirs riverplume"
+c_dirs="$c_dirs seamount"
+c_dirs="$c_dirs sed_test"
+c_dirs="$c_dirs shoreface"
+c_dirs="$c_dirs soliton"
+c_dirs="$c_dirs test_chan"
+c_dirs="$c_dirs test_head"
+c_dirs="$c_dirs upwelling"
+c_dirs="$c_dirs WC13"
+c_dirs="$c_dirs weddell"
+c_dirs="$c_dirs windbasin"
 
-set setsvn = 1
+setsvn=1
+verbose=0
 
-# verbose is a csh command to print all lines of the script so I changed
-# this variable to "verb".
-
-set verb = 0
-
-while ( ($#argv) > 0 )
-  switch ($1)
-    case "-nosvn":
+while [ $# -gt 0 ]
+do
+  case "$1" in
+    -nosvn )
       shift
-      set setsvn = 0
-    breaksw
+      setsvn=0
+      ;;
 
-    case "-verbose":
+    -verbose )
       shift
-      set verb = 1
-    breaksw
+      verbose=1
+      ;;
 
-    case "-*":
+    * )
       echo ""
       echo "$0 : Unknown option [ $1 ]"
       echo ""
@@ -93,41 +90,36 @@ while ( ($#argv) > 0 )
       echo "-verbose  list files that are modified"
       echo ""
       exit 1
-    breaksw
+      ;;
+  esac
+done
 
-  endsw
-end
-
-echo ""
-echo "Replacing Copyright String in Files ..."
-echo ""
+echo -e "\nReplacing Copyright String in Files ...\n"
 
 # The "! -path '*/.svn/*'" is there to keep it from messing with
 # files in the .svn directories. The "! -name 'copyright.*'" is to
 # keep it from messing with the file that's making the reaplacements.
-# There is no way to redirect only stderr with csh.
+# The "2>" redirects stderr so errors don't get put in FILE.
 
-foreach FILE ( `find ${c_dirs} ! -path '*/.svn/*' ! -name 'copyright.*' -type f -print` )
+for FILE in `find ${c_dirs} ! -path '*/.svn/*' ! -name 'copyright.*' -type f -print 2> /dev/null`
+do
 
 # Double check that we're not changing a file in a .svn folder.
 
-  if ( `echo $FILE | grep -vc '.svn/'` ) then
-    if ( $verb == 1 ) then
+  if [ `echo $FILE | grep -vc '.svn/'` -gt 0 ]; then
+    if [ $verbose -eq 1 ]; then
       grep -l "${search}" $FILE && sed -i -e "s|${search}|${replace}|g" $FILE
     else
       grep -l "${search}" $FILE > /dev/null && sed -i -e "s|${search}|${replace}|g" $FILE
-    endif
+    fi
   else
     echo "There is a .svn in the path: $FILE skipped"
-  endif
+  fi
+done
 
-end
+echo -e "\nDone.\n"
 
-echo ""
-echo "Done."
-echo ""
-
-if ( $setsvn == 1 ) then
+if [ $setsvn -eq 1 ]; then
   svn propset copyright '(c) 2002-2020 The ROMS/TOMS Group' .
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' External
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' bin
@@ -138,8 +130,8 @@ if ( $setsvn == 1 ) then
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' canyon
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' channel
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' DAMEE_4
-  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' dogbone
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' double_gyre
+  svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' dogbone
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' estuary_test
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' flt_test
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' grav_adj
@@ -160,8 +152,6 @@ if ( $setsvn == 1 ) then
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' weddell
   svn propset -R copyright '(c) 2002-2020 The ROMS/TOMS Group' windbasin
 else
-  echo ""
-  echo "Not updating svn properties."
-  echo ""
-endif
+  echo -e "Not updating svn properties.\n"
+fi
 

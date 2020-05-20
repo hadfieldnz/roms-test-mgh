@@ -16,9 +16,9 @@ PRINT=true;                            % switch to save figure as PNG
 
 % Set input NetCDF files
 %
-%   Inp:  4D-PSAS file, Exercise 03
+%   Inp:  RBL4D-Var file, Exercise 03
 
-Inp='../PSAS/EX3_RPCG/wc13_mod.nc';
+Inp='../RBL4DVAR/EX3_RPCG/wc13_mod.nc';
 
 % Array modes inner loop eigenvector processed (Nvct in s4dvar.in)
 

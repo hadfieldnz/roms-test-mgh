@@ -18,7 +18,7 @@ PRINT=0;                               % switch to save figure as PNG
 
 % Set input NetCDF files
 
-%Inp='../PSAS/wc13_hss.nc';            % 4D-PSAS EOF stored in Hessian file
+%Inp='../RBL4DVAR/wc13_hss.nc';            % RBL4D-Var EOF stored in Hessian file
  Inp='../R4DVAR/wc13_hss.nc';          % R4D-Var EOF stored in Hessian file
 
 % Read in error covariance EOF analysis variables.
