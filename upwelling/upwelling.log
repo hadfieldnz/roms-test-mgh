@@ -1,6 +1,6 @@
 --------------------------------------------------------------------------------
  Model Input Parameters:  ROMS/TOMS version 3.9  
-                          Thursday - May 21, 2020 - 12:31:30 PM
+                          Wednesday - October 7, 2020 -  1:43:52 PM
 --------------------------------------------------------------------------------
 
  Wind-Driven Upwelling/Downwelling over a Periodic Channel
@@ -8,11 +8,11 @@
  Operating system : Linux
  CPU/hardware     : x86_64
  Compiler system  : gfortran
- Compiler command : /usr/bin/gfortran
+ Compiler command : /bin/gfortran
  Compiler flags   : -frepack-arrays -O3 -ffast-math -
 
  Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit 3385da07f8b807f6e285c6489524a86440c2bbd1
+ Git Revision  : master commit fa51e078f2aeab95ee76cd474e883f4691daaf5e
  Git Status    : The working tree is clean
 
  Host Name     : niwa-1019320.niwa.local
@@ -207,11 +207,14 @@
                                  uptake (1/(mmol_N m-3)).
  2.0000E+00  K_NH4             Inverse half-saturation for phytoplankton NH4
                                  uptake (1/(mmol_N m-3)).
+ 6.9162E+00  K_PO4             Inverse half-saturation for phytoplankton PO4
+                                 uptake (1/(mmol_P m-3)).
  2.0000E+00  K_Phy             Zooplankton half-saturation constant for ingestion
                                  (mmol_N m-3)^2.
  5.3500E-02  Chl2C_m           Maximum chlorophyll to carbon ratio (mg_Chl/mg_C).
  1.0000E-03  ChlMin            Chlorophyll minimum threshold (mg_Chl/m3).
  6.6250E+00  PhyCN             Phytoplankton Carbon:Nitrogen ratio (mol_C/mol_N).
+ 6.9162E+00  R_P2N             Phytoplankton P:N ratio (mol_P/mol_N).
  1.5000E+00  PhyIP             Phytoplankton NH4 inhibition parameter (1/mmol_N).
  2.5000E-02  PhyIS             Phytoplankton growth, initial slope of P-I curve
                                  (mg_C/(mg_Chl Watts m-2 day)).
@@ -230,6 +233,8 @@
  5.0000E-03  CoagR             Coagulation rate (day-1).
  3.0000E-02  SDeRRN            Remineralization rate for small detritus N (day-1).
  3.0000E-02  SDeRRC            Remineralization rate for small detritus C (day-1).
+ 0.0000E+00  RDeRRN            Remineralization rate for river detritus N (day-1).
+ 0.0000E+00  RDeRRC            Remineralization rate for river detritus C (day-1).
  1.0000E-01  wPhy              Phytoplankton sinking velocity (m/day).
  1.0000E+00  wLDet             Large detritus sinking velocity (m/day).
  1.0000E-01  wSDet             Small detritus sinking velocity (m/day).
@@ -641,60 +646,61 @@
 
  Activated C-preprocessing Options:
 
- UPWELLING               Wind-Driven Upwelling/Downwelling over a Periodic Channel
- ANA_BIOLOGY             Analytical biology initial conditions
- ANA_BPFLUX              Analytical bottom passive tracers fluxes
- ANA_BSFLUX              Analytical kinematic bottom salinity flux
- ANA_BTFLUX              Analytical kinematic bottom temperature flux
- ANA_DRAG_GRID           Analytical spatially varying linear drag coefficient
- ANA_GRID                Analytical grid set-up
- ANA_INITIAL             Analytical initial conditions
- ANA_SMFLUX              Analytical kinematic surface momentum flux
- ANA_SPFLUX              Analytical surface passive tracer fluxes
- ANA_SRFLUX              Analytical kinematic shortwave radiation flux
- ANA_SSFLUX              Analytical kinematic surface salinity flux
- ANA_STFLUX              Analytical kinematic surface temperature flux
- ANA_VMIX                Analytical vertical mixing coefficients
- ASSUMED_SHAPE           Using assumed-shape arrays
- AVERAGES                Writing out time-averaged nonlinear model fields
- BIO_FENNEL              Fennel et al. (2006) nitrogen-based model
- BIO_SEDIMENT            Restore fallen particulate material to the nutrient pool
- CARBON                  Add Carbon constituents
- DENITRIFICATION         Add denitrification processes
- DIAGNOSTICS_BIO         Computing and writing biological diagnostic terms
- DIAGNOSTICS_TS          Computing and writing tracer diagnostic terms
- DIAGNOSTICS_UV          Computing and writing momentum diagnostic terms
- DJ_GRADPS               Parabolic Splines density Jacobian (Shchepetkin, 2002)
- DOUBLE_PRECISION        Double precision arithmetic numerical kernel.
- FLOATS                  Simulated Lagrangian drifters
- FLOAT_VWALK             Lagrangian drifters with vertical diffusion, random walk
- MIX_S_UV                Mixing of momentum along constant S-surfaces
- NONLINEAR               Nonlinear Model
- !NONLIN_EOS             Linear Equation of State for seawater
- !OCMIP_OXYGEN_SC        Schmidt number from Wanninkhof (1992)
- OXYGEN                  Add oxygen dynamics
- POWER_LAW               Power-law shape time-averaging barotropic filter
- PROFILE                 Time profiling activated
- !RST_SINGLE             Double precision fields in restart NetCDF file
- SALINITY                Using salinity
- SOLVE3D                 Solving 3D Primitive Equations
- SPLINES_VDIFF           Parabolic Spline Reconstruction for Vertical Diffusion
- SPLINES_VVISC           Parabolic Spline Reconstruction for Vertical Viscosity
- STATIONS                Writing out station data
- !TALK_NONCONSERV        Alkalinity is passive and unaffected by nitrate or ammonium
- UV_ADV                  Advection of momentum
- UV_COR                  Coriolis term
- UV_U3HADVECTION         Third-order upstream horizontal advection of 3D momentum
- UV_C4VADVECTION         Fourth-order centered vertical advection of momentum
- UV_DRAG_GRID            Spatially varying linear drag coefficient
- UV_LDRAG                Linear bottom stress
- UV_VIS2                 Harmonic mixing of momentum
- VAR_RHO_2D              Variable density barotropic mode
- !VWALK_FORWARD          Lagrangian drifters, predictor/corrector random walk
+ UPWELLING                Wind-Driven Upwelling/Downwelling over a Periodic Channel
+ ANA_BIOLOGY              Analytical biology initial conditions
+ ANA_BPFLUX               Analytical bottom passive tracers fluxes
+ ANA_BSFLUX               Analytical kinematic bottom salinity flux
+ ANA_BTFLUX               Analytical kinematic bottom temperature flux
+ ANA_DRAG_GRID            Analytical spatially varying linear drag coefficient
+ ANA_GRID                 Analytical grid set-up
+ ANA_INITIAL              Analytical initial conditions
+ ANA_SMFLUX               Analytical kinematic surface momentum flux
+ ANA_SPFLUX               Analytical surface passive tracer fluxes
+ ANA_SRFLUX               Analytical kinematic shortwave radiation flux
+ ANA_SSFLUX               Analytical kinematic surface salinity flux
+ ANA_STFLUX               Analytical kinematic surface temperature flux
+ ANA_VMIX                 Analytical vertical mixing coefficients
+ ASSUMED_SHAPE            Using assumed-shape arrays
+ AVERAGES                 Writing out time-averaged nonlinear model fields
+ BIO_FENNEL               Fennel et al. (2006) nitrogen-based model
+ BIO_SEDIMENT             Restore fallen particulate material to the nutrient pool
+ CARBON                   Add Carbon constituents
+ DENITRIFICATION          Add denitrification processes
+ DIAGNOSTICS_BIO          Computing and writing biological diagnostic terms
+ DIAGNOSTICS_TS           Computing and writing tracer diagnostic terms
+ DIAGNOSTICS_UV           Computing and writing momentum diagnostic terms
+ DJ_GRADPS                Parabolic Splines density Jacobian (Shchepetkin, 2002)
+ DOUBLE_PRECISION         Double precision arithmetic numerical kernel.
+ FLOATS                   Simulated Lagrangian drifters
+ FLOAT_VWALK              Lagrangian drifters with vertical diffusion, random walk
+ MIX_S_UV                 Mixing of momentum along constant S-surfaces
+ NONLINEAR                Nonlinear Model
+ !NONLIN_EOS              Linear Equation of State for seawater
+ !OCMIP_OXYGEN_SC         Schmidt number from Wanninkhof (1992)
+ OXYGEN                   Add oxygen dynamics
+ POWER_LAW                Power-law shape time-averaging barotropic filter
+ PROFILE                  Time profiling activated
+ !RW14_OXYGEN_SC          Schmidt number from Wanninkhof (1992)
+ !RST_SINGLE              Double precision fields in restart NetCDF file
+ SALINITY                 Using salinity
+ SOLVE3D                  Solving 3D Primitive Equations
+ SPLINES_VDIFF            Parabolic Spline Reconstruction for Vertical Diffusion
+ SPLINES_VVISC            Parabolic Spline Reconstruction for Vertical Viscosity
+ STATIONS                 Writing out station data
+ !TALK_NONCONSERV         Alkalinity is passive and unaffected by nitrate or ammonium
+ UV_ADV                   Advection of momentum
+ UV_COR                   Coriolis term
+ UV_U3HADVECTION          Third-order upstream horizontal advection of 3D momentum
+ UV_C4VADVECTION          Fourth-order centered vertical advection of momentum
+ UV_DRAG_GRID             Spatially varying linear drag coefficient
+ UV_LDRAG                 Linear bottom stress
+ UV_VIS2                  Harmonic mixing of momentum
+ VAR_RHO_2D               Variable density barotropic mode
+ !VWALK_FORWARD           Lagrangian drifters, predictor/corrector random walk
 
  Process Information:
 
- Thread #    0 (pid=   19136) is active.
+ Thread #    0 (pid=   14801) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -879,7 +885,7 @@
          0 0001-01-01 00:00:00.00  0.000000E+00  6.585677E+02  6.585677E+02  3.884376E+11
                        (00,00,00)  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00
       DEF_HIS     - creating  history      file, Grid 01: roms_his.nc
-      WRT_HIS     - wrote history     fields (Index=1,1) in record = 0000001
+      WRT_HIS     - wrote history     fields (Index=1,1) in record = 1
       DEF_AVG     - creating  average      file, Grid 01: roms_avg.nc
       DEF_DIAGS   - creating  diagnostics  file, Grid 01: roms_dia.nc
       DEF_STATION - creating  stations     file, Grid 01: roms_sta.nc
@@ -1029,10 +1035,10 @@
                        (29,01,13)  4.516521E-03  2.926071E-04  1.960361E-03  1.936250E-02
         72 0001-01-01 06:00:00.00  8.563406E-06  6.585677E+02  6.585677E+02  3.884376E+11
                        (29,01,13)  4.622170E-03  2.992726E-04  2.005895E-03  1.978023E-02
-      WRT_HIS     - wrote history     fields (Index=1,1) in record = 0000002
-      WRT_AVG     - wrote averaged    fields             in record = 0000001
-      WRT_DIAGS   - wrote diagnostics fields             in record = 0000001
-      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 0000001
+      WRT_HIS     - wrote history     fields (Index=1,1) in record = 2
+      WRT_AVG     - wrote averaged    fields             in record = 1
+      WRT_DIAGS   - wrote diagnostics fields             in record = 1
+      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 1
         73 0001-01-01 06:05:00.00  8.964894E-06  6.585677E+02  6.585677E+02  3.884376E+11
                        (29,01,13)  4.728694E-03  3.059512E-04  2.051244E-03  2.020088E-02
         74 0001-01-01 06:10:00.00  9.378575E-06  6.585677E+02  6.585677E+02  3.884376E+11
@@ -1177,10 +1183,10 @@
                        (13,01,12)  1.304235E-02  7.228224E-04  6.427088E-03  5.562822E-02
        144 0001-01-01 12:00:00.00  7.407172E-05  6.585677E+02  6.585678E+02  3.884376E+11
                        (13,01,12)  1.318886E-02  7.294888E-04  6.485391E-03  5.620394E-02
-      WRT_HIS     - wrote history     fields (Index=1,1) in record = 0000003
-      WRT_AVG     - wrote averaged    fields             in record = 0000002
-      WRT_DIAGS   - wrote diagnostics fields             in record = 0000002
-      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 0000002
+      WRT_HIS     - wrote history     fields (Index=1,1) in record = 3
+      WRT_AVG     - wrote averaged    fields             in record = 2
+      WRT_DIAGS   - wrote diagnostics fields             in record = 2
+      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 2
        145 0001-01-01 12:05:00.00  7.554288E-05  6.585677E+02  6.585678E+02  3.884376E+11
                        (13,01,12)  1.333585E-02  7.361585E-04  6.543628E-03  5.678122E-02
        146 0001-01-01 12:10:00.00  7.702973E-05  6.585677E+02  6.585678E+02  3.884376E+11
@@ -1325,10 +1331,10 @@
                        (05,01,12)  2.460961E-02  1.196545E-03  1.055595E-02  1.002662E-01
        216 0001-01-01 18:00:00.00  2.225869E-04  6.585677E+02  6.585679E+02  3.884376E+11
                        (34,01,12)  2.478173E-02  1.202797E-03  1.061036E-02  1.009207E-01
-      WRT_HIS     - wrote history     fields (Index=1,1) in record = 0000004
-      WRT_AVG     - wrote averaged    fields             in record = 0000003
-      WRT_DIAGS   - wrote diagnostics fields             in record = 0000003
-      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 0000001
+      WRT_HIS     - wrote history     fields (Index=1,1) in record = 4
+      WRT_AVG     - wrote averaged    fields             in record = 3
+      WRT_DIAGS   - wrote diagnostics fields             in record = 3
+      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 1
        217 0001-01-01 18:05:00.00  2.253389E-04  6.585677E+02  6.585679E+02  3.884376E+11
                        (05,01,12)  2.495409E-02  1.209033E-03  1.066468E-02  1.015758E-01
        218 0001-01-01 18:10:00.00  2.281135E-04  6.585677E+02  6.585679E+02  3.884376E+11
@@ -1473,45 +1479,45 @@
                        (32,01,12)  3.742056E-02  1.593787E-03  1.402017E-02  1.484374E-01
        288 0001-01-02 00:00:00.00  4.914503E-04  6.585677E+02  6.585682E+02  3.884376E+11
                        (36,01,12)  3.760191E-02  1.598432E-03  1.406091E-02  1.491124E-01
-      WRT_HIS     - wrote history     fields (Index=1,1) in record = 0000005
-      WRT_AVG     - wrote averaged    fields             in record = 0000004
-      WRT_DIAGS   - wrote diagnostics fields             in record = 0000004
-      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 0000002
+      WRT_HIS     - wrote history     fields (Index=1,1) in record = 5
+      WRT_AVG     - wrote averaged    fields             in record = 4
+      WRT_DIAGS   - wrote diagnostics fields             in record = 4
+      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 2
 
 Elapsed wall CPU time for each process (seconds):
 
- Thread #    0 CPU:      52.916
- Total:                  52.916
+ Thread #    0 CPU:      53.609
+ Total:                  53.609
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.098  ( 0.1846 %)
-  Ocean state initialization .......................         0.010  ( 0.0186 %)
-  Reading of input data ............................         0.001  ( 0.0012 %)
-  Processing of input data .........................         0.048  ( 0.0915 %)
-  Processing of output time averaged data ..........         6.429  (12.1495 %)
-  Computation of vertical boundary conditions ......         0.011  ( 0.0200 %)
-  Computation of global information integrals ......         0.186  ( 0.3520 %)
-  Writing of output data ...........................         0.444  ( 0.8387 %)
-  Model 2D kernel ..................................        12.416  (23.4629 %)
-  Lagrangian floats trajectories ...................         0.007  ( 0.0135 %)
-  2D/3D coupling, vertical metrics .................         0.194  ( 0.3669 %)
-  Omega vertical velocity ..........................         0.205  ( 0.3866 %)
-  Equation of state for seawater ...................         0.126  ( 0.2390 %)
-  Biological module, source/sink terms .............         6.791  (12.8341 %)
-  3D equations right-side terms ....................         1.110  ( 2.0980 %)
-  3D equations predictor step ......................         7.719  (14.5880 %)
-  Pressure gradient ................................         0.510  ( 0.9646 %)
-  Harmonic stress tensor, S-surfaces ...............         0.537  ( 1.0150 %)
-  Corrector time-step for 3D momentum ..............         2.089  ( 3.9482 %)
-  Corrector time-step for tracers ..................        13.103  (24.7613 %)
-                                              Total:        52.034   98.3340 %
+  Allocation and array initialization ..............         0.064  ( 0.1200 %)
+  Ocean state initialization .......................         0.010  ( 0.0187 %)
+  Reading of input data ............................         0.001  ( 0.0014 %)
+  Processing of input data .........................         0.049  ( 0.0922 %)
+  Processing of output time averaged data ..........         6.698  (12.4936 %)
+  Computation of vertical boundary conditions ......         0.011  ( 0.0202 %)
+  Computation of global information integrals ......         0.193  ( 0.3592 %)
+  Writing of output data ...........................         0.453  ( 0.8446 %)
+  Model 2D kernel ..................................        12.553  (23.4155 %)
+  Lagrangian floats trajectories ...................         0.007  ( 0.0133 %)
+  2D/3D coupling, vertical metrics .................         0.194  ( 0.3620 %)
+  Omega vertical velocity ..........................         0.206  ( 0.3841 %)
+  Equation of state for seawater ...................         0.129  ( 0.2410 %)
+  Biological module, source/sink terms .............         6.526  (12.1727 %)
+  3D equations right-side terms ....................         1.241  ( 2.3141 %)
+  3D equations predictor step ......................         8.222  (15.3366 %)
+  Pressure gradient ................................         0.587  ( 1.0958 %)
+  Harmonic stress tensor, S-surfaces ...............         0.594  ( 1.1081 %)
+  Corrector time-step for 3D momentum ..............         2.056  ( 3.8358 %)
+  Corrector time-step for tracers ..................        12.930  (24.1192 %)
+                                              Total:        52.724   98.3482 %
 
-  Unique kernel(s) regions profiled ................        52.034   98.3340 %
-  Residual, non-profiled code ......................         0.882    1.6660 %
+  Unique kernel(s) regions profiled ................        52.724   98.3482 %
+  Residual, non-profiled code ......................         0.886    1.6518 %
 
 
- All percentages are with respect to total time =           52.916
+ All percentages are with respect to total time =           53.609
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1520,7 +1526,7 @@ Elapsed wall CPU time for each process (seconds):
 
      tile          Dynamic        Automatic            USAGE
 
-        0           175.21             1.65           176.86
+        0           175.72             1.65           177.37
         1             0.00             1.65             1.65
         2             0.00             1.57             1.57
         3             0.00             1.65             1.65
@@ -1530,15 +1536,15 @@ Elapsed wall CPU time for each process (seconds):
         7             0.00             1.60             1.60
         8             0.00             1.52             1.52
 
-    TOTAL           175.21            14.48           189.69
+    TOTAL           175.72            14.48           190.20
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
  ROMS/TOMS - Output NetCDF summary for Grid 01:
-             number of time records written in HISTORY file = 00000005
-             number of time records written in RESTART file = 00000002
-             number of time records written in AVERAGE file = 00000004
-             number of time records written in STATION file = 00000289
+             number of time records written in HISTORY file = 5
+             number of time records written in RESTART file = 2
+             number of time records written in AVERAGE file = 4
+             number of time records written in STATION file = 289
 
  Analytical header files used:
 
@@ -1556,4 +1562,4 @@ Elapsed wall CPU time for each process (seconds):
 
      /home/hadfield/ROMS/roms-test-mgh/upwelling/fennel.h
 
- ROMS/TOMS: DONE... Thursday - May 21, 2020 - 12:32:23 PM
+ ROMS/TOMS: DONE... Wednesday - October 7, 2020 -  1:44:45 PM
