@@ -153,22 +153,16 @@ export     MY_PROJECT_DIR=${PWD}
 
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DAD_IMPULSE"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOBS_IMPACT"
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOBS_SPACE"
+#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOBS_SPACE"           # Case 2
 
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DRPCG"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBGQC"
 
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DCOLLECT_ALLREDUCE"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DCOLLECT_ALLREDUCE"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DREDUCE_ALLGATHER"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
-
-# The tracer advection is specified in the standard input file, but the
-# CPP options can be specified here for older versions for backward
-# compatibility.
-
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
 
 #--------------------------------------------------------------------------
 # Compiler options.

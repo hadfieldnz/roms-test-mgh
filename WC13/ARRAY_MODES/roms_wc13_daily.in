@@ -73,7 +73,7 @@
 ! Input variable information file name.  This file needs to be processed
 ! first so all information arrays can be initialized properly.
 
-     VARNAME = ../../../External/varinfo.dat
+     VARNAME = ../../External/varinfo.dat
 
 ! Number of nested grids.
 
@@ -221,7 +221,7 @@ ad_VolCons(north) ==  F                            ! northern boundary
 
 ! Time-Stepping parameters.
 
-      NTIMES == 336
+      NTIMES == 192
           DT == 1800.0d0
      NDTFAST == 72
 
@@ -229,14 +229,14 @@ ad_VolCons(north) ==  F                            ! northern boundary
 ! analysis-forecast cycle.
 
   NTIMES_ANA == 192                                ! analysis interval
-  NTIMES_FCT == 336                                ! forecast interval
+  NTIMES_FCT == 192                                ! forecast interval
 
 ! Model iteration loops parameters.
 
        ERstr =  1
        ERend =  1
       Nouter =  1
-      Ninner =  26      ! RPCG
+      Ninner =  26
      Nsaddle =  1
   Nintervals =  1
 
@@ -259,9 +259,11 @@ ad_VolCons(north) ==  F                            ! northern boundary
 ! Output history, quicksave, average, and diagnostic files parameters.
 
      LDEFOUT == T
-        NHIS == 48
+!       NHIS == 4          ! every 2-hours
+        NHIS == 48         ! daily
      NDEFHIS == 0
-        NQCK == 0
+!       NQCK == 4          ! every 2-hours
+        NQCK == 48         ! daily
      NDEFQCK == 0
       NTSAVG == 1
         NAVG == 12
@@ -273,10 +275,11 @@ ad_VolCons(north) ==  F                            ! northern boundary
 ! Output tangent linear and adjoint models parameters.
 
    LcycleTLM == F
-        NTLM == 48
+        NTLM == 48         ! daily
      NDEFTLM == 0
    LcycleADJ == T
-        NADJ == 192
+        NADJ == 192        ! Strong constraint
+!       NADJ == 48         ! Weak constraint (daily)
      NDEFADJ == 0
         NSFF == 48
         NOBC == 48
@@ -414,7 +417,7 @@ LtracerSponge == T T                            ! temperature, salinity, inert
 ! origin for tidal forcing, and model reference time for output
 ! NetCDF units attribute.
 
-      DSTART =  13012                      ! days
+      DSTART =  13008                      ! days
   TIDE_START =  0.0d0                      ! days
     TIME_REF =  -2.0d0                     ! yyyymmdd.dd
 
@@ -492,14 +495,14 @@ LtracerSponge == T T                            ! temperature, salinity, inert
 ! Logical switches (TRUE/FALSE) to specify the adjoint state variables
 ! whose sensitivity is required.
 
-Lstate(isFsur) == T                        ! free-surface
-Lstate(isUbar) == T                        ! 2D U-momentum
-Lstate(isVbar) == T                        ! 2D V-momentum
-Lstate(isUvel) == T                        ! 3D U-momentum
-Lstate(isVvel) == T                        ! 3D V-momentum
+Lstate(isFsur) == F                        ! free-surface
+Lstate(isUbar) == F                        ! 2D U-momentum
+Lstate(isVbar) == F                        ! 2D V-momentum
+Lstate(isUvel) == F                        ! 3D U-momentum
+Lstate(isVvel) == F                        ! 3D V-momentum
 Lstate(isWvel) == F                        ! 3D W-momentum
 
-Lstate(isTvar) == T T                      ! NT tracers
+Lstate(isTvar) == F F                      ! NT tracers
 
 ! Logical switches (TRUE/FALSE) to specify the state variables for
 ! which Forcing Singular Vectors or Stochastic Optimals is required.
@@ -892,7 +895,7 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 
 ! Input NetCDF file names, [1:Ngrids].
 
-     GRDNAME == ../../Data/wc13_grd.nc
+     GRDNAME == ../Data/wc13_grd.nc
      ININAME == wc13_ini.nc
      ITLNAME == wc13_itl.nc
      IRPNAME == wc13_irp.nc
@@ -906,7 +909,7 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 ! be regular adjoint forcing files just like ADSname. If the forecast
 ! error metric is defined in observation space (OBS_SPACE is activated)
 ! then the forecast is initialized OIFnameA and OIFnameB (specified in
-! s4dvar.in input script) will have the structure of a 4D-Var observation
+! s4dva4.in input script) will have the structure of a 4D-Var observation
 ! file.
 
     FOInameA == wc13_foi_a.nc
@@ -935,7 +938,7 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 
     NBCFILES == 1                          ! number of boundary files
 
-     BRYNAME == ../../Data/wc13_ecco_bry.nc
+     BRYNAME == ../Data/wc13_ecco_bry.nc
 
 ! Input climatology file names. The USER has the option to separate the
 ! climatology variables into individual NetCDF files (NCLMFILES > 1),
@@ -947,7 +950,7 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 
    NCLMFILES == 1                          ! number of climatology files
 
-     CLMNAME == roms_clm.nc
+     CLMNAME == wc13_clm.nc
 
 ! Input climatology nudging coefficients file name.
 
@@ -981,20 +984,20 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 
      NFFILES == 7                          ! number of unique forcing files
 
-     FRCNAME == ../../Data/coamps_wc13_lwrad_down.nc \
-                ../../Data/coamps_wc13_Pair.nc \
-                ../../Data/coamps_wc13_Qair.nc \
-                ../../Data/coamps_wc13_rain.nc \
-                ../../Data/coamps_wc13_swrad.nc \
-                ../../Data/coamps_wc13_Tair.nc \
-                ../../Data/coamps_wc13_wind.nc
+     FRCNAME == ../Data/coamps_wc13_lwrad_down.nc \
+                ../Data/coamps_wc13_Pair.nc \
+                ../Data/coamps_wc13_Qair.nc \
+                ../Data/coamps_wc13_rain.nc \
+                ../Data/coamps_wc13_swrad.nc \
+                ../Data/coamps_wc13_Tair.nc \
+                ../Data/coamps_wc13_wind.nc
 
 ! Output NetCDF file names, [1:Ngrids].
 
      DAINAME == wc13_dai.nc
      GSTNAME == wc13_gst.nc
      RSTNAME == wc13_rst.nc
-     HISNAME == wc13_fwd.nc
+     HISNAME == wc13_his.nc
      QCKNAME == wc13_qck.nc
      TLMNAME == wc13_tlm.nc
      TLFNAME == wc13_tlf.nc

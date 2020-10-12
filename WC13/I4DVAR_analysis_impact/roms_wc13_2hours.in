@@ -260,9 +260,10 @@ ad_VolCons(north) ==  F                            ! northern boundary
 ! Output history, quicksave, average, and diagnostic files parameters.
 
      LDEFOUT == T
-        NHIS == 48
+        NHIS == 4         ! every 2-hours
+!       NHIS == 48        ! daily
      NDEFHIS == 0
-        NQCK == 0
+        NQCK == 4
      NDEFQCK == 0
       NTSAVG == 1
         NAVG == 12
@@ -273,14 +274,14 @@ ad_VolCons(north) ==  F                            ! northern boundary
 
 ! Output tangent linear and adjoint models parameters.
 
-   LcycleTLM == F
-        NTLM == 48
+   LcycleTLM == F 
+        NTLM == 48        ! daily
      NDEFTLM == 0
    LcycleADJ == T
         NADJ == 192
      NDEFADJ == 0
-        NSFF == 48
-        NOBC == 48
+        NSFF == 48        ! daily
+        NOBC == 48        ! daily
 
 ! GST output and check pointing restart parameters.
 
@@ -415,7 +416,7 @@ LtracerSponge == T T                            ! temperature, salinity, inert
 ! origin for tidal forcing, and model reference time for output
 ! NetCDF units attribute.
 
-      DSTART =  13008                      ! days
+      DSTART =  13008.0d0                  ! days
   TIDE_START =  0.0d0                      ! days
     TIME_REF =  -2.0d0                     ! yyyymmdd.dd
 
@@ -642,12 +643,12 @@ Qout(idu3dE) == F       ! u_eastward         3D U-eastward  at RHO-points
 Qout(idv3dN) == F       ! v_northward        3D V-northward at RHO-points
 Qout(idWvel) == F       ! w                  3D W-velocity
 Qout(idOvel) == F       ! omega              omega vertical velocity
-Qout(idUbar) == T       ! ubar               2D U-velocity
-Qout(idVbar) == T       ! vbar               2D V-velocity
-Qout(idu2dE) == T       ! ubar_eastward      2D U-eastward  at RHO-points
-Qout(idv2dN) == T       ! vbar_northward     2D V-northward at RHO-points
+Qout(idUbar) == F       ! ubar               2D U-velocity
+Qout(idVbar) == F       ! vbar               2D V-velocity
+Qout(idu2dE) == F       ! ubar_eastward      2D U-eastward  at RHO-points
+Qout(idv2dN) == F       ! vbar_northward     2D V-northward at RHO-points
 Qout(idFsur) == T       ! zeta               free-surface
-Qout(idBath) == T       ! bath               time-dependent bathymetry
+Qout(idBath) == F       ! bath               time-dependent bathymetry
 
 Qout(idTvar) == F F     ! temp, salt         temperature and salinity
 
@@ -663,8 +664,8 @@ Qout(idpthU) == F       ! z_u                time-varying depths of U-points
 Qout(idpthV) == F       ! z_v                time-varying depths of V-points
 Qout(idpthW) == F       ! z_w                time-varying depths of W-points
 
-Qout(idUsms) == F       ! sustr              surface U-stress
-Qout(idVsms) == F       ! svstr              surface V-stress
+Qout(idUsms) == T       ! sustr              surface U-stress
+Qout(idVsms) == T       ! svstr              surface V-stress
 Qout(idUbms) == F       ! bustr              bottom U-stress
 Qout(idVbms) == F       ! bvstr              bottom V-stress
 
@@ -706,19 +707,19 @@ Qout(idWpbt) == F       ! Pwave_bot          wave bottom period
 Qout(idWorb) == F       ! Ub_swan            wave bottom orbital velocity
 Qout(idWdis) == F       ! Wave_dissip        wave dissipation
 
-Qout(idPair) == F       ! Pair               surface air pressure
-Qout(idTair) == F       ! Tair               surface air temperature
-Qout(idUair) == F       ! Uair               surface U-wind component
-Qout(idVair) == F       ! Vair               surface V-wind component
+Qout(idPair) == T       ! Pair               surface air pressure
+Qout(idTair) == T       ! Tair               surface air temperature
+Qout(idUair) == T       ! Uair               surface U-wind component
+Qout(idVair) == T       ! Vair               surface V-wind component
 
-Qout(idTsur) == F F     ! shflux, ssflux     surface net heat and salt flux
-Qout(idLhea) == F       ! latent             latent heat flux
-Qout(idShea) == F       ! sensible           sensible heat flux
-Qout(idLrad) == F       ! lwrad              longwave radiation flux
-Qout(idSrad) == F       ! swrad              shortwave radiation flux
-Qout(idEmPf) == F       ! EminusP            E-P flux
-Qout(idevap) == F       ! evaporation        evaporation rate
-Qout(idrain) == F       ! rain               precipitation rate
+Qout(idTsur) == T T     ! shflux, ssflux     surface net heat and salt flux
+Qout(idLhea) == T       ! latent             latent heat flux
+Qout(idShea) == T       ! sensible           sensible heat flux
+Qout(idLrad) == T       ! lwrad              longwave radiation flux
+Qout(idSrad) == T       ! swrad              shortwave radiation flux
+Qout(idEmPf) == T       ! EminusP            E-P flux
+Qout(idevap) == T       ! evaporation        evaporation rate
+Qout(idrain) == T       ! rain               precipitation rate
 
 Qout(idDano) == F       ! rho                density anomaly
 Qout(idVvis) == F       ! AKv                vertical viscosity
@@ -948,7 +949,7 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 
    NCLMFILES == 1                          ! number of climatology files
 
-     CLMNAME == wc13_clm.nc
+     CLMNAME == ../Data/wc13_ecco_bry.nc
 
 ! Input climatology nudging coefficients file name.
 

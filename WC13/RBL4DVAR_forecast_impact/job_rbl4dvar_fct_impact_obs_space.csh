@@ -8,7 +8,7 @@
 #######################################################################
 #                                                                     #
 # Strong/Weak constraint RBL4D-Var observation impact or sensitivity  #
-# job CSH script:                                                     #
+# job script:                                                         #
 #                                                                     #
 # This script NEEDS to be run before any run:                         #
 #                                                                     #
@@ -33,6 +33,20 @@
 #                                                                     #
 #######################################################################
 
+# Set forward file snapshots intervals:
+
+#set NHIS='daily'                    # NHIS=48
+ set NHIS='2hours'                   # NHIS=4
+
+ echo ' '
+ echo 'Case 2: Forecast Error in the SST Metric'
+ if ($NHIS == 'daily') then
+   echo '(Processing files from daily snapshots forward trajectory)'   
+ else
+   echo '(Processing files from every 2-hours snapshots forward trajectory)'   
+ endif
+ echo ' '
+
 # Set path definition to one directory up in the tree.
 
  set Dir=`dirname ${PWD}`
@@ -42,28 +56,46 @@
  set SUBSTITUTE=${ROMS_ROOT}/ROMS/Bin/substitute
 
 # Copy nonlinear model initial conditions file.
-# This next copy is a dummy since ini.nc is not needed.
+# (Here, ROMS checks for wc13_ini.nc but it is not used)
 
- cp -p ${Dir}/RBL4DVAR/EX3_RPCG/wc13_dai.nc wc13_ini.nc
+ if ($NHIS == 'daily') then
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG/wc13_dai.nc wc13_ini.nc
+ else
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG_b/wc13_dai.nc wc13_ini.nc
+ endif
 
 # Copy Lanczos vectors from previous RBL4D-Var run. They are stored
 # in 4D-Var data assimilation file.
 
- cp -p ${Dir}/RBL4DVAR/EX3_RPCG/wc13_mod.nc wc13_lcz.nc
+ if ($NHIS == 'daily') then
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG/wc13_mod.nc wc13_lcz.nc
+ else
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG_b/wc13_mod.nc wc13_lcz.nc
+ endif
 
 # Copy adjoint sensitivity functionals.
 
- cp -p ${Dir}/Data/wc13_oifA.nc wc13_oifa.nc
- cp -p ${Dir}/Data/wc13_oifB.nc wc13_oifb.nc
-# This nest step is important since the background forecast is processed first.
-# Need to talk to Hernan so that ROMS processes the correct file without this fudge.
- cp -p ${Dir}/Data/wc13_oifB.nc wc13_obs.nc
+ if ($NHIS == 'daily') then
+   cp -v ${Dir}/Data/wc13_oifA_daily.nc wc13_oifa.nc
+   cp -v ${Dir}/Data/wc13_oifB_daily.nc wc13_oifb.nc
+ else
+   cp -v ${Dir}/Data/wc13_oifA_2hours.nc wc13_oifa.nc
+   cp -v ${Dir}/Data/wc13_oifB_2hours.nc wc13_oifb.nc
+ endif
 
 # Copy the forecast trajectories.
 
- cp -p ${Dir}/RBL4DVAR_forecast_impact/FCSTA/wc13_fwd.nc wc13_fct_A.nc
- cp -p ${Dir}/RBL4DVAR_forecast_impact/FCSTB/wc13_fwd.nc wc13_fct_B.nc
- cp -p ${Dir}/RBL4DVAR/EX3_RPCG/wc13_fwd_000.nc wc13_fwd_000.nc
+ if ($NHIS == 'daily') then
+   cp -v ${Dir}/RBL4DVAR_forecast_impact/FCSTA/daily/wc13_fwd.nc wc13_fct_A.nc
+   cp -v ${Dir}/RBL4DVAR_forecast_impact/FCSTB/daily/wc13_fwd.nc wc13_fct_B.nc
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG/wc13_fwd_outer0.nc wc13_fwd.nc
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG/wc13_qck_outer0.nc wc13_qck.nc
+ else
+   cp -v ${Dir}/RBL4DVAR_forecast_impact/FCSTA/2hours/wc13_fwd.nc wc13_fct_A.nc
+   cp -v ${Dir}/RBL4DVAR_forecast_impact/FCSTB/2hours/wc13_fwd.nc wc13_fct_B.nc
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG_b/wc13_fwd_outer0.nc wc13_fwd.nc
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG_b/wc13_qck_outer0.nc wc13_qck.nc
+ endif
 
 # Set model, initial conditions, boundary conditions and surface
 # forcing error covariance standard deviations files.
@@ -85,14 +117,18 @@
 # background forecast is processed first. We need to think about
 # it so that ROMS processes the correct file without this fudge.
 
- cp -p ${Dir}/Data/wc13_oifB.nc wc13_obs.nc
+ if ($NHIS == 'daily') then
+   cp -vp ${Dir}/Data/wc13_oifB_daily.nc wc13_obs.nc
+ else
+   cp -vp ${Dir}/Data/wc13_oifB_2hours.nc wc13_obs.nc
+ endif
  set OBSname=wc13_obs.nc
 
 # Get a clean copy of the observation file.  This is really
 # important since this file is modified.
 # Copy the analysis cycle observation file into wc13_obs_C.nc
 
- cp -p ${Dir}/Data/${OBSname} wc13_obs_C.nc
+ cp -v ${Dir}/Data/${OBSname} wc13_obs_C.nc
 
 # Modify 4D-Var template input script and specify above files.
 
@@ -100,7 +136,7 @@
  if (-e $RBL4DVAR) then
    /bin/rm $RBL4DVAR
  endif
- cp s4dvar.in $RBL4DVAR
+ cp -v s4dvar.in $RBL4DVAR
 
  $SUBSTITUTE $RBL4DVAR roms_std_m.nc $STDnameM
  $SUBSTITUTE $RBL4DVAR roms_std_i.nc $STDnameI

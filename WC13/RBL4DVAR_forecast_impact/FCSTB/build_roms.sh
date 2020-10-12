@@ -150,7 +150,9 @@ export     MY_PROJECT_DIR=${PWD}
 
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DNLM_DRIVER"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DANA_SPONGE"
- export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DFORWARD_DRIVE"
+
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DFORWARD_WRITE"
+ export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DOUT_DOUBLE"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DVERIFICATION"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DCOLLECT_ALLREDUCE"
@@ -158,12 +160,6 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
-
-# The tracer advection is specified in the standard input file, but the
-# CPP options can be specified here for older versions for backward
-# compatibility.
-
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
 
 #--------------------------------------------------------------------------
 # Compiler options.

@@ -152,22 +152,16 @@ setenv MY_PROJECT_DIR        ${PWD}
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DAD_IMPULSE"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOBS_IMPACT"
- setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOBS_SPACE"
+#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOBS_SPACE"          # Case 2
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DRPCG"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBGQC"
 
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCOLLECT_ALLREDUCE"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCOLLECT_ALLREDUCE"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DREDUCE_ALLGATHER"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
-
-# The tracer advection is specified in the standard input file, but the
-# CPP options can be specified here for older versions for backward
-# compatibility. 
-
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
 
 #--------------------------------------------------------------------------
 # Compiler options.

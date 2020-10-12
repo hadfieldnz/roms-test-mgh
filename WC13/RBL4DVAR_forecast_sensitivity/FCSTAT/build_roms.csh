@@ -149,8 +149,10 @@ setenv MY_PROJECT_DIR        ${PWD}
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNLM_DRIVER"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DANA_SPONGE"
+
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBULK_FLUXES"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DFORWARD_WRITE"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DVERIFICATION"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCOLLECT_ALLREDUCE"
@@ -186,12 +188,6 @@ setenv MY_PROJECT_DIR        ${PWD}
 #setenv USE_NETCDF4         on          # compile with NetCDF-4 library
 #setenv USE_HDF5            on          # compile with HDF5 library
 #setenv USE_PARALLEL_IO     on          # Parallel I/O with NetCDF-4/HDF5
-
-# The tracer advection is specified in the standard input file, but the
-# CPP options can be specified here for older versions for backward
-# compatibility. 
-
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
 
 #--------------------------------------------------------------------------
 # If coupling Earth Systems Models (ESM), set the location of the ESM
