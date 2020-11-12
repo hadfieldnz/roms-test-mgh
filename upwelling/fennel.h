@@ -333,18 +333,18 @@
       real(r8), parameter :: B_O2 = 81.83_r8
       real(r8), parameter :: C_O2 = 1.483_r8
       real(r8), parameter :: D_O2 = 0.008004_r8
-      real(r8), parameter :: E_O2 = 0.0_r8   
+      real(r8), parameter :: E_O2 = 0.0_r8
 
 # elif defined RW14_OXYGEN_SC
 !
 ! Alternative formulation for Schmidt number coefficients using the
-! formulation of Wanninkhof (2014, L&O Methods, 12,351-362).
+! formulation of Wanninkhof (2014, L and O Methods, 12,351-362).
 !
       real(r8), parameter :: A_O2 = 1920.4_r8
       real(r8), parameter :: B_O2 = 135.6_r8
       real(r8), parameter :: C_O2 = 5.2122_r8
       real(r8), parameter :: D_O2 = 0.10939_r8
-      real(r8), parameter :: E_O2 = 0.00093777_r8  
+      real(r8), parameter :: E_O2 = 0.00093777_r8
 
 # else
 !
@@ -355,7 +355,7 @@
       real(r8), parameter :: B_O2 = 128.0_r8
       real(r8), parameter :: C_O2 = 3.9918_r8
       real(r8), parameter :: D_O2 = 0.050091_r8
-      real(r8), parameter :: E_O2 = 0.0_r8     
+      real(r8), parameter :: E_O2 = 0.0_r8
 #endif
       real(r8), parameter :: OA0 = 2.00907_r8       ! Oxygen
       real(r8), parameter :: OA1 = 3.22014_r8       ! saturation
@@ -381,13 +381,13 @@
       real(r8), parameter :: B_CO2 = 136.25_r8      ! transfer coeff
       real(r8), parameter :: C_CO2 = 4.7353_r8      ! according to
       real(r8), parameter :: D_CO2 = 0.092307_r8    ! Wanninkhof (2014)
-      real(r8), parameter :: E_CO2 = 0.0007555_r8     
+      real(r8), parameter :: E_CO2 = 0.0007555_r8
 # else
       real(r8), parameter :: A_CO2 = 2073.1_r8      ! Schmidt
       real(r8), parameter :: B_CO2 = 125.62_r8      ! number
       real(r8), parameter :: C_CO2 = 3.6276_r8      ! transfer
       real(r8), parameter :: D_CO2 = 0.043219_r8    ! coefficients
-      real(r8), parameter :: E_CO2 = 0.0_r8     
+      real(r8), parameter :: E_CO2 = 0.0_r8
 #endif
 
       real(r8), parameter :: A1 = -60.2409_r8       ! surface
@@ -417,7 +417,7 @@
       real(r8) :: Epp, L_NH4, L_NO3, LTOT, Vp
 #ifdef PO4
       real(r8), parameter :: MinVal = 1.0e-6_r8
-      
+
       real(r8) :: L_PO4, LMIN, mu, cff6
 #endif
       real(r8) :: Chl2C, dtdays, t_PPmax, inhNH4
@@ -871,7 +871,7 @@
 !  Phytoplankton grazing by zooplankton (rate: ZooGR), phytoplankton
 !  assimilated to zooplankton (fraction: ZooAE_N) and egested to small
 !  detritus, and phytoplankton mortality (rate: PhyMR) to small
-!  detritus. [Landry 1993 L&O 38:468-472]
+!  detritus. [Landry 1993 L and O 38:468-472]
 !-----------------------------------------------------------------------
 !
           fac1=dtdays*ZooGR(ng)
@@ -936,9 +936,9 @@
               N_Flux_Zmortal=cff2*Bio(i,k,iZoop)
               N_Flux_Zexcret=cff3*Bio(i,k,iZoop)
               Bio(i,k,iNH4_)=Bio(i,k,iNH4_)+N_Flux_Zexcret
-#ifdef PO4              
+#ifdef PO4
               Bio(i,k,iPO4_)=Bio(i,k,iPO4_)+R_P2N(ng)*N_Flux_Zexcret
-#endif              
+#endif
               Bio(i,k,iSDeN)=Bio(i,k,iSDeN)+N_Flux_Zmortal
 !
 !  Zooplankton basal metabolism (limited by a zooplankton minimum).
@@ -1108,7 +1108,7 @@
             cff3=cff2*u10squ*SQRT(660.0_r8/SchmidtN_Ox)
 !
 !  Calculate O2 saturation concentration using Garcia and Gordon
-!  L&O (1992) formula, (EXP(AA) is in ml/l).
+!  L and O (1992) formula, (EXP(AA) is in ml/l).
 !
             TS=LOG((298.15_r8-Bio(i,k,itemp))/                          &
      &             (273.15_r8+Bio(i,k,itemp)))
