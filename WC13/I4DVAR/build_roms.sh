@@ -2,7 +2,7 @@
 #
 # svn $Id$
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
+# Copyright (c) 2002-2021 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
@@ -163,12 +163,6 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
-
-# The tracer advection is specified in the standard input file, but the
-# CPP options can be specified here for older versions for backward
-# compatibility.
-
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
 
 #--------------------------------------------------------------------------
 # Compiler options.

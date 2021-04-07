@@ -2,7 +2,7 @@
 #
 # svn $Id$
 #######################################################################
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                         #
+# Copyright (c) 2002-2021 The ROMS/TOMS Group                         #
 #   Licensed under a MIT/X style license                              #
 #   See License_ROMS.txt                                              #
 #######################################################################
@@ -32,6 +32,11 @@
  echo 'Strong/Weak Constraint RBL4D-Var Configuration: Verifying Analysis'
  echo ' '
 
+# Set forward file snapshots intervals:
+
+#set NHIS='daily'                    # NHIS=48
+ set NHIS='2hours'                   # NHIS=4
+
 # Set path definition to two directory up in the tree.
 
  set Dir=`dirname ${PWD}`
@@ -43,7 +48,12 @@
 
 # Copy nonlinear model initial conditions file.
 
- cp -vp ${Dir}/RBL4DVAR/EX3_RPCG/wc13_dai.nc wc13_ini.nc
+ if ($NHIS == 'daily') then
+   cp -vp ${Dir}/RBL4DVAR/EX3_RPCG/wc13_dai.nc wc13_ini.nc
+ else
+#  cp -vp ${Dir}/RBL4DVAR/EX3_RPCG_b/wc13_dai.nc wc13_ini.nc
+   cp -vp ${Dir}/RBL4DVAR/EX3_RPCG_c/wc13_dai.nc wc13_ini.nc
+ endif
 
 # Set model, initial conditions, boundary conditions and surface
 # forcing error covariance standard deviations files.

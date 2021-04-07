@@ -2,7 +2,7 @@
 #
 # svn $Id$
 #######################################################################
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                         #
+# Copyright (c) 2002-2021 The ROMS/TOMS Group                         #
 #   Licensed under a MIT/X style license                              #
 #   See License_ROMS.txt                                              #
 #######################################################################
@@ -36,6 +36,11 @@
  echo 'Array Modes Configuration:'
  echo ' '
 
+# Set forward file snapshots intervals:
+
+#set NHIS='daily'                    # NHIS=48
+ set NHIS='2hours'                   # NHIS=4
+
 # Set path definition to one directory up in the tree.
 
  set Dir=`dirname ${PWD}`
@@ -54,10 +59,14 @@
 
  cp -p ${Dir}/Data/wc13_ini.nc wc13_irp.nc
 
-# Copies Lanczos vectors from previous RBL4D-Var run. They are stored
+# Copy Lanczos vectors from previous RBL4D-Var run. They are stored
 # in 4D-Var data assimilation file.
 
- cp -vp ${Dir}/RBL4DVAR/EX3_RPCG/wc13_mod.nc wc13_lcz.nc
+ if ($NHIS == 'daily') then
+   cp -vp ${Dir}/RBL4DVAR/EX3_RPCG/wc13_mod.nc wc13_lcz.nc
+ else
+   cp -vp ${Dir}/RBL4DVAR/EX3_RPCG_b/wc13_mod.nc wc13_lcz.nc
+ endif
 
 # Set model, initial conditions, boundary conditions and surface
 # forcing error covariance standard deviations files.

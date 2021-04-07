@@ -2,12 +2,12 @@
 #
 # svn $Id$
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
+# Copyright (c) 2002-2021 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
 #                                                                       :::
-# ROMS/TOMS Compiling BASH Script                                       :::
+# ROMS Compiling BASH Script                                            :::
 #                                                                       :::
 # Script to compile an user application where the application-specific  :::
 # files are kept separate from the ROMS source code.                    :::
@@ -25,7 +25,7 @@
 #                                                                       :::
 # Usage:                                                                :::
 #                                                                       :::
-#    ./build_roms.bash [options]                                        :::
+#    ./build_roms.sh [options]                                          :::
 #                                                                       :::
 # Options:                                                              :::
 #                                                                       :::
@@ -34,7 +34,7 @@
 #                                                                       :::
 #    -p macro    Prints any Makefile macro value. For example,          :::
 #                                                                       :::
-#                  build_roms.bash -p FFLAGS                            :::
+#                  build_roms.sh -p FFLAGS                              :::
 #                                                                       :::
 #    -noclean    Do not clean already compiled objects                  :::
 #                                                                       :::
@@ -89,7 +89,7 @@ do
       echo "              omit argument for all avaliable CPUs"
       echo ""
       echo "-p macro    Prints any Makefile macro value"
-      echo "              For example:  build_roms.bash -p FFLAGS"
+      echo "              For example:  build_roms.sh -p FFLAGS"
       echo ""
       echo "-noclean    Do not clean already compiled objects"
       echo ""
@@ -158,7 +158,6 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMINRES"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DRPCG"
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTIME_CONV"
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DBGQC"
 
@@ -167,12 +166,6 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DDEBUGGING"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
-
-# The tracer advection is specified in the standard input file, but the
-# CPP options can be specified here for older versions for backward
-# compatibility.
-
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
 
 #--------------------------------------------------------------------------
 # Compiler options.
@@ -235,7 +228,7 @@ fi
  export USE_MY_LIBS=no            # use system default library paths
 #export USE_MY_LIBS=yes           # use my customized library paths
 
-MY_PATHS=${COMPILERS}/my_build_paths.bash
+MY_PATHS=${COMPILERS}/my_build_paths.sh
 
 if [ "${USE_MY_LIBS}" = "yes" ]; then
   source ${MY_PATHS} ${MY_PATHS}

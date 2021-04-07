@@ -1,7 +1,7 @@
 /*
 ** svn $Id$
 *******************************************************************************
-** Copyright (c) 2002-2020 The ROMS/TOMS Group                               **
+** Copyright (c) 2002-2021 The ROMS/TOMS Group                               **
 **   Licensed under a MIT/X style license                                    **
 **   See License_ROMS.txt                                                    **
 *******************************************************************************
@@ -30,6 +30,9 @@
 **  RBL4DVAR                  Strong/Weak constraint RBL4D-Var
 **  R4DVAR                    Strong/Weak constraint R4D-Var
 **  R_SYMMETRY                Representer Matrix Symmetry Test
+**  SPLIT_I4DVAR              Strong constraint Split I4D-Var
+**  SPLIT_R4DVAR              Strong/Weak constraint Split R4D-Var
+**  SPLIT_RBL4DVAR            Strong/Weak constraint Split RBL4D-Var
 **  SANITY_CHECK              Sanity Check
 **  SO_SEMI                   Stochastic Optimals: Semi-norm
 **  TLM_CHECK                 Tangent Linear Model Check
@@ -136,14 +139,22 @@
 **  Common options to all 4DVAR algorithms.
 */
 
-#if defined ARRAY_MODES || defined CLIPPING                 || \
-    defined I4DVAR      || defined I4DVAR_ANA_SENSITIVITY   || \
-    defined RBL4DVAR    || defined RBL4DVAR_ANA_SENSITIVITY || \
-    defined R4DVAR      || defined R4DVAR_ANA_SENSITIVITY
+#if defined ARRAY_MODES              || \
+    defined CLIPPING                 || \
+    defined I4DVAR                   || \
+    defined I4DVAR_ANA_SENSITIVITY   || \
+    defined RBL4DVAR                 || \
+    defined RBL4DVAR_ANA_SENSITIVITY || \
+    defined R4DVAR                   || \
+    defined R4DVAR_ANA_SENSITIVITY   || \
+    defined SPLIT_I4DVAR             || \
+    defined SPLIT_RBL4DVAR           || \
+    defined SPLIT_R4DVAR
 # define ADJUST_BOUNDARY
 # define ADJUST_WSTRESS
 # define ADJUST_STFLUX
-# define NL_BULK_FLUXES
+# define PRIOR_BULK_FLUXES
+# define FORWARD_FLUXES
 # define VCONVOLUTION
 # define IMPLICIT_VCONV
 # ifdef BALANCE_OPERATOR
@@ -159,7 +170,8 @@
 **  Special options for each 4DVAR algorithm.
 */
 
-#if defined ARRAY_MODES || \
-    defined R4DVAR      || defined R4DVAR_ANA_SENSITIVITY
+#if defined ARRAY_MODES            || \
+    defined R4DVAR                 || \
+    defined R4DVAR_ANA_SENSITIVITY
 # define RPM_RELAXATION
 #endif

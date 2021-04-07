@@ -3,7 +3,7 @@
 !
 !svn $Id$
 !========================================================= Hernan G. Arango ===
-!  Copyright (c) 2002-2020 The ROMS/TOMS Group                                !
+!  Copyright (c) 2002-2021 The ROMS/TOMS Group                                !
 !    Licensed under a MIT/X style license                                     !
 !    See License_ROMS.txt                                                     !
 !==============================================================================
@@ -73,7 +73,7 @@
 ! Input variable information file name.  This file needs to be processed
 ! first so all information arrays can be initialized properly.
 
-     VARNAME = ../../External/varinfo.dat
+     VARNAME = ../../../External/varinfo.dat
 
 ! Number of nested grids.
 
@@ -196,7 +196,7 @@ ad_Vadvection == C4       \                     ! temperature
 
 ad_LBC(isFsur) ==   Cha     Cha     Clo     Cha         ! free-surface
 ad_LBC(isUbar) ==   Fla     Fla     Clo     Fla         ! 2D U-momentum
-ad_LBC(isVbar) ==   Fla     Fla     Clo     Fla         ! 2D U-momentum
+ad_LBC(isVbar) ==   Fla     Fla     Clo     Fla         ! 2D V-momentum
 ad_LBC(isUvel) ==   Cla     Cla     Clo     Cla         ! 3D U-momentum
 ad_LBC(isVvel) ==   Cla     Cla     Clo     Cla         ! 3D V-momentum
 ad_LBC(isMtke) ==   Gra     Gra     Clo     Gra         ! mixing TKE
@@ -221,7 +221,7 @@ ad_VolCons(north) ==  F                            ! northern boundary
 
 ! Time-Stepping parameters.
 
-      NTIMES == 192
+      NTIMES == 336
           DT == 1800.0d0
      NDTFAST == 72
 
@@ -259,9 +259,10 @@ ad_VolCons(north) ==  F                            ! northern boundary
 ! Output history, quicksave, average, and diagnostic files parameters.
 
      LDEFOUT == T
-        NHIS == 48
+!       NHIS == 4          ! every 2-hours
+        NHIS == 48         ! daily
      NDEFHIS == 0
-        NQCK == 0
+        NQCK == 4
      NDEFQCK == 0
       NTSAVG == 1
         NAVG == 12
@@ -278,8 +279,8 @@ ad_VolCons(north) ==  F                            ! northern boundary
    LcycleADJ == T
         NADJ == 192
      NDEFADJ == 0
-        NSFF == 48
-        NOBC == 48
+        NSFF == 48         ! daily
+        NOBC == 48         ! daily
 
 ! GST output and check pointing restart parameters.
 
@@ -329,7 +330,7 @@ LtracerSponge == T T                            ! temperature, salinity, inert
 
      AKV_BAK == 1.0d-5                          ! m2/s
 
-  ad_AKV_fac == 1.0d0  1.0d0                    ! nondimensional
+  ad_AKV_fac == 1.0d0                           ! nondimensional
 
 ! Upper threshold values to limit vertical mixing coefficients computed
 ! from vertical mixing parameterizations. Although this is an engineering
@@ -414,7 +415,7 @@ LtracerSponge == T T                            ! temperature, salinity, inert
 ! origin for tidal forcing, and model reference time for output
 ! NetCDF units attribute.
 
-      DSTART =  13008                      ! days
+      DSTART =  13012.0d0                  ! days
   TIDE_START =  0.0d0                      ! days
     TIME_REF =  -2.0d0                     ! yyyymmdd.dd
 
@@ -492,14 +493,14 @@ LtracerSponge == T T                            ! temperature, salinity, inert
 ! Logical switches (TRUE/FALSE) to specify the adjoint state variables
 ! whose sensitivity is required.
 
-Lstate(isFsur) == T                        ! free-surface
-Lstate(isUbar) == T                        ! 2D U-momentum
-Lstate(isVbar) == T                        ! 2D V-momentum
-Lstate(isUvel) == T                        ! 3D U-momentum
-Lstate(isVvel) == T                        ! 3D V-momentum
+Lstate(isFsur) == F                        ! free-surface
+Lstate(isUbar) == F                        ! 2D U-momentum
+Lstate(isVbar) == F                        ! 2D V-momentum
+Lstate(isUvel) == F                        ! 3D U-momentum
+Lstate(isVvel) == F                        ! 3D V-momentum
 Lstate(isWvel) == F                        ! 3D W-momentum
 
-Lstate(isTvar) == T T                      ! NT tracers
+Lstate(isTvar) == F F                      ! NT tracers
 
 ! Logical switches (TRUE/FALSE) to specify the state variables for
 ! which Forcing Singular Vectors or Stochastic Optimals is required.
@@ -511,8 +512,8 @@ Fstate(isUvel) == F                        ! 3D U-momentum
 Fstate(isVvel) == F                        ! 3D V-momentum
 Fstate(isTvar) == F F                      ! NT tracers
 
-Fstate(isUstr) == T                        ! surface U-stress
-Fstate(isVstr) == T                        ! surface V-stress
+Fstate(isUstr) == F                        ! surface U-stress
+Fstate(isVstr) == F                        ! surface V-stress
 Fstate(isTsur) == F F                      ! NT surface tracers flux
 
 ! Stochastic Optimals time decorrelation scale (days) assumed for
@@ -641,19 +642,19 @@ Qout(idu3dE) == F       ! u_eastward         3D U-eastward  at RHO-points
 Qout(idv3dN) == F       ! v_northward        3D V-northward at RHO-points
 Qout(idWvel) == F       ! w                  3D W-velocity
 Qout(idOvel) == F       ! omega              omega vertical velocity
-Qout(idUbar) == T       ! ubar               2D U-velocity
-Qout(idVbar) == T       ! vbar               2D V-velocity
-Qout(idu2dE) == T       ! ubar_eastward      2D U-eastward  at RHO-points
-Qout(idv2dN) == T       ! vbar_northward     2D V-northward at RHO-points
+Qout(idUbar) == F       ! ubar               2D U-velocity
+Qout(idVbar) == F       ! vbar               2D V-velocity
+Qout(idu2dE) == F       ! ubar_eastward      2D U-eastward  at RHO-points
+Qout(idv2dN) == F       ! vbar_northward     2D V-northward at RHO-points
 Qout(idFsur) == T       ! zeta               free-surface
-Qout(idBath) == T       ! bath               time-dependent bathymetry
+Qout(idBath) == F       ! bath               time-dependent bathymetry
 
 Qout(idTvar) == F F     ! temp, salt         temperature and salinity
 
-Qout(idUsur) == T       ! u_sur              surface U-velocity
-Qout(idVsur) == T       ! v_sur              surface V-velocity
-Qout(idUsuE) == T       ! u_sur_eastward     surface U-eastward  velocity
-Qout(idVsuN) == T       ! v_sur_northward    surface V-northward velocity
+Qout(idUsur) == F       ! u_sur              surface U-velocity
+Qout(idVsur) == F       ! v_sur              surface V-velocity
+Qout(idUsuE) == F       ! u_sur_eastward     surface U-eastward  velocity
+Qout(idVsuN) == F       ! v_sur_northward    surface V-northward velocity
 
 Qout(idsurT) == T T     ! temp_sur, salt_sur surface temperature and salinity
 
@@ -662,8 +663,8 @@ Qout(idpthU) == F       ! z_u                time-varying depths of U-points
 Qout(idpthV) == F       ! z_v                time-varying depths of V-points
 Qout(idpthW) == F       ! z_w                time-varying depths of W-points
 
-Qout(idUsms) == F       ! sustr              surface U-stress
-Qout(idVsms) == F       ! svstr              surface V-stress
+Qout(idUsms) == T       ! sustr              surface U-stress
+Qout(idVsms) == T       ! svstr              surface V-stress
 Qout(idUbms) == F       ! bustr              bottom U-stress
 Qout(idVbms) == F       ! bvstr              bottom V-stress
 
@@ -705,19 +706,19 @@ Qout(idWpbt) == F       ! Pwave_bot          wave bottom period
 Qout(idWorb) == F       ! Ub_swan            wave bottom orbital velocity
 Qout(idWdis) == F       ! Wave_dissip        wave dissipation
 
-Qout(idPair) == F       ! Pair               surface air pressure
-Qout(idTair) == F       ! Tair               surface air temperature
-Qout(idUair) == F       ! Uair               surface U-wind component
-Qout(idVair) == F       ! Vair               surface V-wind component
+Qout(idPair) == T       ! Pair               surface air pressure
+Qout(idTair) == T       ! Tair               surface air temperature
+Qout(idUair) == T       ! Uair               surface U-wind component
+Qout(idVair) == T       ! Vair               surface V-wind component
 
-Qout(idTsur) == F F     ! shflux, ssflux     surface net heat and salt flux
-Qout(idLhea) == F       ! latent             latent heat flux
-Qout(idShea) == F       ! sensible           sensible heat flux
-Qout(idLrad) == F       ! lwrad              longwave radiation flux
-Qout(idSrad) == F       ! swrad              shortwave radiation flux
-Qout(idEmPf) == F       ! EminusP            E-P flux
-Qout(idevap) == F       ! evaporation        evaporation rate
-Qout(idrain) == F       ! rain               precipitation rate
+Qout(idTsur) == T T     ! shflux, ssflux     surface net heat and salt flux
+Qout(idLhea) == T       ! latent             latent heat flux
+Qout(idShea) == T       ! sensible           sensible heat flux
+Qout(idLrad) == T       ! lwrad              longwave radiation flux
+Qout(idSrad) == T       ! swrad              shortwave radiation flux
+Qout(idEmPf) == T       ! EminusP            E-P flux
+Qout(idevap) == T       ! evaporation        evaporation rate
+Qout(idrain) == T       ! rain               precipitation rate
 
 Qout(idDano) == F       ! rho                density anomaly
 Qout(idVvis) == F       ! AKv                vertical viscosity
@@ -892,7 +893,7 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 
 ! Input NetCDF file names, [1:Ngrids].
 
-     GRDNAME == ../Data/wc13_grd.nc
+     GRDNAME == ../../Data/wc13_grd.nc
      ININAME == wc13_ini.nc
      ITLNAME == wc13_itl.nc
      IRPNAME == wc13_irp.nc
@@ -909,15 +910,15 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 ! s4dvar.in input script) will have the structure of a 4D-Var observation
 ! file.
 
-    FOInameA == wc13_foi_A.nc
-    FOInameB == wc13_foi_B.nc
+    FOInameA == wc13_foi_a.nc
+    FOInameB == wc13_foi_b.nc
 
 ! Input NetCDF filenames for the forecasts initialized from the analysis
 ! of the current 4D-Var cycle (FCTnameA) and initialized from the analysis
 ! of the previous 4D-Var cycle (FCTnameB).
 
-    FCTnameA == wc13_fct_A.nc
-    FCTnameB == wc13_fct_B.nc
+    FCTnameA == wc13_fct_a.nc
+    FCTnameB == wc13_fct_b.nc
 
 ! Nesting grids connectivity data: contact points information. This
 ! NetCDF file is special and complex. It is currently generated using
@@ -935,7 +936,7 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 
     NBCFILES == 1                          ! number of boundary files
 
-     BRYNAME == ../Data/wc13_ecco_bry.nc
+     BRYNAME == ../../Data/wc13_ecco_bry.nc
 
 ! Input climatology file names. The USER has the option to separate the
 ! climatology variables into individual NetCDF files (NCLMFILES > 1),
@@ -981,13 +982,13 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 
      NFFILES == 7                          ! number of unique forcing files
 
-     FRCNAME == ../Data/coamps_wc13_lwrad_down.nc \
-                ../Data/coamps_wc13_Pair.nc \
-                ../Data/coamps_wc13_Qair.nc \
-                ../Data/coamps_wc13_rain.nc \
-                ../Data/coamps_wc13_swrad.nc \
-                ../Data/coamps_wc13_Tair.nc \
-                ../Data/coamps_wc13_wind.nc
+     FRCNAME == ../../Data/coamps_wc13_lwrad_down.nc \
+                ../../Data/coamps_wc13_Pair.nc \
+                ../../Data/coamps_wc13_Qair.nc \
+                ../../Data/coamps_wc13_rain.nc \
+                ../../Data/coamps_wc13_swrad.nc \
+                ../../Data/coamps_wc13_Tair.nc \
+                ../../Data/coamps_wc13_wind.nc
 
 ! Output NetCDF file names, [1:Ngrids].
 
@@ -1381,7 +1382,7 @@ Dout(iTvdif) == T T     ! temp_vdiff, ...    vertical diffusion
 !                  MOD(NTIMES/NHIS, Nsaddle) = 0
 !
 !                for legal computations.
-!                   
+!
 ! Nintervals   Number of time interval divisions for Stochastic Optimals
 !                computations. It must be a multiple of NTIMES. The tangent
 !                linear model (TLM) and the adjoint model (ADM) are integrated

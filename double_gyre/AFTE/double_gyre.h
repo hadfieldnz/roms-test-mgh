@@ -1,7 +1,7 @@
 /*
 ** svn $Id$
 *******************************************************************************
-** Copyright (c) 2002-2020 The ROMS/TOMS Group                               **
+** Copyright (c) 2002-2021 The ROMS/TOMS Group                               **
 **   Licensed under a MIT/X style license                                    **
 **   See License_ROMS.txt                                                    **
 *******************************************************************************
@@ -21,8 +21,8 @@
 ** GRADIENT_CHECK             TLM/ADM Gradient Check
 ** FORCING_SV                 Forcing Singular Vectors
 ** FT_EIGENMODES              Finite Time Eigenmodes
-** I4DVAR_OLD                Old Incremental, strong constraint 4DVAR
-** I4DVAR                    Incremental, strong constraint 4DVAR
+** IS4DVAR_OLD                Old Incremental, strong constraint 4DVAR
+** IS4DVAR                    Incremental, strong constraint 4DVAR
 ** NLM_DRIVER                 Nonlinear Basic State trajectory
 ** OPT_PERTURBATION           Optimal perturbations
 ** PICARD_TEST                Picard Iterations Test
@@ -118,9 +118,9 @@
 **  Common options to all 4DVAR algorithms.
 */
 
-#if defined ARRAY_MODES || defined CLIPPING            || \
-    defined I4DVAR     || defined I4DVAR_ANA_SENSITIVITY || \
-    defined RBL4DVAR     || defined RBL4DVAR_ANA_SENSITIVITY || \
+#if defined ARRAY_MODES || defined CLIPPING                 || \
+    defined I4DVAR      || defined I4DVAR_ANA_SENSITIVITY   || \
+    defined RBL4DVAR    || defined RBL4DVAR_ANA_SENSITIVITY || \
     defined R4DVAR      || defined R4DVAR_ANA_SENSITIVITY
 # define VCONVOLUTION
 # define IMPLICIT_VCONV

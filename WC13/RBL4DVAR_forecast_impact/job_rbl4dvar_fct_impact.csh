@@ -2,13 +2,13 @@
 #
 # svn $Id$
 #######################################################################
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                         #
+# Copyright (c) 2002-2021 The ROMS/TOMS Group                         #
 #   Licensed under a MIT/X style license                              #
 #   See License_ROMS.txt                                              #
 #######################################################################
 #                                                                     #
-# Strong/Weak constraint RBL4D-Var observation impact or sensitivity  #
-# job CSH script:                                                     #
+# Strong/Weak constraint RBL4D-Var forecast observation impact job    #
+# script:                                                             #
 #                                                                     #
 # This script NEEDS to be run before any run:                         #
 #                                                                     #
@@ -33,6 +33,20 @@
 #                                                                     #
 #######################################################################
 
+# Set forward file snapshots intervals:
+
+#set NHIS='daily'                    # NHIS=48
+ set NHIS='2hours'                   # NHIS=4
+
+ echo ' '
+ echo 'Case 1: Forecast Error in the 37N Transport Metric'
+ if ($NHIS == 'daily') then
+   echo '(Processing files from daily snapshots forward trajectory)'   
+ else
+   echo '(Processing files from every 2-hours snapshots forward trajectory)'
+ endif
+ echo ' '
+
 # Set path definition to one directory up in the tree.
 
  set Dir=`dirname ${PWD}`
@@ -44,25 +58,47 @@
 # Copy nonlinear model initial conditions file.
 # (Here, ROMS checks for wc13_ini.nc but it is not used)
 
- cp -p ${Dir}/RBL4DVAR/EX3_RPCG/wc13_dai.nc wc13_ini.nc
+ if ($NHIS == 'daily') then
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG/wc13_dai.nc wc13_ini.nc
+ else
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG_b/wc13_dai.nc wc13_ini.nc
+ endif
 
 # Copy Lanczos vectors from previous RBL4D-Var run. They are stored
 # in 4D-Var data assimilation file.
 
- cp -p ${Dir}/RBL4DVAR/EX3_RPCG/wc13_mod.nc wc13_lcz.nc
+ if ($NHIS == 'daily') then
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG/wc13_mod.nc wc13_lcz.nc
+ else
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG_b/wc13_mod.nc wc13_lcz.nc
+ endif
 
 # Copy adjoint sensitivity functionals.
 # (Here, ROMS checks for wc13_ads.nc but it is not used)
 
- cp -p ${Dir}/Data/wc13_foi_A.nc wc13_foi_A.nc
- cp -p ${Dir}/Data/wc13_foi_B.nc wc13_foi_B.nc
- cp -p ${Dir}/Data/wc13_foi_B.nc wc13_ads.nc
+ if ($NHIS == 'daily') then
+   cp -v ${Dir}/Data/wc13_foi_A_daily.nc wc13_foi_A.nc
+   cp -v ${Dir}/Data/wc13_foi_B_daily.nc wc13_foi_B.nc
+   cp -v ${Dir}/Data/wc13_foi_B_daily.nc wc13_ads.nc
+ else
+   cp -v ${Dir}/Data/wc13_foi_A_2hours.nc wc13_foi_A.nc
+   cp -v ${Dir}/Data/wc13_foi_B_2hours.nc wc13_foi_B.nc
+   cp -v ${Dir}/Data/wc13_foi_B_2hours.nc wc13_ads.nc
+ endif
 
 # Copy the forecast trajectories.
 
- cp -p ${Dir}/RBL4DVAR_forecast_impact/FCSTA/wc13_fwd.nc wc13_fct_A.nc
- cp -p ${Dir}/RBL4DVAR_forecast_impact/FCSTB/wc13_fwd.nc wc13_fct_B.nc
- cp -p ${Dir}/RBL4DVAR/EX3_RPCG/wc13_fwd_000.nc wc13_fwd_000.nc
+ if ($NHIS == 'daily') then
+   cp -v ${Dir}/RBL4DVAR_forecast_impact/FCSTA/daily/wc13_fwd.nc wc13_fct_A.nc
+   cp -v ${Dir}/RBL4DVAR_forecast_impact/FCSTB/daily/wc13_fwd.nc wc13_fct_B.nc
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG/wc13_fwd_outer0.nc wc13_fwd.nc
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG/wc13_qck_outer0.nc wc13_qck.nc
+ else
+   cp -v ${Dir}/RBL4DVAR_forecast_impact/FCSTA/2hours/wc13_fwd.nc wc13_fct_A.nc
+   cp -v ${Dir}/RBL4DVAR_forecast_impact/FCSTB/2hours/wc13_fwd.nc wc13_fct_B.nc
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG_b/wc13_fwd_outer0.nc wc13_fwd.nc
+   cp -v ${Dir}/RBL4DVAR/EX3_RPCG_b/wc13_qck_outer0.nc wc13_qck.nc
+ endif
 
 # Set model, initial conditions, boundary conditions and surface
 # forcing error covariance standard deviations files.
@@ -87,7 +123,7 @@
 # Get a clean copy of the observation file.  This is really
 # important since this file is modified.
 
- cp -p ${Dir}/Data/${OBSname} .
+ cp -v ${Dir}/Data/${OBSname} .
 
 # Modify 4D-Var template input script and specify above files.
 
@@ -95,7 +131,7 @@
  if (-e $RBL4DVAR) then
    /bin/rm $RBL4DVAR
  endif
- cp s4dvar.in $RBL4DVAR
+ cp -v s4dvar.in $RBL4DVAR
 
  $SUBSTITUTE $RBL4DVAR roms_std_m.nc $STDnameM
  $SUBSTITUTE $RBL4DVAR roms_std_i.nc $STDnameI

@@ -2,7 +2,7 @@
 #
 # svn $Id$
 #::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
-# Copyright (c) 2002-2020 The ROMS/TOMS Group                           :::
+# Copyright (c) 2002-2021 The ROMS/TOMS Group                           :::
 #   Licensed under a MIT/X style license                                :::
 #   See License_ROMS.txt                                                :::
 #::::::::::::::::::::::::::::::::::::::::::::::::::::: Hernan G. Arango :::
@@ -149,8 +149,10 @@ setenv MY_PROJECT_DIR        ${PWD}
 
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DNLM_DRIVER"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DANA_SPONGE"
+
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DBULK_FLUXES"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DFORWARD_WRITE"
+ setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DOUT_DOUBLE"
  setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DVERIFICATION"
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCOLLECT_ALLREDUCE"
@@ -158,12 +160,6 @@ setenv MY_PROJECT_DIR        ${PWD}
 
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DDEBUGGING"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DPOSITIVE_ZERO"
-
-# The tracer advection is specified in the standard input file, but the
-# CPP options can be specified here for older versions for backward
-# compatibility. 
-
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
 
 #--------------------------------------------------------------------------
 # Compiler options.
