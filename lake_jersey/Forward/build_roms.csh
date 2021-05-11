@@ -125,8 +125,8 @@ setenv MY_PROJECT_DIR        ${PWD}
 # Set path of the directory containing makefile configuration (*.mk) files.
 # The user has the option to specify a customized version of these files
 # in a different directory than the one distributed with the source code,
-# ${MY_ROMS_SRC}/Compilers. If this is the case, you need to keep these
-# configurations files up-to-date.
+# ${MY_ROMS_SRC}/Compilers. If this is the case, need to keep these these
+# urations files up-to-date.
 
  setenv COMPILERS            ${MY_ROMS_SRC}/Compilers
 #setenv COMPILERS            ${HOME}/Compilers/ROMS
@@ -167,13 +167,6 @@ setenv MY_PROJECT_DIR        ${PWD}
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCRAIG_BANNER"
 #setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DCHARNOK"
 
-# The tracer advection is specified in the standard input file, but the
-# CPP options can be specified here for older versions for backward
-# compatibility.
-
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
-#setenv MY_CPP_FLAGS "${MY_CPP_FLAGS} -DTS_MPDATA"
-
 #--------------------------------------------------------------------------
 # Compiler options.
 #--------------------------------------------------------------------------
@@ -186,6 +179,7 @@ setenv MY_PROJECT_DIR        ${PWD}
 
  setenv USE_MPI             on          # distributed-memory parallelism
  setenv USE_MPIF90          on          # compile with mpif90 script
+#setenv which_MPI           intel       # compile with mpiifort library
 #setenv which_MPI           mpich       # compile with MPICH library
 #setenv which_MPI           mpich2      # compile with MPICH2 library
 #setenv which_MPI           mvapich2    # compile with MVAPICH2 library
@@ -199,8 +193,22 @@ setenv MY_PROJECT_DIR        ${PWD}
 
 #setenv USE_DEBUG           on          # use Fortran debugging flags
  setenv USE_LARGE           on          # activate 64-bit compilation
+
+# ROMS I/O choices and combinations. A more complete description of the
+# available options can be found in the wiki (https://myroms.org/wiki/IO).
+# Most users will want to enable at least USE_NETCDF4 because that will
+# instruct the ROMS build system to use nf-config to determine the
+# necessary libraries and paths to link into the ROMS executable.
+
 #setenv USE_NETCDF4         on          # compile with NetCDF-4 library
-#setenv USE_HDF5            on          # compile with HDF5 library
+#setenv USE_PARALLEL_IO     on          # Parallel I/O with NetCDF-4/HDF5
+#setenv USE_PIO             on          # Parallel I/O with PIO library
+#setenv USE_SCORPIO         on          # Parallel I/O with SCORPIO library
+
+# If any of the coupling component use the HDF5 Fortran API for primary
+# I/O, we need to compile the main driver with the HDF5 library.
+
+#setevn USE_HDF5            on          # compile with HDF5 library
 #setenv USE_PARALLEL_IO     on          # Parallel I/O with NetCDF-4/HDF5
 
 #--------------------------------------------------------------------------
