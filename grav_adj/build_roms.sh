@@ -49,7 +49,7 @@ parallel=0
 clean=1
 dprint=0
 
-MY_CPP_FLAGS=
+export MY_CPP_FLAGS=
 
 while [ $# -gt 0 ]
 do
@@ -126,8 +126,8 @@ export     MY_PROJECT_DIR=${PWD}
 # Set path of the directory containing makefile configuration (*.mk) files.
 # The user has the option to specify a customized version of these files
 # in a different directory than the one distributed with the source code,
-# ${MY_ROMS_SRC}/Compilers. If this is the case, the you need to keep
-# these configurations files up-to-date.
+# ${MY_ROMS_SRC}/Compilers. If this is the case, you need to keep these
+# configurations files up-to-date.
 
  export         COMPILERS=${MY_ROMS_SRC}/Compilers
 #export         COMPILERS=${HOME}/Compilers/ROMS
@@ -160,13 +160,6 @@ export     MY_PROJECT_DIR=${PWD}
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DUV_VIS2"
  export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DMIX_S_UV"
 
-# The tracer advection is specified in the standard input file, but the
-# CPP options can be specified here for older versions for backward
-# compatibility.
-
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_A4HADVECTION -DTS_A4VADVECTION"
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_MPDATA"
-
 #--------------------------------------------------------------------------
 # Compiler options.
 #--------------------------------------------------------------------------
@@ -179,8 +172,10 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export           USE_MPI=on            # distributed-memory parallelism
 #export        USE_MPIF90=on            # compile with mpif90 script
+#export         which_MPI=intel         # compile with mpiifort library
 #export         which_MPI=mpich         # compile with MPICH library
 #export         which_MPI=mpich2        # compile with MPICH2 library
+#export         which_MPI=mvapich2      # compile with MVAPICH2 library
 #export         which_MPI=openmpi       # compile with OpenMPI library
 
 #export        USE_OpenMP=on            # shared-memory parallelism
@@ -191,9 +186,22 @@ export     MY_PROJECT_DIR=${PWD}
 
 #export         USE_DEBUG=on            # use Fortran debugging flags
  export         USE_LARGE=on            # activate 64-bit compilation
+
+# ROMS I/O choices and combinations. A more complete description of the
+# available options can be found in the wiki (https://myroms.org/wiki/IO).
+# Most users will want to enable at least USE_NETCDF4 because that will
+# instruct the ROMS build system to use nf-config to determine the
+# necessary libraries and paths to link into the ROMS executable.
+
 #export       USE_NETCDF4=on            # compile with NetCDF-4 library
-#export          USE_HDF5=on            # compile with HDF5 library
 #export   USE_PARALLEL_IO=on            # Parallel I/O with NetCDF-4/HDF5
+#export           USE_PIO=on            # Parallel I/O with PIO library
+#export       USE_SCORPIO=on            # Parallel I/O with SCORPIO library
+
+# If any of the coupling component use the HDF5 Fortran API for primary
+# I/O, we need to compile the main driver with the HDF5 library.
+
+#export          USE_HDF5=on            # compile with HDF5 library
 
 #--------------------------------------------------------------------------
 # If Earth System Model (ESM) coupling, set location of ESM component

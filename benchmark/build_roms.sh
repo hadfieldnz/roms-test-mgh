@@ -160,12 +160,6 @@ export     MY_PROJECT_DIR=${PWD}
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DPARALLEL_IO"
 #export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DHDF5"
 
-# The tracer advection is specified in the standard input file, but the
-# CPP options can be specified here for older versions for backward
-# compatibility.
-
-#export      MY_CPP_FLAGS="${MY_CPP_FLAGS} -DTS_U3HADVECTION -DTS_C4VADVECTION"
-
 #--------------------------------------------------------------------------
 # Compiler options.
 #--------------------------------------------------------------------------
