@@ -1,25 +1,24 @@
 --------------------------------------------------------------------------------
- Model Input Parameters:  ROMS/TOMS version 3.9  
-                          Wednesday - October 7, 2020 -  1:46:48 PM
+ Model Input Parameters:  ROMS/TOMS version 4.0  
+                          Thursday - May 20, 2021 -  9:36:51 PM
 --------------------------------------------------------------------------------
 
  Wind-Driven Upwelling/Downwelling over a Periodic Channel
 
- Operating system : Linux
- CPU/hardware     : x86_64
- Compiler system  : gfortran
- Compiler command : /bin/gfortran
- Compiler flags   : -frepack-arrays -O3 -ffast-math -
+ Operating system  : Linux
+ CPU/hardware      : x86_64
+ Compiler system   : gfortran
+ Compiler command  : /bin/gfortran
+ Compiler flags    : -frepack-arrays -O3 -ffast-math -
+ Git Origin URL    : git@github.com:hadfieldnz/roms-trunk-mgh.git
+ Git Revision      : master commit 64fd5606859a04da3e37269279628d18e54af3fd
+ Git Status        : The working tree is clean
 
- Git Origin URL: git@github.com:hadfieldnz/roms-trunk-mgh.git
- Git Revision  : master commit fa51e078f2aeab95ee76cd474e883f4691daaf5e
- Git Status    : The working tree is clean
-
- Host Name     : niwa-1019320.niwa.local
- Local Root    : /home/hadfield/ROMS/roms-trunk-mgh
- Header Dir    : /home/hadfield/ROMS/roms-test-mgh/upwelling
- Header file   : upwelling.h
- Analytical Dir: /home/hadfield/ROMS/roms-test-mgh/upwelling
+ Host Name         : niwa-1019320.niwa.local
+ Local Root        : /home/hadfield/ROMS/roms-trunk-mgh
+ Header Dir        : /home/hadfield/ROMS/roms-test-mgh/upwelling
+ Header file       : upwelling.h
+ Analytical Dir    : /home/hadfield/ROMS/roms-test-mgh/upwelling
 
  Resolution, Grid 01: 41x80x16,  Parallel Threads: 1,  Tiling: 3x3
 
@@ -175,6 +174,9 @@
           T  Dout(iTvadv)      Write out vertical advection, tracer 02: salt
           T  Dout(iTvdif)      Write out vertical diffusion, tracer 01: temp
           T  Dout(iTvdif)      Write out vertical diffusion, tracer 02: salt
+
+          1  inp_lib           Using standard NetCDF library for input files.
+          1  out_lib           Using standard NetCDF library for output files.
           1  shuffle           NetCDF-4/HDF5 file format shuffle filer flag.
           1  deflate           NetCDF-4/HDF5 file format deflate filer flag.
           1  deflate_level     NetCDF-4/HDF5 file format deflate level parameter.
@@ -379,7 +381,7 @@
 
  Process Information:
 
- Thread #    0 (pid=   17461) is active.
+ Thread #    0 (pid=   16908) is active.
 
  INITIAL: Configuring and initializing forward nonlinear model ...
  *******
@@ -539,13 +541,13 @@
 
          0 0001-01-01 00:00:00.00  0.000000E+00  6.585677E+02  6.585677E+02  3.884376E+11
                        (00,00,00)  0.000000E+00  0.000000E+00  0.000000E+00  0.000000E+00
-      DEF_HIS     - creating  history      file, Grid 01: roms_his.nc
-      WRT_HIS     - wrote history     fields (Index=1,1) in record = 1
-      DEF_AVG     - creating  average      file, Grid 01: roms_avg.nc
-      DEF_DIAGS   - creating  diagnostics  file, Grid 01: roms_dia.nc
-      DEF_STATION - creating  stations     file, Grid 01: roms_sta.nc
-      DEF_FLOATS  - creating  floats       file, Grid 01: roms_flt.nc
-      DEF_RST   - creating restart file: roms_rst.nc
+  DEF_HIS_NF90     - creating history file,            Grid 01: roms_his.nc
+  WRT_HIS_NF90     - wrote history     fields (Index=1,1) in record = 1
+  DEF_AVG_NF90     - creating average file,            Grid 01: roms_avg.nc
+  DEF_DIAGS_NF90   - creating diagnostics file,        Grid 01: roms_dia.nc
+  DEF_STATION_NF90 - creating stations file,           Grid 01: roms_sta.nc
+  DEF_FLOATS_NF90  - creating floats file,             Grid 01: roms_flt.nc
+  DEF_RST_NF90     - creating restart file,            Grid 01: roms_rst.nc
          1 0001-01-01 00:05:00.00  6.479416E-13  6.585677E+02  6.585677E+02  3.884376E+11
                        (01,01,01)  1.068554E-09  1.950202E-06  0.000000E+00  9.216771E-06
          2 0001-01-01 00:10:00.00  9.248409E-12  6.585677E+02  6.585677E+02  3.884376E+11
@@ -690,10 +692,10 @@
                        (29,01,13)  4.516521E-03  2.926071E-04  1.960361E-03  1.936250E-02
         72 0001-01-01 06:00:00.00  8.563406E-06  6.585677E+02  6.585677E+02  3.884376E+11
                        (29,01,13)  4.622170E-03  2.992726E-04  2.005895E-03  1.978023E-02
-      WRT_HIS     - wrote history     fields (Index=1,1) in record = 2
-      WRT_AVG     - wrote averaged    fields             in record = 1
-      WRT_DIAGS   - wrote diagnostics fields             in record = 1
-      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 1
+  WRT_HIS_NF90     - wrote history     fields (Index=1,1) in record = 2
+  WRT_AVG_NF90     - wrote averaged    fields             in record = 1
+  WRT_DIAGS_NF90   - wrote diagnostics fields             in record = 1
+  WRT_RST_NF90     - wrote re-start    fields (Index=1,1) in record = 1
         73 0001-01-01 06:05:00.00  8.964894E-06  6.585677E+02  6.585677E+02  3.884376E+11
                        (29,01,13)  4.728694E-03  3.059512E-04  2.051244E-03  2.020088E-02
         74 0001-01-01 06:10:00.00  9.378575E-06  6.585677E+02  6.585677E+02  3.884376E+11
@@ -838,10 +840,10 @@
                        (13,01,12)  1.304235E-02  7.228224E-04  6.427088E-03  5.562822E-02
        144 0001-01-01 12:00:00.00  7.407172E-05  6.585677E+02  6.585678E+02  3.884376E+11
                        (13,01,12)  1.318886E-02  7.294888E-04  6.485391E-03  5.620394E-02
-      WRT_HIS     - wrote history     fields (Index=1,1) in record = 3
-      WRT_AVG     - wrote averaged    fields             in record = 2
-      WRT_DIAGS   - wrote diagnostics fields             in record = 2
-      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 2
+  WRT_HIS_NF90     - wrote history     fields (Index=1,1) in record = 3
+  WRT_AVG_NF90     - wrote averaged    fields             in record = 2
+  WRT_DIAGS_NF90   - wrote diagnostics fields             in record = 2
+  WRT_RST_NF90     - wrote re-start    fields (Index=1,1) in record = 2
        145 0001-01-01 12:05:00.00  7.554288E-05  6.585677E+02  6.585678E+02  3.884376E+11
                        (13,01,12)  1.333585E-02  7.361585E-04  6.543628E-03  5.678122E-02
        146 0001-01-01 12:10:00.00  7.702973E-05  6.585677E+02  6.585678E+02  3.884376E+11
@@ -986,10 +988,10 @@
                        (05,01,12)  2.460961E-02  1.196545E-03  1.055595E-02  1.002662E-01
        216 0001-01-01 18:00:00.00  2.225869E-04  6.585677E+02  6.585679E+02  3.884376E+11
                        (34,01,12)  2.478173E-02  1.202797E-03  1.061036E-02  1.009207E-01
-      WRT_HIS     - wrote history     fields (Index=1,1) in record = 4
-      WRT_AVG     - wrote averaged    fields             in record = 3
-      WRT_DIAGS   - wrote diagnostics fields             in record = 3
-      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 1
+  WRT_HIS_NF90     - wrote history     fields (Index=1,1) in record = 4
+  WRT_AVG_NF90     - wrote averaged    fields             in record = 3
+  WRT_DIAGS_NF90   - wrote diagnostics fields             in record = 3
+  WRT_RST_NF90     - wrote re-start    fields (Index=1,1) in record = 1
        217 0001-01-01 18:05:00.00  2.253389E-04  6.585677E+02  6.585679E+02  3.884376E+11
                        (05,01,12)  2.495409E-02  1.209033E-03  1.066468E-02  1.015758E-01
        218 0001-01-01 18:10:00.00  2.281135E-04  6.585677E+02  6.585679E+02  3.884376E+11
@@ -1134,44 +1136,44 @@
                        (32,01,12)  3.742056E-02  1.593787E-03  1.402017E-02  1.484374E-01
        288 0001-01-02 00:00:00.00  4.914503E-04  6.585677E+02  6.585682E+02  3.884376E+11
                        (36,01,12)  3.760191E-02  1.598432E-03  1.406091E-02  1.491124E-01
-      WRT_HIS     - wrote history     fields (Index=1,1) in record = 5
-      WRT_AVG     - wrote averaged    fields             in record = 4
-      WRT_DIAGS   - wrote diagnostics fields             in record = 4
-      WRT_RST     - wrote re-start    fields (Index=1,1) in record = 2
+  WRT_HIS_NF90     - wrote history     fields (Index=1,1) in record = 5
+  WRT_AVG_NF90     - wrote averaged    fields             in record = 4
+  WRT_DIAGS_NF90   - wrote diagnostics fields             in record = 4
+  WRT_RST_NF90     - wrote re-start    fields (Index=1,1) in record = 2
 
 Elapsed wall CPU time for each process (seconds):
 
- Thread #    0 CPU:      26.242
- Total:                  26.242
+ Thread #    0 CPU:      26.348
+ Total:                  26.348
 
  Nonlinear model elapsed CPU time profile, Grid: 01
 
-  Allocation and array initialization ..............         0.037  ( 0.1413 %)
-  Ocean state initialization .......................         0.006  ( 0.0229 %)
-  Reading of input data ............................         0.001  ( 0.0023 %)
-  Processing of input data .........................         0.011  ( 0.0412 %)
-  Processing of output time averaged data ..........         2.001  ( 7.6258 %)
-  Computation of vertical boundary conditions ......         0.011  ( 0.0402 %)
-  Computation of global information integrals ......         0.180  ( 0.6868 %)
-  Writing of output data ...........................         1.620  ( 6.1746 %)
-  Model 2D kernel ..................................        13.075  (49.8231 %)
-  Lagrangian floats trajectories ...................         0.006  ( 0.0246 %)
-  2D/3D coupling, vertical metrics .................         0.182  ( 0.6920 %)
-  Omega vertical velocity ..........................         0.180  ( 0.6847 %)
-  Equation of state for seawater ...................         0.118  ( 0.4488 %)
-  3D equations right-side terms ....................         1.065  ( 4.0565 %)
-  3D equations predictor step ......................         2.381  ( 9.0719 %)
-  Pressure gradient ................................         0.500  ( 1.9041 %)
-  Harmonic stress tensor, S-surfaces ...............         0.530  ( 2.0199 %)
-  Corrector time-step for 3D momentum ..............         2.044  ( 7.7877 %)
-  Corrector time-step for tracers ..................         1.454  ( 5.5419 %)
-                                              Total:        25.400   96.7901 %
+  Allocation and array initialization ..............         0.038  ( 0.1453 %)
+  Ocean state initialization .......................         0.006  ( 0.0218 %)
+  Reading of input data ............................         0.001  ( 0.0024 %)
+  Processing of input data .........................         0.011  ( 0.0423 %)
+  Processing of output time averaged data ..........         2.021  ( 7.6718 %)
+  Computation of vertical boundary conditions ......         0.015  ( 0.0570 %)
+  Computation of global information integrals ......         0.181  ( 0.6860 %)
+  Writing of output data ...........................         1.431  ( 5.4298 %)
+  Model 2D kernel ..................................        13.266  (50.3495 %)
+  Lagrangian floats trajectories ...................         0.007  ( 0.0248 %)
+  2D/3D coupling, vertical metrics .................         0.182  ( 0.6919 %)
+  Omega vertical velocity ..........................         0.180  ( 0.6832 %)
+  Equation of state for seawater ...................         0.117  ( 0.4435 %)
+  3D equations right-side terms ....................         1.065  ( 4.0426 %)
+  3D equations predictor step ......................         2.442  ( 9.2686 %)
+  Pressure gradient ................................         0.511  ( 1.9408 %)
+  Harmonic stress tensor, S-surfaces ...............         0.534  ( 2.0278 %)
+  Corrector time-step for 3D momentum ..............         2.028  ( 7.6961 %)
+  Corrector time-step for tracers ..................         1.468  ( 5.5723 %)
+                                              Total:        25.505   96.7976 %
 
-  Unique kernel(s) regions profiled ................        25.400   96.7901 %
-  Residual, non-profiled code ......................         0.842    3.2099 %
+  Unique kernel(s) regions profiled ................        25.505   96.7976 %
+  Residual, non-profiled code ......................         0.844    3.2024 %
 
 
- All percentages are with respect to total time =           26.242
+ All percentages are with respect to total time =           26.348
 
 
 >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -1180,7 +1182,7 @@ Elapsed wall CPU time for each process (seconds):
 
      tile          Dynamic        Automatic            USAGE
 
-        0            75.36             0.96            76.32
+        0            75.49             0.96            76.45
         1             0.00             0.96             0.96
         2             0.00             0.96             0.96
         3             0.00             0.96             0.96
@@ -1190,7 +1192,7 @@ Elapsed wall CPU time for each process (seconds):
         7             0.00             0.96             0.96
         8             0.00             0.96             0.96
 
-    TOTAL            75.36             8.63            83.99
+    TOTAL            75.49             8.63            84.12
 
 <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
@@ -1210,4 +1212,4 @@ Elapsed wall CPU time for each process (seconds):
      ROMS/Functionals/ana_stflux.h
      ROMS/Functionals/ana_vmix.h
 
- ROMS/TOMS: DONE... Wednesday - October 7, 2020 -  1:47:15 PM
+ ROMS/TOMS: DONE... Thursday - May 20, 2021 -  9:37:17 PM
